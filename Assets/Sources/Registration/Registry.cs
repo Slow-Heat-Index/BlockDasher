@@ -17,7 +17,7 @@ namespace Sources.Registration {
 
         public static Manager<T> Get<T>(Identifier identifier) where T : IIdentifiable {
             if (!_managers.TryGetValue(identifier, out var manager)) return null;
-            if (!manager.GetType().GenericTypeArguments[0].IsAssignableFrom(typeof(T))) return null;
+            if (!manager.ManagedType.IsAssignableFrom(typeof(T))) return null;
             return manager as Manager<T>;
         }
     }

@@ -11,24 +11,64 @@ namespace Sources.Level {
         public const int ChunkVolume = ChunkLength * ChunkLength * ChunkLength;
         public const int WorldToChunkPositionShift = 4;
 
-        public Vector3Int Position { get; }
+        public readonly World World;
+        public readonly Vector3Int Position;
+
         private readonly Block[,,] _blocks = new Block[ChunkLength, ChunkLength, ChunkLength];
+
+        public Chunk(World world, Vector3Int position) {
+            World = world;
+            Position = position;
+        }
 
         public Block GetBlock(Vector3Int position) {
             position.isInRange(0, ChunkLength - 1).ValidateTrue($"Position out of range! {position}");
-            return _blocks[position.x, position.y, position.z];
+            return _blocks[position.y, position.x, position.z];
         }
 
-        public Block PlaceBlock(BlockData data, Vector3Int position) {
+        public Block PlaceBlock(BlockData data, Vector3Int position, bool refreshAdjacent = true) {
             position.isInRange(0, ChunkLength - 1).ValidateTrue($"Position out of range! {position}");
 
-            var builder = Registry.Get<Block.Builder>(Identifiers.ManagerBlock)[data.Identifier];
-            if (builder == null) return null;
-            var block = builder.CreateBlock(new ChunkPosition(Position, position).toWorldPosition(), data);
+            var worldPosition = new ChunkPosition(Position, position).toWorldPosition();
+            var blockPosition = new BlockPosition(World, worldPosition);
+            Block block = null;
+            
+            if (data.Identifier == null) {
+                RemoveBlock(position);
+            }
+            else {
+                var builder = Registry.Get<BlockType>(Identifiers.ManagerBlock)[data.Identifier];
+                if (builder == null) {
+                    RemoveBlock(position);
+                }
+                else {
+                    block = builder.CreateBlock(blockPosition, data);
+                    _blocks[position.y, position.x, position.z]?.Invalidate();
+                    _blocks[position.y, position.x, position.z] = block;
+                }
+            }
 
-            _blocks[position.x, position.y, position.z]?.Invalidate();
-            _blocks[position.x, position.y, position.z] = block;
+            if (refreshAdjacent) {
+                blockPosition.ForEachAdjacentBlock(it => it.View.MarkVisibilityDirty());
+            }
+            
             return block;
+        }
+
+        public void RemoveBlock(Vector3Int position) {
+            _blocks[position.y, position.x, position.z]?.Invalidate();
+            _blocks[position.y, position.x, position.z] = null;
+        }
+
+        public void Clear() {
+            for (var y = 0; y < ChunkLength; y++) {
+                for (var x = 0; x < ChunkLength; x++) {
+                    for (var z = 0; z < ChunkLength; z++) {
+                        _blocks[y, x, z]?.Invalidate();
+                        _blocks[y, x, z] = null;
+                    }
+                }
+            }
         }
     }
 }

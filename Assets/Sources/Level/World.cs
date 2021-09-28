@@ -23,10 +23,18 @@ namespace Sources.Level {
             return GetOrCreateChunk(chunkPosition.Chunk).PlaceBlock(data, chunkPosition.Position);
         }
 
+        public void PlaceChunk(ChunkData data, Vector3Int chunkPosition) {
+            if (_chunks.TryGetValue(chunkPosition, out var chunk)) {
+                data.PlaceData(chunk);
+            }
+            else {
+                _chunks[chunkPosition] = data.ToChunk(this, chunkPosition);
+            }
+        }
 
         private Chunk GetOrCreateChunk(Vector3Int chunkPosition) {
             if (_chunks.TryGetValue(chunkPosition, out var chunk)) return chunk;
-            chunk = new Chunk();
+            chunk = new Chunk(this, chunkPosition);
             _chunks[chunkPosition] = chunk;
             return chunk;
         }

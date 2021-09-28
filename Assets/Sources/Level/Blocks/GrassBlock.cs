@@ -1,19 +1,21 @@
-﻿using Sources.Identification;
+﻿using Level;
+using Level.Blocks;
+using Sources.Identification;
 using Sources.Level.Data;
-using UnityEngine;
 
 namespace Sources.Level.Blocks {
     public class GrassBlock : Block {
-        public GrassBlock(Vector3Int position, BlockData data)
+        public GrassBlock(BlockPosition position, BlockData data)
             : base(Identifiers.Grass, position, data) {
         }
 
+        public override BlockView GenerateBlockView() => GameObject.AddComponent<GrassBlockView>();
 
-        public new class Builder : Block.Builder {
-            public Builder() : base(Identifiers.Grass) {
+        public class BlockType : Level.BlockType {
+            public BlockType() : base(Identifiers.Grass) {
             }
 
-            public override Block CreateBlock(Vector3Int position, BlockData data) {
+            public override Block CreateBlock(BlockPosition position, BlockData data) {
                 return new GrassBlock(position, data);
             }
         }

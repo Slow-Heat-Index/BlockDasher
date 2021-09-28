@@ -3,9 +3,9 @@ using Sources.Level.Blocks;
 using Sources.Registration;
 
 namespace Sources.Level.Manager {
-    public class BlockManager : Manager<Block.Builder> {
+    public class BlockManager : Manager<BlockType> {
         public BlockManager() : base(Identifiers.ManagerBlock) {
-            Register(new GrassBlock.Builder());
+            Register(new GrassBlock.BlockType());
         }
     }
 }

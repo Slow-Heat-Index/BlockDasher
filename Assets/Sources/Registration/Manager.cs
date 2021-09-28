@@ -7,10 +7,12 @@ namespace Sources.Registration {
     public class Manager<T> : IManager where T : IIdentifiable {
         protected Dictionary<Identifier, T> _dictionary = new Dictionary<Identifier, T>();
         public Identifier Identifier { get; }
+        public Type ManagedType => typeof(T);
 
         public Manager(Identifier identifier) {
             Identifier = identifier;
         }
+
 
         public T Get(Identifier identifier) {
             identifier.ValidateNotNull("Identifier cannot be null!");
@@ -39,6 +41,7 @@ namespace Sources.Registration {
                 action(pair.Key, pair.Value);
             }
         }
+
         public T this[Identifier identifier] => Get(identifier);
     }
 }

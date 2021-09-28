@@ -1,4 +1,5 @@
-﻿using Sources.Level;
+﻿using System;
+using Sources.Level;
 using UnityEngine;
 
 namespace Sources.Util {
@@ -7,5 +8,8 @@ namespace Sources.Util {
             v.x >= min && v.y >= min && v.z >= min && v.x <= max && v.y <= max && v.z <= max;
 
         public static ChunkPosition toChunkPosition(this Vector3Int v) => new ChunkPosition(v);
+
+        public static Vector3Int Floor(this Vector3 v) =>
+            new Vector3Int((int)Math.Floor(v.x), (int)Math.Floor(v.y), (int)Math.Floor(v.z));
     }
 }

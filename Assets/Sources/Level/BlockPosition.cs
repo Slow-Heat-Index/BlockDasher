@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Sources.Util;
+using UnityEngine;
 
 namespace Sources.Level {
     public struct BlockPosition {
@@ -12,6 +14,26 @@ namespace Sources.Level {
         public BlockPosition(World world, Vector3Int position) {
             World = world;
             Position = position;
+        }
+
+        public void Move(Direction direction) {
+            Position += direction.GetVector();
+        }
+
+        public void ForEachAdjacentBlock(Action<Block> action) {
+            var position = this;
+            DirectionUtils.ForEach(direction => {
+                var relative = position;
+                relative.Move(direction);
+                var block = relative.Block;
+                if (block != null) {
+                    action(block);
+                }
+            });
+        }
+
+        public override string ToString() {
+            return Position.ToString();
         }
     }
 }
