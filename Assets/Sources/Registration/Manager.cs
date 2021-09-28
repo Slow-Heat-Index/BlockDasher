@@ -39,5 +39,6 @@ namespace Sources.Registration {
                 action(pair.Key, pair.Value);
             }
         }
+        public T this[Identifier identifier] => Get(identifier);
     }
 }

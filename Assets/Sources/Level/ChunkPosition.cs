@@ -44,5 +44,9 @@ namespace Sources.Level {
 
             position = worldPosition - start;
         }
+
+        public Vector3Int toWorldPosition() {
+            return Chunk * 16 + position;
+        }
     }
 }
