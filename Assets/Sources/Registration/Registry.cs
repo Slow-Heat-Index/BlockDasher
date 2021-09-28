@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using Sources.Identification;
+using Sources.Level.Manager;
 
 namespace Sources.Registration {
     public static class Registry {
         private static readonly Dictionary<Identifier, IManager> _managers =
             new Dictionary<Identifier, IManager> {
-                
+                { Identifiers.ManagerBlock, new BlockManager() }
             };
 
         public static bool Register<T>(Manager<T> manager) where T : IIdentifiable {

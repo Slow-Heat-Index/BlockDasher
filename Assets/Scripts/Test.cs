@@ -12,7 +12,7 @@ public class Test : MonoBehaviour {
         // Fills the storage with a floor of grass.
         for (var x = 0; x < Chunk.ChunkLength; x++) {
             for (var z = 0; z < Chunk.ChunkLength; z++) {
-                chunkData.Blocks[0, x, z] = new BlockData(Identifiers.GRASS);
+                chunkData.Blocks[0, x, z] = new BlockData(Identifiers.Grass);
             }
         }
 
