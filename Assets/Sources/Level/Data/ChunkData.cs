@@ -5,7 +5,7 @@ using Sources.Identification;
 using Sources.Util;
 using UnityEngine;
 
-namespace Sources.Level {
+namespace Sources.Level.Data {
     public class ChunkData {
         public Vector3Int Position;
         public readonly BlockData[,,] Blocks;
