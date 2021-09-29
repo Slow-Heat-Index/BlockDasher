@@ -37,9 +37,9 @@ namespace Sources.Level {
             );
 
             var start = new Vector3Int(
-                worldPosition.x >> Level.Chunk.WorldToChunkPositionShift,
-                worldPosition.y >> Level.Chunk.WorldToChunkPositionShift,
-                worldPosition.z >> Level.Chunk.WorldToChunkPositionShift
+                chunk.x << Level.Chunk.WorldToChunkPositionShift,
+                chunk.y << Level.Chunk.WorldToChunkPositionShift,
+                chunk.z << Level.Chunk.WorldToChunkPositionShift
             );
 
             position = worldPosition - start;

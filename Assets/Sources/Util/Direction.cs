@@ -13,7 +13,7 @@ namespace Sources.Util {
 
     public static class DirectionUtils {
         private static readonly Vector3Int[] _vectors = {
-            Vector3Int.up, Vector3Int.down, Vector3Int.forward, Vector3Int.back, Vector3Int.right, Vector3Int.left
+            Vector3Int.up, Vector3Int.down, Vector3Int.back, Vector3Int.forward, Vector3Int.right, Vector3Int.left
         };
 
         private static readonly Direction[] _opposite = {
