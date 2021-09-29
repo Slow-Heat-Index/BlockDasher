@@ -31,5 +31,21 @@ namespace Sources.Util {
                 });
             }
         }
+        
+        public static void Write(this BinaryWriter writer, Block block, List<Identifier> identifiers) {
+            var id = block == null ? -1 : identifiers.IndexOf(block.Identifier);
+            if (id == -1) {
+                writer.Write((byte)0);
+            }
+            else {
+                writer.Write((byte)1);
+                writer.Write(id);
+                writer.Write(block.GetMetadataSize());
+                block.ForEachMetadata((key, value) => {
+                    writer.Write(key);
+                    writer.Write(value);
+                });
+            }
+        }
     }
 }

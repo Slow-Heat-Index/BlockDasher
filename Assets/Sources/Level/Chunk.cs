@@ -1,4 +1,7 @@
-﻿using Sources.Identification;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Sources.Identification;
 using Sources.Level.Data;
 using Sources.Registration;
 using Sources.Util;
@@ -26,32 +29,33 @@ namespace Sources.Level {
             return _blocks[position.y, position.x, position.z];
         }
 
-        public Block PlaceBlock(BlockData data, Vector3Int position, bool refreshAdjacent = true) {
+        public Block PlaceBlock(BlockData data, Vector3Int position) {
             position.isInRange(0, ChunkLength - 1).ValidateTrue($"Position out of range! {position}");
 
             var worldPosition = new ChunkPosition(Position, position).toWorldPosition();
             var blockPosition = new BlockPosition(World, worldPosition);
+            var old = _blocks[position.y, position.x, position.z];
             Block block = null;
-            
+
             if (data.Identifier == null) {
+                if (old == null) return null;
                 RemoveBlock(position);
             }
             else {
                 var builder = Registry.Get<BlockType>(Identifiers.ManagerBlock)[data.Identifier];
                 if (builder == null) {
+                    if (old == null) return null;
                     RemoveBlock(position);
                 }
                 else {
                     block = builder.CreateBlock(blockPosition, data);
-                    _blocks[position.y, position.x, position.z]?.Invalidate();
+                    old?.Invalidate();
                     _blocks[position.y, position.x, position.z] = block;
                 }
             }
 
-            if (refreshAdjacent) {
-                blockPosition.ForEachAdjacentBlock(it => it.View.MarkVisibilityDirty());
-            }
-            
+            blockPosition.ForEachAdjacentBlock(it => it.View.MarkVisibilityDirty());
+
             return block;
         }
 
@@ -66,6 +70,49 @@ namespace Sources.Level {
                     for (var z = 0; z < ChunkLength; z++) {
                         _blocks[y, x, z]?.Invalidate();
                         _blocks[y, x, z] = null;
+                    }
+                }
+            }
+        }
+
+
+        public void Write(BinaryWriter writer) {
+            var set = new HashSet<Identifier>();
+
+            for (var y = 0; y < ChunkLength; y++) {
+                for (var x = 0; x < ChunkLength; x++) {
+                    for (var z = 0; z < ChunkLength; z++) {
+                        var block = _blocks[y, x, z];
+                        if (block == null) continue;
+                        set.Add(block.Identifier);
+                    }
+                }
+            }
+
+            var identifiers = set.ToList();
+            writer.Write(identifiers.Count);
+            identifiers.ForEach(writer.Write);
+
+            for (var y = 0; y < ChunkLength; y++) {
+                for (var x = 0; x < ChunkLength; x++) {
+                    for (var z = 0; z < ChunkLength; z++) {
+                        writer.Write(_blocks[y, x, z], identifiers);
+                    }
+                }
+            }
+        }
+
+        public void Read(BinaryReader reader) {
+            var identifiersAmount = reader.ReadInt32();
+            var identifiers = new List<Identifier>();
+            for (var i = 0; i < identifiersAmount; i++) {
+                identifiers.Add(reader.ReadIdentifier());
+            }
+
+            for (var y = 0; y < ChunkLength; y++) {
+                for (var x = 0; x < ChunkLength; x++) {
+                    for (var z = 0; z < ChunkLength; z++) {
+                        PlaceBlock(reader.ReadBlockData(identifiers), new Vector3Int(y, x, z));
                     }
                 }
             }
