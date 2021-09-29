@@ -8,11 +8,11 @@ namespace Level.Blocks {
         }
 
         protected override Mesh LoadMesh() {
-            return Resources.Load<Mesh>("Models/Test/Model");
+            return Resources.Load<Mesh>("Models/Test2/Model");
         }
 
         protected override Material LoadMaterial() {
-            return Resources.Load<Material>("Models/Test/Material");
+            return Resources.Load<Material>("Models/Test2/Material");
         }
     }
 }
