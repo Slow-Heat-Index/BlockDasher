@@ -5,21 +5,21 @@ using UnityEngine;
 namespace Level {
     public abstract class BlockView : MonoBehaviour {
         public Block Block;
-        public MeshRenderer Renderer;
+
+        protected MeshFilter Filter;
+        protected MeshRenderer Renderer;
 
         private bool _visibilityDirty = true;
 
         protected virtual void Start() {
-            var filter = gameObject.AddComponent<MeshFilter>();
-            filter.mesh = LoadMesh();
+            Filter = gameObject.AddComponent<MeshFilter>();
             Renderer = gameObject.AddComponent<MeshRenderer>();
-            Renderer.material = LoadMaterial();
             transform.position += new Vector3(0.5f, 0, 0.5f);
         }
 
         protected virtual void Update() {
             if (_visibilityDirty) {
-                RefreshVisibility();
+                RefreshView();
                 _visibilityDirty = false;
             }
         }
@@ -33,7 +33,7 @@ namespace Level {
         public abstract bool Collides(Direction fromFace, Vector3 current, Vector3 origin, Vector3 direction,
             out Direction face, out Vector3 collision);
 
-        protected void RefreshVisibility() {
+        protected void RefreshView() {
             var position = Block.Position;
             var count = 0;
             DirectionUtils.ForEach(direction => {
@@ -43,6 +43,10 @@ namespace Level {
                 if (block != null && block.View.IsFaceOpaque(direction.GetOpposite())) count++;
             });
             Renderer.enabled = count < 6;
+            if (Renderer.enabled) {
+                Filter.mesh = LoadMesh();
+                Renderer.material = LoadMaterial();
+            }
         }
 
         protected abstract Mesh LoadMesh();
