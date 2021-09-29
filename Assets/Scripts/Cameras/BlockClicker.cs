@@ -2,10 +2,10 @@
 using Sources.Level.Raycast;
 using UnityEngine;
 
-namespace Level {
+namespace Cameras {
     public class BlockClicker : MonoBehaviour {
         private Camera _camera;
-        private bool _clicked = false;
+        private bool _clicked;
 
         private void Start() {
             _camera = GetComponent<Camera>();
