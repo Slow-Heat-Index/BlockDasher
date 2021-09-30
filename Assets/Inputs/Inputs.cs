@@ -19,30 +19,6 @@ public class @Inputs : IInputActionCollection, IDisposable
             ""id"": ""66554035-9166-49f4-8d95-28f06bdfa607"",
             ""actions"": [
                 {
-                    ""name"": ""Camera Rotation"",
-                    ""type"": ""Value"",
-                    ""id"": ""197537e8-bdf0-4dc3-9c9c-6121de9396fc"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Camera Rotation Enabled"",
-                    ""type"": ""Value"",
-                    ""id"": ""79d564e1-1428-43f8-9133-fc558717c2b6"",
-                    ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Camera Radius"",
-                    ""type"": ""Value"",
-                    ""id"": ""e76da899-eb8f-4404-9cca-dd7899ec97e7"",
-                    ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Remove Block"",
                     ""type"": ""Button"",
                     ""id"": ""ed141a06-9921-4450-b7c8-8a28cfda1b41"",
@@ -59,78 +35,55 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Add Remove Block Touchscreen"",
-                    ""type"": ""Button"",
-                    ""id"": ""88290f7f-09c2-4ec5-a951-660d4322666f"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Mouse Position"",
                     ""type"": ""Value"",
                     ""id"": ""87659fec-1f51-434b-bf96-ee26a2cb85e9"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Camera Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""7dbd7aaa-294d-4a93-abe7-81d6341469ea"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Camera Up Down"",
+                    ""type"": ""Value"",
+                    ""id"": ""488c711a-3b05-49e1-b6d0-cd8ea3ff9974"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Camera Rotation"",
+                    ""type"": ""Value"",
+                    ""id"": ""044b37f3-db7f-47eb-bd24-c9c4a85dc0a0"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Camera Rotation Enabled"",
+                    ""type"": ""Value"",
+                    ""id"": ""a064cac4-1c75-4508-9aea-69d0ba87212a"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Camera Speed"",
+                    ""type"": ""Value"",
+                    ""id"": ""b5df4359-060b-4993-aa13-d924eb8d1a5e"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""68dd2268-65dd-413a-8c46-702f4576354e"",
-                    ""path"": ""<Mouse>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Camera Rotation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9317c04d-138b-43b3-a396-ed3a1c4c7057"",
-                    ""path"": ""<Touchscreen>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Camera Rotation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3443ab35-309a-4558-a6d4-579bc3f2aa1e"",
-                    ""path"": ""<Mouse>/middleButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Camera Rotation Enabled"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0ab2cbe1-2c0f-417b-bb1e-75015c567fd3"",
-                    ""path"": ""<Touchscreen>/press"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Camera Rotation Enabled"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""90030396-6d1d-402c-a936-11a3912344ff"",
-                    ""path"": ""<Mouse>/scroll/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Camera Radius"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""ea0b6680-fe07-4911-835a-04be0ef3eeb9"",
@@ -176,13 +129,123 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""1b69e346-1dec-46e6-bbd8-4ee623f519d6"",
-                    ""path"": ""<Touchscreen>/press"",
-                    ""interactions"": ""Tap"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""12e9c16f-472e-4390-8111-aab50ce6c4f4"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Add Remove Block Touchscreen"",
+                    ""action"": ""Camera Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""5d5e5a44-288e-425c-aa3d-42bbb3ad951e"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""f48ea019-95b0-45f2-a2a1-8a50bde67ee5"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""48a45c57-22c2-4744-97d9-9622bea71b70"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""30cda488-7024-4c9c-ba19-8a4dde34ad83"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2148204c-7a4d-498d-8481-fff03bf39f4c"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3a89f024-979f-495c-9f13-15d0115a66ae"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera Rotation Enabled"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""9a071e33-036a-4019-8c7a-5e6fb27554f9"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera Up Down"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""f15885ea-de2f-4621-b0ed-21bb59a4651d"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera Up Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""f6d4a181-4ded-4184-915c-2d3a68aee361"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera Up Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dbcff75e-0420-4b9c-9ad2-e3a4dbe17fb5"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera Speed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -193,13 +256,14 @@ public class @Inputs : IInputActionCollection, IDisposable
 }");
         // Editor
         m_Editor = asset.FindActionMap("Editor", throwIfNotFound: true);
-        m_Editor_CameraRotation = m_Editor.FindAction("Camera Rotation", throwIfNotFound: true);
-        m_Editor_CameraRotationEnabled = m_Editor.FindAction("Camera Rotation Enabled", throwIfNotFound: true);
-        m_Editor_CameraRadius = m_Editor.FindAction("Camera Radius", throwIfNotFound: true);
         m_Editor_RemoveBlock = m_Editor.FindAction("Remove Block", throwIfNotFound: true);
         m_Editor_AddBlock = m_Editor.FindAction("Add Block", throwIfNotFound: true);
-        m_Editor_AddRemoveBlockTouchscreen = m_Editor.FindAction("Add Remove Block Touchscreen", throwIfNotFound: true);
         m_Editor_MousePosition = m_Editor.FindAction("Mouse Position", throwIfNotFound: true);
+        m_Editor_CameraMove = m_Editor.FindAction("Camera Move", throwIfNotFound: true);
+        m_Editor_CameraUpDown = m_Editor.FindAction("Camera Up Down", throwIfNotFound: true);
+        m_Editor_CameraRotation = m_Editor.FindAction("Camera Rotation", throwIfNotFound: true);
+        m_Editor_CameraRotationEnabled = m_Editor.FindAction("Camera Rotation Enabled", throwIfNotFound: true);
+        m_Editor_CameraSpeed = m_Editor.FindAction("Camera Speed", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -249,24 +313,26 @@ public class @Inputs : IInputActionCollection, IDisposable
     // Editor
     private readonly InputActionMap m_Editor;
     private IEditorActions m_EditorActionsCallbackInterface;
-    private readonly InputAction m_Editor_CameraRotation;
-    private readonly InputAction m_Editor_CameraRotationEnabled;
-    private readonly InputAction m_Editor_CameraRadius;
     private readonly InputAction m_Editor_RemoveBlock;
     private readonly InputAction m_Editor_AddBlock;
-    private readonly InputAction m_Editor_AddRemoveBlockTouchscreen;
     private readonly InputAction m_Editor_MousePosition;
+    private readonly InputAction m_Editor_CameraMove;
+    private readonly InputAction m_Editor_CameraUpDown;
+    private readonly InputAction m_Editor_CameraRotation;
+    private readonly InputAction m_Editor_CameraRotationEnabled;
+    private readonly InputAction m_Editor_CameraSpeed;
     public struct EditorActions
     {
         private @Inputs m_Wrapper;
         public EditorActions(@Inputs wrapper) { m_Wrapper = wrapper; }
-        public InputAction @CameraRotation => m_Wrapper.m_Editor_CameraRotation;
-        public InputAction @CameraRotationEnabled => m_Wrapper.m_Editor_CameraRotationEnabled;
-        public InputAction @CameraRadius => m_Wrapper.m_Editor_CameraRadius;
         public InputAction @RemoveBlock => m_Wrapper.m_Editor_RemoveBlock;
         public InputAction @AddBlock => m_Wrapper.m_Editor_AddBlock;
-        public InputAction @AddRemoveBlockTouchscreen => m_Wrapper.m_Editor_AddRemoveBlockTouchscreen;
         public InputAction @MousePosition => m_Wrapper.m_Editor_MousePosition;
+        public InputAction @CameraMove => m_Wrapper.m_Editor_CameraMove;
+        public InputAction @CameraUpDown => m_Wrapper.m_Editor_CameraUpDown;
+        public InputAction @CameraRotation => m_Wrapper.m_Editor_CameraRotation;
+        public InputAction @CameraRotationEnabled => m_Wrapper.m_Editor_CameraRotationEnabled;
+        public InputAction @CameraSpeed => m_Wrapper.m_Editor_CameraSpeed;
         public InputActionMap Get() { return m_Wrapper.m_Editor; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -276,64 +342,71 @@ public class @Inputs : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_EditorActionsCallbackInterface != null)
             {
-                @CameraRotation.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraRotation;
-                @CameraRotation.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraRotation;
-                @CameraRotation.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraRotation;
-                @CameraRotationEnabled.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraRotationEnabled;
-                @CameraRotationEnabled.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraRotationEnabled;
-                @CameraRotationEnabled.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraRotationEnabled;
-                @CameraRadius.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraRadius;
-                @CameraRadius.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraRadius;
-                @CameraRadius.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraRadius;
                 @RemoveBlock.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnRemoveBlock;
                 @RemoveBlock.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnRemoveBlock;
                 @RemoveBlock.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnRemoveBlock;
                 @AddBlock.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnAddBlock;
                 @AddBlock.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnAddBlock;
                 @AddBlock.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnAddBlock;
-                @AddRemoveBlockTouchscreen.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnAddRemoveBlockTouchscreen;
-                @AddRemoveBlockTouchscreen.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnAddRemoveBlockTouchscreen;
-                @AddRemoveBlockTouchscreen.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnAddRemoveBlockTouchscreen;
                 @MousePosition.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnMousePosition;
                 @MousePosition.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnMousePosition;
                 @MousePosition.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnMousePosition;
+                @CameraMove.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraMove;
+                @CameraMove.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraMove;
+                @CameraMove.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraMove;
+                @CameraUpDown.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraUpDown;
+                @CameraUpDown.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraUpDown;
+                @CameraUpDown.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraUpDown;
+                @CameraRotation.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraRotation;
+                @CameraRotation.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraRotation;
+                @CameraRotation.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraRotation;
+                @CameraRotationEnabled.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraRotationEnabled;
+                @CameraRotationEnabled.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraRotationEnabled;
+                @CameraRotationEnabled.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraRotationEnabled;
+                @CameraSpeed.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraSpeed;
+                @CameraSpeed.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraSpeed;
+                @CameraSpeed.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraSpeed;
             }
             m_Wrapper.m_EditorActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @CameraRotation.started += instance.OnCameraRotation;
-                @CameraRotation.performed += instance.OnCameraRotation;
-                @CameraRotation.canceled += instance.OnCameraRotation;
-                @CameraRotationEnabled.started += instance.OnCameraRotationEnabled;
-                @CameraRotationEnabled.performed += instance.OnCameraRotationEnabled;
-                @CameraRotationEnabled.canceled += instance.OnCameraRotationEnabled;
-                @CameraRadius.started += instance.OnCameraRadius;
-                @CameraRadius.performed += instance.OnCameraRadius;
-                @CameraRadius.canceled += instance.OnCameraRadius;
                 @RemoveBlock.started += instance.OnRemoveBlock;
                 @RemoveBlock.performed += instance.OnRemoveBlock;
                 @RemoveBlock.canceled += instance.OnRemoveBlock;
                 @AddBlock.started += instance.OnAddBlock;
                 @AddBlock.performed += instance.OnAddBlock;
                 @AddBlock.canceled += instance.OnAddBlock;
-                @AddRemoveBlockTouchscreen.started += instance.OnAddRemoveBlockTouchscreen;
-                @AddRemoveBlockTouchscreen.performed += instance.OnAddRemoveBlockTouchscreen;
-                @AddRemoveBlockTouchscreen.canceled += instance.OnAddRemoveBlockTouchscreen;
                 @MousePosition.started += instance.OnMousePosition;
                 @MousePosition.performed += instance.OnMousePosition;
                 @MousePosition.canceled += instance.OnMousePosition;
+                @CameraMove.started += instance.OnCameraMove;
+                @CameraMove.performed += instance.OnCameraMove;
+                @CameraMove.canceled += instance.OnCameraMove;
+                @CameraUpDown.started += instance.OnCameraUpDown;
+                @CameraUpDown.performed += instance.OnCameraUpDown;
+                @CameraUpDown.canceled += instance.OnCameraUpDown;
+                @CameraRotation.started += instance.OnCameraRotation;
+                @CameraRotation.performed += instance.OnCameraRotation;
+                @CameraRotation.canceled += instance.OnCameraRotation;
+                @CameraRotationEnabled.started += instance.OnCameraRotationEnabled;
+                @CameraRotationEnabled.performed += instance.OnCameraRotationEnabled;
+                @CameraRotationEnabled.canceled += instance.OnCameraRotationEnabled;
+                @CameraSpeed.started += instance.OnCameraSpeed;
+                @CameraSpeed.performed += instance.OnCameraSpeed;
+                @CameraSpeed.canceled += instance.OnCameraSpeed;
             }
         }
     }
     public EditorActions @Editor => new EditorActions(this);
     public interface IEditorActions
     {
-        void OnCameraRotation(InputAction.CallbackContext context);
-        void OnCameraRotationEnabled(InputAction.CallbackContext context);
-        void OnCameraRadius(InputAction.CallbackContext context);
         void OnRemoveBlock(InputAction.CallbackContext context);
         void OnAddBlock(InputAction.CallbackContext context);
-        void OnAddRemoveBlockTouchscreen(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
+        void OnCameraMove(InputAction.CallbackContext context);
+        void OnCameraUpDown(InputAction.CallbackContext context);
+        void OnCameraRotation(InputAction.CallbackContext context);
+        void OnCameraRotationEnabled(InputAction.CallbackContext context);
+        void OnCameraSpeed(InputAction.CallbackContext context);
     }
 }
