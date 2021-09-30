@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Sources.Identification;
 using UnityEngine;
 
-namespace Sources.Level {
+namespace Sources.Level.Data {
     public struct BlockData {
         public Identifier Identifier;
         private Dictionary<string, string> _metadata;

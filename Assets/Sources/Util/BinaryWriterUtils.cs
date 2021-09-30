@@ -2,6 +2,7 @@
 using System.IO;
 using Sources.Identification;
 using Sources.Level;
+using Sources.Level.Data;
 using UnityEngine;
 
 namespace Sources.Util {
@@ -17,6 +18,22 @@ namespace Sources.Util {
 
         public static void Write(this BinaryWriter writer, ref BlockData block, List<Identifier> identifiers) {
             var id = block.Identifier == null ? -1 : identifiers.IndexOf(block.Identifier);
+            if (id == -1) {
+                writer.Write((byte)0);
+            }
+            else {
+                writer.Write((byte)1);
+                writer.Write(id);
+                writer.Write(block.GetMetadataSize());
+                block.ForEachMetadata((key, value) => {
+                    writer.Write(key);
+                    writer.Write(value);
+                });
+            }
+        }
+        
+        public static void Write(this BinaryWriter writer, Block block, List<Identifier> identifiers) {
+            var id = block == null ? -1 : identifiers.IndexOf(block.Identifier);
             if (id == -1) {
                 writer.Write((byte)0);
             }
