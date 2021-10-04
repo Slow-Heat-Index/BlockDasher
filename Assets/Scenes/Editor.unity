@@ -369,6 +369,7 @@ GameObject:
   - component: {fileID: 204991081}
   - component: {fileID: 204991080}
   - component: {fileID: 204991079}
+  - component: {fileID: 204991082}
   m_Layer: 5
   m_Name: SaveButton
   m_TagString: Untagged
@@ -478,6 +479,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204991077}
   m_CullTransparentMesh: 1
+--- !u!114 &204991082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204991077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 348607d43849459b822eaa1d14ee669e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &235768906
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,7 +682,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 80589221}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.38719997
+  m_Size: 0.576
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1369,6 +1382,7 @@ GameObject:
   - component: {fileID: 1016872042}
   - component: {fileID: 1016872041}
   - component: {fileID: 1016872040}
+  - component: {fileID: 1016872043}
   m_Layer: 5
   m_Name: LoadButton
   m_TagString: Untagged
@@ -1478,6 +1492,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016872038}
   m_CullTransparentMesh: 1
+--- !u!114 &1016872043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016872038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b50f63aaec5441a7809927b327654a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!850595691 &1073230245
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -2007,7 +2033,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1554860709}
   - component: {fileID: 1554860708}
-  - component: {fileID: 1554860710}
   - component: {fileID: 1554860712}
   m_Layer: 0
   m_Name: Test
@@ -2042,18 +2067,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1554860710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1554860707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8228055a5190444e90a7e40fd05af319, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1554860712
 MonoBehaviour:
   m_ObjectHideFlags: 0

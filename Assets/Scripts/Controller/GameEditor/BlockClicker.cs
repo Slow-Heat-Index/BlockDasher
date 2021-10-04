@@ -1,5 +1,4 @@
 ﻿using Sources;
-using Sources.Identification;
 using Sources.Level.Data;
 using Sources.Level.Raycast;
 using UnityEngine;
@@ -32,19 +31,19 @@ namespace Controller.GameEditor {
 
 
         private void BreakBlockMouse(InputAction.CallbackContext context) {
-            if(inputModule.IsPointerOverGameObject(-1)) return;
+            if (inputModule.IsPointerOverGameObject(-1)) return;
             var ray = _camera.ScreenPointToRay(_mousePosition.ReadValue<Vector2>());
             BreakBlock(ray.origin, ray.direction);
         }
 
         private void PlaceBlockMouse(InputAction.CallbackContext context) {
-            if(inputModule.IsPointerOverGameObject(-1)) return;
+            if (inputModule.IsPointerOverGameObject(-1)) return;
             var ray = _camera.ScreenPointToRay(_mousePosition.ReadValue<Vector2>());
             PlaceBlock(ray.origin, ray.direction);
         }
 
         private void BreakBlock(Vector3 origin, Vector3 direction) {
-            var caster = new BlockRaycaster(Test.World, origin, direction, 100);
+            var caster = new BlockRaycaster(EditorData.World, origin, direction, 100);
             caster.Run();
             if (caster.Result != null) {
                 var position = caster.Result.Position;
@@ -53,12 +52,12 @@ namespace Controller.GameEditor {
         }
 
         private void PlaceBlock(Vector3 origin, Vector3 direction) {
-            var caster = new BlockRaycaster(Test.World, origin, direction, 100);
+            var caster = new BlockRaycaster(EditorData.World, origin, direction, 100);
             caster.Run();
             if (caster.Result != null) {
                 var position = caster.Result.Position;
                 position.Move(caster.Face);
-                position.World.PlaceBlock(new BlockData(EditorData.BlockType.Identifier), position.Position);
+                position.World.PlaceBlock(new BlockData(EditorData.SelectedBlockType.Identifier), position.Position);
             }
         }
     }

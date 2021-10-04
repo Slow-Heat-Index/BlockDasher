@@ -3,6 +3,8 @@ using Sources.Level.Blocks;
 
 namespace Sources {
     public static class EditorData {
-        public static BlockType BlockType = GrassBlock.BlockType.Instance;
+        public static World World = new World();
+        
+        public static BlockType SelectedBlockType = GrassBlock.BlockType.Instance;
     }
 }

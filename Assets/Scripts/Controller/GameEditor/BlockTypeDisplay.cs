@@ -22,7 +22,7 @@ namespace Controller.GameEditor {
 
             button = GetComponent<Button>();
 
-            button.onClick.AddListener(() => EditorData.BlockType = BlockType);
+            button.onClick.AddListener(() => EditorData.SelectedBlockType = BlockType);
 
             meshFilter.mesh = BlockType.DefaultMesh;
             meshRenderer.material.SetTexture(ShaderTextureReference, BlockType.DefaultTexture);
@@ -30,7 +30,7 @@ namespace Controller.GameEditor {
 
         private void Update() {
             meshRenderer.transform.rotation *= Quaternion.Euler(0, Time.deltaTime * 10, 0);
-            button.image.color = BlockType == EditorData.BlockType
+            button.image.color = BlockType == EditorData.SelectedBlockType
                 ? new Color(1, 0, 0, 0.5f)
                 : new Color(0, 0, 0, 0);
         }

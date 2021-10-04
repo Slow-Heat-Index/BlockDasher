@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 namespace Controller.GameEditor {
     [RequireComponent(typeof(Button))]
-    public class LoadButton : MonoBehaviour {
+    public class SaveButton : MonoBehaviour {
         private void Start() {
             GetComponent<Button>().onClick.AddListener(() => {
 #if UNITY_EDITOR
-                string path = EditorUtility.OpenFilePanel("Load world", "", "bdw");
+                string path = EditorUtility.SaveFilePanel("Save world", "", "world", "bdw");
                 LoadFile(path);
 #else
                 print("Stud!");
@@ -25,9 +25,9 @@ namespace Controller.GameEditor {
                 return;
             }
 
-            print("Saving file " + file + "...");
-            using var binary = new BinaryReader(File.OpenRead(file));
-            EditorData.World.Read(binary);
+            print("Loading file " + file + "...");
+            using var binary = new BinaryWriter(File.OpenWrite(file));
+            EditorData.World.Write(binary);
             print("Done.");
         }
     }
