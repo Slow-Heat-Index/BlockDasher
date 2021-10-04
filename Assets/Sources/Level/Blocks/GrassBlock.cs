@@ -2,6 +2,7 @@
 using Level.Blocks;
 using Sources.Identification;
 using Sources.Level.Data;
+using UnityEngine;
 
 namespace Sources.Level.Blocks {
     public class GrassBlock : Block {
@@ -12,7 +13,12 @@ namespace Sources.Level.Blocks {
         public override BlockView GenerateBlockView() => GameObject.AddComponent<GrassBlockView>();
 
         public class BlockType : Level.BlockType {
-            public BlockType() : base(Identifiers.Grass) {
+            public BlockType() : base(
+                Identifiers.Grass,
+                "Grass",
+                Resources.Load<Mesh>("Models/Grass/Model"),
+                Resources.Load<Material>("Models/Grass/WhiteMaterial")
+            ) {
             }
 
             public override Block CreateBlock(BlockPosition position, BlockData data) {
