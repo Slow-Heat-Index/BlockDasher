@@ -1,15 +1,13 @@
-﻿using Sources.Identification;
+﻿using Sources;
+using Sources.Identification;
 using Sources.Level;
 using Sources.Level.Data;
 using UnityEngine;
 
 public class Test : MonoBehaviour {
-    public static World World;
-
     private void Start() {
         // Creates a new chunk data storage.
-        World = new World();
-        var chunk = World.GetOrCreateChunk(new Vector3Int(0, 0, 0));
+        var chunk = EditorData.World.GetOrCreateChunk(new Vector3Int(0, 0, 0));
 
         // Fills the storage with a floor of grass.
         for (var y = 0; y < 2; y++) {

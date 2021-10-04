@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sources.Identification;
 using Sources.Util;
 
@@ -12,7 +13,6 @@ namespace Sources.Registration {
         public Manager(Identifier identifier) {
             Identifier = identifier;
         }
-
 
         public T Get(Identifier identifier) {
             identifier.ValidateNotNull("Identifier cannot be null!");
@@ -40,6 +40,10 @@ namespace Sources.Registration {
             foreach (var pair in _dictionary) {
                 action(pair.Key, pair.Value);
             }
+        }
+
+        public List<T> ToList() {
+            return _dictionary.Values.ToList();
         }
 
         public T this[Identifier identifier] => Get(identifier);

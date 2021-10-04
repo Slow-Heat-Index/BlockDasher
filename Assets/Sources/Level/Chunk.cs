@@ -112,7 +112,7 @@ namespace Sources.Level {
             for (var y = 0; y < ChunkLength; y++) {
                 for (var x = 0; x < ChunkLength; x++) {
                     for (var z = 0; z < ChunkLength; z++) {
-                        PlaceBlock(reader.ReadBlockData(identifiers), new Vector3Int(y, x, z));
+                        PlaceBlock(reader.ReadBlockData(identifiers), new Vector3Int(x, y, z));
                     }
                 }
             }
