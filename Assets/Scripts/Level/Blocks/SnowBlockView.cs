@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace Level.Blocks {
-    public class SandBlockView : CubicBlockView {
+    public class SnowBlockView : CubicBlockView {
         protected override void Start() {
             base.Start();
             gameObject.isStatic = true;
@@ -20,15 +20,17 @@ namespace Level.Blocks {
             var upBlock = up.Block;
 
             if (upBlock != null && upBlock.View.IsFaceOpaque(Direction.Down)) {
-                return Resources.Load<Material>("Models/Sand/DirtMaterial");
+                return Resources.Load<Material>("Models/Snow/DirtMaterial");
             }
 
             var addition = position.Position.x + position.Position.z;
             if ((addition & 1) == 0) {
-                return Resources.Load<Material>("Models/Sand/BlackMaterial");
+                
+                return Resources.Load<Material>("Models/Snow/BlackMaterial");
+                
             }
 
-            return Resources.Load<Material>("Models/Sand/WhiteMaterial");
+            return Resources.Load<Material>("Models/Snow/WhiteMaterial");
         }
     }
 }

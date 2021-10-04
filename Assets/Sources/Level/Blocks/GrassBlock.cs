@@ -19,8 +19,8 @@ namespace Sources.Level.Blocks {
             private BlockType() : base(
                 Identifiers.Grass,
                 "Grass",
-                Resources.Load<Mesh>("Models/Grass/Model"),
-                Resources.Load<Texture>("Models/Grass/White")
+                Resources.Load<Mesh>("Models/BlockModel"),
+                Resources.Load<Texture>("Models/Grass/Default")
             ) {
             }
 

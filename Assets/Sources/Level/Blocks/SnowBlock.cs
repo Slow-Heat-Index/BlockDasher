@@ -5,26 +5,26 @@ using Sources.Level.Data;
 using UnityEngine;
 
 namespace Sources.Level.Blocks {
-    public class SandBlock : Block {
-        public SandBlock(BlockPosition position, BlockData data)
-            : base(Identifiers.Sand, position, data) {
+    public class SnowBlock : Block {
+        public SnowBlock(BlockPosition position, BlockData data)
+            : base(Identifiers.Snow, position, data) {
         }
 
-        public override BlockView GenerateBlockView() => GameObject.AddComponent<SandBlockView>();
+        public override BlockView GenerateBlockView() => GameObject.AddComponent<SnowBlockView>();
 
         public class BlockType : Level.BlockType {
             public static readonly BlockType Instance = new BlockType();
 
             private BlockType() : base(
-                Identifiers.Sand,
-                "Sand",
+                Identifiers.Snow,
+                "Snow",
                 Resources.Load<Mesh>("Models/BlockModel"),
-                Resources.Load<Texture>("Models/Sand/White")
+                Resources.Load<Texture>("Models/Snow/White")
             ) {
             }
 
             public override Block CreateBlock(BlockPosition position, BlockData data) {
-                return new SandBlock(position, data);
+                return new SnowBlock(position, data);
             }
         }
     }

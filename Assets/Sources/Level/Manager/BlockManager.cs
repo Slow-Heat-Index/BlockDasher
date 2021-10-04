@@ -7,6 +7,7 @@ namespace Sources.Level.Manager {
         public BlockManager() : base(Identifiers.ManagerBlock) {
             Register(GrassBlock.BlockType.Instance);
             Register(SandBlock.BlockType.Instance);
+            Register(SnowBlock.BlockType.Instance);
         }
     }
 }
