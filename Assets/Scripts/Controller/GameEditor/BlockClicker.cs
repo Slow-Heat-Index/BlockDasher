@@ -1,13 +1,17 @@
-﻿using Sources.Identification;
+﻿using Sources;
+using Sources.Identification;
 using Sources.Level.Data;
 using Sources.Level.Raycast;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 
 namespace Controller.GameEditor {
     [RequireComponent(typeof(Camera))]
     public class BlockClicker : ControllerAwareMonoBehaviour<Inputs> {
         protected override Inputs InitInput() => new Inputs();
+
+        public InputSystemUIInputModule inputModule;
 
         private Camera _camera;
 
@@ -28,11 +32,13 @@ namespace Controller.GameEditor {
 
 
         private void BreakBlockMouse(InputAction.CallbackContext context) {
+            if(inputModule.IsPointerOverGameObject(-1)) return;
             var ray = _camera.ScreenPointToRay(_mousePosition.ReadValue<Vector2>());
             BreakBlock(ray.origin, ray.direction);
         }
 
         private void PlaceBlockMouse(InputAction.CallbackContext context) {
+            if(inputModule.IsPointerOverGameObject(-1)) return;
             var ray = _camera.ScreenPointToRay(_mousePosition.ReadValue<Vector2>());
             PlaceBlock(ray.origin, ray.direction);
         }
@@ -52,7 +58,7 @@ namespace Controller.GameEditor {
             if (caster.Result != null) {
                 var position = caster.Result.Position;
                 position.Move(caster.Face);
-                position.World.PlaceBlock(new BlockData(Identifiers.Grass), position.Position);
+                position.World.PlaceBlock(new BlockData(EditorData.BlockType.Identifier), position.Position);
             }
         }
     }

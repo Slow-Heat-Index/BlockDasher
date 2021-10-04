@@ -4,5 +4,6 @@
             new Identifier(Identifier.BlockDasherProvider, "manager_block");
 
         public static readonly Identifier Grass = new Identifier(Identifier.BlockDasherProvider, "grass");
+        public static readonly Identifier Sand = new Identifier(Identifier.BlockDasherProvider, "sand");
     }
 }

@@ -240,7 +240,7 @@
     },
     "m_Name": "Texture",
     "m_DefaultReferenceName": "Texture2D_182cade613bc4b13b390173d44985cdf",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "BlockTexture",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 1,
     "overrideHLSLDeclaration": false,
@@ -701,10 +701,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -365.0,
-            "y": 172.00001525878907,
-            "width": 208.0,
-            "height": 437.0000305175781
+            "x": -622.6666259765625,
+            "y": 200.0,
+            "width": 185.99996948242188,
+            "height": 250.6666717529297
         }
     },
     "m_Slots": [
@@ -862,9 +862,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -502.0,
-            "y": 75.0,
-            "width": 124.0,
+            "x": -759.3333129882813,
+            "y": 102.66665649414063,
+            "width": 124.66668701171875,
             "height": 34.0
         }
     },

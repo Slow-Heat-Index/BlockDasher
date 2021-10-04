@@ -1,8 +1,14 @@
-﻿using Sources.Level;
+﻿using Sources;
+using Sources.Level;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Controller.GameEditor {
+    [RequireComponent(typeof(Button))]
     public class BlockTypeDisplay : MonoBehaviour {
+        private static readonly int ShaderTextureReference = Shader.PropertyToID("BlockTexture");
+
+        public Button button;
         public MeshFilter meshFilter;
         public MeshRenderer meshRenderer;
 
@@ -14,8 +20,19 @@ namespace Controller.GameEditor {
                 return;
             }
 
+            button = GetComponent<Button>();
+
+            button.onClick.AddListener(() => EditorData.BlockType = BlockType);
+
             meshFilter.mesh = BlockType.DefaultMesh;
-            meshRenderer.material = BlockType.DefaultMaterial;
+            meshRenderer.material.SetTexture(ShaderTextureReference, BlockType.DefaultTexture);
+        }
+
+        private void Update() {
+            meshRenderer.transform.rotation *= Quaternion.Euler(0, Time.deltaTime * 10, 0);
+            button.image.color = BlockType == EditorData.BlockType
+                ? new Color(1, 0, 0, 0.5f)
+                : new Color(0, 0, 0, 0);
         }
     }
 }
