@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DefaultMaterial
+  m_Name: WhiteMaterial
   m_Shader: {fileID: -6465566751694194690, guid: d914baf12e90b3d428f3d2d9258cc1eb,
     type: 3}
   m_ShaderKeywords: 

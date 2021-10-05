@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WhiteMaterial
+  m_Name: DirtMaterial
   m_Shader: {fileID: -6465566751694194690, guid: d914baf12e90b3d428f3d2d9258cc1eb,
     type: 3}
   m_ShaderKeywords: 
@@ -34,11 +34,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - BlockTexture:
-        m_Texture: {fileID: 2800000, guid: 4199b0390fbb12f4eb2958d07a690b60, type: 3}
+        m_Texture: {fileID: 2800000, guid: 87e339e4dcd82774fab36117d62739f6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_182cade613bc4b13b390173d44985cdf:
-        m_Texture: {fileID: 2800000, guid: 7529dd98d85b0334a81a04c90108dfe8, type: 3}
+        m_Texture: {fileID: 2800000, guid: dd1364d0ef67d694ab096f2d235dffe5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:

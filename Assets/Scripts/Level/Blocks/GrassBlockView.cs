@@ -13,7 +13,24 @@ namespace Level.Blocks {
         }
 
         protected override Material LoadMaterial() {
-            return Resources.Load<Material>("Models/Grass/DefaultMaterial");
+            var position = Block.Position;
+            var up = position;
+            up.Move(Direction.Up);
+
+            var upBlock = up.Block;
+
+            if (upBlock != null && upBlock.View.IsFaceOpaque(Direction.Down)) {
+                return Resources.Load<Material>("Models/Grass/DirtMaterial");
+            }
+
+            var addition = position.Position.x + position.Position.z;
+            if ((addition & 1) == 0) {
+                
+                return Resources.Load<Material>("Models/Grass/BlackMaterial");
+                
+            }
+
+            return Resources.Load<Material>("Models/Grass/WhiteMaterial");
         }
     }
 }
