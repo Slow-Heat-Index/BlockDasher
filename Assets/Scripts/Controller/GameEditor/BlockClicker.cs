@@ -57,6 +57,7 @@ namespace Controller.GameEditor {
             if (caster.Result != null) {
                 var position = caster.Result.Position;
                 position.Move(caster.Face);
+                if (!EditorData.SelectedBlockType.CanBePlaced(position)) return;
                 position.World.PlaceBlock(new BlockData(EditorData.SelectedBlockType.Identifier), position.Position);
             }
         }

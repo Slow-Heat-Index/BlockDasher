@@ -9,24 +9,31 @@ namespace Sources.Level {
 
         public string Name { get; }
 
+        public Aabb CollisionBox { get; }
+
         public Mesh DefaultMesh { get; }
 
         public Texture DefaultTexture { get; }
 
-        protected BlockType(Identifier identifier, string name, Mesh defaultMesh, Texture defaultTexture) {
+
+        protected BlockType(Identifier identifier, string name, Aabb collisionBox, Mesh defaultMesh,
+            Texture defaultTexture) {
             identifier.ValidateNotNull("Identifier cannot be null!");
             name.ValidateNotNull("Name cannot be null!");
+            collisionBox.ValidateNotNull("Collision block cannot be null!");
             defaultMesh.ValidateNotNull("Default mesh cannot be null!");
             defaultTexture.ValidateNotNull("Default material cannot be null!");
             Identifier = identifier;
             Name = name;
             DefaultMesh = defaultMesh;
             DefaultTexture = defaultTexture;
+            CollisionBox = collisionBox;
         }
 
+        public virtual bool CanBePlaced(BlockPosition position) => true;
+
         public abstract Block CreateBlock(BlockPosition position, BlockData data);
-
-
+        
         protected bool Equals(BlockType other) {
             return Equals(Identifier, other.Identifier);
         }
