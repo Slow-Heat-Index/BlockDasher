@@ -1,12 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Sources.Level.Blocks;
 using Sources.Level.Data;
 using Sources.Util;
 using UnityEngine;
 
 namespace Sources.Level {
     public class World {
+        public StartBlock StartPosition { get; internal set; }
+
+        public bool IsEditorWorld { get; }
+
         private readonly Dictionary<Vector3Int, Chunk> _chunks = new Dictionary<Vector3Int, Chunk>();
+
+        public World(bool editorWorld) {
+            IsEditorWorld = editorWorld;
+        }
 
         public Chunk GetChunk(Vector3Int chunkPosition) {
             return _chunks[chunkPosition];
@@ -30,7 +39,6 @@ namespace Sources.Level {
             _chunks[chunkPosition] = chunk;
             return chunk;
         }
-
 
         public void Write(BinaryWriter writer) {
             writer.Write(_chunks.Count);

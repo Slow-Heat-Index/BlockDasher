@@ -2,22 +2,24 @@
 using Level.Blocks;
 using Sources.Identification;
 using Sources.Level.Data;
+using Sources.Util;
 using UnityEngine;
 
 namespace Sources.Level.Blocks {
     public class SnowBlock : Block {
         public SnowBlock(BlockPosition position, BlockData data)
-            : base(Identifiers.Snow, position, data) {
+            : base(Identifiers.Snow, SnowBlockType.Instance, position, data) {
         }
 
         public override BlockView GenerateBlockView() => GameObject.AddComponent<SnowBlockView>();
 
-        public class BlockType : Level.BlockType {
-            public static readonly BlockType Instance = new BlockType();
+        public class SnowBlockType : BlockType {
+            public static readonly SnowBlockType Instance = new SnowBlockType();
 
-            private BlockType() : base(
+            private SnowBlockType() : base(
                 Identifiers.Snow,
                 "Snow",
+                new Aabb(0, 0, 0, 1, 1, 1),
                 Resources.Load<Mesh>("Models/BlockModel"),
                 Resources.Load<Texture>("Models/Snow/White")
             ) {

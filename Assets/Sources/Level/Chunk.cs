@@ -49,8 +49,10 @@ namespace Sources.Level {
                 }
                 else {
                     block = builder.CreateBlock(blockPosition, data);
+                    old?.OnBreak();
                     old?.Invalidate();
                     _blocks[position.y, position.x, position.z] = block;
+                    block.OnPlace();
                 }
             }
 
@@ -60,7 +62,9 @@ namespace Sources.Level {
         }
 
         public void RemoveBlock(Vector3Int position) {
-            _blocks[position.y, position.x, position.z]?.Invalidate();
+            var block = _blocks[position.y, position.x, position.z];
+            block?.OnBreak();
+            block?.Invalidate();
             _blocks[position.y, position.x, position.z] = null;
         }
 
@@ -68,6 +72,7 @@ namespace Sources.Level {
             for (var y = 0; y < ChunkLength; y++) {
                 for (var x = 0; x < ChunkLength; x++) {
                     for (var z = 0; z < ChunkLength; z++) {
+                        _blocks[y, x, z]?.OnBreak();
                         _blocks[y, x, z]?.Invalidate();
                         _blocks[y, x, z] = null;
                     }

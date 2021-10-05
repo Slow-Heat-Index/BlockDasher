@@ -22,6 +22,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Pick Block",
+                    "type": "Button",
+                    "id": "10bd8519-5cb8-4ac4-a8c9-9d0950cdf595",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Mouse Position",
                     "type": "Value",
                     "id": "87659fec-1f51-434b-bf96-ee26a2cb85e9",
@@ -233,6 +241,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Camera Speed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e4afeea-dc85-421d-ac24-e3bbbcd311b2",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "MultiTap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pick Block",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

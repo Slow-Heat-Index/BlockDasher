@@ -11,16 +11,19 @@ namespace Sources.Level {
     public abstract class Block : IIdentifiable {
         public Identifier Identifier { get; }
         public BlockPosition Position { get; }
+        public BlockType BlockType { get; }
         public bool Valid { get; private set; }
         public GameObject GameObject { get; private set; }
         public BlockView View { get; private set; }
 
-        protected Dictionary<string, string> _metadata;
-        
-        public Block(Identifier identifier, BlockPosition position, BlockData data) {
+        protected readonly Dictionary<string, string> _metadata;
+
+        public Block(Identifier identifier, BlockType blockType, BlockPosition position, BlockData data) {
             identifier.ValidateNotNull("Identifier cannot be null!");
+            blockType.ValidateNotNull("Block type cannot be null!");
 
             Identifier = identifier;
+            BlockType = blockType;
             Position = position;
             Valid = true;
             _metadata = data.GetMetadataCopy();
@@ -55,6 +58,12 @@ namespace Sources.Level {
             foreach (var pair in _metadata) {
                 action(pair.Key, pair.Value);
             }
+        }
+
+        public virtual void OnPlace() {
+        }
+
+        public virtual void OnBreak() {
         }
 
         public abstract BlockView GenerateBlockView();

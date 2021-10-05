@@ -1,5 +1,4 @@
 ﻿using Sources;
-using Sources.Level.Data;
 using Sources.Level.Raycast;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,52 +11,44 @@ namespace Controller.GameEditor {
 
         public InputSystemUIInputModule inputModule;
 
-        private Camera _camera;
+        public Camera Camera { get; private set; }
 
-        private InputAction _removeBlock;
-        private InputAction _addBlock;
-        private InputAction _mousePosition;
+        public InputAction MousePosition { get; private set; }
 
         private void Start() {
-            _camera = GetComponent<Camera>();
+            Camera = GetComponent<Camera>();
 
-            _removeBlock = Input.Editor.RemoveBlock;
-            _addBlock = Input.Editor.AddBlock;
-            _mousePosition = Input.Editor.MousePosition;
+            MousePosition = Input.Editor.MousePosition;
 
-            _removeBlock.performed += BreakBlockMouse;
-            _addBlock.performed += PlaceBlockMouse;
+            Input.Editor.RemoveBlock.performed += PrimaryMouse;
+            Input.Editor.AddBlock.performed += SecondaryMouse;
+            Input.Editor.PickBlock.performed += PickBlockMouse;
         }
 
 
-        private void BreakBlockMouse(InputAction.CallbackContext context) {
+        private void PrimaryMouse(InputAction.CallbackContext context) {
             if (inputModule.IsPointerOverGameObject(-1)) return;
-            var ray = _camera.ScreenPointToRay(_mousePosition.ReadValue<Vector2>());
-            BreakBlock(ray.origin, ray.direction);
+            var ray = Camera.ScreenPointToRay(MousePosition.ReadValue<Vector2>());
+            EditorData.Types[EditorData.SelectedEditorTool].Primary(EditorData.World, ray);
         }
 
-        private void PlaceBlockMouse(InputAction.CallbackContext context) {
+        private void SecondaryMouse(InputAction.CallbackContext context) {
             if (inputModule.IsPointerOverGameObject(-1)) return;
-            var ray = _camera.ScreenPointToRay(_mousePosition.ReadValue<Vector2>());
-            PlaceBlock(ray.origin, ray.direction);
+            var ray = Camera.ScreenPointToRay(MousePosition.ReadValue<Vector2>());
+            EditorData.Types[EditorData.SelectedEditorTool].Secondary(EditorData.World, ray);
         }
 
-        private void BreakBlock(Vector3 origin, Vector3 direction) {
+        private void PickBlockMouse(InputAction.CallbackContext context) {
+            if (inputModule.IsPointerOverGameObject(-1)) return;
+            var ray = Camera.ScreenPointToRay(MousePosition.ReadValue<Vector2>());
+            PickBlock(ray.origin, ray.direction);
+        }
+
+        private void PickBlock(Vector3 origin, Vector3 direction) {
             var caster = new BlockRaycaster(EditorData.World, origin, direction, 100);
             caster.Run();
             if (caster.Result != null) {
-                var position = caster.Result.Position;
-                position.World.PlaceBlock(new BlockData(null), position.Position);
-            }
-        }
-
-        private void PlaceBlock(Vector3 origin, Vector3 direction) {
-            var caster = new BlockRaycaster(EditorData.World, origin, direction, 100);
-            caster.Run();
-            if (caster.Result != null) {
-                var position = caster.Result.Position;
-                position.Move(caster.Face);
-                position.World.PlaceBlock(new BlockData(EditorData.SelectedBlockType.Identifier), position.Position);
+                EditorData.SelectedBlockType = caster.Result.BlockType;
             }
         }
     }
