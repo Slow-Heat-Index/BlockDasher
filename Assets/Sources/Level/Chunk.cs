@@ -68,6 +68,18 @@ namespace Sources.Level {
             _blocks[position.y, position.x, position.z] = null;
         }
 
+        public bool IsEmpty() {
+            for (var y = 0; y < ChunkLength; y++) {
+                for (var x = 0; x < ChunkLength; x++) {
+                    for (var z = 0; z < ChunkLength; z++) {
+                        if (_blocks[y, x, z] != null) return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
         public void Clear() {
             for (var y = 0; y < ChunkLength; y++) {
                 for (var x = 0; x < ChunkLength; x++) {

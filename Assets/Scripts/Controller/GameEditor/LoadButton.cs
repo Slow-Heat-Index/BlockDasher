@@ -10,7 +10,7 @@ namespace Controller.GameEditor {
         private void Start() {
             GetComponent<Button>().onClick.AddListener(() => {
 #if UNITY_EDITOR
-                string path = EditorUtility.OpenFilePanel("Load world", "", "bdw");
+                string path = EditorUtility.OpenFilePanel("Load world", "", "bytes");
                 LoadFile(path);
 #else
                 print("Stud!");

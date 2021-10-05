@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Sources.Level.Blocks;
 using Sources.Level.Data;
 using Sources.Util;
@@ -41,9 +42,12 @@ namespace Sources.Level {
         }
 
         public void Write(BinaryWriter writer) {
-            writer.Write(_chunks.Count);
+            var chunksToSave = _chunks.Where(pair => !pair.Value.IsEmpty())
+                .ToDictionary(i => i.Key, i => i.Value);
 
-            foreach (var pair in _chunks) {
+            writer.Write(chunksToSave.Count);
+
+            foreach (var pair in chunksToSave) {
                 writer.Write(pair.Key);
                 pair.Value.Write(writer);
             }

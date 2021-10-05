@@ -10,7 +10,7 @@ namespace Controller.GameEditor {
         private void Start() {
             GetComponent<Button>().onClick.AddListener(() => {
 #if UNITY_EDITOR
-                string path = EditorUtility.SaveFilePanel("Save world", "", "world", "bdw");
+                string path = EditorUtility.SaveFilePanel("Save world", "", "world", "bytes");
                 LoadFile(path);
 #else
                 print("Stud!");

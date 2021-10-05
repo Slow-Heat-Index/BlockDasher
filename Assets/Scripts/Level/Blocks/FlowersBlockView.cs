@@ -6,6 +6,7 @@ namespace Level.Blocks {
         protected override void Start() {
             base.Start();
             gameObject.isStatic = true;
+            transform.rotation = Quaternion.Euler(0, RotationHash(Block.Position.Position) * 90.0f, 0);
         }
 
         public override bool IsFaceOpaque(Direction direction) {
@@ -26,6 +27,11 @@ namespace Level.Blocks {
 
         protected override Material LoadMaterial() {
             return Resources.Load<Material>("Models/Props/Flowers1/DefaultMaterial");
+        }
+
+
+        private int RotationHash(Vector3Int position) {
+            return (position.x * 73 + position.y * 331 + position.z * 571) % 881;
         }
     }
 }
