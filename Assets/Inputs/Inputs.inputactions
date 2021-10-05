@@ -76,6 +76,14 @@
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Change Tool",
+                    "type": "Button",
+                    "id": "f93641ae-583c-4bce-adfe-0e08e76e4cda",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -252,6 +260,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pick Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5f87896e-6bc6-4db9-9b6e-136ab4670e2e",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Change Tool",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

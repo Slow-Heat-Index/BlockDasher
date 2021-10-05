@@ -5,7 +5,7 @@ using Sources.Level.Blocks;
 
 namespace Sources {
     public static class EditorData {
-        public static readonly Dictionary<EditorToolType, IEditorTool> Types =
+        public static readonly Dictionary<EditorToolType, IEditorTool> Tools =
             new Dictionary<EditorToolType, IEditorTool> {
                 { EditorToolType.PlaceBreak, new EditorToolPlaceBreak() },
                 { EditorToolType.Selection, new EditorToolSelection() }

@@ -89,6 +89,14 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Change Tool"",
+                    ""type"": ""Button"",
+                    ""id"": ""f93641ae-583c-4bce-adfe-0e08e76e4cda"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -267,6 +275,17 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""action"": ""Pick Block"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5f87896e-6bc6-4db9-9b6e-136ab4670e2e"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Change Tool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -284,6 +303,7 @@ public class @Inputs : IInputActionCollection, IDisposable
         m_Editor_CameraRotation = m_Editor.FindAction("Camera Rotation", throwIfNotFound: true);
         m_Editor_CameraRotationEnabled = m_Editor.FindAction("Camera Rotation Enabled", throwIfNotFound: true);
         m_Editor_CameraSpeed = m_Editor.FindAction("Camera Speed", throwIfNotFound: true);
+        m_Editor_ChangeTool = m_Editor.FindAction("Change Tool", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -342,6 +362,7 @@ public class @Inputs : IInputActionCollection, IDisposable
     private readonly InputAction m_Editor_CameraRotation;
     private readonly InputAction m_Editor_CameraRotationEnabled;
     private readonly InputAction m_Editor_CameraSpeed;
+    private readonly InputAction m_Editor_ChangeTool;
     public struct EditorActions
     {
         private @Inputs m_Wrapper;
@@ -355,6 +376,7 @@ public class @Inputs : IInputActionCollection, IDisposable
         public InputAction @CameraRotation => m_Wrapper.m_Editor_CameraRotation;
         public InputAction @CameraRotationEnabled => m_Wrapper.m_Editor_CameraRotationEnabled;
         public InputAction @CameraSpeed => m_Wrapper.m_Editor_CameraSpeed;
+        public InputAction @ChangeTool => m_Wrapper.m_Editor_ChangeTool;
         public InputActionMap Get() { return m_Wrapper.m_Editor; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -391,6 +413,9 @@ public class @Inputs : IInputActionCollection, IDisposable
                 @CameraSpeed.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraSpeed;
                 @CameraSpeed.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraSpeed;
                 @CameraSpeed.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnCameraSpeed;
+                @ChangeTool.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnChangeTool;
+                @ChangeTool.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnChangeTool;
+                @ChangeTool.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnChangeTool;
             }
             m_Wrapper.m_EditorActionsCallbackInterface = instance;
             if (instance != null)
@@ -422,6 +447,9 @@ public class @Inputs : IInputActionCollection, IDisposable
                 @CameraSpeed.started += instance.OnCameraSpeed;
                 @CameraSpeed.performed += instance.OnCameraSpeed;
                 @CameraSpeed.canceled += instance.OnCameraSpeed;
+                @ChangeTool.started += instance.OnChangeTool;
+                @ChangeTool.performed += instance.OnChangeTool;
+                @ChangeTool.canceled += instance.OnChangeTool;
             }
         }
     }
@@ -437,5 +465,6 @@ public class @Inputs : IInputActionCollection, IDisposable
         void OnCameraRotation(InputAction.CallbackContext context);
         void OnCameraRotationEnabled(InputAction.CallbackContext context);
         void OnCameraSpeed(InputAction.CallbackContext context);
+        void OnChangeTool(InputAction.CallbackContext context);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Sources;
+﻿using Controller.GameEditor.Tool;
+using Sources;
 using Sources.Level.Raycast;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,25 +24,33 @@ namespace Controller.GameEditor {
             Input.Editor.RemoveBlock.performed += PrimaryMouse;
             Input.Editor.AddBlock.performed += SecondaryMouse;
             Input.Editor.PickBlock.performed += PickBlockMouse;
+            Input.Editor.ChangeTool.performed += ChangeTool;
         }
 
 
         private void PrimaryMouse(InputAction.CallbackContext context) {
             if (inputModule.IsPointerOverGameObject(-1)) return;
             var ray = Camera.ScreenPointToRay(MousePosition.ReadValue<Vector2>());
-            EditorData.Types[EditorData.SelectedEditorTool].Primary(EditorData.World, ray);
+            EditorData.Tools[EditorData.SelectedEditorTool].Primary(EditorData.World, ray);
         }
 
         private void SecondaryMouse(InputAction.CallbackContext context) {
             if (inputModule.IsPointerOverGameObject(-1)) return;
             var ray = Camera.ScreenPointToRay(MousePosition.ReadValue<Vector2>());
-            EditorData.Types[EditorData.SelectedEditorTool].Secondary(EditorData.World, ray);
+            EditorData.Tools[EditorData.SelectedEditorTool].Secondary(EditorData.World, ray);
         }
 
         private void PickBlockMouse(InputAction.CallbackContext context) {
             if (inputModule.IsPointerOverGameObject(-1)) return;
             var ray = Camera.ScreenPointToRay(MousePosition.ReadValue<Vector2>());
             PickBlock(ray.origin, ray.direction);
+        }
+
+        private void ChangeTool(InputAction.CallbackContext context) {
+            var tool = EditorData.SelectedEditorTool;
+            if (tool == EditorToolType.Selection) tool = 0;
+            else tool++;
+            EditorData.SelectedEditorTool = tool;
         }
 
         private void PickBlock(Vector3 origin, Vector3 direction) {
