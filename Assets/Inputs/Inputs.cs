@@ -35,6 +35,14 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""Pick Block"",
+                    ""type"": ""Button"",
+                    ""id"": ""10bd8519-5cb8-4ac4-a8c9-9d0950cdf595"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Mouse Position"",
                     ""type"": ""Value"",
                     ""id"": ""87659fec-1f51-434b-bf96-ee26a2cb85e9"",
@@ -248,6 +256,17 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""action"": ""Camera Speed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e4afeea-dc85-421d-ac24-e3bbbcd311b2"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": ""MultiTap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pick Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -258,6 +277,7 @@ public class @Inputs : IInputActionCollection, IDisposable
         m_Editor = asset.FindActionMap("Editor", throwIfNotFound: true);
         m_Editor_RemoveBlock = m_Editor.FindAction("Remove Block", throwIfNotFound: true);
         m_Editor_AddBlock = m_Editor.FindAction("Add Block", throwIfNotFound: true);
+        m_Editor_PickBlock = m_Editor.FindAction("Pick Block", throwIfNotFound: true);
         m_Editor_MousePosition = m_Editor.FindAction("Mouse Position", throwIfNotFound: true);
         m_Editor_CameraMove = m_Editor.FindAction("Camera Move", throwIfNotFound: true);
         m_Editor_CameraUpDown = m_Editor.FindAction("Camera Up Down", throwIfNotFound: true);
@@ -315,6 +335,7 @@ public class @Inputs : IInputActionCollection, IDisposable
     private IEditorActions m_EditorActionsCallbackInterface;
     private readonly InputAction m_Editor_RemoveBlock;
     private readonly InputAction m_Editor_AddBlock;
+    private readonly InputAction m_Editor_PickBlock;
     private readonly InputAction m_Editor_MousePosition;
     private readonly InputAction m_Editor_CameraMove;
     private readonly InputAction m_Editor_CameraUpDown;
@@ -327,6 +348,7 @@ public class @Inputs : IInputActionCollection, IDisposable
         public EditorActions(@Inputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @RemoveBlock => m_Wrapper.m_Editor_RemoveBlock;
         public InputAction @AddBlock => m_Wrapper.m_Editor_AddBlock;
+        public InputAction @PickBlock => m_Wrapper.m_Editor_PickBlock;
         public InputAction @MousePosition => m_Wrapper.m_Editor_MousePosition;
         public InputAction @CameraMove => m_Wrapper.m_Editor_CameraMove;
         public InputAction @CameraUpDown => m_Wrapper.m_Editor_CameraUpDown;
@@ -348,6 +370,9 @@ public class @Inputs : IInputActionCollection, IDisposable
                 @AddBlock.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnAddBlock;
                 @AddBlock.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnAddBlock;
                 @AddBlock.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnAddBlock;
+                @PickBlock.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnPickBlock;
+                @PickBlock.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnPickBlock;
+                @PickBlock.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnPickBlock;
                 @MousePosition.started -= m_Wrapper.m_EditorActionsCallbackInterface.OnMousePosition;
                 @MousePosition.performed -= m_Wrapper.m_EditorActionsCallbackInterface.OnMousePosition;
                 @MousePosition.canceled -= m_Wrapper.m_EditorActionsCallbackInterface.OnMousePosition;
@@ -376,6 +401,9 @@ public class @Inputs : IInputActionCollection, IDisposable
                 @AddBlock.started += instance.OnAddBlock;
                 @AddBlock.performed += instance.OnAddBlock;
                 @AddBlock.canceled += instance.OnAddBlock;
+                @PickBlock.started += instance.OnPickBlock;
+                @PickBlock.performed += instance.OnPickBlock;
+                @PickBlock.canceled += instance.OnPickBlock;
                 @MousePosition.started += instance.OnMousePosition;
                 @MousePosition.performed += instance.OnMousePosition;
                 @MousePosition.canceled += instance.OnMousePosition;
@@ -402,6 +430,7 @@ public class @Inputs : IInputActionCollection, IDisposable
     {
         void OnRemoveBlock(InputAction.CallbackContext context);
         void OnAddBlock(InputAction.CallbackContext context);
+        void OnPickBlock(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
         void OnCameraMove(InputAction.CallbackContext context);
         void OnCameraUpDown(InputAction.CallbackContext context);
