@@ -43,8 +43,7 @@ namespace Controller.GameEditor.Tool {
                     var caster = new BlockRaycaster(world, ray.origin, ray.direction, 100);
                     caster.Run();
                     if (caster.Result != null) {
-                        var position = caster.Result.Position;
-                        position.Move(caster.Face);
+                        var position = caster.Result.Position.Moved(caster.Face);
 
                         if (ToolStatus == Status.None) {
                             ToolStatus = Status.Secondary;

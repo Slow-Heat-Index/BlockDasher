@@ -13,6 +13,14 @@ namespace Sources.Level.Blocks {
 
         public override BlockView GenerateBlockView() => GameObject.AddComponent<StartBlockView>();
 
+        public override bool CanMoveTo(Direction direction) {
+            return true;
+        }
+
+        public override bool CanMoveFrom(Direction direction) {
+            return true;
+        }
+
         public override void OnPlace() {
             Position.World.StartPosition = this;
         }

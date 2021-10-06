@@ -13,6 +13,14 @@ namespace Sources.Level.Blocks {
 
         public override BlockView GenerateBlockView() => GameObject.AddComponent<EndBlockView>();
 
+        public override bool CanMoveTo(Direction direction) {
+            return true;
+        }
+
+        public override bool CanMoveFrom(Direction direction) {
+            return true;
+        }
+        
         public class EndBlockType : BlockType {
             public static readonly EndBlockType Instance = new EndBlockType();
 

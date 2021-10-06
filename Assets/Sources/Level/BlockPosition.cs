@@ -16,15 +16,18 @@ namespace Sources.Level {
             Position = position;
         }
 
-        public void Move(Direction direction) {
-            Position += direction.GetVector();
+        public BlockPosition Moved(Direction direction) {
+            return new BlockPosition(World, Position + direction.GetVector());
+        }
+
+        public BlockPosition Moved(Vector3Int offset) {
+            return new BlockPosition(World, Position + offset);
         }
 
         public void ForEachAdjacentBlock(Action<Block> action) {
             var position = this;
             DirectionUtils.ForEach(direction => {
-                var relative = position;
-                relative.Move(direction);
+                var relative = position.Moved(direction);
                 var block = relative.Block;
                 if (block != null) {
                     action(block);

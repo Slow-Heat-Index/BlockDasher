@@ -2,15 +2,20 @@
 using Controller;
 using Player.Behaviour;
 using Sources.Util;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Player.Controller {
+    
+    [RequireComponent(typeof(PlayerMovementBehaviour))]
     public class PlayerMovementController : ControllerAwareMonoBehaviour<Inputs> {
         private PlayerMovementBehaviour _behaviour;
 
+        private Vector2 _touchscreenStart;
+
         protected override void Awake() {
             base.Awake();
-            _behaviour = InitBehaviour();
+            _behaviour = GetComponent<PlayerMovementBehaviour>();
 
             Input.Player.KeyboardUp.performed += OnKeyboardInput;
             Input.Player.KeyboardDown.performed += OnKeyboardInput;
@@ -19,10 +24,6 @@ namespace Player.Controller {
 
             Input.Player.TouchscreenPress.performed += OnTouchscreenPress;
             Input.Player.TouchscreenPress.canceled += OnTouchscreenEndsPress;
-        }
-
-        protected virtual PlayerMovementBehaviour InitBehaviour() {
-            return gameObject.AddComponent<PlayerMovementBehaviour>();
         }
 
         protected override Inputs InitInput() => new Inputs();
@@ -42,11 +43,26 @@ namespace Player.Controller {
         }
 
         protected void OnTouchscreenPress(InputAction.CallbackContext context) {
-            print("uwu");
+            _touchscreenStart = Input.Player.TouchscreenPosition.ReadValue<Vector2>();
         }
 
         protected void OnTouchscreenEndsPress(InputAction.CallbackContext context) {
-            print("owo");
+            var end = Input.Player.TouchscreenPosition.ReadValue<Vector2>();
+            var delta = end - _touchscreenStart;
+            if (delta.sqrMagnitude < 10000) return;
+
+            var direction = Direction.North;
+            var dot = -2.0f;
+
+            DirectionUtils.ForEach(current => {
+                if (current == Direction.Up || current == Direction.Down) return;
+                var result = Vector2.Dot(current.Get2DVector(), delta);
+                if (!(result > dot)) return;
+                direction = current;
+                dot = result;
+            });
+
+            _behaviour.Dash(direction);
         }
     }
 }

@@ -13,6 +13,14 @@ namespace Sources.Level.Blocks {
 
         public override BlockView GenerateBlockView() => GameObject.AddComponent<SandBlockView>();
 
+        public override bool CanMoveTo(Direction direction) {
+            return false;
+        }
+
+        public override bool CanMoveFrom(Direction direction) {
+            return false;
+        }
+        
         public class SandBlockType : BlockType {
             public static readonly SandBlockType Instance = new SandBlockType();
 

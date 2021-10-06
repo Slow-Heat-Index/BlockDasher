@@ -37,8 +37,7 @@ namespace Level {
             var position = Block.Position;
             var count = 0;
             DirectionUtils.ForEach(direction => {
-                var pos = position;
-                pos.Move(direction);
+                var pos = position.Moved(direction);
                 var block = pos.Block;
                 if (block != null && block.View.IsFaceOpaque(direction.GetOpposite())) count++;
             });

@@ -14,8 +14,7 @@ namespace Level.Blocks {
 
         protected override Material LoadMaterial() {
             var position = Block.Position;
-            var up = position;
-            up.Move(Direction.Up);
+            var up = position.Moved(Direction.Up);
 
             var upBlock = up.Block;
 

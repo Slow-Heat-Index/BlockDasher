@@ -68,6 +68,10 @@ namespace Sources.Level {
 
         public abstract BlockView GenerateBlockView();
 
+        public abstract bool CanMoveTo(Direction direction);
+
+        public abstract bool CanMoveFrom(Direction direction);
+
         internal void Invalidate() {
             Valid = false;
             Object.Destroy(GameObject);

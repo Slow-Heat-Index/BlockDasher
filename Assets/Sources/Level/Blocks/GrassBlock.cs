@@ -13,6 +13,14 @@ namespace Sources.Level.Blocks {
 
         public override BlockView GenerateBlockView() => GameObject.AddComponent<GrassBlockView>();
 
+        public override bool CanMoveTo(Direction direction) {
+            return false;
+        }
+
+        public override bool CanMoveFrom(Direction direction) {
+            return false;
+        }
+        
         public class GrassBlockType : BlockType {
             public static readonly GrassBlockType Instance = new GrassBlockType();
 

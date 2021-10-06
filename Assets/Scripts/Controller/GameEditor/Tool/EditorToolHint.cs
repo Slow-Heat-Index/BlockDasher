@@ -75,7 +75,7 @@ namespace Controller.GameEditor.Tool {
             var second = target.Position;
 
             if (selection.ToolStatus == EditorToolSelection.Status.Secondary) {
-                second.Move(face);
+                second = second.Moved(face);
             }
 
             var min = Vector3Int.Min(first, second.Position) + new Vector3(0.5f, 0.5f, 0.5f);

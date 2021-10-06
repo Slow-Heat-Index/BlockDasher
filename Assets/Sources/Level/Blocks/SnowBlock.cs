@@ -13,6 +13,14 @@ namespace Sources.Level.Blocks {
 
         public override BlockView GenerateBlockView() => GameObject.AddComponent<SnowBlockView>();
 
+        public override bool CanMoveTo(Direction direction) {
+            return false;
+        }
+
+        public override bool CanMoveFrom(Direction direction) {
+            return false;
+        }
+        
         public class SnowBlockType : BlockType {
             public static readonly SnowBlockType Instance = new SnowBlockType();
 

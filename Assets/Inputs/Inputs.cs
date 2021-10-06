@@ -267,23 +267,23 @@ public class @Inputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0e4afeea-dc85-421d-ac24-e3bbbcd311b2"",
-                    ""path"": ""<Mouse>/middleButton"",
-                    ""interactions"": ""MultiTap"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pick Block"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""5f87896e-6bc6-4db9-9b6e-136ab4670e2e"",
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Change Tool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e4afeea-dc85-421d-ac24-e3bbbcd311b2"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": ""MultiTap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pick Block"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -347,7 +347,7 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""2a07fa73-2adc-46f0-9bba-1398b77ffb29"",
                     ""path"": ""<Touchscreen>/press"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Touchscreen Press"",
