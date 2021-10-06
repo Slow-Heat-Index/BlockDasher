@@ -20,5 +20,9 @@ namespace Player.Data {
         public void Move(Vector3Int offset) {
             BlockPosition = BlockPosition.Moved(offset);
         }
+
+        public void Teleport(Vector3Int position) {
+            BlockPosition = new BlockPosition(BlockPosition.World, position);
+        }
     }
 }
