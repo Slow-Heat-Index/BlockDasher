@@ -288,6 +288,172 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Player"",
+            ""id"": ""975d3f32-889f-40f0-a20f-8010428084c4"",
+            ""actions"": [
+                {
+                    ""name"": ""Touchscreen Press"",
+                    ""type"": ""Button"",
+                    ""id"": ""051a346f-fd57-4c76-88b1-5d5dd938db5c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Touchscreen Position"",
+                    ""type"": ""Value"",
+                    ""id"": ""b147966e-f28d-47b2-b903-2d877bd45363"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Keyboard Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""50967b4a-995f-4cb7-916f-6b4ecb71d6c3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Keyboard Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""eeecf23e-1ab1-4925-b59b-4efdc6a8860e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Keyboard Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""565c1867-a50a-4f50-8ab4-9ac98e1f27b5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Keyboard Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""5796f54a-f634-4413-adf7-49998c256fa0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""2a07fa73-2adc-46f0-9bba-1398b77ffb29"",
+                    ""path"": ""<Touchscreen>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Touchscreen Press"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9fe0451-fd53-4904-830b-2a215ac9b706"",
+                    ""path"": ""<Touchscreen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Touchscreen Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9488db1-7806-41ff-b741-ea69787b18fb"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Keyboard Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cab6566f-a006-43a0-89ea-b08cc3b6966c"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Keyboard Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""221b0ec2-e6b1-44c3-8f85-6fbb3d07540c"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Keyboard Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aade54fa-91cf-4841-95e7-962a21000040"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Keyboard Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2207befc-8092-44e8-9185-818bd927b08f"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Keyboard Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a6738f65-d09d-461a-b4e7-d5e86a9f4c32"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Keyboard Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a33addb5-c5ec-4441-a838-8f0cd98e1ab7"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Keyboard Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d3312eae-caca-4760-8272-a0ab903fc96d"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Keyboard Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -304,6 +470,14 @@ public class @Inputs : IInputActionCollection, IDisposable
         m_Editor_CameraRotationEnabled = m_Editor.FindAction("Camera Rotation Enabled", throwIfNotFound: true);
         m_Editor_CameraSpeed = m_Editor.FindAction("Camera Speed", throwIfNotFound: true);
         m_Editor_ChangeTool = m_Editor.FindAction("Change Tool", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_TouchscreenPress = m_Player.FindAction("Touchscreen Press", throwIfNotFound: true);
+        m_Player_TouchscreenPosition = m_Player.FindAction("Touchscreen Position", throwIfNotFound: true);
+        m_Player_KeyboardUp = m_Player.FindAction("Keyboard Up", throwIfNotFound: true);
+        m_Player_KeyboardDown = m_Player.FindAction("Keyboard Down", throwIfNotFound: true);
+        m_Player_KeyboardLeft = m_Player.FindAction("Keyboard Left", throwIfNotFound: true);
+        m_Player_KeyboardRight = m_Player.FindAction("Keyboard Right", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -454,6 +628,79 @@ public class @Inputs : IInputActionCollection, IDisposable
         }
     }
     public EditorActions @Editor => new EditorActions(this);
+
+    // Player
+    private readonly InputActionMap m_Player;
+    private IPlayerActions m_PlayerActionsCallbackInterface;
+    private readonly InputAction m_Player_TouchscreenPress;
+    private readonly InputAction m_Player_TouchscreenPosition;
+    private readonly InputAction m_Player_KeyboardUp;
+    private readonly InputAction m_Player_KeyboardDown;
+    private readonly InputAction m_Player_KeyboardLeft;
+    private readonly InputAction m_Player_KeyboardRight;
+    public struct PlayerActions
+    {
+        private @Inputs m_Wrapper;
+        public PlayerActions(@Inputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @TouchscreenPress => m_Wrapper.m_Player_TouchscreenPress;
+        public InputAction @TouchscreenPosition => m_Wrapper.m_Player_TouchscreenPosition;
+        public InputAction @KeyboardUp => m_Wrapper.m_Player_KeyboardUp;
+        public InputAction @KeyboardDown => m_Wrapper.m_Player_KeyboardDown;
+        public InputAction @KeyboardLeft => m_Wrapper.m_Player_KeyboardLeft;
+        public InputAction @KeyboardRight => m_Wrapper.m_Player_KeyboardRight;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerActions instance)
+        {
+            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
+            {
+                @TouchscreenPress.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTouchscreenPress;
+                @TouchscreenPress.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTouchscreenPress;
+                @TouchscreenPress.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTouchscreenPress;
+                @TouchscreenPosition.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTouchscreenPosition;
+                @TouchscreenPosition.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTouchscreenPosition;
+                @TouchscreenPosition.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTouchscreenPosition;
+                @KeyboardUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyboardUp;
+                @KeyboardUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyboardUp;
+                @KeyboardUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyboardUp;
+                @KeyboardDown.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyboardDown;
+                @KeyboardDown.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyboardDown;
+                @KeyboardDown.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyboardDown;
+                @KeyboardLeft.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyboardLeft;
+                @KeyboardLeft.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyboardLeft;
+                @KeyboardLeft.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyboardLeft;
+                @KeyboardRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyboardRight;
+                @KeyboardRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyboardRight;
+                @KeyboardRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyboardRight;
+            }
+            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @TouchscreenPress.started += instance.OnTouchscreenPress;
+                @TouchscreenPress.performed += instance.OnTouchscreenPress;
+                @TouchscreenPress.canceled += instance.OnTouchscreenPress;
+                @TouchscreenPosition.started += instance.OnTouchscreenPosition;
+                @TouchscreenPosition.performed += instance.OnTouchscreenPosition;
+                @TouchscreenPosition.canceled += instance.OnTouchscreenPosition;
+                @KeyboardUp.started += instance.OnKeyboardUp;
+                @KeyboardUp.performed += instance.OnKeyboardUp;
+                @KeyboardUp.canceled += instance.OnKeyboardUp;
+                @KeyboardDown.started += instance.OnKeyboardDown;
+                @KeyboardDown.performed += instance.OnKeyboardDown;
+                @KeyboardDown.canceled += instance.OnKeyboardDown;
+                @KeyboardLeft.started += instance.OnKeyboardLeft;
+                @KeyboardLeft.performed += instance.OnKeyboardLeft;
+                @KeyboardLeft.canceled += instance.OnKeyboardLeft;
+                @KeyboardRight.started += instance.OnKeyboardRight;
+                @KeyboardRight.performed += instance.OnKeyboardRight;
+                @KeyboardRight.canceled += instance.OnKeyboardRight;
+            }
+        }
+    }
+    public PlayerActions @Player => new PlayerActions(this);
     public interface IEditorActions
     {
         void OnRemoveBlock(InputAction.CallbackContext context);
@@ -466,5 +713,14 @@ public class @Inputs : IInputActionCollection, IDisposable
         void OnCameraRotationEnabled(InputAction.CallbackContext context);
         void OnCameraSpeed(InputAction.CallbackContext context);
         void OnChangeTool(InputAction.CallbackContext context);
+    }
+    public interface IPlayerActions
+    {
+        void OnTouchscreenPress(InputAction.CallbackContext context);
+        void OnTouchscreenPosition(InputAction.CallbackContext context);
+        void OnKeyboardUp(InputAction.CallbackContext context);
+        void OnKeyboardDown(InputAction.CallbackContext context);
+        void OnKeyboardLeft(InputAction.CallbackContext context);
+        void OnKeyboardRight(InputAction.CallbackContext context);
     }
 }
