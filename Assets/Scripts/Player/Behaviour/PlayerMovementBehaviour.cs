@@ -1,4 +1,5 @@
-﻿using Player.Data;
+﻿using System;
+using Player.Data;
 using Sources.Util;
 using UnityEngine;
 
@@ -6,6 +7,11 @@ namespace Player.Behaviour {
     [RequireComponent(typeof(PlayerData))]
     public class PlayerMovementBehaviour : MonoBehaviour {
         private PlayerData _data;
+        private CameraBehaviour _cameraBehaviour;
+        
+        private void Awake() {
+            _cameraBehaviour = FindObjectOfType<CameraBehaviour>();
+        }
 
         private void Start() {
             _data = GetComponent<PlayerData>();
@@ -29,6 +35,9 @@ namespace Player.Behaviour {
                     _data.Teleport(_data.level.World.StartPosition.Position.Position);
                 }
             }
+            
+                        
+            _cameraBehaviour.UpdateCameraPosition();
         }
 
         private void MoveRecursively(Direction direction, int blocks) {
@@ -46,6 +55,7 @@ namespace Player.Behaviour {
                 _data.Move(direction.GetVector());
                 blocksLeft--;
             }
+
         }
     }
 }

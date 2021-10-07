@@ -13,6 +13,8 @@ namespace Player.Controller {
 
         private Vector2 _touchscreenStart;
 
+
+
         protected override void Awake() {
             base.Awake();
             _behaviour = GetComponent<PlayerMovementBehaviour>();
@@ -31,6 +33,7 @@ namespace Player.Controller {
         protected void OnKeyboardInput(InputAction.CallbackContext context) {
             var direction = GetDirectionByAction(context.action);
             _behaviour.Dash(direction);
+            
         }
 
         protected Direction GetDirectionByAction(InputAction action) {
