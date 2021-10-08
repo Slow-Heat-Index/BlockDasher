@@ -11,18 +11,22 @@ namespace Player.Data {
 
         private void Start() {
             BlockPosition = level.World.StartPosition.Position;
+            UpdateTransform();
         }
-
-        private void Update() {
-            transform.position = BlockPosition.Position + new Vector3(0.5f, 0.5f, 0.5f);
-        }
-
+        
         public void Move(Vector3Int offset) {
             BlockPosition = BlockPosition.Moved(offset);
+                     UpdateTransform();
         }
 
         public void Teleport(Vector3Int position) {
             BlockPosition = new BlockPosition(BlockPosition.World, position);
+           UpdateTransform();
+        }
+
+
+        private void UpdateTransform() {
+            transform.position = BlockPosition.Position + new Vector3(0.5f, 0.5f, 0.5f);
         }
     }
 }

@@ -828,8 +828,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd187f63e904b674d861d37a4ff1ffe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 4, z: -5}
-  distance: 5
+  direction: 2
+  player: {fileID: 2004679423}
+  distance: 10
+  animationDuration: 0.5
 --- !u!1 &1096113727
 GameObject:
   m_ObjectHideFlags: 0

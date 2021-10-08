@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Cameras.Behaviour;
 using Player.Data;
 using Sources.Util;
 using UnityEngine;
@@ -8,7 +8,7 @@ namespace Player.Behaviour {
     public class PlayerMovementBehaviour : MonoBehaviour {
         private PlayerData _data;
         private CameraBehaviour _cameraBehaviour;
-        
+
         private void Awake() {
             _cameraBehaviour = FindObjectOfType<CameraBehaviour>();
         }
@@ -18,12 +18,13 @@ namespace Player.Behaviour {
         }
 
         public void Dash(Direction direction) {
-            // TODO HOT FIX
-            if (direction == Direction.North || direction == Direction.South)
-                direction = direction.GetOpposite();
-
             (direction != Direction.Up && direction != Direction.Down)
                 .ValidateTrue($"Direction cannot be up or down! {direction}");
+
+
+            print($"{direction} + ({_cameraBehaviour.direction}) -> {direction.Rotated(_cameraBehaviour.direction)}");
+            direction = direction.Rotated(_cameraBehaviour.direction);
+
             MoveRecursively(direction, _data.blocksPerDash);
             MoveRecursively(Direction.Down, 20);
 
@@ -35,8 +36,8 @@ namespace Player.Behaviour {
                     _data.Teleport(_data.level.World.StartPosition.Position.Position);
                 }
             }
-            
-                        
+
+
             _cameraBehaviour.UpdateCameraPosition();
         }
 
@@ -55,7 +56,6 @@ namespace Player.Behaviour {
                 _data.Move(direction.GetVector());
                 blocksLeft--;
             }
-
         }
     }
 }
