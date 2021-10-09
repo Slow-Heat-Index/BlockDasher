@@ -31,7 +31,7 @@ namespace Sources.Util {
                 });
             }
         }
-        
+
         public static void Write(this BinaryWriter writer, Block block, List<Identifier> identifiers) {
             var id = block == null ? -1 : identifiers.IndexOf(block.Identifier);
             if (id == -1) {
@@ -40,11 +40,14 @@ namespace Sources.Util {
             else {
                 writer.Write((byte)1);
                 writer.Write(id);
-                writer.Write(block.GetMetadataSize());
-                block.ForEachMetadata((key, value) => {
-                    writer.Write(key);
-                    writer.Write(value);
-                });
+
+                var metadata = block.GetMetadataWithoutDefaultValues();
+                writer.Write(metadata.Count);
+                
+                foreach (var pair in metadata) {
+                    writer.Write(pair.Key);
+                    writer.Write(pair.Value);
+                }
             }
         }
     }

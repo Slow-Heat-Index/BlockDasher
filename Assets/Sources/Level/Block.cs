@@ -58,6 +58,17 @@ namespace Sources.Level {
             return new Dictionary<string, string>(_metadata);
         }
 
+        public Dictionary<string, string> GetMetadataWithoutDefaultValues() {
+            var def = BlockType.DefaultMetadataValues;
+            var result = new Dictionary<string, string>();
+            foreach (var pair in _metadata) {
+                if (def.TryGetValue(pair.Key, out var val) && val.Equals(pair.Value)) continue;
+                result[pair.Key] = pair.Value;
+            }
+
+            return result;
+        }
+
         public void ForEachMetadata(Action<string, string> action) {
             if (_metadata == null) return;
             foreach (var pair in _metadata) {
