@@ -136,11 +136,11 @@ namespace Sources.Level.Raycast {
             _current += _directionVector * distance;
             if (_directionVector.z < 0) {
                 _currentBlock.z--;
-                _face = Direction.South;
+                _face = Direction.North;
             }
             else {
                 _currentBlock.z++;
-                _face = Direction.North;
+                _face = Direction.South;
             }
         }
 
