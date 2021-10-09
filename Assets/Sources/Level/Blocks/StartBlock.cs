@@ -45,7 +45,7 @@ namespace Sources.Level.Blocks {
 
             public override bool CanBePlaced(BlockPosition position) => position.World.StartPosition == null;
 
-            public override Block CreateBlock(BlockPosition position, BlockData data) {
+            protected override Block CreateBlockImpl(BlockPosition position, BlockData data) {
                 return new StartBlock(position, data);
             }
         }

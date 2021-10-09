@@ -1,4 +1,6 @@
-﻿using Sources.Identification;
+﻿using System;
+using System.Collections.Generic;
+using Sources.Identification;
 using Sources.Level.Data;
 using Sources.Util;
 using UnityEngine;
@@ -15,6 +17,9 @@ namespace Sources.Level {
 
         public Texture DefaultTexture { get; }
 
+        public Dictionary<string, Type> DefaultMetadataTypes { get; } = new Dictionary<string, Type>();
+
+        public Dictionary<string, string> DefaultMetadataValues { get; } = new Dictionary<string, string>();
 
         protected BlockType(Identifier identifier, string name, Aabb collisionBox, Mesh defaultMesh,
             Texture defaultTexture) {
@@ -32,8 +37,13 @@ namespace Sources.Level {
 
         public virtual bool CanBePlaced(BlockPosition position) => true;
 
-        public abstract Block CreateBlock(BlockPosition position, BlockData data);
-        
+        public Block CreateBlock(BlockPosition position, BlockData data) {
+            data.AddNotPresentMetadata(DefaultMetadataValues);
+            return CreateBlockImpl(position, data);
+        }
+
+        protected abstract Block CreateBlockImpl(BlockPosition position, BlockData data);
+
         protected bool Equals(BlockType other) {
             return Equals(Identifier, other.Identifier);
         }

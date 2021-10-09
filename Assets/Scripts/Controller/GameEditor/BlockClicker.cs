@@ -58,6 +58,7 @@ namespace Controller.GameEditor {
             caster.Run();
             if (caster.Result != null) {
                 EditorData.SelectedBlockType = caster.Result.BlockType;
+                EditorData.Metadata = caster.Result.GetMetadataCopy();
             }
         }
     }

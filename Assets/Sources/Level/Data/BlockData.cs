@@ -41,6 +41,18 @@ namespace Sources.Level.Data {
             _metadata.Add(key, value);
         }
 
+        public void AddNotPresentMetadata(Dictionary<string, string> metadata) {
+            _metadata = _metadata == null
+                ? new Dictionary<string, string>()
+                : new Dictionary<string, string>(_metadata);
+
+            foreach (var pair in metadata) {
+                if (!_metadata.ContainsKey(pair.Key)) {
+                    _metadata[pair.Key] = pair.Value;
+                }
+            }
+        }
+
         public void RemoveMetadata(string key, string value) {
             if (_metadata == null) return;
             if (_metadata.Count == 1 && _metadata.ContainsKey(key)) {

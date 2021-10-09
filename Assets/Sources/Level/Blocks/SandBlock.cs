@@ -33,7 +33,7 @@ namespace Sources.Level.Blocks {
             ) {
             }
 
-            public override Block CreateBlock(BlockPosition position, BlockData data) {
+            protected override Block CreateBlockImpl(BlockPosition position, BlockData data) {
                 return new SandBlock(position, data);
             }
         }

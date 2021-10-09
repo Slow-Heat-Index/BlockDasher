@@ -1,4 +1,5 @@
-﻿using Sources;
+﻿using System.Collections.Generic;
+using Sources;
 using Sources.Level;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +23,10 @@ namespace Controller.GameEditor {
 
             button = GetComponent<Button>();
 
-            button.onClick.AddListener(() => EditorData.SelectedBlockType = BlockType);
+            button.onClick.AddListener(() => {
+                EditorData.SelectedBlockType = BlockType;
+                EditorData.Metadata = new Dictionary<string, string>();
+            });
 
             meshFilter.mesh = BlockType.DefaultMesh;
             meshRenderer.material.SetTexture(ShaderTextureReference, BlockType.DefaultTexture);

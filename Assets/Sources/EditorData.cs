@@ -14,6 +14,7 @@ namespace Sources {
         public static World World = new World(true);
 
         public static BlockType SelectedBlockType = GrassBlock.GrassBlockType.Instance;
+        public static Dictionary<string, string> Metadata = new Dictionary<string, string>();
         public static EditorToolType SelectedEditorTool = EditorToolType.PlaceBreak;
     }
 }

@@ -45,6 +45,11 @@ namespace Sources.Level {
             return _metadata[key];
         }
 
+        public bool GetMetadataBoolean(string key, bool fallback = false) {
+            if (!_metadata.TryGetValue(key, out var value)) return fallback;
+            return !bool.TryParse(value, out var result) ? fallback : result;
+        }
+
         public bool HasMetadata(string key) {
             return _metadata.ContainsKey(key);
         }
