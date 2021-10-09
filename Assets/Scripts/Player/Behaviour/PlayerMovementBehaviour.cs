@@ -10,11 +10,8 @@ namespace Player.Behaviour {
         private CameraBehaviour _cameraBehaviour;
 
         private void Awake() {
-            _cameraBehaviour = FindObjectOfType<CameraBehaviour>();
-        }
-
-        private void Start() {
             _data = GetComponent<PlayerData>();
+            _cameraBehaviour = FindObjectOfType<CameraBehaviour>();
         }
 
         public void Dash(Direction direction) {

@@ -9,7 +9,7 @@ namespace Player.Data {
 
         public BlockPosition BlockPosition { get; private set; }
 
-        private void Start() {
+        private void Awake() {
             BlockPosition = level.World.StartPosition.Position;
             UpdateTransform();
         }
