@@ -9,14 +9,9 @@ namespace Cameras.Behaviour {
         [SerializeField] private GameObject player;
         [SerializeField] private float distance = 5;
         [SerializeField] private float animationDuration = 0.5f;
-
+        private Tween _moveTween, _rotateTween;
 
         private void Start() {
-            UpdateCameraPosition();
-            transform.LookAt(player.transform);
-        }
-
-        private void Update() {
             UpdateCameraPosition();
         }
 
@@ -31,10 +26,13 @@ namespace Cameras.Behaviour {
         }
 
         public void UpdateCameraPosition() {
+            _moveTween?.Kill();
+            _rotateTween?.Kill();
+
             var target = player.transform.position;
             var offset = (direction.GetVector() - new Vector3(0, 2, 0)).normalized * distance;
-            transform.DOMove(target - offset, animationDuration);
-            transform.DOLookAt(target + offset, animationDuration);
+            _moveTween = transform.DOMove(target - offset, animationDuration);
+            _rotateTween = transform.DODynamicLookAt(target + offset, animationDuration);
         }
     }
 }
