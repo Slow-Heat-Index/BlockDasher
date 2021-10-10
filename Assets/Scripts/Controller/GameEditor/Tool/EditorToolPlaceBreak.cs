@@ -21,7 +21,8 @@ namespace Controller.GameEditor.Tool {
             if (caster.Result != null) {
                 var position = caster.Result.Position.Moved(caster.Face);
                 if (!EditorData.SelectedBlockType.CanBePlaced(position)) return;
-                world.PlaceBlock(new BlockData(EditorData.SelectedBlockType.Identifier), position.Position);
+                world.PlaceBlock(
+                    new BlockData(EditorData.SelectedBlockType.Identifier, EditorData.Metadata), position.Position);
             }
         }
     }
