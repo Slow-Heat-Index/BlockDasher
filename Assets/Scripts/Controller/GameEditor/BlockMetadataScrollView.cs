@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 namespace Controller.GameEditor {
     public class BlockMetadataScrollView : MonoBehaviour {
-        private static readonly Dictionary<Type, Action<BlockMetadataScrollView, string, string>> _functions =
-            new Dictionary<Type, Action<BlockMetadataScrollView, string, string>> {
-                { typeof(bool), (m, k, v) => m.GenerateBooleanForm(k, v) }
+        private static readonly Dictionary<Type, Action<BlockMetadataScrollView, string, string, string>> _functions =
+            new Dictionary<Type, Action<BlockMetadataScrollView, string, string, string>> {
+                { typeof(bool), (m, k, v, n) => m.GenerateBooleanForm(k, v, n) }
             };
 
         public GameObject booleanForm;
@@ -29,29 +29,28 @@ namespace Controller.GameEditor {
                 Destroy(child);
             }
 
-            for (var i = 0; i < 5; i++) {
-                foreach (var pair in EditorData.SelectedBlockType.DefaultMetadataValues) {
-                    var key = pair.Key;
-                    var value = pair.Value;
+            foreach (var pair in EditorData.SelectedBlockType.DefaultMetadata) {
+                var key = pair.Key;
+                var value = pair.Value.Value;
+                var type = pair.Value.Type;
+                var keyName = pair.Value.Name;
 
-                    if (metadata.TryGetValue(key, out var other)) {
-                        value = other;
-                    }
+                if (metadata.TryGetValue(key, out var other)) {
+                    value = other;
+                }
 
-                    var type = EditorData.SelectedBlockType.DefaultMetadataTypes[key];
-                    if (_functions.TryGetValue(type, out var function)) {
-                        function(this, key, value);
-                    }
+                if (_functions.TryGetValue(type, out var function)) {
+                    function(this, key, value, keyName);
                 }
             }
         }
 
-        private void GenerateBooleanForm(string key, string value) {
+        private void GenerateBooleanForm(string key, string value, string keyName) {
             var form = Instantiate(booleanForm, transform);
 
             var toggle = form.GetComponentInChildren<Toggle>();
             var text = form.GetComponentInChildren<Text>();
-            text.text = key;
+            text.text = keyName;
             toggle.isOn = bool.TryParse(value, out var result) && result;
             toggle.onValueChanged.AddListener(b => EditorData.Metadata[key] = b.ToString());
 

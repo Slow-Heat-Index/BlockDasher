@@ -1,5 +1,4 @@
-﻿using System;
-using Level;
+﻿using Level;
 using Level.Blocks;
 using Sources.Identification;
 using Sources.Level.Data;
@@ -23,10 +22,6 @@ namespace Sources.Level.Blocks {
         }
 
         public class GrassBlockType : BlockType {
-            public static readonly string MetadataForceTopKey = "metadata_force_top";
-            public static readonly Type MetadataForceTopType = typeof(bool);
-            public static readonly bool MetadataForceTopValue = false;
-            
             public static readonly GrassBlockType Instance = new GrassBlockType();
 
             private GrassBlockType() : base(
@@ -36,8 +31,7 @@ namespace Sources.Level.Blocks {
                 Resources.Load<Mesh>("Models/BlockModel"),
                 Resources.Load<Texture>("Models/Grass/White")
             ) {
-                DefaultMetadataTypes[MetadataForceTopKey] = MetadataForceTopType;
-                DefaultMetadataValues[MetadataForceTopKey] = MetadataForceTopValue.ToString();
+                DefaultMetadata[MetadataSnapshots.MetadataForceTop.Key] = MetadataSnapshots.MetadataForceTop;
             }
 
             protected override Block CreateBlockImpl(BlockPosition position, BlockData data) {

@@ -1,4 +1,5 @@
-﻿using Sources.Util;
+﻿using Sources.Level;
+using Sources.Util;
 using UnityEngine;
 
 namespace Level.Blocks {
@@ -16,17 +17,16 @@ namespace Level.Blocks {
             var position = Block.Position;
             var up = position.Moved(Direction.Up);
 
-            var upBlock = up.Block;
+            var force = Block.GetMetadataBoolean(MetadataSnapshots.MetadataForceTop.Key);
 
-            if (upBlock != null && upBlock.View.IsFaceOpaque(Direction.Down)) {
+            var upBlock = up.Block;
+            if (!force && upBlock != null && upBlock.View.IsFaceOpaque(Direction.Down)) {
                 return Resources.Load<Material>("Models/Snow/DirtMaterial");
             }
 
             var addition = position.Position.x + position.Position.z;
             if ((addition & 1) == 0) {
-                
                 return Resources.Load<Material>("Models/Snow/BlackMaterial");
-                
             }
 
             return Resources.Load<Material>("Models/Snow/WhiteMaterial");

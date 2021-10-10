@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Sources.Identification;
 using Sources.Level.Data;
 using Sources.Util;
@@ -17,9 +16,8 @@ namespace Sources.Level {
 
         public Texture DefaultTexture { get; }
 
-        public Dictionary<string, Type> DefaultMetadataTypes { get; } = new Dictionary<string, Type>();
-
-        public Dictionary<string, string> DefaultMetadataValues { get; } = new Dictionary<string, string>();
+        public Dictionary<string, MetadataSnapshot> DefaultMetadata { get; } =
+            new Dictionary<string, MetadataSnapshot>();
 
         protected BlockType(Identifier identifier, string name, Aabb collisionBox, Mesh defaultMesh,
             Texture defaultTexture) {
@@ -38,7 +36,7 @@ namespace Sources.Level {
         public virtual bool CanBePlaced(BlockPosition position) => true;
 
         public Block CreateBlock(BlockPosition position, BlockData data) {
-            data.AddNotPresentMetadata(DefaultMetadataValues);
+            data.AddNotPresentMetadata(DefaultMetadata);
             return CreateBlockImpl(position, data);
         }
 

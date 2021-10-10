@@ -20,7 +20,7 @@ namespace Sources.Level.Blocks {
         public override bool CanMoveFrom(Direction direction) {
             return false;
         }
-        
+
         public class SnowBlockType : BlockType {
             public static readonly SnowBlockType Instance = new SnowBlockType();
 
@@ -31,6 +31,7 @@ namespace Sources.Level.Blocks {
                 Resources.Load<Mesh>("Models/BlockModel"),
                 Resources.Load<Texture>("Models/Snow/White")
             ) {
+                DefaultMetadata[MetadataSnapshots.MetadataForceTop.Key] = MetadataSnapshots.MetadataForceTop;
             }
 
             protected override Block CreateBlockImpl(BlockPosition position, BlockData data) {

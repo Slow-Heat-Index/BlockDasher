@@ -41,14 +41,14 @@ namespace Sources.Level.Data {
             _metadata.Add(key, value);
         }
 
-        public void AddNotPresentMetadata(Dictionary<string, string> metadata) {
+        public void AddNotPresentMetadata(Dictionary<string, MetadataSnapshot> metadata) {
             _metadata = _metadata == null
                 ? new Dictionary<string, string>()
                 : new Dictionary<string, string>(_metadata);
 
             foreach (var pair in metadata) {
                 if (!_metadata.ContainsKey(pair.Key)) {
-                    _metadata[pair.Key] = pair.Value;
+                    _metadata[pair.Key] = pair.Value.Value;
                 }
             }
         }

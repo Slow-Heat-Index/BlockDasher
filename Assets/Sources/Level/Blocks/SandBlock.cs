@@ -20,7 +20,7 @@ namespace Sources.Level.Blocks {
         public override bool CanMoveFrom(Direction direction) {
             return false;
         }
-        
+
         public class SandBlockType : BlockType {
             public static readonly SandBlockType Instance = new SandBlockType();
 
@@ -31,6 +31,7 @@ namespace Sources.Level.Blocks {
                 Resources.Load<Mesh>("Models/BlockModel"),
                 Resources.Load<Texture>("Models/Sand/White")
             ) {
+                DefaultMetadata[MetadataSnapshots.MetadataForceTop.Key] = MetadataSnapshots.MetadataForceTop;
             }
 
             protected override Block CreateBlockImpl(BlockPosition position, BlockData data) {

@@ -1,4 +1,5 @@
-﻿using Sources.Level.Blocks;
+﻿using Sources.Level;
+using Sources.Level.Blocks;
 using Sources.Util;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ namespace Level.Blocks {
             var position = Block.Position;
             var up = position.Moved(Direction.Up);
 
-            var force = Block.GetMetadataBoolean(GrassBlock.GrassBlockType.MetadataForceTopKey);
+            var force = Block.GetMetadataBoolean(MetadataSnapshots.MetadataForceTop.Key);
 
             var upBlock = up.Block;
             if (!force && upBlock != null && upBlock.View.IsFaceOpaque(Direction.Down)) {
