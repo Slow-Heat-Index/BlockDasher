@@ -6,6 +6,7 @@ namespace Level.Blocks {
         protected override void Start() {
             base.Start();
             gameObject.isStatic = true;
+            transform.localScale = new Vector3(2, 2, 2);
             transform.rotation = Quaternion.Euler(0, RotationHash(Block.Position.Position) * 90.0f, 0);
         }
 
