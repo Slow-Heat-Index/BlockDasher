@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace Level.Blocks {
-    public class FlowersBlockView : BlockView {
+    public class TreeBlockView : BlockView {
         protected override void Start() {
             base.Start();
             gameObject.isStatic = true;
@@ -23,15 +23,15 @@ namespace Level.Blocks {
 
         protected override Mesh LoadMesh() {
             return Resources.Load<Mesh>((RotationHash(Block.Position.Position) & 0x4) > 0
-                ? "Models/Props/Garden/Flowers1/Model"
-                : "Models/Props/Garden/Flowers2/Model"
+                ? "Models/Props/Garden/Tree1/Model"
+                : "Models/Props/Garden/Tree2/Model"
             );
         }
 
         protected override Material LoadMaterial() {
             return Resources.Load<Material>((RotationHash(Block.Position.Position) & 0x4) > 0
-                ? "Models/Props/Garden/Flowers1/DefaultMaterial"
-                : "Models/Props/Garden/Flowers2/DefaultMaterial"
+                ? "Models/Props/Garden/Tree1/DefaultMaterial"
+                : "Models/Props/Garden/Tree2/DefaultMaterial"
             );
         }
 

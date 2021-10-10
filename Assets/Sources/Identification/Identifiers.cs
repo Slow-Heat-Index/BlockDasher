@@ -11,5 +11,6 @@
         public static readonly Identifier Snow = new Identifier(Identifier.BlockDasherProvider, "snow");
         
         public static readonly Identifier Flowers = new Identifier(Identifier.BlockDasherProvider, "flowers");
+        public static readonly Identifier Tree = new Identifier(Identifier.BlockDasherProvider, "tree");
     }
 }

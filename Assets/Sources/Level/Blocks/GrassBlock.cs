@@ -18,7 +18,7 @@ namespace Sources.Level.Blocks {
         }
 
         public override bool CanMoveFrom(Direction direction) {
-            return false;
+            return true;
         }
 
         public class GrassBlockType : BlockType {

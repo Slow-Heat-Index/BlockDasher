@@ -28,8 +28,8 @@ namespace Sources.Level.Blocks {
                 Identifiers.Flowers,
                 "Flowers",
                 new Aabb(0.2f, 0, 0.2f, 0.6f, 0.5f, 0.6f),
-                Resources.Load<Mesh>("Models/Props/Flowers1/Model"),
-                Resources.Load<Texture>("Models/Props/Flowers1/Default")
+                Resources.Load<Mesh>("Models/Props/Garden/Flowers1/Model"),
+                Resources.Load<Texture>("Models/Props/Garden/Flowers1/Default")
             ) {
             }
 
