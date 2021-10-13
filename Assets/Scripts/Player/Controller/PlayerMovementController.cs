@@ -33,7 +33,6 @@ namespace Player.Controller {
         protected void OnKeyboardInput(InputAction.CallbackContext context) {
             var direction = GetDirectionByAction(context.action);
             _behaviour.Dash(direction);
-            
         }
 
         protected Direction GetDirectionByAction(InputAction action) {

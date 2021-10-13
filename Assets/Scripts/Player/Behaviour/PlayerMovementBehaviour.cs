@@ -17,6 +17,8 @@ namespace Player.Behaviour {
         public void Dash(Direction direction) {
             (direction != Direction.Up && direction != Direction.Down)
                 .ValidateTrue($"Direction cannot be up or down! {direction}");
+            
+            if(!_data.CanPlayerMove) return;
 
             direction = direction.Rotated(_cameraBehaviour.direction);
 

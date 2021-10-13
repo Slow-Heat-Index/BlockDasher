@@ -29,7 +29,7 @@ namespace Cameras.Behaviour {
             _moveTween?.Kill();
             _rotateTween?.Kill();
 
-            var target = player.BlockPosition.Position;
+            var target = player.BlockPosition.Position + new Vector3(0.5f, 0.5f, 0.5f);
             var offset = (direction.GetVector() - new Vector3(0, 2, 0)).normalized * distance;
             _moveTween = transform.DOMove(target - offset, animationDuration);
             _rotateTween = transform.DODynamicLookAt(target + offset, animationDuration);

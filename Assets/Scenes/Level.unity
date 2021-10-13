@@ -1079,7 +1079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: {fileID: 925984929}
   blocksPerDash: 2
-  movementSpeed: 0.2
+  movementSpeed: 0.08
 --- !u!33 &2004679428
 MeshFilter:
   m_ObjectHideFlags: 0
