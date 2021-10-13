@@ -20,6 +20,10 @@ namespace Sources.Level.Blocks {
         public override bool CanMoveFrom(Direction direction) {
             return false;
         }
+        
+        public override bool IsClimbableFrom(Direction direction) {
+            return true;
+        }
 
         public class GrassBlockType : BlockType {
             public static readonly GrassBlockType Instance = new GrassBlockType();

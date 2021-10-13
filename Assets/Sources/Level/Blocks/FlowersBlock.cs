@@ -21,6 +21,10 @@ namespace Sources.Level.Blocks {
             return true;
         }
         
+        public override bool IsClimbableFrom(Direction direction) {
+            return false;
+        }
+        
         public class FlowersBlockType : BlockType {
             public static readonly FlowersBlockType Instance = new FlowersBlockType();
 

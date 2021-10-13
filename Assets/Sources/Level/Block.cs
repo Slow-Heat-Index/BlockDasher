@@ -87,6 +87,8 @@ namespace Sources.Level {
         public abstract bool CanMoveTo(Direction direction);
 
         public abstract bool CanMoveFrom(Direction direction);
+        
+        public abstract bool IsClimbableFrom(Direction direction);
 
         internal void Invalidate() {
             Valid = false;

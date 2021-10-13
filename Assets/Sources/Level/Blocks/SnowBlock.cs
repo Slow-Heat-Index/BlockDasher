@@ -20,6 +20,10 @@ namespace Sources.Level.Blocks {
         public override bool CanMoveFrom(Direction direction) {
             return false;
         }
+        
+        public override bool IsClimbableFrom(Direction direction) {
+            return true;
+        }
 
         public class SnowBlockType : BlockType {
             public static readonly SnowBlockType Instance = new SnowBlockType();

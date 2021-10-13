@@ -17,11 +17,14 @@ namespace Player.Behaviour {
         public void Dash(Direction direction) {
             (direction != Direction.Up && direction != Direction.Down)
                 .ValidateTrue($"Direction cannot be up or down! {direction}");
-            
+
             direction = direction.Rotated(_cameraBehaviour.direction);
 
-            MoveRecursively(direction, _data.blocksPerDash);
-            //MoveRecursively(Direction.Down, 20);
+            if (!TryToClimb(direction)) {
+                MoveRecursively(direction, _data.blocksPerDash);
+            }
+
+            MoveRecursively(Direction.Down, 20);
 
             var current = _data.BlockPosition.Block;
             if (current == null || current.CanMoveTo(Direction.Down)) {
@@ -32,8 +35,27 @@ namespace Player.Behaviour {
                 }
             }
 
-
             _cameraBehaviour.UpdateCameraPosition();
+        }
+
+        private bool TryToClimb(Direction direction) {
+            var current = _data.BlockPosition.Block;
+            if (current != null && (!current.CanMoveTo(direction) || !current.CanMoveTo(Direction.Up))) return false;
+
+            var opposite = direction.GetOpposite();
+
+            var next = _data.BlockPosition.Moved(direction).Block;
+            if (next == null || next.CanMoveFrom(opposite) || !next.IsClimbableFrom(opposite)) return false;
+
+            var up = _data.BlockPosition.Moved(Direction.Up).Block;
+            if (up != null && (!up.CanMoveFrom(Direction.Down) || !up.CanMoveTo(direction))) return false;
+
+            var nextUp = _data.BlockPosition.Moved(Direction.Up).Moved(direction).Block;
+            if (nextUp != null && !nextUp.CanMoveFrom(opposite)) return false;
+
+            _data.Move(Vector3Int.up);
+            _data.Move(direction.GetVector());
+            return true;
         }
 
         private void MoveRecursively(Direction direction, int blocks) {

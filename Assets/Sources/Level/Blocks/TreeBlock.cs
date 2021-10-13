@@ -20,6 +20,10 @@ namespace Sources.Level.Blocks {
         public override bool CanMoveFrom(Direction direction) {
             return false;
         }
+        
+        public override bool IsClimbableFrom(Direction direction) {
+            return false;
+        }
 
         public class TreeBlockType : BlockType {
             public static readonly TreeBlockType Instance = new TreeBlockType();

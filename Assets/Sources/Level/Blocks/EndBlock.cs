@@ -20,7 +20,11 @@ namespace Sources.Level.Blocks {
         public override bool CanMoveFrom(Direction direction) {
             return true;
         }
-        
+
+        public override bool IsClimbableFrom(Direction direction) {
+            return false;
+        }
+
         public class EndBlockType : BlockType {
             public static readonly EndBlockType Instance = new EndBlockType();
 
