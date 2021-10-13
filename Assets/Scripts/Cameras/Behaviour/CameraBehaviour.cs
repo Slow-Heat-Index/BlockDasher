@@ -1,11 +1,12 @@
 using DG.Tweening;
+using Player.Data;
 using Sources.Util;
 using UnityEngine;
 
 namespace Cameras.Behaviour {
     public class CameraBehaviour : MonoBehaviour {
         public Direction direction = Direction.North;
-        [SerializeField] private GameObject player;
+        [SerializeField] private PlayerData player;
         [SerializeField] private float distance = 5;
         [SerializeField] private float animationDuration = 0.5f;
         private Tween _moveTween, _rotateTween;
@@ -28,7 +29,7 @@ namespace Cameras.Behaviour {
             _moveTween?.Kill();
             _rotateTween?.Kill();
 
-            var target = player.transform.position;
+            var target = player.BlockPosition.Position;
             var offset = (direction.GetVector() - new Vector3(0, 2, 0)).normalized * distance;
             _moveTween = transform.DOMove(target - offset, animationDuration);
             _rotateTween = transform.DODynamicLookAt(target + offset, animationDuration);

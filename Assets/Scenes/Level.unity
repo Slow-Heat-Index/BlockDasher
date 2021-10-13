@@ -829,7 +829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 2
-  player: {fileID: 2004679423}
+  player: {fileID: 2004679427}
   distance: 10
   animationDuration: 0.5
 --- !u!1 &1096113727
@@ -1079,6 +1079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: {fileID: 925984929}
   blocksPerDash: 2
+  movementSpeed: 0.2
 --- !u!33 &2004679428
 MeshFilter:
   m_ObjectHideFlags: 0
