@@ -13,15 +13,15 @@ namespace Player.Data {
             BlockPosition = level.World.StartPosition.Position;
             UpdateTransform();
         }
-        
+
         public void Move(Vector3Int offset) {
             BlockPosition = BlockPosition.Moved(offset);
-                     UpdateTransform();
+            UpdateTransform();
         }
 
         public void Teleport(Vector3Int position) {
             BlockPosition = new BlockPosition(BlockPosition.World, position);
-           UpdateTransform();
+            UpdateTransform();
         }
 
 

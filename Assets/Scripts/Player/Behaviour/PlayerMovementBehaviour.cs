@@ -17,13 +17,11 @@ namespace Player.Behaviour {
         public void Dash(Direction direction) {
             (direction != Direction.Up && direction != Direction.Down)
                 .ValidateTrue($"Direction cannot be up or down! {direction}");
-
-
-            print($"{direction} + ({_cameraBehaviour.direction}) -> {direction.Rotated(_cameraBehaviour.direction)}");
+            
             direction = direction.Rotated(_cameraBehaviour.direction);
 
             MoveRecursively(direction, _data.blocksPerDash);
-            MoveRecursively(Direction.Down, 20);
+            //MoveRecursively(Direction.Down, 20);
 
             var current = _data.BlockPosition.Block;
             if (current == null || current.CanMoveTo(Direction.Down)) {

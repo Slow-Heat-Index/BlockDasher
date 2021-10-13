@@ -14,11 +14,11 @@ namespace Sources.Level.Blocks {
         public override BlockView GenerateBlockView() => GameObject.AddComponent<TreeBlockView>();
 
         public override bool CanMoveTo(Direction direction) {
-            return false;
+            return true;
         }
 
         public override bool CanMoveFrom(Direction direction) {
-            return true;
+            return false;
         }
 
         public class TreeBlockType : BlockType {
