@@ -7,8 +7,9 @@ using UnityEngine;
 namespace Player.Data {
     public class PlayerData : MonoBehaviour {
         public LevelGenerator level;
-        public int blocksPerDash = 2;
-        public float movementSpeed = 0.08f;
+        public int extraMovements = 0;
+
+        [Header("Animation")] public float movementSpeed = 0.08f;
 
         private readonly Queue<Vector3> _movementQueue = new Queue<Vector3>();
         private Tween _movementTween;
@@ -42,7 +43,7 @@ namespace Player.Data {
             if (_movementTween != null && _movementTween.IsActive() && !_movementTween.IsComplete()) {
                 _movementTween.Kill(true);
             }
-            
+
             UpdateTransform();
         }
 

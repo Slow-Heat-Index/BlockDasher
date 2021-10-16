@@ -32,6 +32,7 @@ namespace Sources.Level.Blocks {
                 Identifiers.Grass,
                 "Grass",
                 new Aabb(0, 0, 0, 1, 1, 1),
+                2,
                 Resources.Load<Mesh>("Models/BlockModel"),
                 Resources.Load<Texture>("Models/Grass/White")
             ) {

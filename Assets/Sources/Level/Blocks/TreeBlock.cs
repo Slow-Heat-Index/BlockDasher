@@ -20,7 +20,7 @@ namespace Sources.Level.Blocks {
         public override bool CanMoveFrom(Direction direction) {
             return false;
         }
-        
+
         public override bool IsClimbableFrom(Direction direction) {
             return false;
         }
@@ -32,6 +32,7 @@ namespace Sources.Level.Blocks {
                 Identifiers.Tree,
                 "Tree",
                 new Aabb(0.2f, 0, 0.2f, 0.6f, 1f, 0.6f),
+                2,
                 Resources.Load<Mesh>("Models/Props/Garden/Tree1/Model"),
                 Resources.Load<Texture>("Models/Props/Garden/Tree1/Default")
             ) {

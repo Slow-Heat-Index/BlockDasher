@@ -16,6 +16,8 @@ namespace Sources.Level {
         public GameObject GameObject { get; private set; }
         public BlockView View { get; private set; }
 
+        public virtual int MaximumMovements => BlockType.DefaultMaximumMovements;
+
         protected readonly Dictionary<string, string> _metadata;
 
         public Block(Identifier identifier, BlockType blockType, BlockPosition position, BlockData data) {
@@ -87,7 +89,7 @@ namespace Sources.Level {
         public abstract bool CanMoveTo(Direction direction);
 
         public abstract bool CanMoveFrom(Direction direction);
-        
+
         public abstract bool IsClimbableFrom(Direction direction);
 
         internal void Invalidate() {

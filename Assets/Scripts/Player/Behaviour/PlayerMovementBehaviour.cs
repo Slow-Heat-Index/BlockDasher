@@ -17,13 +17,13 @@ namespace Player.Behaviour {
         public void Dash(Direction direction) {
             (direction != Direction.Up && direction != Direction.Down)
                 .ValidateTrue($"Direction cannot be up or down! {direction}");
-            
-            if(!_data.CanPlayerMove) return;
+
+            if (!_data.CanPlayerMove) return;
 
             direction = direction.Rotated(_cameraBehaviour.direction);
 
             if (!TryToClimb(direction)) {
-                MoveRecursively(direction, _data.blocksPerDash);
+                ExecuteDash(direction);
             }
 
             MoveRecursively(Direction.Down, 20);
@@ -58,6 +58,25 @@ namespace Player.Behaviour {
             _data.Move(Vector3Int.up);
             _data.Move(direction.GetVector());
             return true;
+        }
+
+        private void ExecuteDash(Direction direction) {
+            var blocksDashed = 0;
+            var maximumMovements = _data.BlockPosition.Moved(Direction.Down).Block?.MaximumMovements ?? 2;
+            while (blocksDashed < maximumMovements + _data.extraMovements) {
+                var fromBlock = _data.BlockPosition.Block;
+                var toBlock = _data.BlockPosition.Moved(direction).Block;
+
+                if (fromBlock != null && !fromBlock.CanMoveTo(direction)
+                    || toBlock != null && !toBlock.CanMoveFrom(direction.GetOpposite())) {
+                    break;
+                }
+
+                _data.Move(direction.GetVector());
+                maximumMovements = _data.BlockPosition.Moved(Direction.Down).Block?.MaximumMovements ??
+                                   maximumMovements;
+                blocksDashed++;
+            }
         }
 
         private void MoveRecursively(Direction direction, int blocks) {

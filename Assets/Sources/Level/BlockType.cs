@@ -12,15 +12,19 @@ namespace Sources.Level {
 
         public Aabb CollisionBox { get; }
 
+        public int DefaultMaximumMovements { get; }
+
         public Mesh DefaultMesh { get; }
 
         public Texture DefaultTexture { get; }
 
+
         public Dictionary<string, MetadataSnapshot> DefaultMetadata { get; } =
             new Dictionary<string, MetadataSnapshot>();
 
-        protected BlockType(Identifier identifier, string name, Aabb collisionBox, Mesh defaultMesh,
-            Texture defaultTexture) {
+        protected BlockType(Identifier identifier, string name,
+            Aabb collisionBox, int defaultMaximumMovements,
+            Mesh defaultMesh, Texture defaultTexture) {
             identifier.ValidateNotNull("Identifier cannot be null!");
             name.ValidateNotNull("Name cannot be null!");
             collisionBox.ValidateNotNull("Collision block cannot be null!");
@@ -31,6 +35,7 @@ namespace Sources.Level {
             DefaultMesh = defaultMesh;
             DefaultTexture = defaultTexture;
             CollisionBox = collisionBox;
+            DefaultMaximumMovements = defaultMaximumMovements;
         }
 
         public virtual bool CanBePlaced(BlockPosition position) => true;
