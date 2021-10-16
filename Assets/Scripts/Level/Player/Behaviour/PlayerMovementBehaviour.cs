@@ -1,17 +1,17 @@
-﻿using Cameras.Behaviour;
-using Player.Data;
+﻿using Level.Cameras.Behaviour;
+using Level.Player.Data;
 using Sources.Util;
 using UnityEngine;
 
-namespace Player.Behaviour {
+namespace Level.Player.Behaviour {
     [RequireComponent(typeof(PlayerData))]
     public class PlayerMovementBehaviour : MonoBehaviour {
         private PlayerData _data;
-        private CameraBehaviour _cameraBehaviour;
+        private LevelCameraBehaviour _levelCameraBehaviour;
 
         private void Awake() {
             _data = GetComponent<PlayerData>();
-            _cameraBehaviour = FindObjectOfType<CameraBehaviour>();
+            _levelCameraBehaviour = FindObjectOfType<LevelCameraBehaviour>();
         }
 
         public void Dash(Direction direction) {
@@ -20,7 +20,7 @@ namespace Player.Behaviour {
 
             if (!_data.CanPlayerMove) return;
 
-            direction = direction.Rotated(_cameraBehaviour.direction);
+            direction = direction.Rotated(_levelCameraBehaviour.direction);
 
             if (!TryToClimb(direction)) {
                 ExecuteDash(direction);
@@ -37,7 +37,7 @@ namespace Player.Behaviour {
                 }
             }
 
-            _cameraBehaviour.UpdateCameraPosition();
+            _levelCameraBehaviour.UpdateCameraPosition();
         }
 
         private bool TryToClimb(Direction direction) {

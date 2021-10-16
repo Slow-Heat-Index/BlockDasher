@@ -1,10 +1,10 @@
 using DG.Tweening;
-using Player.Data;
+using Level.Player.Data;
 using Sources.Util;
 using UnityEngine;
 
-namespace Cameras.Behaviour {
-    public class CameraBehaviour : MonoBehaviour {
+namespace Level.Cameras.Behaviour {
+    public class LevelCameraBehaviour : MonoBehaviour {
         public Direction direction = Direction.North;
         [SerializeField] private PlayerData player;
         [SerializeField] private float distance = 5;

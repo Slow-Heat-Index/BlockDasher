@@ -4,7 +4,7 @@ using Level.Generator;
 using Sources.Level;
 using UnityEngine;
 
-namespace Player.Data {
+namespace Level.Player.Data {
     public class PlayerData : MonoBehaviour {
         public LevelGenerator level;
         public int extraMovements = 0;

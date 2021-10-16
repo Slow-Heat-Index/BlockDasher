@@ -1,11 +1,11 @@
 ﻿using System;
 using Controller;
-using Player.Behaviour;
+using Level.Player.Behaviour;
 using Sources.Util;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Player.Controller {
+namespace Level.Player.Controller {
     
     [RequireComponent(typeof(PlayerMovementBehaviour))]
     public class PlayerMovementController : ControllerAwareMonoBehaviour<Inputs> {
