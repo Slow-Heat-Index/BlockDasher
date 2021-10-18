@@ -487,6 +487,44 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Menu",
+            "id": "96b02e2e-6e25-4722-828a-d847d26781b7",
+            "actions": [
+                {
+                    "name": "TouchScreen Press",
+                    "type": "Button",
+                    "id": "1e4fe6fb-fbe7-401d-8d32-7abeb9c98310",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "08c3a35f-0980-44aa-b521-f154aec768c0",
+                    "path": "<Touchscreen>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TouchScreen Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e8798bdb-5d0b-4638-afff-2fa126caee27",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TouchScreen Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

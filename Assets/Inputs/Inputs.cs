@@ -500,6 +500,44 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""96b02e2e-6e25-4722-828a-d847d26781b7"",
+            ""actions"": [
+                {
+                    ""name"": ""TouchScreenPress"",
+                    ""type"": ""Button"",
+                    ""id"": ""1e4fe6fb-fbe7-401d-8d32-7abeb9c98310"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""08c3a35f-0980-44aa-b521-f154aec768c0"",
+                    ""path"": ""<Touchscreen>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TouchScreenPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e8798bdb-5d0b-4638-afff-2fa126caee27"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TouchScreenPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -528,6 +566,9 @@ public class @Inputs : IInputActionCollection, IDisposable
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_RotateLeft = m_Camera.FindAction("Rotate Left", throwIfNotFound: true);
         m_Camera_RotateRight = m_Camera.FindAction("Rotate Right", throwIfNotFound: true);
+        // Menu
+        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+        m_Menu_TouchScreenPress = m_Menu.FindAction("TouchScreenPress", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -792,6 +833,39 @@ public class @Inputs : IInputActionCollection, IDisposable
         }
     }
     public CameraActions @Camera => new CameraActions(this);
+
+    // Menu
+    private readonly InputActionMap m_Menu;
+    private IMenuActions m_MenuActionsCallbackInterface;
+    private readonly InputAction m_Menu_TouchScreenPress;
+    public struct MenuActions
+    {
+        private @Inputs m_Wrapper;
+        public MenuActions(@Inputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @TouchScreenPress => m_Wrapper.m_Menu_TouchScreenPress;
+        public InputActionMap Get() { return m_Wrapper.m_Menu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        public void SetCallbacks(IMenuActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsCallbackInterface != null)
+            {
+                @TouchScreenPress.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnTouchScreenPress;
+                @TouchScreenPress.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnTouchScreenPress;
+                @TouchScreenPress.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnTouchScreenPress;
+            }
+            m_Wrapper.m_MenuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @TouchScreenPress.started += instance.OnTouchScreenPress;
+                @TouchScreenPress.performed += instance.OnTouchScreenPress;
+                @TouchScreenPress.canceled += instance.OnTouchScreenPress;
+            }
+        }
+    }
+    public MenuActions @Menu => new MenuActions(this);
     public interface IEditorActions
     {
         void OnRemoveBlock(InputAction.CallbackContext context);
@@ -818,5 +892,9 @@ public class @Inputs : IInputActionCollection, IDisposable
     {
         void OnRotateLeft(InputAction.CallbackContext context);
         void OnRotateRight(InputAction.CallbackContext context);
+    }
+    public interface IMenuActions
+    {
+        void OnTouchScreenPress(InputAction.CallbackContext context);
     }
 }
