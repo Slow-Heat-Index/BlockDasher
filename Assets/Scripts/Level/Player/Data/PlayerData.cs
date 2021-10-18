@@ -6,11 +6,12 @@ using UnityEngine;
 
 namespace Level.Player.Data {
     public class PlayerData : MonoBehaviour {
-        public LevelGenerator level;
-        public int extraMovements = 0;
+        public int extraSteps = 0;
+        public uint movementsLeft = 0;
 
         [Header("Animation")] public float movementSpeed = 0.08f;
 
+        private LevelGenerator _level;
         private readonly Queue<Vector3> _movementQueue = new Queue<Vector3>();
         private Tween _movementTween;
 
@@ -20,8 +21,11 @@ namespace Level.Player.Data {
 
         public BlockPosition BlockPosition { get; private set; }
 
+
         private void Awake() {
-            BlockPosition = level.World.StartPosition.Position;
+            _level = FindObjectOfType<LevelGenerator>();
+            movementsLeft = _level.World.InitialMoves;
+            BlockPosition = _level.World.StartPosition.Position;
             UpdateTransform();
         }
 

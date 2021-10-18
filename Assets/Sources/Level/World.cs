@@ -10,6 +10,8 @@ namespace Sources.Level {
     public class World {
         public StartBlock StartPosition { get; internal set; }
 
+        public uint InitialMoves { get; set; }
+
         public bool IsEditorWorld { get; }
 
         private readonly Dictionary<Vector3Int, Chunk> _chunks = new Dictionary<Vector3Int, Chunk>();
@@ -42,6 +44,10 @@ namespace Sources.Level {
         }
 
         public void Write(BinaryWriter writer) {
+            // Version
+            writer.Write(0u);
+            writer.Write(InitialMoves);
+
             var chunksToSave = _chunks.Where(pair => !pair.Value.IsEmpty())
                 .ToDictionary(i => i.Key, i => i.Value);
 
@@ -54,6 +60,9 @@ namespace Sources.Level {
         }
 
         public void Read(BinaryReader reader) {
+            var version = reader.ReadUInt32();
+            InitialMoves = reader.ReadUInt32();
+
             foreach (var chunk in _chunks.Values) {
                 chunk.Clear();
             }

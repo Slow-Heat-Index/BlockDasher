@@ -33,8 +33,15 @@ namespace Level.Player.Behaviour {
                 var down = _data.BlockPosition.Moved(Direction.Down).Block;
                 if (down == null || down.CanMoveFrom(Direction.Up)) {
                     // OWO PLAYER IS DEAD
-                    _data.Teleport(_data.level.World.StartPosition.Position.Position);
+                    _data.Teleport(_data.BlockPosition.World.StartPosition.Position.Position);
                 }
+            }
+
+            if (_data.movementsLeft > 0) _data.movementsLeft--;
+            if (_data.movementsLeft == 0) {
+                //Death!
+                _data.Teleport(_data.BlockPosition.World.StartPosition.Position.Position);
+                _data.movementsLeft = _data.BlockPosition.World.InitialMoves;
             }
 
             _levelCameraBehaviour.UpdateCameraPosition();
@@ -63,7 +70,7 @@ namespace Level.Player.Behaviour {
         private void ExecuteDash(Direction direction) {
             var blocksDashed = 0;
             var maximumMovements = _data.BlockPosition.Moved(Direction.Down).Block?.MaximumMovements ?? 2;
-            while (blocksDashed < maximumMovements + _data.extraMovements) {
+            while (blocksDashed < maximumMovements + _data.extraSteps) {
                 var fromBlock = _data.BlockPosition.Block;
                 var toBlock = _data.BlockPosition.Moved(direction).Block;
 

@@ -6,12 +6,15 @@ using UnityEngine;
 namespace Level.Cameras.Behaviour {
     public class LevelCameraBehaviour : MonoBehaviour {
         public Direction direction = Direction.North;
-        [SerializeField] private PlayerData player;
         [SerializeField] private float distance = 5;
         [SerializeField] private float animationDuration = 0.5f;
         private Tween _moveTween, _rotateTween;
 
+
+        private PlayerData _player;
+        
         private void Start() {
+            _player = FindObjectOfType<PlayerData>();
             UpdateCameraPosition();
         }
 
@@ -29,7 +32,7 @@ namespace Level.Cameras.Behaviour {
             _moveTween?.Kill();
             _rotateTween?.Kill();
 
-            var target = player.BlockPosition.Position + new Vector3(0.5f, 0.5f, 0.5f);
+            var target = _player.BlockPosition.Position + new Vector3(0.5f, 0.5f, 0.5f);
             var offset = (direction.GetVector() - new Vector3(0, 1, 0)).normalized * distance;
             _moveTween = transform.DOMove(target - offset, animationDuration);
             _rotateTween = transform.DODynamicLookAt(target + offset, animationDuration);
