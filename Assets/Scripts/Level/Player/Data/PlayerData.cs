@@ -51,6 +51,14 @@ namespace Level.Player.Data {
             UpdateTransform();
         }
 
+        public void Win() {
+        }
+
+        public void Lose() {
+            Teleport(BlockPosition.World.StartPosition.Position.Position);
+            movementsLeft = BlockPosition.World.InitialMoves;
+            _level.World.ResetLevel();
+        }
 
         private void UpdateTransform() {
             transform.position = BlockPosition.Position + new Vector3(0.5f, 0.5f, 0.5f);

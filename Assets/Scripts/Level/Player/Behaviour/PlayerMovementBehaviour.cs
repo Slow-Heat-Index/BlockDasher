@@ -33,15 +33,14 @@ namespace Level.Player.Behaviour {
                 var down = _data.BlockPosition.Moved(Direction.Down).Block;
                 if (down == null || down.CanMoveFrom(Direction.Up)) {
                     // OWO PLAYER IS DEAD
-                    _data.Teleport(_data.BlockPosition.World.StartPosition.Position.Position);
+                    _data.Lose();
                 }
             }
 
             if (_data.movementsLeft > 0) _data.movementsLeft--;
             if (_data.movementsLeft == 0) {
                 //Death!
-                _data.Teleport(_data.BlockPosition.World.StartPosition.Position.Position);
-                _data.movementsLeft = _data.BlockPosition.World.InitialMoves;
+                _data.Lose();
             }
 
             _levelCameraBehaviour.UpdateCameraPosition();

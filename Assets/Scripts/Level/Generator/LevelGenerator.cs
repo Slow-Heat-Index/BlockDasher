@@ -1,5 +1,4 @@
-﻿using Level.Player.Data;
-using Sources;
+﻿using Sources;
 using Sources.Level;
 using UnityEngine;
 

@@ -31,9 +31,9 @@ namespace Sources.Level {
                 : null;
         }
 
-        public Block PlaceBlock(BlockData data, Vector3Int position) {
+        public Block PlaceBlock(BlockData data, Vector3Int position, bool init = false) {
             var chunkPosition = position.toChunkPosition();
-            return GetOrCreateChunk(chunkPosition.Chunk).PlaceBlock(data, chunkPosition.Position);
+            return GetOrCreateChunk(chunkPosition.Chunk).PlaceBlock(data, chunkPosition.Position, init);
         }
 
         public Chunk GetOrCreateChunk(Vector3Int chunkPosition) {
@@ -41,6 +41,12 @@ namespace Sources.Level {
             chunk = new Chunk(this, chunkPosition);
             _chunks[chunkPosition] = chunk;
             return chunk;
+        }
+
+        public void ResetLevel() {
+            foreach (var chunk in _chunks.Values) {
+                chunk.ResetLevel();
+            }
         }
 
         public void Write(BinaryWriter writer) {

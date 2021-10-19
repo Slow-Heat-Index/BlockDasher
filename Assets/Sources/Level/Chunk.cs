@@ -19,6 +19,9 @@ namespace Sources.Level {
 
         private readonly Block[,,] _blocks = new Block[ChunkLength, ChunkLength, ChunkLength];
 
+        private readonly Dictionary<Vector3Int, BlockData> _modifiedInitialStates =
+            new Dictionary<Vector3Int, BlockData>();
+
         public Chunk(World world, Vector3Int position) {
             World = world;
             Position = position;
@@ -29,7 +32,7 @@ namespace Sources.Level {
             return _blocks[position.y, position.x, position.z];
         }
 
-        public Block PlaceBlock(BlockData data, Vector3Int position) {
+        public Block PlaceBlock(BlockData data, Vector3Int position, bool init = false) {
             position.isInRange(0, ChunkLength - 1).ValidateTrue($"Position out of range! {position}");
 
             var worldPosition = new ChunkPosition(Position, position).toWorldPosition();
@@ -39,18 +42,26 @@ namespace Sources.Level {
 
             if (data.Identifier == null) {
                 if (old == null) return null;
-                RemoveBlock(position);
+                RemoveBlock(position, init);
             }
             else {
                 var builder = Registry.Get<BlockType>(Identifiers.ManagerBlock)[data.Identifier];
                 if (builder == null) {
                     if (old == null) return null;
-                    RemoveBlock(position);
+                    RemoveBlock(position, init);
                 }
                 else {
                     block = builder.CreateBlock(blockPosition, data);
+
+                    if (!init) {
+                        if (!_modifiedInitialStates.ContainsKey(position)) {
+                            _modifiedInitialStates[position] = old?.ToBlockData() ?? new BlockData(null);
+                        }
+                    }
+
                     old?.OnBreak();
                     old?.Invalidate();
+
                     _blocks[position.y, position.x, position.z] = block;
                     block.OnPlace();
                 }
@@ -61,10 +72,19 @@ namespace Sources.Level {
             return block;
         }
 
-        public void RemoveBlock(Vector3Int position) {
+        private void RemoveBlock(Vector3Int position, bool init) {
             var block = _blocks[position.y, position.x, position.z];
-            block?.OnBreak();
-            block?.Invalidate();
+
+            if (!init) {
+                if (!_modifiedInitialStates.ContainsKey(position)) {
+                    _modifiedInitialStates[position] = block?.ToBlockData() ?? new BlockData(null);
+                }
+            }
+
+            if (block == null) return;
+            block.OnBreak();
+            block.Invalidate();
+
             _blocks[position.y, position.x, position.z] = null;
         }
 
@@ -92,6 +112,13 @@ namespace Sources.Level {
             }
         }
 
+        public void ResetLevel() {
+            foreach (var pair in _modifiedInitialStates) {
+                PlaceBlock(pair.Value, pair.Key, true);
+            }
+            
+            _modifiedInitialStates.Clear();
+        }
 
         public void Write(BinaryWriter writer) {
             var set = new HashSet<Identifier>();
@@ -129,7 +156,7 @@ namespace Sources.Level {
             for (var y = 0; y < ChunkLength; y++) {
                 for (var x = 0; x < ChunkLength; x++) {
                     for (var z = 0; z < ChunkLength; z++) {
-                        PlaceBlock(reader.ReadBlockData(identifiers), new Vector3Int(x, y, z));
+                        PlaceBlock(reader.ReadBlockData(identifiers), new Vector3Int(x, y, z), true);
                     }
                 }
             }
