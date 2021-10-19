@@ -1,5 +1,6 @@
 ﻿using Level;
 using Level.Blocks;
+using Level.Player.Data;
 using Sources.Identification;
 using Sources.Level.Data;
 using Sources.Util;
@@ -23,6 +24,11 @@ namespace Sources.Level.Blocks {
 
         public override bool IsClimbableFrom(Direction direction) {
             return false;
+        }
+
+        public override bool OnInteract(PlayerData player) {
+            player.Win();
+            return true;
         }
 
         public class EndBlockType : BlockType {

@@ -7,9 +7,23 @@ using Sources.Util;
 using UnityEngine;
 
 namespace Sources.Level {
+    
+    /**
+     * Represents a World/Level.
+     *
+     * A World contains all the data about a level and its blocks.
+     */
     public class World {
+        
+        /**
+         * The start position of the world.
+         * This is the block the Player will spawn.
+         */
         public StartBlock StartPosition { get; internal set; }
 
+        /**
+         * The amount of moves the player can perform in this world.
+         */
         public uint InitialMoves { get; set; }
 
         public bool IsEditorWorld { get; }
@@ -45,7 +59,7 @@ namespace Sources.Level {
 
         public void ResetLevel() {
             foreach (var chunk in _chunks.Values) {
-                chunk.ResetLevel();
+                chunk.ResetChunk();
             }
         }
 

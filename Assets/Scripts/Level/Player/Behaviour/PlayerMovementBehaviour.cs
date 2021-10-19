@@ -68,7 +68,7 @@ namespace Level.Player.Behaviour {
 
         private void ExecuteDash(Direction direction) {
             var blocksDashed = 0;
-            var maximumMovements = _data.BlockPosition.Moved(Direction.Down).Block?.MaximumMovements ?? 2;
+            var maximumMovements = _data.BlockPosition.Moved(Direction.Down).Block?.MaximumSteps ?? 2;
             while (blocksDashed < maximumMovements + _data.extraSteps) {
                 var fromBlock = _data.BlockPosition.Block;
                 var toBlock = _data.BlockPosition.Moved(direction).Block;
@@ -79,7 +79,7 @@ namespace Level.Player.Behaviour {
                 }
 
                 _data.Move(direction.GetVector());
-                maximumMovements = _data.BlockPosition.Moved(Direction.Down).Block?.MaximumMovements ??
+                maximumMovements = _data.BlockPosition.Moved(Direction.Down).Block?.MaximumSteps ??
                                    maximumMovements;
                 blocksDashed++;
             }

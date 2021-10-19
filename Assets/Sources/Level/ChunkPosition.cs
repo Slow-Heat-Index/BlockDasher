@@ -3,6 +3,12 @@ using Sources.Util;
 using UnityEngine;
 
 namespace Sources.Level {
+    /**
+     * Represents a position inside a Chunk.
+     *
+     * This position is split into two positions: the chunk position and the local block position inside the chunk.
+     * 
+     */
     [Serializable]
     public struct ChunkPosition {
         [SerializeField] private Vector3Int chunk;
@@ -21,6 +27,11 @@ namespace Sources.Level {
                 chunk = value;
             }
         }
+
+        /**
+         * The world position represented by this chunk position.
+         */
+        public Vector3Int WorldPosition => Chunk * 16 + position;
 
         public ChunkPosition(Vector3Int chunk, Vector3Int position) {
             position.isInRange(0, Level.Chunk.ChunkLength - 1)
@@ -43,10 +54,6 @@ namespace Sources.Level {
             );
 
             position = worldPosition - start;
-        }
-
-        public Vector3Int toWorldPosition() {
-            return Chunk * 16 + position;
         }
     }
 }
