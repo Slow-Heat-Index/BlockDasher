@@ -5,7 +5,7 @@ using Sources.Level.Data;
 using UnityEngine;
 
 public class Test : MonoBehaviour {
-    private void Start() {
+    private void Awake() {
         // Creates a new chunk data storage.
         var chunk = EditorData.World.GetOrCreateChunk(new Vector3Int(0, 0, 0));
 

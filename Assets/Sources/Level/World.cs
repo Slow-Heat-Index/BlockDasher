@@ -32,6 +32,7 @@ namespace Sources.Level {
 
         public World(bool editorWorld) {
             IsEditorWorld = editorWorld;
+            InitialMoves = 20;
         }
 
         public Chunk GetChunk(Vector3Int chunkPosition) {

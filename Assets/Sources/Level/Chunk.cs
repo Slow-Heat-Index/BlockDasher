@@ -95,6 +95,8 @@ namespace Sources.Level {
                     if (old != null) {
                         old.OnBreak();
                         old.Invalidate();
+                    }
+                    else {
                         _blockCount++;
                     }
 
