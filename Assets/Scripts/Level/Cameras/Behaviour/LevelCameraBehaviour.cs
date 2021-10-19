@@ -12,10 +12,10 @@ namespace Level.Cameras.Behaviour {
 
 
         private PlayerData _player;
-        
+
         private void Start() {
             _player = FindObjectOfType<PlayerData>();
-            UpdateCameraPosition();
+            TeleportCamera();
         }
 
         public void RotateRight() {
@@ -36,6 +36,17 @@ namespace Level.Cameras.Behaviour {
             var offset = (direction.GetVector() - new Vector3(0, 1, 0)).normalized * distance;
             _moveTween = transform.DOMove(target - offset, animationDuration);
             _rotateTween = transform.DODynamicLookAt(target + offset, animationDuration);
+        }
+
+        public void TeleportCamera() {
+            _moveTween?.Kill();
+            _rotateTween?.Kill();
+
+            var target = _player.BlockPosition.Position + new Vector3(0.5f, 0.5f, 0.5f);
+            var offset = (direction.GetVector() - new Vector3(0, 1, 0)).normalized * distance;
+
+            transform.position = target - offset;
+            transform.LookAt(target + offset);
         }
     }
 }
