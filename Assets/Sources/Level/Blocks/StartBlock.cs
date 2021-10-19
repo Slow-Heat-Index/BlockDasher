@@ -20,6 +20,10 @@ namespace Sources.Level.Blocks {
         public override bool CanMoveFrom(Direction direction) {
             return true;
         }
+        
+        public override bool IsClimbableFrom(Direction direction) {
+            return false;
+        }
 
         public override void OnPlace() {
             Position.World.StartPosition = this;
@@ -38,6 +42,7 @@ namespace Sources.Level.Blocks {
                 Identifiers.Start,
                 "Start",
                 new Aabb(0, 0, 0, 1, 0.1f, 1),
+                2,
                 Resources.Load<Mesh>("Models/StartEndModel"),
                 Resources.Load<Texture>("Models/Start/Default")
             ) {

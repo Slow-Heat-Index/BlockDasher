@@ -21,6 +21,10 @@ namespace Sources.Level.Blocks {
             return true;
         }
         
+        public override bool IsClimbableFrom(Direction direction) {
+            return false;
+        }
+        
         public class FlowersBlockType : BlockType {
             public static readonly FlowersBlockType Instance = new FlowersBlockType();
 
@@ -28,6 +32,7 @@ namespace Sources.Level.Blocks {
                 Identifiers.Flowers,
                 "Flowers",
                 new Aabb(0.2f, 0, 0.2f, 0.6f, 0.5f, 0.6f),
+                2,
                 Resources.Load<Mesh>("Models/Props/Garden/Flowers1/Model"),
                 Resources.Load<Texture>("Models/Props/Garden/Flowers1/Default")
             ) {

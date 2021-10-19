@@ -14,10 +14,14 @@ namespace Sources.Level.Blocks {
         public override BlockView GenerateBlockView() => GameObject.AddComponent<SnowBlockView>();
 
         public override bool CanMoveTo(Direction direction) {
-            return false;
+            return true;
         }
 
         public override bool CanMoveFrom(Direction direction) {
+            return false;
+        }
+        
+        public override bool IsClimbableFrom(Direction direction) {
             return true;
         }
 
@@ -28,6 +32,7 @@ namespace Sources.Level.Blocks {
                 Identifiers.Snow,
                 "Snow",
                 new Aabb(0, 0, 0, 1, 1, 1),
+                3,
                 Resources.Load<Mesh>("Models/BlockModel"),
                 Resources.Load<Texture>("Models/Snow/White")
             ) {

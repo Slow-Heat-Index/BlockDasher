@@ -14,10 +14,14 @@ namespace Sources.Level.Blocks {
         public override BlockView GenerateBlockView() => GameObject.AddComponent<SandBlockView>();
 
         public override bool CanMoveTo(Direction direction) {
-            return false;
+            return true;
         }
 
         public override bool CanMoveFrom(Direction direction) {
+            return false;
+        }
+        
+        public override bool IsClimbableFrom(Direction direction) {
             return true;
         }
 
@@ -28,6 +32,7 @@ namespace Sources.Level.Blocks {
                 Identifiers.Sand,
                 "Sand",
                 new Aabb(0, 0, 0, 1, 1, 1),
+                1,
                 Resources.Load<Mesh>("Models/BlockModel"),
                 Resources.Load<Texture>("Models/Sand/White")
             ) {

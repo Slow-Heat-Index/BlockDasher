@@ -11,7 +11,7 @@ namespace Controller.GameEditor.Tool {
             caster.Run();
             if (caster.Result != null) {
                 var position = caster.Result.Position;
-                world.PlaceBlock(new BlockData(null), position.Position);
+                world.PlaceBlock(new BlockData(null), position.Position, true);
             }
         }
 
@@ -22,7 +22,10 @@ namespace Controller.GameEditor.Tool {
                 var position = caster.Result.Position.Moved(caster.Face);
                 if (!EditorData.SelectedBlockType.CanBePlaced(position)) return;
                 world.PlaceBlock(
-                    new BlockData(EditorData.SelectedBlockType.Identifier, EditorData.Metadata), position.Position);
+                    new BlockData(EditorData.SelectedBlockType.Identifier, EditorData.Metadata),
+                    position.Position,
+                    true
+                );
             }
         }
     }

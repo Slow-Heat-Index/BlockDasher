@@ -1,5 +1,6 @@
 ﻿using Level;
 using Level.Blocks;
+using Level.Player.Data;
 using Sources.Identification;
 using Sources.Level.Data;
 using Sources.Util;
@@ -20,7 +21,16 @@ namespace Sources.Level.Blocks {
         public override bool CanMoveFrom(Direction direction) {
             return true;
         }
-        
+
+        public override bool IsClimbableFrom(Direction direction) {
+            return false;
+        }
+
+        public override bool OnInteract(PlayerData player) {
+            player.Win();
+            return true;
+        }
+
         public class EndBlockType : BlockType {
             public static readonly EndBlockType Instance = new EndBlockType();
 
@@ -28,6 +38,7 @@ namespace Sources.Level.Blocks {
                 Identifiers.End,
                 "End",
                 new Aabb(0, 0, 0, 1, 0.1f, 1),
+                2,
                 Resources.Load<Mesh>("Models/StartEndModel"),
                 Resources.Load<Texture>("Models/End/Default")
             ) {

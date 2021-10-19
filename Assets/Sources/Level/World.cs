@@ -7,8 +7,24 @@ using Sources.Util;
 using UnityEngine;
 
 namespace Sources.Level {
+    
+    /**
+     * Represents a World/Level.
+     *
+     * A World contains all the data about a level and its blocks.
+     */
     public class World {
+        
+        /**
+         * The start position of the world.
+         * This is the block the Player will spawn.
+         */
         public StartBlock StartPosition { get; internal set; }
+
+        /**
+         * The amount of moves the player can perform in this world.
+         */
+        public uint InitialMoves { get; set; }
 
         public bool IsEditorWorld { get; }
 
@@ -16,6 +32,7 @@ namespace Sources.Level {
 
         public World(bool editorWorld) {
             IsEditorWorld = editorWorld;
+            InitialMoves = 20;
         }
 
         public Chunk GetChunk(Vector3Int chunkPosition) {
@@ -29,9 +46,9 @@ namespace Sources.Level {
                 : null;
         }
 
-        public Block PlaceBlock(BlockData data, Vector3Int position) {
+        public Block PlaceBlock(BlockData data, Vector3Int position, bool init = false) {
             var chunkPosition = position.toChunkPosition();
-            return GetOrCreateChunk(chunkPosition.Chunk).PlaceBlock(data, chunkPosition.Position);
+            return GetOrCreateChunk(chunkPosition.Chunk).PlaceBlock(data, chunkPosition.Position, init);
         }
 
         public Chunk GetOrCreateChunk(Vector3Int chunkPosition) {
@@ -41,7 +58,17 @@ namespace Sources.Level {
             return chunk;
         }
 
+        public void ResetLevel() {
+            foreach (var chunk in _chunks.Values) {
+                chunk.ResetChunk();
+            }
+        }
+
         public void Write(BinaryWriter writer) {
+            // Version
+            writer.Write(0u);
+            writer.Write(InitialMoves);
+
             var chunksToSave = _chunks.Where(pair => !pair.Value.IsEmpty())
                 .ToDictionary(i => i.Key, i => i.Value);
 
@@ -54,6 +81,9 @@ namespace Sources.Level {
         }
 
         public void Read(BinaryReader reader) {
+            var version = reader.ReadUInt32();
+            InitialMoves = reader.ReadUInt32();
+
             foreach (var chunk in _chunks.Values) {
                 chunk.Clear();
             }

@@ -454,6 +454,90 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Camera"",
+            ""id"": ""0fb423a0-0ff3-4aec-bf4f-691752104910"",
+            ""actions"": [
+                {
+                    ""name"": ""Rotate Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e7dcbc6-947a-4c9b-8a0d-d35182932f20"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Rotate Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""136580a5-b11c-4ca5-a679-7bc3165172c8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""0139bafd-d33f-4277-89ee-bc7070fe7525"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31c13dd4-5a49-4630-bb1b-ebe000adfba2"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""96b02e2e-6e25-4722-828a-d847d26781b7"",
+            ""actions"": [
+                {
+                    ""name"": ""TouchScreenPress"",
+                    ""type"": ""Button"",
+                    ""id"": ""1e4fe6fb-fbe7-401d-8d32-7abeb9c98310"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""08c3a35f-0980-44aa-b521-f154aec768c0"",
+                    ""path"": ""<Touchscreen>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TouchScreenPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e8798bdb-5d0b-4638-afff-2fa126caee27"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TouchScreenPress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -478,6 +562,13 @@ public class @Inputs : IInputActionCollection, IDisposable
         m_Player_KeyboardDown = m_Player.FindAction("Keyboard Down", throwIfNotFound: true);
         m_Player_KeyboardLeft = m_Player.FindAction("Keyboard Left", throwIfNotFound: true);
         m_Player_KeyboardRight = m_Player.FindAction("Keyboard Right", throwIfNotFound: true);
+        // Camera
+        m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
+        m_Camera_RotateLeft = m_Camera.FindAction("Rotate Left", throwIfNotFound: true);
+        m_Camera_RotateRight = m_Camera.FindAction("Rotate Right", throwIfNotFound: true);
+        // Menu
+        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+        m_Menu_TouchScreenPress = m_Menu.FindAction("TouchScreenPress", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -701,6 +792,80 @@ public class @Inputs : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Camera
+    private readonly InputActionMap m_Camera;
+    private ICameraActions m_CameraActionsCallbackInterface;
+    private readonly InputAction m_Camera_RotateLeft;
+    private readonly InputAction m_Camera_RotateRight;
+    public struct CameraActions
+    {
+        private @Inputs m_Wrapper;
+        public CameraActions(@Inputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @RotateLeft => m_Wrapper.m_Camera_RotateLeft;
+        public InputAction @RotateRight => m_Wrapper.m_Camera_RotateRight;
+        public InputActionMap Get() { return m_Wrapper.m_Camera; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CameraActions set) { return set.Get(); }
+        public void SetCallbacks(ICameraActions instance)
+        {
+            if (m_Wrapper.m_CameraActionsCallbackInterface != null)
+            {
+                @RotateLeft.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateLeft;
+                @RotateLeft.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateLeft;
+                @RotateLeft.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateLeft;
+                @RotateRight.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateRight;
+                @RotateRight.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateRight;
+                @RotateRight.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnRotateRight;
+            }
+            m_Wrapper.m_CameraActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @RotateLeft.started += instance.OnRotateLeft;
+                @RotateLeft.performed += instance.OnRotateLeft;
+                @RotateLeft.canceled += instance.OnRotateLeft;
+                @RotateRight.started += instance.OnRotateRight;
+                @RotateRight.performed += instance.OnRotateRight;
+                @RotateRight.canceled += instance.OnRotateRight;
+            }
+        }
+    }
+    public CameraActions @Camera => new CameraActions(this);
+
+    // Menu
+    private readonly InputActionMap m_Menu;
+    private IMenuActions m_MenuActionsCallbackInterface;
+    private readonly InputAction m_Menu_TouchScreenPress;
+    public struct MenuActions
+    {
+        private @Inputs m_Wrapper;
+        public MenuActions(@Inputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @TouchScreenPress => m_Wrapper.m_Menu_TouchScreenPress;
+        public InputActionMap Get() { return m_Wrapper.m_Menu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        public void SetCallbacks(IMenuActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsCallbackInterface != null)
+            {
+                @TouchScreenPress.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnTouchScreenPress;
+                @TouchScreenPress.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnTouchScreenPress;
+                @TouchScreenPress.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnTouchScreenPress;
+            }
+            m_Wrapper.m_MenuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @TouchScreenPress.started += instance.OnTouchScreenPress;
+                @TouchScreenPress.performed += instance.OnTouchScreenPress;
+                @TouchScreenPress.canceled += instance.OnTouchScreenPress;
+            }
+        }
+    }
+    public MenuActions @Menu => new MenuActions(this);
     public interface IEditorActions
     {
         void OnRemoveBlock(InputAction.CallbackContext context);
@@ -722,5 +887,14 @@ public class @Inputs : IInputActionCollection, IDisposable
         void OnKeyboardDown(InputAction.CallbackContext context);
         void OnKeyboardLeft(InputAction.CallbackContext context);
         void OnKeyboardRight(InputAction.CallbackContext context);
+    }
+    public interface ICameraActions
+    {
+        void OnRotateLeft(InputAction.CallbackContext context);
+        void OnRotateRight(InputAction.CallbackContext context);
+    }
+    public interface IMenuActions
+    {
+        void OnTouchScreenPress(InputAction.CallbackContext context);
     }
 }
