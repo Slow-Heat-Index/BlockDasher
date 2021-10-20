@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class TitleScreen : MonoBehaviour {
-    [SerializeField] private RectTransform _hubRt;
+    public UnityEvent onGameBegun;
     private RectTransform _rectTransform;
     [SerializeField] private HubWorldAnim hubWorldAnim;
     
@@ -20,13 +21,20 @@ public class TitleScreen : MonoBehaviour {
     void Update()
     {
         if (Mouse.current.leftButton.wasReleasedThisFrame) {
-            _rectTransform.DOAnchorPosY(_rectTransform.rect.height, 1)
+            _rectTransform.DOAnchorPosY(_rectTransform.rect.height, 0.5f)
                 .OnComplete(() => {
                     gameObject.SetActive(false);
-                    hubWorldAnim.PopUp();
+                    onGameBegun.Invoke();
                 });
-            _hubRt.DOAnchorPosY(0, 1);
             
         }
+    }
+
+    private void OnEnable() {
+        onGameBegun.AddListener(() => gameObject.SetActive(false));
+    }
+
+    private void OnDisable() {
+        onGameBegun.RemoveListener(() => gameObject.SetActive(false));
     }
 }
