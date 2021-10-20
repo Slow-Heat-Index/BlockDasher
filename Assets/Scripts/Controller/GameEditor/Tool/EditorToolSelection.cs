@@ -1,5 +1,4 @@
 ﻿using System;
-using Sources;
 using Sources.Level;
 using Sources.Level.Data;
 using Sources.Level.Raycast;
@@ -10,11 +9,11 @@ namespace Controller.GameEditor.Tool {
         public Vector3Int Position { get; private set; }
         public Status ToolStatus { get; private set; }
 
-        public void Primary(World world, Ray ray) {
+        public void Primary(EditorData editorData, Ray ray) {
             switch (ToolStatus) {
                 case Status.None:
                 case Status.Primary:
-                    var caster = new BlockRaycaster(world, ray.origin, ray.direction, 100);
+                    var caster = new BlockRaycaster(editorData.World, ray.origin, ray.direction, 100);
                     caster.Run();
                     if (caster.Result != null) {
                         if (ToolStatus == Status.None) {
@@ -23,7 +22,7 @@ namespace Controller.GameEditor.Tool {
                         }
                         else {
                             ToolStatus = Status.None;
-                            Fill(null, Position, caster.Result.Position.Position, world);
+                            Fill(null, Position, caster.Result.Position.Position, editorData.World);
                         }
                     }
 
@@ -36,11 +35,11 @@ namespace Controller.GameEditor.Tool {
             }
         }
 
-        public void Secondary(World world, Ray ray) {
+        public void Secondary(EditorData editorData, Ray ray) {
             switch (ToolStatus) {
                 case Status.None:
                 case Status.Secondary:
-                    var caster = new BlockRaycaster(world, ray.origin, ray.direction, 100);
+                    var caster = new BlockRaycaster(editorData.World, ray.origin, ray.direction, 100);
                     caster.Run();
                     if (caster.Result != null) {
                         var position = caster.Result.Position.Moved(caster.Face);
@@ -51,7 +50,7 @@ namespace Controller.GameEditor.Tool {
                         }
                         else {
                             ToolStatus = Status.None;
-                            Fill(EditorData.SelectedBlockType, Position, position.Position, world);
+                            Fill(editorData.SelectedBlockType, Position, position.Position, editorData.World);
                         }
                     }
 

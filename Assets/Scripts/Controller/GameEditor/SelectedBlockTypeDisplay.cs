@@ -13,6 +13,7 @@ namespace Controller.GameEditor {
         public MeshRenderer meshRenderer;
 
         private BlockType _blockType;
+        private EditorData _editorData;
 
         public BlockType BlockType {
             get => _blockType;
@@ -24,8 +25,9 @@ namespace Controller.GameEditor {
         }
 
         private void Start() {
-            BlockType = EditorData.SelectedBlockType;
-            EditorData.OnSelectedBlockTypeChange += OnSelectedBlockChange;
+            _editorData = FindObjectOfType<EditorData>();
+            BlockType = _editorData.SelectedBlockType;
+            _editorData.OnSelectedBlockTypeChange += OnSelectedBlockChange;
         }
 
 
@@ -34,7 +36,7 @@ namespace Controller.GameEditor {
         }
 
         private void OnDestroy() {
-            EditorData.OnSelectedBlockTypeChange -= OnSelectedBlockChange;
+            _editorData.OnSelectedBlockTypeChange -= OnSelectedBlockChange;
         }
 
         private void OnSelectedBlockChange(BlockType type) {

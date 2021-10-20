@@ -53,7 +53,7 @@ namespace Sources.Level {
          */
         public virtual int MaximumSteps => BlockType.DefaultMaximumSteps;
 
-        protected readonly Dictionary<string, string> _metadata;
+        protected readonly Dictionary<string, string> Metadata;
 
         public Block(Identifier identifier, BlockType blockType, BlockPosition position, BlockData data) {
             identifier.ValidateNotNull("Identifier cannot be null!");
@@ -63,7 +63,7 @@ namespace Sources.Level {
             BlockType = blockType;
             Position = position;
             Valid = true;
-            _metadata = data.GetMetadataCopy();
+            Metadata = data.GetMetadataCopy();
 
             GameObject = new GameObject(position.ToString()) { transform = { position = position.Position } };
             View = GenerateBlockView();
@@ -76,14 +76,14 @@ namespace Sources.Level {
          * <returns>The BlockData.</returns>
          */
         public BlockData ToBlockData() {
-            return new BlockData(Identifier, _metadata);
+            return new BlockData(Identifier, Metadata);
         }
 
         /**
          * <returns>The amount of metadata values this block has.</returns>
          */
         public int GetMetadataSize() {
-            return _metadata?.Count ?? 0;
+            return Metadata?.Count ?? 0;
         }
 
         /**
@@ -93,7 +93,7 @@ namespace Sources.Level {
          * <returns>The value or null if the metadata is not present.</returns>
          */
         public string GetMetadata(string key) {
-            return _metadata[key];
+            return Metadata[key];
         }
 
         /**
@@ -104,7 +104,7 @@ namespace Sources.Level {
          * <returns>The value as a boolean.</returns>
          */
         public bool GetMetadataBoolean(string key, bool fallback = false) {
-            if (!_metadata.TryGetValue(key, out var value)) return fallback;
+            if (!Metadata.TryGetValue(key, out var value)) return fallback;
             return !bool.TryParse(value, out var result) ? fallback : result;
         }
 
@@ -113,14 +113,14 @@ namespace Sources.Level {
          * <returns>Whether there's a metadata value inside this block that matches the given key.</returns>
          */
         public bool HasMetadata(string key) {
-            return _metadata.ContainsKey(key);
+            return Metadata.ContainsKey(key);
         }
 
         /**
          * <returns>A new Dictionary containing all metadata values inside this block.</returns>
          */
         public Dictionary<string, string> GetMetadataCopy() {
-            return new Dictionary<string, string>(_metadata);
+            return new Dictionary<string, string>(Metadata);
         }
 
         /**
@@ -133,7 +133,7 @@ namespace Sources.Level {
         public Dictionary<string, string> GetMetadataWithoutDefaultValues() {
             var def = BlockType.DefaultMetadata;
             var result = new Dictionary<string, string>();
-            foreach (var pair in _metadata) {
+            foreach (var pair in Metadata) {
                 if (def.TryGetValue(pair.Key, out var val) && val.Value.Equals(pair.Value)) continue;
                 result[pair.Key] = pair.Value;
             }
@@ -146,8 +146,8 @@ namespace Sources.Level {
          * <param name="action">The action to execute.</param>
          */
         public void ForEachMetadata(Action<string, string> action) {
-            if (_metadata == null) return;
-            foreach (var pair in _metadata) {
+            if (Metadata == null) return;
+            foreach (var pair in Metadata) {
                 action(pair.Key, pair.Value);
             }
         }

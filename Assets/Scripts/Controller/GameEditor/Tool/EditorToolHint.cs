@@ -1,5 +1,4 @@
-﻿using Sources;
-using Sources.Level;
+﻿using Sources.Level;
 using Sources.Level.Raycast;
 using Sources.Util;
 using UnityEngine;
@@ -16,7 +15,7 @@ namespace Controller.GameEditor.Tool {
         }
 
         private void FixedUpdate() {
-            switch (EditorData.SelectedEditorTool) {
+            switch (blockClicker.EditorData.selectedEditorTool) {
                 case EditorToolType.PlaceBreak:
                     HintPlaceBreakTool();
                     break;
@@ -95,7 +94,7 @@ namespace Controller.GameEditor.Tool {
 
         private Block getTargetBlock(out Direction face) {
             var ray = blockClicker.Camera.ScreenPointToRay(blockClicker.MousePosition.ReadValue<Vector2>());
-            var caster = new BlockRaycaster(EditorData.World, ray.origin, ray.direction, 100);
+            var caster = new BlockRaycaster(blockClicker.EditorData.World, ray.origin, ray.direction, 100);
             caster.Run();
             face = caster.Face;
             return caster.Result;

@@ -1,5 +1,4 @@
-﻿using Sources;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Controller.GameEditor.Tool {
@@ -8,13 +7,16 @@ namespace Controller.GameEditor.Tool {
         public EditorToolType type;
         private Image _image;
 
+        private EditorData _editorData;
+
         private void Start() {
+            _editorData = FindObjectOfType<EditorData>();
             _image = GetComponent<Image>();
-            GetComponent<Button>().onClick.AddListener(() => EditorData.SelectedEditorTool = type);
+            GetComponent<Button>().onClick.AddListener(() => _editorData.selectedEditorTool = type);
         }
 
         private void Update() {
-            _image.color = EditorData.SelectedEditorTool == type ? Color.red : Color.white;
+            _image.color = _editorData.selectedEditorTool == type ? Color.red : Color.white;
         }
     }
 }

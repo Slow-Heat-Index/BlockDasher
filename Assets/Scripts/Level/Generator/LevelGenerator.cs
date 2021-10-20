@@ -4,12 +4,19 @@ using UnityEngine;
 
 namespace Level.Generator {
     public class LevelGenerator : MonoBehaviour {
-        public readonly World World = new World(false);
-
         public GameObject player;
+        public World World { get; private set; }
 
         private void Awake() {
-            LevelData.LevelToLoad.Load(World);
+            var editorData = FindObjectOfType<EditorData>();
+
+            if (editorData == null || !editorData.editorPlaying) {
+                World = new World(false);
+                LevelData.LevelToLoad.Load(World);
+            }
+            else {
+                World = editorData.World;
+            }
 
             // Create player
             Instantiate(player);

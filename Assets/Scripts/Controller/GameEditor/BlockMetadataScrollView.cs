@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Sources;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,14 +13,16 @@ namespace Controller.GameEditor {
         public GameObject booleanForm;
 
         private readonly List<GameObject> _children = new List<GameObject>();
+        private EditorData _editorData;
 
         private void Start() {
-            RefreshElements(EditorData.Metadata);
-            EditorData.OnMetadataChange += RefreshElements;
+            _editorData = FindObjectOfType<EditorData>();
+            RefreshElements(_editorData.Metadata);
+            _editorData.OnMetadataChange += RefreshElements;
         }
 
         private void OnDestroy() {
-            EditorData.OnMetadataChange -= RefreshElements;
+            _editorData.OnMetadataChange -= RefreshElements;
         }
 
         private void RefreshElements(Dictionary<string, string> metadata) {
@@ -29,7 +30,7 @@ namespace Controller.GameEditor {
                 Destroy(child);
             }
 
-            foreach (var pair in EditorData.SelectedBlockType.DefaultMetadata) {
+            foreach (var pair in _editorData.SelectedBlockType.DefaultMetadata) {
                 var key = pair.Key;
                 var value = pair.Value.Value;
                 var type = pair.Value.Type;
@@ -52,7 +53,7 @@ namespace Controller.GameEditor {
             var text = form.GetComponentInChildren<Text>();
             text.text = keyName;
             toggle.isOn = bool.TryParse(value, out var result) && result;
-            toggle.onValueChanged.AddListener(b => EditorData.Metadata[key] = b.ToString());
+            toggle.onValueChanged.AddListener(b => _editorData.Metadata[key] = b.ToString());
 
             _children.Add(form);
         }

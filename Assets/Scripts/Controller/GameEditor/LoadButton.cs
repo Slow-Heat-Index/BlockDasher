@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using Sources;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,7 +26,7 @@ namespace Controller.GameEditor {
 
             print("Saving file " + file + "...");
             using var binary = new BinaryReader(File.OpenRead(file));
-            EditorData.World.Read(binary);
+            FindObjectOfType<EditorData>().World.Read(binary);
             print("Done.");
         }
     }

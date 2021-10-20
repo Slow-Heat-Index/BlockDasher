@@ -27,7 +27,7 @@ namespace Controller.GameEditor {
 
             print("Loading file " + file + "...");
             using var binary = new BinaryWriter(File.OpenWrite(file));
-            EditorData.World.Write(binary);
+            FindObjectOfType<EditorData>().World.Write(binary);
             print("Done.");
         }
     }

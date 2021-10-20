@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Sources;
 using Sources.Level;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +14,7 @@ namespace Controller.GameEditor {
         public bool showSelection = true;
 
         private BlockType _blockType;
+        private EditorData _editorData;
 
         public BlockType BlockType {
             get => _blockType;
@@ -26,6 +26,7 @@ namespace Controller.GameEditor {
         }
 
         private void Start() {
+            _editorData = FindObjectOfType<EditorData>();
             if (BlockType == null) {
                 Debug.Log("DISPLAY IS NULL!");
                 return;
@@ -34,14 +35,14 @@ namespace Controller.GameEditor {
             button = GetComponent<Button>();
 
             button.onClick.AddListener(() => {
-                EditorData.SelectedBlockType = BlockType;
-                EditorData.Metadata = new Dictionary<string, string>();
+                _editorData.SelectedBlockType = BlockType;
+                _editorData.Metadata = new Dictionary<string, string>();
             });
         }
 
         private void Update() {
             meshRenderer.transform.rotation *= Quaternion.Euler(0, Time.deltaTime * 10, 0);
-            button.image.color = showSelection && BlockType == EditorData.SelectedBlockType
+            button.image.color = showSelection && BlockType == _editorData.SelectedBlockType
                 ? new Color(1, 0, 0, 0.5f)
                 : new Color(0, 0, 0, 0);
         }
