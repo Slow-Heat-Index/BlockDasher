@@ -182,8 +182,14 @@ namespace Sources.Level {
          * This method is invoked when a player enters this block.
          * <returns>Whether the player should stop its movement.</returns>
          */
-        public virtual bool OnInteract(PlayerData player) {
+        public virtual bool OnPlayerStepsIn(PlayerData player) {
             return false;
+        }
+
+        /**
+         * This method is invoked when a player enters this block and stops in it.
+         */
+        public virtual void OnPlayerStopsIn(PlayerData playerData) {
         }
 
         /**

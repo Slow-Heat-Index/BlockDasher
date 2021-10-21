@@ -8,6 +8,7 @@ namespace Level.Player.Data {
     public class PlayerData : MonoBehaviour {
         public int extraSteps = 0;
         public uint movementsLeft = 0;
+        public bool hasWon;
 
         [Header("Animation")] public float movementSpeed = 0.08f;
 
@@ -52,6 +53,7 @@ namespace Level.Player.Data {
         }
 
         public void Win() {
+            hasWon = true;
         }
 
         public void Lose() {

@@ -18,17 +18,20 @@ namespace Level.Player.Behaviour {
             (direction != Direction.Up && direction != Direction.Down)
                 .ValidateTrue($"Direction cannot be up or down! {direction}");
 
-            if (!_data.CanPlayerMove) return;
+            if (!_data.CanPlayerMove || _data.hasWon) return;
 
             direction = direction.Rotated(_levelCameraBehaviour.direction);
 
             transform.LookAt(transform.position + direction.GetVector());
-            
+
             if (!TryToClimb(direction)) {
-                if(ExecuteDash(direction) == 0) return;
+                if (ExecuteDash(direction) == 0) return;
             }
 
             MoveRecursively(Direction.Down, 20);
+
+            _data.BlockPosition.Block?.OnPlayerStopsIn(_data);
+            if (_data.hasWon) return;
 
             var current = _data.BlockPosition.Block;
             if (current == null || current.CanMoveTo(Direction.Down)) {
@@ -64,9 +67,9 @@ namespace Level.Player.Behaviour {
             if (nextUp != null && !nextUp.CanMoveFrom(opposite)) return false;
 
             _data.Move(Vector3Int.up);
-            up?.OnInteract(_data);
+            up?.OnPlayerStepsIn(_data);
             _data.Move(direction.GetVector());
-            nextUp?.OnInteract(_data);
+            nextUp?.OnPlayerStepsIn(_data);
             return true;
         }
 
@@ -83,7 +86,7 @@ namespace Level.Player.Behaviour {
                 }
 
                 _data.Move(direction.GetVector());
-                toBlock?.OnInteract(_data);
+                toBlock?.OnPlayerStepsIn(_data);
                 maximumMovements = _data.BlockPosition.Moved(Direction.Down).Block?.MaximumSteps ??
                                    maximumMovements;
                 blocksDashed++;
@@ -105,7 +108,7 @@ namespace Level.Player.Behaviour {
                 }
 
                 _data.Move(direction.GetVector());
-                toBlock?.OnInteract(_data);
+                toBlock?.OnPlayerStepsIn(_data);
                 blocksLeft--;
             }
         }

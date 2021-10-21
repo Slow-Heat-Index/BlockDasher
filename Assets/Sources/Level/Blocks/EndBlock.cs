@@ -17,9 +17,8 @@ namespace Sources.Level.Blocks {
         public override bool CanMoveFrom(Direction direction) => true;
         public override bool IsClimbableFrom(Direction direction) => false;
 
-        public override bool OnInteract(PlayerData player) {
+        public override void OnPlayerStopsIn(PlayerData player) {
             player.Win();
-            return true;
         }
 
         public class EndBlockType : BlockType {
