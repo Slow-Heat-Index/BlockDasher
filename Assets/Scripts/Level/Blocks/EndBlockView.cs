@@ -6,7 +6,7 @@ namespace Level.Blocks {
         protected override void Start() {
             base.Start();
             gameObject.isStatic = true;
-            transform.position = transform.position + new Vector3(0, 0.001f, 0);
+            transform.position += new Vector3(0, 0.001f, 0);
         }
 
         public override bool IsFaceOpaque(Direction direction) => false;
@@ -20,7 +20,7 @@ namespace Level.Blocks {
         }
 
         protected override Mesh LoadMesh() {
-            return Resources.Load<Mesh>("Models/Blocks/StartEndModel");
+            return Resources.Load<Mesh>("Models/StartEndModel");
         }
 
         protected override Material LoadMaterial() {

@@ -19,7 +19,7 @@ namespace Level.Generator {
             }
 
             // Create player
-            Instantiate(player);
+            Instantiate(player, transform);
         }
     }
 }

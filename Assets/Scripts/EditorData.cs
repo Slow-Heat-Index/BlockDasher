@@ -15,9 +15,7 @@ public class EditorData : MonoBehaviour {
             { EditorToolType.Selection, new EditorToolSelection() }
         };
 
-    public Canvas canvas;
-    public GameObject editorEventSystem;
-    public Camera editorCamera;
+    public GameObject editorObjects;
 
     public bool editorPlaying = false;
     public EditorToolType selectedEditorTool = EditorToolType.PlaceBreak;
@@ -74,21 +72,16 @@ public class EditorData : MonoBehaviour {
     public event Action<Dictionary<string, string>> OnMetadataChange;
 
     public void PlayEditorLevel() {
-        canvas.gameObject.SetActive(false);
-        editorCamera.gameObject.SetActive(false);
-        editorEventSystem.SetActive(false);
+        editorObjects.gameObject.SetActive(false);
 
         editorPlaying = true;
         SceneManager.LoadScene("Level", LoadSceneMode.Additive);
     }
 
     public void StopPlayingEditorLevel() {
-        canvas.gameObject.SetActive(true);
-        editorCamera.gameObject.SetActive(true);
-        editorEventSystem.SetActive(true);
-
         editorPlaying = false;
         World.ResetLevel();
-        SceneManager.UnloadSceneAsync("Level");
+        var async = SceneManager.UnloadSceneAsync("Level");
+        async.completed += op => editorObjects.gameObject.SetActive(true);
     }
 }
