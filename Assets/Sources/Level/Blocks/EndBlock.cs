@@ -13,18 +13,9 @@ namespace Sources.Level.Blocks {
         }
 
         public override BlockView GenerateBlockView() => GameObject.AddComponent<EndBlockView>();
-
-        public override bool CanMoveTo(Direction direction) {
-            return true;
-        }
-
-        public override bool CanMoveFrom(Direction direction) {
-            return true;
-        }
-
-        public override bool IsClimbableFrom(Direction direction) {
-            return false;
-        }
+        public override bool CanMoveTo(Direction direction) => true;
+        public override bool CanMoveFrom(Direction direction) => true;
+        public override bool IsClimbableFrom(Direction direction) => false;
 
         public override bool OnInteract(PlayerData player) {
             player.Win();
@@ -40,7 +31,7 @@ namespace Sources.Level.Blocks {
                 new Aabb(0, 0, 0, 1, 0.1f, 1),
                 2,
                 Resources.Load<Mesh>("Models/StartEndModel"),
-                Resources.Load<Texture>("Models/End/Default")
+                Resources.Load<Texture>("Models/Blocks/End/Default")
             ) {
             }
 

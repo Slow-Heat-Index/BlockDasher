@@ -10,6 +10,8 @@ namespace Sources.Level.Manager {
             Register(GrassBlock.GrassBlockType.Instance);
             Register(SandBlock.SandBlockType.Instance);
             Register(SnowBlock.SnowBlockType.Instance);
+            Register(FenceBlock.FenceBlockType.Instance);
+            Register(FenceCornerBlock.FenceCornerBlockType.Instance);
             Register(FlowersBlock.FlowersBlockType.Instance);
             Register(TreeBlock.TreeBlockType.Instance);
         }

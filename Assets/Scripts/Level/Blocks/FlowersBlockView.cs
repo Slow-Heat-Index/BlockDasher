@@ -16,22 +16,22 @@ namespace Level.Blocks {
         public override bool Collides(Direction fromFace, Vector3 current, Vector3 origin, Vector3 direction,
             out Direction face,
             out Vector3 collision) {
-            return Block.BlockType.CollisionBox.CollidesSegment(
+            return Block.BlockType.DefaultCollisionBox.CollidesSegment(
                 Block.Position.Position, current, current + direction * 2,
                 out collision, out face);
         }
 
         protected override Mesh LoadMesh() {
             return Resources.Load<Mesh>((RotationHash(Block.Position.Position) & 0x4) > 0
-                ? "Models/Props/Garden/Flowers1/Model"
-                : "Models/Props/Garden/Flowers2/Model"
+                ? "Models/Blocks/Flowers1/Model"
+                : "Models/Blocks/Flowers2/Model"
             );
         }
 
         protected override Material LoadMaterial() {
             return Resources.Load<Material>((RotationHash(Block.Position.Position) & 0x4) > 0
-                ? "Models/Props/Garden/Flowers1/DefaultMaterial"
-                : "Models/Props/Garden/Flowers2/DefaultMaterial"
+                ? "Models/Blocks/Flowers1/DefaultMaterial"
+                : "Models/Blocks/Flowers2/DefaultMaterial"
             );
         }
 

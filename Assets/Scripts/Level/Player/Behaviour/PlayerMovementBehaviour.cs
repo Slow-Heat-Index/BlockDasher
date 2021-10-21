@@ -22,8 +22,10 @@ namespace Level.Player.Behaviour {
 
             direction = direction.Rotated(_levelCameraBehaviour.direction);
 
+            transform.LookAt(transform.position + direction.GetVector());
+            
             if (!TryToClimb(direction)) {
-                ExecuteDash(direction);
+                if(ExecuteDash(direction) == 0) return;
             }
 
             MoveRecursively(Direction.Down, 20);
@@ -66,7 +68,7 @@ namespace Level.Player.Behaviour {
             return true;
         }
 
-        private void ExecuteDash(Direction direction) {
+        private int ExecuteDash(Direction direction) {
             var blocksDashed = 0;
             var maximumMovements = _data.BlockPosition.Moved(Direction.Down).Block?.MaximumSteps ?? 2;
             while (blocksDashed < maximumMovements + _data.extraSteps) {
@@ -83,6 +85,8 @@ namespace Level.Player.Behaviour {
                                    maximumMovements;
                 blocksDashed++;
             }
+
+            return blocksDashed;
         }
 
         private void MoveRecursively(Direction direction, int blocks) {

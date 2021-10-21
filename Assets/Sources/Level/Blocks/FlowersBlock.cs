@@ -12,18 +12,9 @@ namespace Sources.Level.Blocks {
         }
 
         public override BlockView GenerateBlockView() => GameObject.AddComponent<FlowersBlockView>();
-
-        public override bool CanMoveTo(Direction direction) {
-            return true;
-        }
-
-        public override bool CanMoveFrom(Direction direction) {
-            return true;
-        }
-        
-        public override bool IsClimbableFrom(Direction direction) {
-            return false;
-        }
+        public override bool CanMoveTo(Direction direction) => true;
+        public override bool CanMoveFrom(Direction direction) => true;
+        public override bool IsClimbableFrom(Direction direction) => false;
         
         public class FlowersBlockType : BlockType {
             public static readonly FlowersBlockType Instance = new FlowersBlockType();
@@ -33,8 +24,8 @@ namespace Sources.Level.Blocks {
                 "Flowers",
                 new Aabb(0.2f, 0, 0.2f, 0.6f, 0.5f, 0.6f),
                 2,
-                Resources.Load<Mesh>("Models/Props/Garden/Flowers1/Model"),
-                Resources.Load<Texture>("Models/Props/Garden/Flowers1/Default")
+                Resources.Load<Mesh>("Models/Blocks/Flowers1/Model"),
+                Resources.Load<Texture>("Models/Blocks/Flowers1/Default")
             ) {
             }
 

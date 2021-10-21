@@ -41,16 +41,16 @@ namespace Controller.GameEditor.Tool {
                 return;
             }
 
-            var min = target.BlockType.CollisionBox.Min + target.Position.Position;
-            var max = target.BlockType.CollisionBox.Max + target.Position.Position;
+            var min = target.CollisionBox.Min + target.Position.Position;
+            var max = target.CollisionBox.Max + target.Position.Position;
             var center = (max + min) / 2;
-            var scale = center - min;
+            var scale = (center - min) * 2.05f;
 
             _renderer.enabled = true;
 
             var tr = transform;
             tr.position = center;
-            tr.localScale = scale + new Vector3(0.52f, 0.52f, 0.52f);
+            tr.localScale = scale;
             _renderer.material.color = new Color(1, 1, 0, 0.2f);
         }
 

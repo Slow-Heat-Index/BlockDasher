@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Sources.Util;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Controller.GameEditor {
     public class BlockMetadataScrollView : MonoBehaviour {
-        private static readonly Dictionary<Type, Action<BlockMetadataScrollView, string, string, string>> _functions =
+        private static readonly Dictionary<Type, Action<BlockMetadataScrollView, string, string, string>> Functions =
             new Dictionary<Type, Action<BlockMetadataScrollView, string, string, string>> {
-                { typeof(bool), (m, k, v, n) => m.GenerateBooleanForm(k, v, n) }
+                { typeof(bool), (m, k, v, n) => m.GenerateBooleanForm(k, v, n) },
+                { typeof(Direction), (m, k, v, n) => m.GenerateDirectionForm(k, v, n) }
             };
 
         public GameObject booleanForm;
+        public GameObject enumForm;
 
         private readonly List<GameObject> _children = new List<GameObject>();
         private EditorData _editorData;
@@ -40,7 +44,7 @@ namespace Controller.GameEditor {
                     value = other;
                 }
 
-                if (_functions.TryGetValue(type, out var function)) {
+                if (Functions.TryGetValue(type, out var function)) {
                     function(this, key, value, keyName);
                 }
             }
@@ -54,6 +58,37 @@ namespace Controller.GameEditor {
             text.text = keyName;
             toggle.isOn = bool.TryParse(value, out var result) && result;
             toggle.onValueChanged.AddListener(b => _editorData.Metadata[key] = b.ToString());
+
+            _children.Add(form);
+        }
+
+        private void GenerateEnumForm<T>(string key, string value, string keyName) where T : Enum {
+            var form = Instantiate(enumForm, transform);
+
+            var drop = form.GetComponentInChildren<Dropdown>();
+            var text = form.GetComponentInChildren<Text>();
+            text.text = keyName;
+            
+            var values = Enum.GetValues(typeof(T));
+            var list = (from int o in values select Enum.GetName(typeof(T), o)).ToList();
+            drop.AddOptions(list);
+            drop.value = list.IndexOf(value);
+            drop.onValueChanged.AddListener(i => _editorData.Metadata[key] = list[i]);
+
+            _children.Add(form);
+        }
+        
+        private void GenerateDirectionForm(string key, string value, string keyName) {
+            var form = Instantiate(enumForm, transform);
+
+            var drop = form.GetComponentInChildren<Dropdown>();
+            var text = form.GetComponentInChildren<Text>();
+            text.text = keyName;
+
+            var list = new List<string> { "North", "East", "South", "West" };
+            drop.AddOptions(list);
+            drop.value = list.IndexOf(value);
+            drop.onValueChanged.AddListener(i => _editorData.Metadata[key] = list[i]);
 
             _children.Add(form);
         }

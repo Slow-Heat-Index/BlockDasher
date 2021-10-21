@@ -12,18 +12,9 @@ namespace Sources.Level.Blocks {
         }
 
         public override BlockView GenerateBlockView() => GameObject.AddComponent<SnowBlockView>();
-
-        public override bool CanMoveTo(Direction direction) {
-            return true;
-        }
-
-        public override bool CanMoveFrom(Direction direction) {
-            return false;
-        }
-        
-        public override bool IsClimbableFrom(Direction direction) {
-            return true;
-        }
+        public override bool CanMoveTo(Direction direction) => true;
+        public override bool CanMoveFrom(Direction direction) => false;
+        public override bool IsClimbableFrom(Direction direction) => true;
 
         public class SnowBlockType : BlockType {
             public static readonly SnowBlockType Instance = new SnowBlockType();
@@ -34,7 +25,7 @@ namespace Sources.Level.Blocks {
                 new Aabb(0, 0, 0, 1, 1, 1),
                 3,
                 Resources.Load<Mesh>("Models/BlockModel"),
-                Resources.Load<Texture>("Models/Snow/White")
+                Resources.Load<Texture>("Models/Blocks/Snow/White")
             ) {
                 DefaultMetadata[MetadataSnapshots.MetadataForceTop.Key] = MetadataSnapshots.MetadataForceTop;
             }

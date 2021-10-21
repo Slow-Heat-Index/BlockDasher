@@ -99,6 +99,7 @@ MonoBehaviour:
   button: {fileID: 8075765005326346931}
   meshFilter: {fileID: 6286817751017599164}
   meshRenderer: {fileID: 7357467057210070056}
+  showSelection: 1
 --- !u!222 &1478489835576917750
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -223,7 +224,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b15b5b0f18cb2b5468058b088b2637b8, type: 2}
+      objectReference: {fileID: 2100000, guid: 9bdc068dd9bce5f49a7919bada987956, type: 2}
     - target: {fileID: -7635826562936255635, guid: b10d28489e4af594dbcb9bdbedb9b390,
         type: 3}
       propertyPath: m_Materials.Array.data[1]

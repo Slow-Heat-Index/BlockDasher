@@ -20,8 +20,8 @@ namespace Controller.GameEditor {
             get => _blockType;
             set {
                 _blockType = value;
-                meshFilter.mesh = BlockType.DefaultMesh;
-                meshRenderer.material.SetTexture(ShaderTextureReference, BlockType.DefaultTexture);
+                meshFilter.mesh = value.DefaultMesh;
+                meshRenderer.material.SetTexture(ShaderTextureReference, value.DefaultTexture);
             }
         }
 

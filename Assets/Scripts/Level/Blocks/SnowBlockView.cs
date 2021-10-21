@@ -21,15 +21,15 @@ namespace Level.Blocks {
 
             var upBlock = up.Block;
             if (!force && upBlock != null && upBlock.View.IsFaceOpaque(Direction.Down)) {
-                return Resources.Load<Material>("Models/Snow/DirtMaterial");
+                return Resources.Load<Material>("Models/Blocks/Snow/DirtMaterial");
             }
 
             var addition = position.Position.x + position.Position.z;
             if ((addition & 1) == 0) {
-                return Resources.Load<Material>("Models/Snow/BlackMaterial");
+                return Resources.Load<Material>("Models/Blocks/Snow/BlackMaterial");
             }
 
-            return Resources.Load<Material>("Models/Snow/WhiteMaterial");
+            return Resources.Load<Material>("Models/Blocks/Snow/WhiteMaterial");
         }
     }
 }

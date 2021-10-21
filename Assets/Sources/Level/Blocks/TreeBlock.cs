@@ -12,18 +12,9 @@ namespace Sources.Level.Blocks {
         }
 
         public override BlockView GenerateBlockView() => GameObject.AddComponent<TreeBlockView>();
-
-        public override bool CanMoveTo(Direction direction) {
-            return true;
-        }
-
-        public override bool CanMoveFrom(Direction direction) {
-            return false;
-        }
-
-        public override bool IsClimbableFrom(Direction direction) {
-            return false;
-        }
+        public override bool CanMoveTo(Direction direction) => true;
+        public override bool CanMoveFrom(Direction direction) => false;
+        public override bool IsClimbableFrom(Direction direction) => false;
 
         public class TreeBlockType : BlockType {
             public static readonly TreeBlockType Instance = new TreeBlockType();
@@ -33,8 +24,8 @@ namespace Sources.Level.Blocks {
                 "Tree",
                 new Aabb(0.2f, 0, 0.2f, 0.6f, 1f, 0.6f),
                 2,
-                Resources.Load<Mesh>("Models/Props/Garden/Tree1/Model"),
-                Resources.Load<Texture>("Models/Props/Garden/Tree1/Default")
+                Resources.Load<Mesh>("Models/Blocks/Tree1/Model"),
+                Resources.Load<Texture>("Models/Blocks/Tree1/Default")
             ) {
             }
 

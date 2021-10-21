@@ -15,7 +15,7 @@ namespace Level.Blocks {
         public override bool Collides(Direction fromFace, Vector3 current, Vector3 origin, Vector3 direction,
             out Direction face,
             out Vector3 collision) {
-            return Block.BlockType.CollisionBox.CollidesSegment(
+            return Block.CollisionBox.CollidesSegment(
                 Block.Position.Position, current, current + direction * 2,
                 out collision, out face);
         }
@@ -25,7 +25,7 @@ namespace Level.Blocks {
         }
 
         protected override Material LoadMaterial() {
-            return Resources.Load<Material>("Models/Start/DefaultMaterial");
+            return Resources.Load<Material>("Models/Blocks/Start/DefaultMaterial");
         }
     }
 }

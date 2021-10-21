@@ -1,4 +1,5 @@
 ﻿using System;
+using Sources.Util;
 
 namespace Sources.Level {
     public struct MetadataSnapshot {
@@ -22,6 +23,13 @@ namespace Sources.Level {
             "false",
             typeof(bool),
             "Force top"
+        );
+        
+        public static readonly MetadataSnapshot MetadataFacing = new MetadataSnapshot(
+            "metadata_facing",
+            "North",
+            typeof(Direction),
+            "Facing"
         );
     }
 }

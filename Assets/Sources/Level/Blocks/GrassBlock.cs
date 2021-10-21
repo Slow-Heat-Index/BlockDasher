@@ -12,18 +12,9 @@ namespace Sources.Level.Blocks {
         }
 
         public override BlockView GenerateBlockView() => GameObject.AddComponent<GrassBlockView>();
-
-        public override bool CanMoveTo(Direction direction) {
-            return true;
-        }
-
-        public override bool CanMoveFrom(Direction direction) {
-            return false;
-        }
-        
-        public override bool IsClimbableFrom(Direction direction) {
-            return true;
-        }
+        public override bool CanMoveTo(Direction direction) => true;
+        public override bool CanMoveFrom(Direction direction) => false;
+        public override bool IsClimbableFrom(Direction direction) => true;
 
         public class GrassBlockType : BlockType {
             public static readonly GrassBlockType Instance = new GrassBlockType();
@@ -34,7 +25,7 @@ namespace Sources.Level.Blocks {
                 new Aabb(0, 0, 0, 1, 1, 1),
                 2,
                 Resources.Load<Mesh>("Models/BlockModel"),
-                Resources.Load<Texture>("Models/Grass/White")
+                Resources.Load<Texture>("Models/Blocks/Grass/White")
             ) {
                 DefaultMetadata[MetadataSnapshots.MetadataForceTop.Key] = MetadataSnapshots.MetadataForceTop;
             }

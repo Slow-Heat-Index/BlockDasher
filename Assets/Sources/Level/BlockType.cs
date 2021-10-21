@@ -20,10 +20,10 @@ namespace Sources.Level {
         public string Name { get; }
 
         /**
-         * The collision box.
+         * The default collision box.
          * Used by the editor's BlockClicked to place and remove blocks.
          */
-        public Aabb CollisionBox { get; }
+        public Aabb DefaultCollisionBox { get; }
 
         /**
          * The default maximum amount of steps.
@@ -49,18 +49,18 @@ namespace Sources.Level {
             new Dictionary<string, MetadataSnapshot>();
 
         protected BlockType(Identifier identifier, string name,
-            Aabb collisionBox, int defaultMaximumSteps,
+            Aabb defaultCollisionBox, int defaultMaximumSteps,
             Mesh defaultMesh, Texture defaultTexture) {
             identifier.ValidateNotNull("Identifier cannot be null!");
             name.ValidateNotNull("Name cannot be null!");
-            collisionBox.ValidateNotNull("Collision block cannot be null!");
+            defaultCollisionBox.ValidateNotNull("Collision block cannot be null!");
             defaultMesh.ValidateNotNull("Default mesh cannot be null!");
             defaultTexture.ValidateNotNull("Default material cannot be null!");
             Identifier = identifier;
             Name = name;
             DefaultMesh = defaultMesh;
             DefaultTexture = defaultTexture;
-            CollisionBox = collisionBox;
+            DefaultCollisionBox = defaultCollisionBox;
             DefaultMaximumSteps = defaultMaximumSteps;
         }
 

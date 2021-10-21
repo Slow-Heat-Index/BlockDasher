@@ -22,7 +22,7 @@ namespace Controller.GameEditor.Tool {
                         }
                         else {
                             ToolStatus = Status.None;
-                            Fill(null, Position, caster.Result.Position.Position, editorData.World);
+                            Fill(null, Position, caster.Result.Position.Position, editorData);
                         }
                     }
 
@@ -50,7 +50,7 @@ namespace Controller.GameEditor.Tool {
                         }
                         else {
                             ToolStatus = Status.None;
-                            Fill(editorData.SelectedBlockType, Position, position.Position, editorData.World);
+                            Fill(editorData.SelectedBlockType, Position, position.Position, editorData);
                         }
                     }
 
@@ -63,7 +63,7 @@ namespace Controller.GameEditor.Tool {
             }
         }
 
-        private void Fill(BlockType blockType, Vector3Int from, Vector3Int to, World world) {
+        private void Fill(BlockType blockType, Vector3Int from, Vector3Int to, EditorData editorData) {
             var data = new BlockData(blockType?.Identifier);
 
             var min = Vector3Int.Min(from, to);
@@ -72,9 +72,13 @@ namespace Controller.GameEditor.Tool {
             for (var y = min.y; y <= max.y; y++) {
                 for (var x = min.x; x <= max.x; x++) {
                     for (var z = min.z; z <= max.z; z++) {
-                        var position = new BlockPosition(world, new Vector3Int(x, y, z));
+                        var position = new BlockPosition(editorData.World, new Vector3Int(x, y, z));
                         if (blockType != null && !blockType.CanBePlaced(position)) return;
-                        world.PlaceBlock(data, position.Position);
+                        editorData.World.PlaceBlock(
+                            new BlockData(blockType?.Identifier, editorData.Metadata),
+                            position.Position,
+                            true
+                        );
                     }
                 }
             }

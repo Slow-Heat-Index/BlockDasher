@@ -53,6 +53,8 @@ namespace Sources.Level {
          */
         public virtual int MaximumSteps => BlockType.DefaultMaximumSteps;
 
+        public virtual Aabb CollisionBox => BlockType.DefaultCollisionBox;
+
         protected readonly Dictionary<string, string> Metadata;
 
         public Block(Identifier identifier, BlockType blockType, BlockPosition position, BlockData data) {
@@ -106,6 +108,18 @@ namespace Sources.Level {
         public bool GetMetadataBoolean(string key, bool fallback = false) {
             if (!Metadata.TryGetValue(key, out var value)) return fallback;
             return !bool.TryParse(value, out var result) ? fallback : result;
+        }
+
+        public int GetMetadataEnum<T>(string key, int fallback) where T : Enum {
+            if (!Metadata.TryGetValue(key, out var value)) return fallback;
+            var values = Enum.GetValues(typeof(T));
+            foreach (int item in values) {
+                if (Enum.GetName(typeof(T), item) == value) {
+                    return item;
+                }
+            }
+
+            return fallback;
         }
 
         /**

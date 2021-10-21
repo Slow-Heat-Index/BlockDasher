@@ -10,6 +10,9 @@
         public static readonly Identifier Sand = new Identifier(Identifier.BlockDasherProvider, "sand");
         public static readonly Identifier Snow = new Identifier(Identifier.BlockDasherProvider, "snow");
         
+        public static readonly Identifier Fence = new Identifier(Identifier.BlockDasherProvider, "fence");
+        public static readonly Identifier FenceCorner = new Identifier(Identifier.BlockDasherProvider, "fence_corner");
+        
         public static readonly Identifier Flowers = new Identifier(Identifier.BlockDasherProvider, "flowers");
         public static readonly Identifier Tree = new Identifier(Identifier.BlockDasherProvider, "tree");
     }
