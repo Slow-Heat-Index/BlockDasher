@@ -64,7 +64,9 @@ namespace Level.Player.Behaviour {
             if (nextUp != null && !nextUp.CanMoveFrom(opposite)) return false;
 
             _data.Move(Vector3Int.up);
+            up?.OnInteract(_data);
             _data.Move(direction.GetVector());
+            nextUp?.OnInteract(_data);
             return true;
         }
 
@@ -81,6 +83,7 @@ namespace Level.Player.Behaviour {
                 }
 
                 _data.Move(direction.GetVector());
+                toBlock?.OnInteract(_data);
                 maximumMovements = _data.BlockPosition.Moved(Direction.Down).Block?.MaximumSteps ??
                                    maximumMovements;
                 blocksDashed++;
@@ -102,6 +105,7 @@ namespace Level.Player.Behaviour {
                 }
 
                 _data.Move(direction.GetVector());
+                toBlock?.OnInteract(_data);
                 blocksLeft--;
             }
         }
