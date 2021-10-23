@@ -1,13 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using Level.Generator;
 using Sources.Level;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Level.Player.Data {
     public class PlayerData : MonoBehaviour {
+        public event Action onWin;
         public int extraSteps = 0;
         public uint movementsLeft = 0;
+        public uint movements = 0;
         public bool hasWon;
 
         [Header("Animation")] public float movementSpeed = 0.08f;
@@ -54,6 +58,7 @@ namespace Level.Player.Data {
 
         public void Win() {
             hasWon = true;
+            onWin?.Invoke();
         }
 
         public void Lose() {

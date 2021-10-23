@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+[RequireComponent(typeof(RectTransform))]
 public class ScreensTransitions : MonoBehaviour {
     private RectTransform _rectTransform;
     [SerializeField] private float tweenTime;

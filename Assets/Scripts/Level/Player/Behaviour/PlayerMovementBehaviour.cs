@@ -48,6 +48,8 @@ namespace Level.Player.Behaviour {
                 _data.Lose();
             }
 
+            _data.movements++;
+
             _levelCameraBehaviour.UpdateCameraPosition();
         }
 

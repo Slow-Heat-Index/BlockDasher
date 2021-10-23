@@ -31,6 +31,8 @@ public class WorldSelection : MonoBehaviour {
         
         if(currentWorld == worlds.Length-1)
             nextWorldb.interactable = false;
+        
+        _rectTransform.anchoredPosition = new Vector2(0, -_rectTransform.rect.height);
     }
 
     private void ShowPreviousGameWorld() {
