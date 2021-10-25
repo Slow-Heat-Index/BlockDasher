@@ -5,36 +5,30 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 using UnityEngine.Events;
+using UnityEngine.InputSystem.UI;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(RectTransform))]
 public class TitleScreen : MonoBehaviour {
     public UnityEvent onGameBegun;
     private RectTransform _rectTransform;
     [SerializeField] private HubWorldAnim hubWorldAnim;
+    private ScreensTransitions _screensTransitions;
+    [SerializeField] private Button _button;
     
 
     private void Awake() {
         _rectTransform = GetComponent<RectTransform>();
-        
-    }
-
-    
-    void Update()
-    {
-        if (Mouse.current.leftButton.wasReleasedThisFrame) {
-            _rectTransform.DOAnchorPosY(_rectTransform.rect.height, 0.5f)
-                .OnComplete(() => {
-                    gameObject.SetActive(false);
-                    onGameBegun.Invoke();
-                });
-            
-        }
+        _screensTransitions = GetComponent<ScreensTransitions>();
     }
 
     private void OnEnable() {
-        onGameBegun.AddListener(() => gameObject.SetActive(false));
+        _button.onClick.AddListener(_screensTransitions.ScreenUp);
+        _button.onClick.AddListener(() => onGameBegun.Invoke());
     }
 
     private void OnDisable() {
-        onGameBegun.RemoveListener(() => gameObject.SetActive(false));
+        _button.onClick.RemoveListener(_screensTransitions.ScreenUp);
+        _button.onClick.RemoveListener(_screensTransitions.ScreenUp);
     }
 }

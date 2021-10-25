@@ -15,5 +15,7 @@
         
         public static readonly Identifier Flowers = new Identifier(Identifier.BlockDasherProvider, "flowers");
         public static readonly Identifier Tree = new Identifier(Identifier.BlockDasherProvider, "tree");
+        public static readonly Identifier TallGrass = new Identifier(Identifier.BlockDasherProvider, "tall_grass");
+        public static readonly Identifier Sign = new Identifier(Identifier.BlockDasherProvider, "sign");
     }
 }

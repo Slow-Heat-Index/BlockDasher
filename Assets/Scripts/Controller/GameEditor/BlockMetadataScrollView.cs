@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sources.Level.Blocks;
 using Sources.Util;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +11,8 @@ namespace Controller.GameEditor {
         private static readonly Dictionary<Type, Action<BlockMetadataScrollView, string, string, string>> Functions =
             new Dictionary<Type, Action<BlockMetadataScrollView, string, string, string>> {
                 { typeof(bool), (m, k, v, n) => m.GenerateBooleanForm(k, v, n) },
-                { typeof(Direction), (m, k, v, n) => m.GenerateDirectionForm(k, v, n) }
+                { typeof(Direction), (m, k, v, n) => m.GenerateDirectionForm(k, v, n) },
+                { typeof(TreeBlock.TreeType), (m, k, v, n) => m.GenerateEnumForm<TreeBlock.TreeType>(k, v, n) }
             };
 
         public GameObject booleanForm;
@@ -66,10 +68,10 @@ namespace Controller.GameEditor {
             var form = Instantiate(enumForm, transform);
 
             var drop = form.GetComponentInChildren<Dropdown>();
-            
+
             var text = form.GetComponentInChildren<Text>();
             text.text = keyName;
-            
+
             var values = Enum.GetValues(typeof(T));
             var list = (from int o in values select Enum.GetName(typeof(T), o)).ToList();
             drop.AddOptions(list);
@@ -78,7 +80,7 @@ namespace Controller.GameEditor {
 
             _children.Add(form);
         }
-        
+
         private void GenerateDirectionForm(string key, string value, string keyName) {
             var form = Instantiate(enumForm, transform);
 

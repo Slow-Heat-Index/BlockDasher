@@ -1,6 +1,4 @@
-﻿using System;
-using Sources;
-using Sources.Level;
+﻿using Sources.Level;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +19,7 @@ namespace Controller.GameEditor {
                 _blockType = value;
                 meshFilter.mesh = BlockType.DefaultMesh;
                 meshRenderer.material.SetTexture(ShaderTextureReference, BlockType.DefaultTexture);
+                _blockType.EditEditorDisplay(gameObject, meshFilter, meshRenderer);
             }
         }
 
