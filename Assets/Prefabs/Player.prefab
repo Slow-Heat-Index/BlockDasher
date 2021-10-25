@@ -60,6 +60,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   extraSteps: 0
   movementsLeft: 0
+  movements: 0
+  hasWon: 0
   movementSpeed: 0.08
 --- !u!114 &5702877460625646844
 MonoBehaviour:
@@ -93,7 +95,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: fdd06cab91f2a2448abb1eb1e0ee2632,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fdd06cab91f2a2448abb1eb1e0ee2632,
         type: 3}

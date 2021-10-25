@@ -66,6 +66,7 @@ namespace Controller.GameEditor {
             var form = Instantiate(enumForm, transform);
 
             var drop = form.GetComponentInChildren<Dropdown>();
+            
             var text = form.GetComponentInChildren<Text>();
             text.text = keyName;
             

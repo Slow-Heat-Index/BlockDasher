@@ -43,7 +43,7 @@ namespace Level.Player.Data {
 
         public void Move(Vector3Int offset) {
             BlockPosition = BlockPosition.Moved(offset);
-            _movementQueue.Enqueue(BlockPosition.Position + new Vector3(0.5f, 0.5f, 0.5f));
+            _movementQueue.Enqueue(BlockPosition.Position + new Vector3(0.5f, 0, 0.5f));
         }
 
         public void Teleport(Vector3Int position) {
@@ -68,7 +68,7 @@ namespace Level.Player.Data {
         }
 
         private void UpdateTransform() {
-            transform.position = BlockPosition.Position + new Vector3(0.5f, 0.5f, 0.5f);
+            transform.position = BlockPosition.Position + new Vector3(0.5f, 0, 0.5f);
         }
     }
 }

@@ -100,6 +100,7 @@ Material:
     m_Floats:
     - Boolean_ced221d1dc5846508623d17237c7d4a9: 0
     - Selected: 0
+    - Vector1_1beb21a07bd94a20bf02f4cacd2bd761: 0.4
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
