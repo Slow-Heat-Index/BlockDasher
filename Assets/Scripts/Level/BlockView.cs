@@ -19,8 +19,12 @@ namespace Level {
 
         protected virtual void Update() {
             if (_visibilityDirty) {
-                RefreshView();
-                _visibilityDirty = false;
+                try {
+                    RefreshView();
+                }
+                finally {
+                    _visibilityDirty = false;
+                }
             }
         }
 

@@ -64,6 +64,9 @@ namespace Sources.Level {
             DefaultMaximumSteps = defaultMaximumSteps;
         }
 
+        public virtual void EditEditorDisplay(GameObject obj, MeshFilter mesh, MeshRenderer renderer) {
+        }
+
         /**
          *
          * Creates a Block instance using the given BlockPosition and BlockData.

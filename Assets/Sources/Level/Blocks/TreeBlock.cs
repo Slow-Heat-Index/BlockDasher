@@ -27,11 +27,25 @@ namespace Sources.Level.Blocks {
                 Resources.Load<Mesh>("Models/Blocks/Tree1/Model"),
                 Resources.Load<Texture>("Models/Blocks/Tree1/Default")
             ) {
+                DefaultMetadata[MetadataSnapshots.MetadataTreeType.Key] = MetadataSnapshots.MetadataTreeType;
+            }
+
+            public override void EditEditorDisplay(GameObject obj, MeshFilter mesh, MeshRenderer renderer) {
+                mesh.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             }
 
             protected override Block CreateBlockImpl(BlockPosition position, BlockData data) {
                 return new TreeBlock(position, data);
             }
+        }
+        
+        
+        public enum TreeType {
+            Random,
+            Normal,
+            Grass,
+            BigTree,
+            SmallTree
         }
     }
 }
