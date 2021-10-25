@@ -1,4 +1,5 @@
 ﻿using System;
+using Sources.Level.Blocks;
 using Sources.Util;
 
 namespace Sources.Level {
@@ -30,6 +31,13 @@ namespace Sources.Level {
             "North",
             typeof(Direction),
             "Facing"
+        );
+        
+        public static readonly MetadataSnapshot MetadataTreeType = new MetadataSnapshot(
+            "metadata_tree_type",
+            "Random",
+            typeof(TreeBlock.TreeType),
+            "Tree Type"
         );
     }
 }

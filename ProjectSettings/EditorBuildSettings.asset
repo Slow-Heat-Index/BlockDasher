@@ -6,14 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Level.unity
-    guid: 38ed99539e690424b90455dd9b89e400
-  - enabled: 1
-    path: Assets/Scenes/Editor.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 922b9eba1a1fd554baf1efea23832a82
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: 38ed99539e690424b90455dd9b89e400
+  - enabled: 0
+    path: Assets/Scenes/Editor.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: d52cc7df531d46c4c891742401a81d04,
       type: 2}

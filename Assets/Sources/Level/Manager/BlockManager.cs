@@ -14,6 +14,8 @@ namespace Sources.Level.Manager {
             Register(FenceCornerBlock.FenceCornerBlockType.Instance);
             Register(FlowersBlock.FlowersBlockType.Instance);
             Register(TreeBlock.TreeBlockType.Instance);
+            Register(TallGrassBlock.TallGrassBlockType.Instance);
+            Register(SignBlock.SignBlockType.Instance);
         }
     }
 }

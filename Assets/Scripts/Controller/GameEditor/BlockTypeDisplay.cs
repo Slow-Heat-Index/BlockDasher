@@ -22,6 +22,7 @@ namespace Controller.GameEditor {
                 _blockType = value;
                 meshFilter.mesh = value.DefaultMesh;
                 meshRenderer.material.SetTexture(ShaderTextureReference, value.DefaultTexture);
+                _blockType.EditEditorDisplay(gameObject, meshFilter, meshRenderer);
             }
         }
 
