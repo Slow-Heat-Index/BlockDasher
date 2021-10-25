@@ -6,6 +6,7 @@ using UnityEngine;
 public class HubWorld : MonoBehaviour {
     public String worldName;
     public HubWorldAnim hubWorldAnim;
+    public HubMovement hubMovement;
 
     private void Awake() {
         hubWorldAnim = GetComponent<HubWorldAnim>();

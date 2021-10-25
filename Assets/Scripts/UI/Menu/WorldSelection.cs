@@ -18,6 +18,7 @@ public class WorldSelection : MonoBehaviour {
     [SerializeField] private Button nextWorldb;
     [SerializeField] private Button previousWorldb;
     private ScreensTransitions _screensTransitions;
+
     
     private void Awake() {
         _titleScreen = FindObjectOfType<TitleScreen>();
@@ -67,9 +68,11 @@ public class WorldSelection : MonoBehaviour {
         nextWorldb.interactable = true;
     }
 
-    
-    
-    
+    public int GetCurrentWorld() {
+        return currentWorld;
+    }
+
+
     private void OnEnable() {
         _titleScreen.onGameBegun.AddListener(ShowPreviousGameWorld);
         _titleScreen.onGameBegun.AddListener(_screensTransitions.ScreenIn);
