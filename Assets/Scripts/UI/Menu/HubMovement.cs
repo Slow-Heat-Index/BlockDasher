@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using  DG.Tweening;
+using UnityEngine.Events;
 
-public class HubMovement : MonoBehaviour
-{
+public class HubMovement : MonoBehaviour {
+    public UnityEvent OnLevelReached;
     [SerializeField]private List<GameObject> path = new List<GameObject>();
     [SerializeField] private float duration;
     [SerializeField]  int[] checkPointsIndex;
     [SerializeField] private GameObject targetPoints;
-    
+
     private List<Sequence> sequenceList;
     private int currentLevel;
 
@@ -30,23 +31,23 @@ public class HubMovement : MonoBehaviour
     }
     
     [ContextMenu("Next")]
-    public void GoNext()
-    {
+    public void GoNext() {
         sequenceList[currentLevel].PlayForward();
         currentLevel++; 
     }
 
     [ContextMenu("Previous")]
-    public void GoPrevious()
-    {
+    public void GoPrevious() {
         currentLevel--;
         sequenceList[currentLevel].PlayBackwards();
+        
+        
     }
     
 
     private void AddSequence(int index)
     {
-        Sequence sequence = DOTween.Sequence().SetAutoKill(false).Pause();
+        Sequence sequence = DOTween.Sequence().SetAutoKill(false).Pause().OnPause(OnLevelReached.Invoke);
         for(int i = checkPointsIndex[index - 1]; i <= checkPointsIndex[index]; i++)
         {
             if (i != checkPointsIndex[index - 1])

@@ -11,5 +11,10 @@ public class HubWorld : MonoBehaviour {
     private void Awake() {
         hubWorldAnim = GetComponent<HubWorldAnim>();
     }
+
+    private void OnEnable() {
+        hubWorldAnim.OnLevelUp.AddListener(hubMovement.InitEverything);
+    }
+    
     
 }

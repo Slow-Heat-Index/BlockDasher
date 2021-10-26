@@ -13,6 +13,10 @@ public class LevelSelectionManager : MonoBehaviour {
 
     [SerializeField] private Button _nextButton;
     [SerializeField] private Button _previousButton;
+    [SerializeField] private Button _playButton;
+    [SerializeField] private Button _backButton;
+    [SerializeField] private GameObject _levelData;
+    
     
     private void Awake() {
         _rectTransform = GetComponent<RectTransform>();
@@ -24,7 +28,7 @@ public class LevelSelectionManager : MonoBehaviour {
     public void SetLevelSelector() {
         currentWorld = _worldSelection.GetCurrentWorld();
         _hubMovement = _worlds.transform.GetChild(currentWorld).GetComponent<HubWorld>().hubMovement;
-        _hubMovement.InitEverything();
+        _hubMovement.OnLevelReached.AddListener(ShowUI);
     }
     
     public void Next() {
@@ -45,6 +49,22 @@ public class LevelSelectionManager : MonoBehaviour {
         }
 
         _nextButton.interactable = true;
+    }
+
+    public void HideUI() {
+        _nextButton.gameObject.SetActive(false);
+        _previousButton.gameObject.SetActive(false);
+        _playButton.gameObject.SetActive(false);
+        _levelData.SetActive(false);
+        _backButton.gameObject.SetActive(false);
+    }
+    
+    public void ShowUI() {
+        _nextButton.gameObject.SetActive(true);
+        _previousButton.gameObject.SetActive(true);
+        _playButton.gameObject.SetActive(true);
+        _levelData.SetActive(true);
+        _backButton.gameObject.SetActive(true);
     }
     
     
