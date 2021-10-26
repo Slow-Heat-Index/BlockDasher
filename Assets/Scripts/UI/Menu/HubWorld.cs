@@ -7,6 +7,7 @@ public class HubWorld : MonoBehaviour {
     public String worldName;
     public HubWorldAnim hubWorldAnim;
     public HubMovement hubMovement;
+    public string[] levels;
 
     private void Awake() {
         hubWorldAnim = GetComponent<HubWorldAnim>();

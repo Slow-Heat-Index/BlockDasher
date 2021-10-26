@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sources;
+using Sources.Level;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +12,7 @@ public class LevelSelectionManager : MonoBehaviour {
     [SerializeField] private HubMovement _hubMovement;
     private WorldSelection _worldSelection;
     [SerializeField] private GameObject _worlds;
+    private HubWorld _hubWorld;
 
     [SerializeField] private Button _nextButton;
     [SerializeField] private Button _previousButton;
@@ -27,7 +30,8 @@ public class LevelSelectionManager : MonoBehaviour {
 
     public void SetLevelSelector() {
         currentWorld = _worldSelection.GetCurrentWorld();
-        _hubMovement = _worlds.transform.GetChild(currentWorld).GetComponent<HubWorld>().hubMovement;
+        _hubWorld = _worlds.transform.GetChild(currentWorld).GetComponent<HubWorld>();
+        _hubMovement = _hubWorld.GetComponentInChildren<HubWorld>().hubMovement;
         _hubMovement.OnLevelReached.AddListener(ShowUI);
     }
     
@@ -65,6 +69,10 @@ public class LevelSelectionManager : MonoBehaviour {
         _playButton.gameObject.SetActive(true);
         _levelData.SetActive(true);
         _backButton.gameObject.SetActive(true);
+    }
+
+    public void Play() {
+        LevelData.SetLevelToLoad(_hubWorld.levels[_hubMovement.GetCurrentLevel()]);
     }
     
     

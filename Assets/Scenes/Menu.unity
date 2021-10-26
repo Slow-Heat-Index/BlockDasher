@@ -3641,6 +3641,7 @@ MonoBehaviour:
   worldName: Volcano
   hubWorldAnim: {fileID: 0}
   hubMovement: {fileID: 0}
+  levels: []
 --- !u!1 &1559767087
 GameObject:
   m_ObjectHideFlags: 0
@@ -3960,6 +3961,8 @@ MonoBehaviour:
   worldName: Desert
   hubWorldAnim: {fileID: 0}
   hubMovement: {fileID: 2044850678}
+  levels:
+  - Levels/garden
 --- !u!1 &1722824712
 GameObject:
   m_ObjectHideFlags: 0
@@ -4373,6 +4376,7 @@ MonoBehaviour:
   worldName: Glacier
   hubWorldAnim: {fileID: 0}
   hubMovement: {fileID: 0}
+  levels: []
 --- !u!1 &1975216490
 GameObject:
   m_ObjectHideFlags: 0
@@ -4583,6 +4587,7 @@ MonoBehaviour:
   worldName: Beach
   hubWorldAnim: {fileID: 0}
   hubMovement: {fileID: 0}
+  levels: []
 --- !u!1001 &1989808179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4791,7 +4796,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1992267122}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2029974189}
+        m_TargetAssemblyTypeName: LevelSelectionManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1992267122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4917,6 +4934,12 @@ MonoBehaviour:
   worldName: Gardens
   hubWorldAnim: {fileID: 0}
   hubMovement: {fileID: 955708719}
+  levels:
+  - Levels/IntroductoryLevel
+  - Levels/lvl2Renewed
+  - Levels/lvl2Renewed
+  - Levels/lvl2Renewed
+  - Levels/lvl2Renewed
 --- !u!1 &2029974186
 GameObject:
   m_ObjectHideFlags: 0
