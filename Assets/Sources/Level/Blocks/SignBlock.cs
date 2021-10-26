@@ -13,15 +13,9 @@ namespace Sources.Level.Blocks {
         
         public override BlockView GenerateBlockView() => GameObject.AddComponent<SignBlockView>();
 
-        public override bool CanMoveTo(Direction direction) {
-            return direction != (Direction)GetMetadataEnum<Direction>(MetadataSnapshots.MetadataFacing.Key,
-                (int)Direction.North);
-        }
+        public override bool CanMoveTo(Direction direction) => true;
 
-        public override bool CanMoveFrom(Direction direction) {
-            return direction != (Direction)GetMetadataEnum<Direction>(MetadataSnapshots.MetadataFacing.Key,
-                (int)Direction.North);
-        }
+        public override bool CanMoveFrom(Direction direction) => false;
 
         public override bool IsClimbableFrom(Direction direction) => false;
 
