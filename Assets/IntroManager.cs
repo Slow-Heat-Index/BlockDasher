@@ -23,6 +23,9 @@ public class IntroManager : MonoBehaviour {
     }
 
     IEnumerator WaitVideoToFinish() {
+        while (_videoPlayer.isPrepared) {
+            yield return null;
+        }
         yield return new WaitForSeconds(6);
         _fadeToBlack.DOFade(1, 1);
         yield return new WaitForSeconds(1);
