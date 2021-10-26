@@ -33,7 +33,7 @@ public class SceneDebugger : MonoBehaviour {
     }
 
     private void OnGUI() {
-        if (!Application.isEditor) {
+        if (!Application.isEditor && _log.Length > 0) {
             _log = GUI.TextArea(new Rect(10, 10, Screen.width - 10, 500), _log);
         }
     }
