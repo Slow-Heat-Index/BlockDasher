@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1224877414}
-  m_IndirectSpecularColor: {r: 0, g: 0.7353566, b: 0.7353566, a: 0.5}
+  m_IndirectSpecularColor: {r: 0.117844544, g: 0.76878124, b: 0.7903449, a: 0.5}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -275,7 +275,7 @@ PrefabInstance:
     - target: {fileID: 7903982380208566736, guid: d77d27cfe1cf99d468e65a5294f07e92,
         type: 3}
       propertyPath: duration
-      value: 0.15
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 7903982380208566766, guid: d77d27cfe1cf99d468e65a5294f07e92,
         type: 3}
@@ -1715,7 +1715,7 @@ PrefabInstance:
     - target: {fileID: 7903982380208566736, guid: d77d27cfe1cf99d468e65a5294f07e92,
         type: 3}
       propertyPath: duration
-      value: 0.15
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 7903982380208566766, guid: d77d27cfe1cf99d468e65a5294f07e92,
         type: 3}
@@ -3718,7 +3718,7 @@ PrefabInstance:
     - target: {fileID: 7903982380208566736, guid: d77d27cfe1cf99d468e65a5294f07e92,
         type: 3}
       propertyPath: duration
-      value: 0.15
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 7903982380208566766, guid: d77d27cfe1cf99d468e65a5294f07e92,
         type: 3}
@@ -5317,7 +5317,7 @@ PrefabInstance:
     - target: {fileID: 7903982380208566736, guid: d77d27cfe1cf99d468e65a5294f07e92,
         type: 3}
       propertyPath: duration
-      value: 0.15
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 7903982380208566766, guid: d77d27cfe1cf99d468e65a5294f07e92,
         type: 3}
@@ -5611,7 +5611,7 @@ PrefabInstance:
     - target: {fileID: 7903982380208566736, guid: d77d27cfe1cf99d468e65a5294f07e92,
         type: 3}
       propertyPath: duration
-      value: 0.15
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 7903982380208566766, guid: d77d27cfe1cf99d468e65a5294f07e92,
         type: 3}
