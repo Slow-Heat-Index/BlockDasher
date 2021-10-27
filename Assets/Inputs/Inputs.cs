@@ -506,9 +506,17 @@ public class @Inputs : IInputActionCollection, IDisposable
             ""id"": ""96b02e2e-6e25-4722-828a-d847d26781b7"",
             ""actions"": [
                 {
-                    ""name"": ""TouchScreenPress"",
+                    ""name"": ""TouchScreen Press"",
                     ""type"": ""Button"",
                     ""id"": ""1e4fe6fb-fbe7-401d-8d32-7abeb9c98310"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""31985763-e773-496b-ab87-c79289489190"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -522,7 +530,7 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""TouchScreenPress"",
+                    ""action"": ""TouchScreen Press"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -533,7 +541,18 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""TouchScreenPress"",
+                    ""action"": ""TouchScreen Press"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""62cd476b-6752-43ee-a550-ba3baa3e94b3"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Escape"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -568,7 +587,8 @@ public class @Inputs : IInputActionCollection, IDisposable
         m_Camera_RotateRight = m_Camera.FindAction("Rotate Right", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
-        m_Menu_TouchScreenPress = m_Menu.FindAction("TouchScreenPress", throwIfNotFound: true);
+        m_Menu_TouchScreenPress = m_Menu.FindAction("TouchScreen Press", throwIfNotFound: true);
+        m_Menu_Escape = m_Menu.FindAction("Escape", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -838,11 +858,13 @@ public class @Inputs : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Menu;
     private IMenuActions m_MenuActionsCallbackInterface;
     private readonly InputAction m_Menu_TouchScreenPress;
+    private readonly InputAction m_Menu_Escape;
     public struct MenuActions
     {
         private @Inputs m_Wrapper;
         public MenuActions(@Inputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @TouchScreenPress => m_Wrapper.m_Menu_TouchScreenPress;
+        public InputAction @Escape => m_Wrapper.m_Menu_Escape;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -855,6 +877,9 @@ public class @Inputs : IInputActionCollection, IDisposable
                 @TouchScreenPress.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnTouchScreenPress;
                 @TouchScreenPress.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnTouchScreenPress;
                 @TouchScreenPress.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnTouchScreenPress;
+                @Escape.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnEscape;
+                @Escape.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnEscape;
+                @Escape.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnEscape;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -862,6 +887,9 @@ public class @Inputs : IInputActionCollection, IDisposable
                 @TouchScreenPress.started += instance.OnTouchScreenPress;
                 @TouchScreenPress.performed += instance.OnTouchScreenPress;
                 @TouchScreenPress.canceled += instance.OnTouchScreenPress;
+                @Escape.started += instance.OnEscape;
+                @Escape.performed += instance.OnEscape;
+                @Escape.canceled += instance.OnEscape;
             }
         }
     }
@@ -896,5 +924,6 @@ public class @Inputs : IInputActionCollection, IDisposable
     public interface IMenuActions
     {
         void OnTouchScreenPress(InputAction.CallbackContext context);
+        void OnEscape(InputAction.CallbackContext context);
     }
 }
