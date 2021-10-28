@@ -11,6 +11,10 @@ public class IntroManager : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        var file = System.IO.Path.Combine(Application.streamingAssetsPath, "Video/SlowHeatIndexSmall.mp4");
+        videoPlayer.url = file;
+        videoPlayer.Play();
+        
         videoPlayer.loopPointReached += player => StartCoroutine(OnVideoFinish());
     }
 
