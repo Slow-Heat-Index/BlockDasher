@@ -32,6 +32,7 @@ namespace Level.Optimizers {
             if (material != null) {
                 gameObject.name = "Optimizer for " + material.name + " (" + blocks[0].Block.Identifier + ")";
             }
+
             gameObject.isStatic = true;
         }
     }

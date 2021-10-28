@@ -1,4 +1,5 @@
-﻿using Sources.Util;
+﻿using System;
+using Sources.Util;
 using UnityEngine;
 
 namespace Level.Blocks {
@@ -25,7 +26,7 @@ namespace Level.Blocks {
 
 
         private int RotationHash(Vector3Int position) {
-            return (position.x * 73 + position.y * 331 + position.z * 571) % 881;
+            return Math.Abs(position.x * 73 + position.y * 331 + position.z * 571) % 881;
         }
     }
 }

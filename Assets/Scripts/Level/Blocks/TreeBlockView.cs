@@ -38,7 +38,7 @@ namespace Level.Blocks {
                 1 => "Models/Blocks/Tree2/Model",
                 2 => "Models/Blocks/Tree3/Model",
                 3 => "Models/Blocks/Tree4/Model",
-                _ => throw new ArgumentOutOfRangeException()
+                _ => throw new ArgumentOutOfRangeException(value +" - "+_meshId)
             });
         }
 
@@ -51,13 +51,13 @@ namespace Level.Blocks {
                 1 => "Models/Blocks/Tree2/DefaultMaterial",
                 2 => "Models/Blocks/Tree3/DefaultMaterial",
                 3 => "Models/Blocks/Tree4/DefaultMaterial",
-                _ => throw new ArgumentOutOfRangeException()
+                _ => throw new ArgumentOutOfRangeException(value +" - "+_meshId)
             });
         }
 
 
         private int RotationHash(Vector3Int position) {
-            return (position.x * 73 + position.y * 331 + position.z * 571) % 881;
+            return Math.Abs(position.x * 73 + position.y * 331 + position.z * 571) % 881;
         }
     }
 }

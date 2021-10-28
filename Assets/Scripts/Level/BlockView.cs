@@ -6,7 +6,7 @@ namespace Level {
     public abstract class BlockView : MonoBehaviour {
         public Block Block;
 
-        public bool staticBlock = true;
+        public bool staticBlock;
         private bool _visibilityDirty = true;
 
         public MeshFilter Filter { get; private set; }
@@ -19,6 +19,7 @@ namespace Level {
         }
 
         public virtual void Initialize() {
+            staticBlock = FindObjectOfType<EditorData>() == null;
             Filter = gameObject.AddComponent<MeshFilter>();
             Filter.mesh = LoadMesh();
             Material = LoadMaterial();
