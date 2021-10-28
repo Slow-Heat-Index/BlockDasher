@@ -20,7 +20,7 @@ namespace Level.Blocks {
         }
 
         protected override Mesh LoadMesh() {
-            return Resources.Load<Mesh>("Models/StartEndModel");
+            return Resources.Load<Mesh>("Models/Blocks/End/Model");
         }
 
         protected override Material LoadMaterial() {
