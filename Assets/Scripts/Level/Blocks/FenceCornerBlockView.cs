@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Level.Blocks {
     public class FenceCornerBlockView : BlockView {
-        protected override void Start() {
-            base.Start();
+        public override void Initialize() {
+            base.Initialize();
             gameObject.isStatic = true;
 
             var facing = (Direction)Block.GetMetadataEnum<Direction>(MetadataSnapshots.MetadataFacing.Key,

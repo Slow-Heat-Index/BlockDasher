@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace Level.Blocks {
     public class GrassBlockView : CubicBlockView {
-        protected override void Start() {
-            base.Start();
+        public override void Initialize() {
+            base.Initialize();
             gameObject.isStatic = true;
         }
 

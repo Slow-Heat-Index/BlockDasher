@@ -70,6 +70,7 @@ namespace Sources.Level {
             GameObject = new GameObject(position.ToString()) { transform = { position = position.Position } };
             View = GenerateBlockView();
             View.Block = this;
+            View.Initialize();
         }
 
         /**

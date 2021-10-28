@@ -45,7 +45,7 @@ namespace Sources.Level {
          * <returns>The block located at the given position.</returns>
          */
         public Block GetBlock(Vector3Int position) {
-            position.isInRange(0, ChunkLength - 1).ValidateTrue($"Position out of range! {position}");
+            position.isInRange(0, ChunkLength - 1).ValidateTrue("Position out of range!");
             return Bl(position);
         }
 

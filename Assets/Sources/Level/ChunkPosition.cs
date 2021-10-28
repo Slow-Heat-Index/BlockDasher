@@ -23,7 +23,7 @@ namespace Sources.Level {
             get => position;
             set {
                 value.isInRange(0, Level.Chunk.ChunkLength - 1)
-                    .ValidateTrue($"Position is not in range: {position}.");
+                    .ValidateTrue("Position is not in range.");
                 chunk = value;
             }
         }
@@ -35,7 +35,7 @@ namespace Sources.Level {
 
         public ChunkPosition(Vector3Int chunk, Vector3Int position) {
             position.isInRange(0, Level.Chunk.ChunkLength - 1)
-                .ValidateTrue($"Position is not in range: {position}.");
+                .ValidateTrue("Position is not in range.");
             this.chunk = chunk;
             this.position = position;
         }

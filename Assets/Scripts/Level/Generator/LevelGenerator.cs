@@ -1,4 +1,7 @@
-﻿using Sources;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Level.Optimizers;
+using Sources;
 using Sources.Level;
 using UnityEngine;
 
@@ -7,12 +10,16 @@ namespace Level.Generator {
         public GameObject player;
         public World World { get; private set; }
 
+        public readonly Dictionary<Material, BlockRenderOptimizer> Optimizers =
+            new Dictionary<Material, BlockRenderOptimizer>();
+
         private void Awake() {
             var editorData = FindObjectOfType<EditorData>();
 
             if (editorData == null || !editorData.editorPlaying) {
                 World = new World(false);
                 LevelData.LevelToLoad.Load(World);
+                Optimize();
             }
             else {
                 World = editorData.World;
@@ -20,6 +27,20 @@ namespace Level.Generator {
 
             // Create player
             Instantiate(player, transform);
+        }
+
+
+        private void Optimize() {
+            var blocks = FindObjectsOfType<BlockView>().Where(it => it.staticBlock).ToList();
+            blocks.ForEach(it => it.RefreshViewIfRequired());
+            var materials = blocks.Select(it => it.Material).Distinct().ToList();
+            foreach (var material in materials) {
+                var opGameObject = new GameObject();
+                var optimizer = opGameObject.AddComponent<BlockRenderOptimizer>();
+                optimizer.material = material;
+                optimizer.Init(blocks);
+                Optimizers[material] = optimizer;
+            }
         }
     }
 }

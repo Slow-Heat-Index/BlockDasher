@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Level.Blocks {
     public class SnowBlockView : CubicBlockView {
-        protected override void Start() {
-            base.Start();
+        public override void Initialize() {
+            base.Initialize();
             gameObject.isStatic = true;
         }
 

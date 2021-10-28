@@ -6,27 +6,31 @@ namespace Level {
     public abstract class BlockView : MonoBehaviour {
         public Block Block;
 
-        protected MeshFilter Filter;
-        protected MeshRenderer Renderer;
-
+        public bool staticBlock = true;
         private bool _visibilityDirty = true;
 
-        protected virtual void Start() {
+        public MeshFilter Filter { get; private set; }
+        public MeshRenderer Renderer { get; private set; }
+
+        public Material Material { get; private set; }
+
+        protected virtual void Update() {
+            RefreshViewIfRequired();
+        }
+
+        public virtual void Initialize() {
             Filter = gameObject.AddComponent<MeshFilter>();
-            Renderer = gameObject.AddComponent<MeshRenderer>();
+            Filter.mesh = LoadMesh();
+            Material = LoadMaterial();
+
+            if (!staticBlock) {
+                Renderer = gameObject.AddComponent<MeshRenderer>();
+                Renderer.material = Material;
+            }
+
             transform.position += new Vector3(0.5f, 0, 0.5f);
         }
 
-        protected virtual void Update() {
-            if (_visibilityDirty) {
-                try {
-                    RefreshView();
-                }
-                finally {
-                    _visibilityDirty = false;
-                }
-            }
-        }
 
         public void MarkVisibilityDirty() {
             _visibilityDirty = true;
@@ -37,6 +41,17 @@ namespace Level {
         public abstract bool Collides(Direction fromFace, Vector3 current, Vector3 origin, Vector3 direction,
             out Direction face, out Vector3 collision);
 
+        public void RefreshViewIfRequired() {
+            if (_visibilityDirty) {
+                try {
+                    RefreshView();
+                }
+                finally {
+                    _visibilityDirty = false;
+                }
+            }
+        }
+
         protected void RefreshView() {
             var position = Block.Position;
             var count = 0;
@@ -45,9 +60,10 @@ namespace Level {
                 var block = pos.Block;
                 if (block != null && block.View.IsFaceOpaque(direction.GetOpposite())) count++;
             });
+            Material = LoadMaterial();
+            if (staticBlock) return;
             Renderer.enabled = count < 6;
             if (Renderer.enabled) {
-                Filter.mesh = LoadMesh();
                 Renderer.material = LoadMaterial();
             }
         }

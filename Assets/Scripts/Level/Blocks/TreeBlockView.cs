@@ -8,10 +8,10 @@ namespace Level.Blocks {
     public class TreeBlockView : BlockView {
         private int _meshId;
 
-        protected override void Start() {
+        public override void Initialize() {
             _meshId = RotationHash(Block.Position.Position);
 
-            base.Start();
+            base.Initialize();
 
             gameObject.isStatic = true;
             transform.rotation = Quaternion.Euler(0, _meshId * 90.0f, 0);

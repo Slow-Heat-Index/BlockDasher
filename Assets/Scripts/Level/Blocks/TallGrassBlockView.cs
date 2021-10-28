@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Level.Blocks {
     public class TallGrassBlockView : CubicBlockView {
-        protected override void Start() {
-            base.Start();
+        public override void Initialize() {
+            base.Initialize();
 
             gameObject.isStatic = true;
             transform.localScale = new Vector3(1, 2, 1);

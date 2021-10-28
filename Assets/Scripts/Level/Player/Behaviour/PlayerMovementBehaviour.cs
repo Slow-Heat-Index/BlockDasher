@@ -16,7 +16,7 @@ namespace Level.Player.Behaviour {
 
         public void Dash(Direction direction) {
             (direction != Direction.Up && direction != Direction.Down)
-                .ValidateTrue($"Direction cannot be up or down! {direction}");
+                .ValidateTrue("Direction cannot be up or down!");
 
             if (!_data.CanPlayerMove || _data.hasWon) return;
 

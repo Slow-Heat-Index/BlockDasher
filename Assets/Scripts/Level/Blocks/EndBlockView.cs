@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Level.Blocks {
     public class EndBlockView : BlockView {
-        protected override void Start() {
-            base.Start();
+        public override void Initialize() {
+            base.Initialize();
             gameObject.isStatic = true;
             transform.position += new Vector3(0, 0.001f, 0);
         }
