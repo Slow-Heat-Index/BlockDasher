@@ -477,8 +477,30 @@
                 },
                 {
                     "name": "",
+                    "id": "6d0d84ed-815d-41f1-b2c4-11b66b52d188",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "31c13dd4-5a49-4630-bb1b-ebe000adfba2",
                     "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e08e0f8-e9f3-48de-b4bd-7ca1fac1c2cc",
+                    "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
