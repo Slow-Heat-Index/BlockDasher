@@ -19,6 +19,7 @@ public class LevelSelectionManager : MonoBehaviour {
     [SerializeField] private Button _playButton;
     [SerializeField] private Button _backButton;
     [SerializeField] private GameObject _levelData;
+    [SerializeField] private GameObject _levelLocked;
     
     
     private void Awake() {
@@ -26,6 +27,7 @@ public class LevelSelectionManager : MonoBehaviour {
         _rectTransform.anchoredPosition = new Vector2(0, -_rectTransform.rect.height);
         _worldSelection = FindObjectOfType<WorldSelection>();
         _previousButton.interactable = false;
+        _levelLocked.SetActive(false);
     }
 
     public void SetLevelSelector() {
@@ -37,6 +39,8 @@ public class LevelSelectionManager : MonoBehaviour {
     
     public void Next() {
         _hubMovement.GoNext();
+        
+        _playButton.interactable = !_hubWorld.lockedLevels[_hubMovement.GetCurrentLevel()];
 
         if (_hubMovement.GetCurrentLevel() == _hubMovement.GetNumLevels()-1) {
             _nextButton.interactable = false;
@@ -47,7 +51,9 @@ public class LevelSelectionManager : MonoBehaviour {
 
     public void Previous() {
         _hubMovement.GoPrevious();
-        
+
+        _playButton.interactable = !_hubWorld.lockedLevels[_hubMovement.GetCurrentLevel()];
+
         if (_hubMovement.GetCurrentLevel() == 0) {
             _previousButton.interactable = false;
         }
@@ -61,6 +67,7 @@ public class LevelSelectionManager : MonoBehaviour {
         _playButton.gameObject.SetActive(false);
         _levelData.SetActive(false);
         _backButton.gameObject.SetActive(false);
+        _levelLocked.SetActive(false);
     }
     
     public void ShowUI() {
@@ -69,6 +76,7 @@ public class LevelSelectionManager : MonoBehaviour {
         _playButton.gameObject.SetActive(true);
         _levelData.SetActive(true);
         _backButton.gameObject.SetActive(true);
+        _levelLocked.SetActive(_hubWorld.lockedLevels[_hubMovement.GetCurrentLevel()]);
     }
 
     public void Play() {

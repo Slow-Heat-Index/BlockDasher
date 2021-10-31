@@ -7,7 +7,9 @@ public class HubWorld : MonoBehaviour {
     public String worldName;
     public HubWorldAnim hubWorldAnim;
     public HubMovement hubMovement;
+    public bool isLocked;
     public string[] levels;
+    public bool[] lockedLevels;
 
     private void Awake() {
         hubWorldAnim = GetComponent<HubWorldAnim>();

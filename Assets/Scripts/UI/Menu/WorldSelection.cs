@@ -17,6 +17,8 @@ public class WorldSelection : MonoBehaviour {
 
     [SerializeField] private Button nextWorldb;
     [SerializeField] private Button previousWorldb;
+    [SerializeField] private Button selectWorldb;
+    [SerializeField] private GameObject worldLocked;
     private ScreensTransitions _screensTransitions;
 
     
@@ -26,6 +28,7 @@ public class WorldSelection : MonoBehaviour {
         worldName.text = worlds[currentWorld].worldName;
         _rectTransform = GetComponent<RectTransform>();
         _screensTransitions = GetComponent<ScreensTransitions>();
+        worldLocked.SetActive(false);
 
         if (currentWorld == 0)
             previousWorldb.interactable = false;
@@ -47,6 +50,9 @@ public class WorldSelection : MonoBehaviour {
         worlds[currentWorld].hubWorldAnim.PopUp();
         worlds[previous].hubWorldAnim.PopDown();
         worldName.text = worlds[currentWorld].worldName;
+
+        selectWorldb.interactable = !worlds[currentWorld].isLocked;
+        worldLocked.SetActive(worlds[currentWorld].isLocked);
         
         if (currentWorld == worlds.Length - 1) {
             nextWorldb.interactable = false;
@@ -57,6 +63,9 @@ public class WorldSelection : MonoBehaviour {
     public void ShowPrevious() {
         var previous = currentWorld;
         currentWorld--;
+        
+        selectWorldb.interactable = !worlds[currentWorld].isLocked;
+        worldLocked.SetActive(worlds[currentWorld].isLocked);
         
         worlds[currentWorld].hubWorldAnim.PopUp();
         worlds[previous].hubWorldAnim.PopDown();
