@@ -14,8 +14,11 @@ public class HubMovement : MonoBehaviour {
 
     private List<Sequence> sequenceList;
     private int currentLevel;
+    private bool initialized = false;
 
     public void InitEverything() {
+        if(initialized) return;
+        initialized = true;
         InitPath();
         sequenceList = new List<Sequence>();
         for (int i = 1; i < checkPointsIndex.Length; i++)
