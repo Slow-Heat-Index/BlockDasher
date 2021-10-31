@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Level.Blocks {
     public class StartBlockView : BlockView {
         public override void Initialize() {
+            staticBlock = false;
             base.Initialize();
             gameObject.isStatic = true;
             transform.position += new Vector3(0, 0.001f, 0);
