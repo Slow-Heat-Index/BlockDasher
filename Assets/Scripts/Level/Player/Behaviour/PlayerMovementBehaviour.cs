@@ -89,8 +89,12 @@ namespace Level.Player.Behaviour {
 
                 _data.Move(direction.GetVector());
                 toBlock?.OnPlayerStepsIn(_data);
-                maximumMovements = _data.BlockPosition.Moved(Direction.Down).Block?.MaximumSteps ??
-                                   maximumMovements;
+
+                var down = _data.BlockPosition.Moved(Direction.Down).Block;
+                if (down is { BehavesLikeAir: false }) {
+                    maximumMovements = down.MaximumSteps;
+                }
+
                 blocksDashed++;
             }
 

@@ -32,6 +32,11 @@ namespace Sources.Level {
         public int DefaultMaximumSteps { get; }
 
         /**
+         * Returns whether this block should behave like an air block in its default state.
+         */
+        public bool BehavesLikeAirAsDefault { get; }
+        
+        /**
          * The mesh used to represent this BlockType in the editor.
          */
         public Mesh DefaultMesh { get; }
@@ -50,6 +55,7 @@ namespace Sources.Level {
 
         protected BlockType(Identifier identifier, string name,
             Aabb defaultCollisionBox, int defaultMaximumSteps,
+            bool behavesLikeAirAsDefault,
             Mesh defaultMesh, Texture defaultTexture) {
             identifier.ValidateNotNull("Identifier cannot be null!");
             name.ValidateNotNull("Name cannot be null!");
@@ -62,6 +68,7 @@ namespace Sources.Level {
             DefaultTexture = defaultTexture;
             DefaultCollisionBox = defaultCollisionBox;
             DefaultMaximumSteps = defaultMaximumSteps;
+            BehavesLikeAirAsDefault = behavesLikeAirAsDefault;
         }
 
         public virtual void EditEditorDisplay(GameObject obj, MeshFilter mesh, MeshRenderer renderer) {

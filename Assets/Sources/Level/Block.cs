@@ -53,6 +53,14 @@ namespace Sources.Level {
          */
         public virtual int MaximumSteps => BlockType.DefaultMaximumSteps;
 
+        /**
+         * Returns whether this block should behave like an air block.
+         */
+        public virtual bool BehavesLikeAir => BlockType.BehavesLikeAirAsDefault;
+
+        /**
+         * Returns the collision box of this block. Used in the editor.
+         */
         public virtual Aabb CollisionBox => BlockType.DefaultCollisionBox;
 
         protected readonly Dictionary<string, string> Metadata;

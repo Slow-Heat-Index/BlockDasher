@@ -24,6 +24,7 @@ namespace Sources.Level.Blocks {
                 "Snow",
                 new Aabb(0, 0, 0, 1, 1, 1),
                 3,
+                false,
                 Resources.Load<Mesh>("Models/BlockModel"),
                 Resources.Load<Texture>("Models/Blocks/Snow/White")
             ) {
