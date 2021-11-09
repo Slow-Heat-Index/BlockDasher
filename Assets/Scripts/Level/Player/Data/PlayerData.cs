@@ -4,11 +4,13 @@ using DG.Tweening;
 using Level.Generator;
 using Sources.Level;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Level.Player.Data {
     public class PlayerData : MonoBehaviour {
+        private static readonly int AnimatorMove = Animator.StringToHash("Move");
+        private static readonly int AnimatorMove2 = Animator.StringToHash("Move2");
         public event Action onWin;
+
         public int extraSteps = 0;
         public uint movementsLeft = 0;
         public uint movements = 0;
@@ -16,6 +18,7 @@ namespace Level.Player.Data {
 
         [Header("Animation")] public float movementSpeed = 0.08f;
 
+        private Animator _animator;
         private LevelGenerator _level;
         private readonly Queue<Vector3> _movementQueue = new Queue<Vector3>();
         private Tween _movementTween;
@@ -29,6 +32,7 @@ namespace Level.Player.Data {
 
         private void Awake() {
             _level = FindObjectOfType<LevelGenerator>();
+            _animator = GetComponentInChildren<Animator>();
             movementsLeft = _level.World.InitialMoves;
             BlockPosition = _level.World.StartPosition.Position;
             UpdateTransform();
@@ -39,6 +43,20 @@ namespace Level.Player.Data {
             var waypoints = _movementQueue.ToArray();
             _movementQueue.Clear();
             _movementTween = transform.DOPath(waypoints, movementSpeed * waypoints.Length);
+            _movementTween.onComplete = () => SetAnimation(AnimatorMove, AnimatorMove2);
+            
+            var vertical = waypoints[0].y - transform.position.y != 0;
+            if (!vertical) {
+                for (var i = 1; i < waypoints.Length; i++) {
+                    if (waypoints[i - 1].y - waypoints[i].y == 0) continue;
+                    vertical = true;
+                    break;
+                }
+            }
+
+            if (waypoints.Length > 1 && !vertical) {
+                SetAnimation(AnimatorMove2, AnimatorMove);
+            }
         }
 
         public void Move(Vector3Int offset) {
@@ -69,6 +87,17 @@ namespace Level.Player.Data {
 
         private void UpdateTransform() {
             transform.position = BlockPosition.Position + new Vector3(0.5f, 0, 0.5f);
+        }
+
+
+        private void SetAnimation(int from, int to) {
+            var info = _animator.GetCurrentAnimatorStateInfo(0);
+            if (info.shortNameHash == from) {
+                _animator.Play(to, 0, 1 - Math.Min(1, info.normalizedTime));
+            }
+            else {
+                _animator.Play(to, 0);
+            }
         }
     }
 }
