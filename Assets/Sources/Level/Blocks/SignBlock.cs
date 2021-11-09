@@ -27,6 +27,7 @@ namespace Sources.Level.Blocks {
                 "Sign",
                 new Aabb(0, 0, 0, 1, 1, 1),
                 1,
+                true,
                 Resources.Load<Mesh>("Models/Blocks/Sign/Model"),
                 Resources.Load<Texture>("Models/Blocks/Sign/Default")
             ) {

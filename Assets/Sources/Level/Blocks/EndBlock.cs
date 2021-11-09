@@ -28,7 +28,8 @@ namespace Sources.Level.Blocks {
                 Identifiers.End,
                 "End",
                 new Aabb(0.4f, 0, 0, 0.2f, 1, 1),
-                2,
+                1,
+                true,
                 Resources.Load<Mesh>("Models/Blocks/End/Model"),
                 Resources.Load<Texture>("Models/Blocks/End/Default")
             ) {

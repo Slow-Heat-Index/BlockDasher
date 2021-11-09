@@ -38,6 +38,7 @@ namespace Sources.Level.Blocks {
                 "Fence Corner",
                 new Aabb(0, 0, 0, 1, 1, 1),
                 1,
+                true,
                 Resources.Load<Mesh>("Models/Blocks/FenceCorner/Model"),
                 Resources.Load<Texture>("Models/Blocks/FenceCorner/Default")
             ) {

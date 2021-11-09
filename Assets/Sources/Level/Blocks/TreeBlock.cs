@@ -24,6 +24,7 @@ namespace Sources.Level.Blocks {
                 "Tree",
                 new Aabb(0.2f, 0, 0.2f, 0.6f, 1f, 0.6f),
                 2,
+                true,
                 Resources.Load<Mesh>("Models/Blocks/Tree1/Model"),
                 Resources.Load<Texture>("Models/Blocks/Tree1/Default")
             ) {
@@ -38,8 +39,8 @@ namespace Sources.Level.Blocks {
                 return new TreeBlock(position, data);
             }
         }
-        
-        
+
+
         public enum TreeType {
             Random,
             Normal,

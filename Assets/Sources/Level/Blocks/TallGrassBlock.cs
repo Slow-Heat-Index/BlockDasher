@@ -24,6 +24,7 @@ namespace Sources.Level.Blocks {
                 "Tall Grass",
                 new Aabb(0, 0, 0, 1, 1, 1),
                 2,
+                true,
                 Resources.Load<Mesh>("Models/Blocks/TallGrass/Model"),
                 Resources.Load<Texture>("Models/Blocks/TallGrass/Default")
             ) {

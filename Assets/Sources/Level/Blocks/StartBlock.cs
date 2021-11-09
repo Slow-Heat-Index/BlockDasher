@@ -34,6 +34,7 @@ namespace Sources.Level.Blocks {
                 "Start",
                 new Aabb(0, 0, 0, 1, 0.1f, 1),
                 2,
+                true,
                 Resources.Load<Mesh>("Models/StartEndModel"),
                 Resources.Load<Texture>("Models/Blocks/Start/Default")
             ) {
