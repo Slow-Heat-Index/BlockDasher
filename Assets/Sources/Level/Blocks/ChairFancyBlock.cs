@@ -6,28 +6,28 @@ using Sources.Util;
 using UnityEngine;
 
 namespace Sources.Level.Blocks {
-    public class ChestTableBlock : Block {
-        public ChestTableBlock(BlockPosition position, BlockData data)
-            : base(Identifiers.ChestTable, ChestTableBlockType.Instance, position, data) {
+    public class ChairFancyBlock : Block {
+        public ChairFancyBlock(BlockPosition position, BlockData data)
+            : base(Identifiers.ChairFancy, ChairFancyBlockType.Instance, position, data) {
         }
 
-        public override BlockView GenerateBlockView() => GameObject.AddComponent<ChestTableBlockView>();
+        public override BlockView GenerateBlockView() => GameObject.AddComponent<ChairFancyBlockView>();
 
         public override bool CanMoveTo(Direction direction) => true;
         public override bool CanMoveFrom(Direction direction) => false;
         public override bool IsClimbableFrom(Direction direction) => false;
 
-        public class ChestTableBlockType : BlockType {
-            public static readonly ChestTableBlockType Instance = new ChestTableBlockType();
+        public class ChairFancyBlockType : BlockType {
+            public static readonly ChairFancyBlockType Instance = new ChairFancyBlockType();
 
-            private ChestTableBlockType() : base(
-                Identifiers.ChestTable,
-                "Chest Table",
+            private ChairFancyBlockType() : base(
+                Identifiers.ChairFancy,
+                "Chair Fancy",
                 new Aabb(0, 0, 0, 1, 1, 1),
                 1,
                 true,
-                Resources.Load<Mesh>("Models/Blocks/ChestTable/Model"),
-                Resources.Load<Texture>("Models/Blocks/ChestTable/Default")
+                Resources.Load<Mesh>("Models/Blocks/ChairFancy/Model"),
+                Resources.Load<Texture>("Models/Blocks/ChairFancy/Default")
             ) {
                 DefaultMetadata[MetadataSnapshots.MetadataFacing.Key] = MetadataSnapshots.MetadataFacing;
             }
@@ -37,7 +37,7 @@ namespace Sources.Level.Blocks {
             }
             
             protected override Block CreateBlockImpl(BlockPosition position, BlockData data) {
-                return new ChestTableBlock(position, data);
+                return new ChairFancyBlock(position, data);
             }
         }
     }
