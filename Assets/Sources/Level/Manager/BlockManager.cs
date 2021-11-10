@@ -20,6 +20,7 @@ namespace Sources.Level.Manager {
             Register(ArmorBlock.ArmorBlockType.Instance);
             Register(ArmorStandBlock.ArmorStandBlockType.Instance);
             Register(CauldronBlock.CauldronBlockType.Instance);
+            Register(ChairBlock.ChairBlockType.Instance);
         }
     }
 }

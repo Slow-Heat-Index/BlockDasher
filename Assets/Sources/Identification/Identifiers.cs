@@ -21,5 +21,6 @@
         public static readonly Identifier Armor = new Identifier(Identifier.BlockDasherProvider, "armor");
         public static readonly Identifier ArmorStand = new Identifier(Identifier.BlockDasherProvider, "armor_stand");
         public static readonly Identifier Cauldron = new Identifier(Identifier.BlockDasherProvider, "cauldron");
+        public static readonly Identifier Chair = new Identifier(Identifier.BlockDasherProvider, "chair");
     }
 }
