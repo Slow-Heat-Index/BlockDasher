@@ -6,28 +6,28 @@ using Sources.Util;
 using UnityEngine;
 
 namespace Sources.Level.Blocks {
-    public class ChestTableBlock : Block {
-        public ChestTableBlock(BlockPosition position, BlockData data)
-            : base(Identifiers.ChestTable, ChestTableBlockType.Instance, position, data) {
+    public class TableChestBlock : Block {
+        public TableChestBlock(BlockPosition position, BlockData data)
+            : base(Identifiers.TableChest, TableChestBlockType.Instance, position, data) {
         }
 
-        public override BlockView GenerateBlockView() => GameObject.AddComponent<ChestTableBlockView>();
+        public override BlockView GenerateBlockView() => GameObject.AddComponent<TableChestBlockView>();
 
         public override bool CanMoveTo(Direction direction) => true;
         public override bool CanMoveFrom(Direction direction) => false;
         public override bool IsClimbableFrom(Direction direction) => false;
 
-        public class ChestTableBlockType : BlockType {
-            public static readonly ChestTableBlockType Instance = new ChestTableBlockType();
+        public class TableChestBlockType : BlockType {
+            public static readonly TableChestBlockType Instance = new TableChestBlockType();
 
-            private ChestTableBlockType() : base(
-                Identifiers.ChestTable,
+            private TableChestBlockType() : base(
+                Identifiers.TableChest,
                 "Chest Table",
                 new Aabb(0, 0, 0, 1, 1, 1),
                 1,
                 true,
-                Resources.Load<Mesh>("Models/Blocks/ChestTable/Model"),
-                Resources.Load<Texture>("Models/Blocks/ChestTable/Default")
+                Resources.Load<Mesh>("Models/Blocks/TableChest/Model"),
+                Resources.Load<Texture>("Models/Blocks/TableChest/Default")
             ) {
                 DefaultMetadata[MetadataSnapshots.MetadataFacing.Key] = MetadataSnapshots.MetadataFacing;
             }
@@ -37,7 +37,7 @@ namespace Sources.Level.Blocks {
             }
             
             protected override Block CreateBlockImpl(BlockPosition position, BlockData data) {
-                return new ChestTableBlock(position, data);
+                return new TableChestBlock(position, data);
             }
         }
     }

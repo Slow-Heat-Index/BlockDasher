@@ -23,6 +23,7 @@
         public static readonly Identifier Cauldron = new Identifier(Identifier.BlockDasherProvider, "cauldron");
         public static readonly Identifier Chair = new Identifier(Identifier.BlockDasherProvider, "chair");
         public static readonly Identifier ChairFancy = new Identifier(Identifier.BlockDasherProvider, "chair_fancy");
-        public static readonly Identifier ChestTable = new Identifier(Identifier.BlockDasherProvider, "chest_table");
+        public static readonly Identifier TableChest = new Identifier(Identifier.BlockDasherProvider, "table_chest");
+        public static readonly Identifier TableFruits = new Identifier(Identifier.BlockDasherProvider, "table_fruits");
     }
 }

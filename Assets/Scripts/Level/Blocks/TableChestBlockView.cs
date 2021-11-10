@@ -3,7 +3,7 @@ using Sources.Util;
 using UnityEngine;
 
 namespace Level.Blocks {
-    public class ChestTableBlockView : BlockView {
+    public class TableChestBlockView : BlockView {
         public override void Initialize() {
             base.Initialize();
             gameObject.isStatic = true;
@@ -24,11 +24,11 @@ namespace Level.Blocks {
         }
 
         protected override Mesh LoadMesh() {
-            return Resources.Load<Mesh>("Models/Blocks/ChestTable/Model");
+            return Resources.Load<Mesh>("Models/Blocks/TableChest/Model");
         }
 
         protected override Material LoadMaterial() {
-            return Resources.Load<Material>("Models/Blocks/ChestTable/DefaultMaterial");
+            return Resources.Load<Material>("Models/Blocks/TableChest/DefaultMaterial");
         }
     }
 }
