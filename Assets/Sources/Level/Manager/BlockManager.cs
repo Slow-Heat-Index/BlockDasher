@@ -18,6 +18,8 @@ namespace Sources.Level.Manager {
             Register(TallGrassBlock.TallGrassBlockType.Instance);
             Register(SignBlock.SignBlockType.Instance);
             Register(ArmorBlock.ArmorBlockType.Instance);
+            Register(ArmorStandBlock.ArmorStandBlockType.Instance);
+            Register(CauldronBlock.CauldronBlockType.Instance);
         }
     }
 }
