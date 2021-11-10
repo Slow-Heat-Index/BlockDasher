@@ -27,7 +27,7 @@ namespace Sources.Level.Blocks {
             private EndBlockType() : base(
                 Identifiers.End,
                 "End",
-                new Aabb(0.4f, 0, 0, 0.2f, 1, 1),
+                new Aabb(0.2f, 0, 0.2f, 0.6f, 1, 0.6f),
                 1,
                 true,
                 Resources.Load<Mesh>("Models/Blocks/End/Model"),

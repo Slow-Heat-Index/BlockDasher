@@ -21,7 +21,7 @@ namespace Sources.Level.Blocks {
 
             private BricksBlockType() : base(
                 Identifiers.Bricks,
-                "bricks",
+                "Bricks",
                 new Aabb(0, 0, 0, 1, 1, 1),
                 2,
                 false,

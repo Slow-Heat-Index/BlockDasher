@@ -17,6 +17,7 @@ namespace Sources.Level.Manager {
             Register(TreeBlock.TreeBlockType.Instance);
             Register(TallGrassBlock.TallGrassBlockType.Instance);
             Register(SignBlock.SignBlockType.Instance);
+            Register(ArmorBlock.ArmorBlockType.Instance);
         }
     }
 }
