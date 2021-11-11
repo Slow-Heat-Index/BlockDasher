@@ -1,4 +1,4 @@
-﻿using Level;
+using Level;
 using Level.Blocks;
 using Sources.Identification;
 using Sources.Level.Data;

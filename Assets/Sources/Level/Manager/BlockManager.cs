@@ -1,4 +1,4 @@
-﻿using Sources.Identification;
+using Sources.Identification;
 using Sources.Level.Blocks;
 using Sources.Registration;
 
