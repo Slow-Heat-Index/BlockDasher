@@ -25,19 +25,26 @@ namespace Sources.Level {
             typeof(bool),
             "Force top"
         );
-        
+
         public static readonly MetadataSnapshot MetadataFacing = new MetadataSnapshot(
             "metadata_facing",
             "North",
             typeof(Direction),
             "Facing"
         );
-        
+
         public static readonly MetadataSnapshot MetadataTreeType = new MetadataSnapshot(
             "metadata_tree_type",
             "Random",
             typeof(TreeBlock.TreeType),
             "Tree Type"
+        );
+
+        public static readonly MetadataSnapshot MetadataSkullType = new MetadataSnapshot(
+            "metadata_skull_type",
+            "Random",
+            typeof(SkullBlock.SkullType),
+            "Skull Type"
         );
     }
 }

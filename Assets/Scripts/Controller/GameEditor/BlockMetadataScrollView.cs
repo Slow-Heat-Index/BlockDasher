@@ -12,7 +12,8 @@ namespace Controller.GameEditor {
             new Dictionary<Type, Action<BlockMetadataScrollView, string, string, string>> {
                 { typeof(bool), (m, k, v, n) => m.GenerateBooleanForm(k, v, n) },
                 { typeof(Direction), (m, k, v, n) => m.GenerateDirectionForm(k, v, n) },
-                { typeof(TreeBlock.TreeType), (m, k, v, n) => m.GenerateEnumForm<TreeBlock.TreeType>(k, v, n) }
+                { typeof(TreeBlock.TreeType), (m, k, v, n) => m.GenerateEnumForm<TreeBlock.TreeType>(k, v, n) },
+                { typeof(SkullBlock.SkullType), (m, k, v, n) => m.GenerateEnumForm<SkullBlock.SkullType>(k, v, n) }
             };
 
         public GameObject booleanForm;

@@ -1,4 +1,4 @@
-﻿using Sources.Identification;
+using Sources.Identification;
 using Sources.Level.Blocks;
 using Sources.Registration;
 
@@ -27,6 +27,11 @@ namespace Sources.Level.Manager {
             Register(TableFruitsBlock.TableFruitsBlockType.Instance);
             Register(MirrorBlock.MirrorBlockType.Instance);
             Register(ShelvesBlock.ShelvesBlockType.Instance);
+            Register(DeadBushBlock.DeadBushBlockType.Instance);
+            Register(SkullBlock.SkullBlockType.Instance);
+            Register(SandCastleBlock.SandCastleBlockType.Instance);
+            Register(TallGrassDesertBlock.TallGrassDesertBlockType.Instance);
+            Register(CactusBlock.CactusBlockType.Instance);
         }
     }
 }
