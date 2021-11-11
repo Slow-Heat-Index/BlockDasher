@@ -33,7 +33,7 @@ namespace Sources.Level.Blocks {
             }
 
             public override void EditEditorDisplay(GameObject obj, MeshFilter mesh, MeshRenderer renderer) {
-                mesh.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
+                mesh.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
             }
             
             protected override Block CreateBlockImpl(BlockPosition position, BlockData data) {

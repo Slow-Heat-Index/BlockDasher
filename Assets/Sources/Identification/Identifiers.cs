@@ -22,8 +22,11 @@
         public static readonly Identifier ArmorStand = new Identifier(Identifier.BlockDasherProvider, "armor_stand");
         public static readonly Identifier Cauldron = new Identifier(Identifier.BlockDasherProvider, "cauldron");
         public static readonly Identifier Chair = new Identifier(Identifier.BlockDasherProvider, "chair");
+        public static readonly Identifier Closet = new Identifier(Identifier.BlockDasherProvider, "closet");
         public static readonly Identifier ChairFancy = new Identifier(Identifier.BlockDasherProvider, "chair_fancy");
         public static readonly Identifier TableChest = new Identifier(Identifier.BlockDasherProvider, "table_chest");
         public static readonly Identifier TableFruits = new Identifier(Identifier.BlockDasherProvider, "table_fruits");
+        public static readonly Identifier Mirror = new Identifier(Identifier.BlockDasherProvider, "mirror");
+        public static readonly Identifier Shelves = new Identifier(Identifier.BlockDasherProvider, "shelves");
     }
 }

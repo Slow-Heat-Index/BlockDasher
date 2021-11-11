@@ -31,10 +31,6 @@ namespace Sources.Level.Blocks {
             ) {
             }
 
-            public override void EditEditorDisplay(GameObject obj, MeshFilter mesh, MeshRenderer renderer) {
-                mesh.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
-            }
-            
             protected override Block CreateBlockImpl(BlockPosition position, BlockData data) {
                 return new TableFruitsBlock(position, data);
             }

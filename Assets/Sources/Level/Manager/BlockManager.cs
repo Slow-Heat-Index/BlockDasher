@@ -21,9 +21,12 @@ namespace Sources.Level.Manager {
             Register(ArmorStandBlock.ArmorStandBlockType.Instance);
             Register(CauldronBlock.CauldronBlockType.Instance);
             Register(ChairBlock.ChairBlockType.Instance);
+            Register(ClosetBlock.ClosetBlockType.Instance);
             Register(ChairFancyBlock.ChairFancyBlockType.Instance);
             Register(TableChestBlock.TableChestBlockType.Instance);
             Register(TableFruitsBlock.TableFruitsBlockType.Instance);
+            Register(MirrorBlock.MirrorBlockType.Instance);
+            Register(ShelvesBlock.ShelvesBlockType.Instance);
         }
     }
 }

@@ -3,11 +3,14 @@ using Sources.Util;
 using UnityEngine;
 
 namespace Level.Blocks {
-    public class TableFruitsBlockView : BlockView {
+    public class ClosetBlockView : BlockView {
         public override void Initialize() {
             base.Initialize();
             gameObject.isStatic = true;
-            transform.position -= new Vector3(0.02f, 0, 0);
+
+            var facing = (Direction)Block.GetMetadataEnum<Direction>(MetadataSnapshots.MetadataFacing.Key,
+                (int)Direction.North);
+            gameObject.transform.rotation = Quaternion.LookRotation(facing.GetVector());
         }
 
         public override bool IsFaceOpaque(Direction direction) => false;
@@ -21,11 +24,11 @@ namespace Level.Blocks {
         }
 
         protected override Mesh LoadMesh() {
-            return Resources.Load<Mesh>("Models/Blocks/TableFruits/Model");
+            return Resources.Load<Mesh>("Models/Blocks/Closet/Model");
         }
 
         protected override Material LoadMaterial() {
-            return Resources.Load<Material>("Models/Blocks/TableFruits/DefaultMaterial");
+            return Resources.Load<Material>("Models/Blocks/Closet/DefaultMaterial");
         }
     }
 }
