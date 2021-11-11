@@ -30,6 +30,8 @@ namespace Sources.Level.Manager {
             Register(DeadBushBlock.DeadBushBlockType.Instance);
             Register(SkullBlock.SkullBlockType.Instance);
             Register(SandCastleBlock.SandCastleBlockType.Instance);
+            Register(TallGrassDesertBlock.TallGrassDesertBlockType.Instance);
+            Register(CactusBlock.CactusBlockType.Instance);
         }
     }
 }

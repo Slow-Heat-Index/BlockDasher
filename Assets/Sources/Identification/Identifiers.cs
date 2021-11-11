@@ -33,5 +33,7 @@
         public static readonly Identifier DeadBush = new Identifier(Identifier.BlockDasherProvider, "dead_bush");
         public static readonly Identifier Skull = new Identifier(Identifier.BlockDasherProvider, "skull");
         public static readonly Identifier SandCastle = new Identifier(Identifier.BlockDasherProvider, "sand_castle");
+        public static readonly Identifier TallGrassDesert = new Identifier(Identifier.BlockDasherProvider, "tall_grass_desert");
+        public static readonly Identifier Cactus = new Identifier(Identifier.BlockDasherProvider, "cactus");
     }
 }
