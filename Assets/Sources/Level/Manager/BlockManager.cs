@@ -27,6 +27,9 @@ namespace Sources.Level.Manager {
             Register(TableFruitsBlock.TableFruitsBlockType.Instance);
             Register(MirrorBlock.MirrorBlockType.Instance);
             Register(ShelvesBlock.ShelvesBlockType.Instance);
+            Register(DeadBushBlock.DeadBushBlockType.Instance);
+            Register(SkullBlock.SkullBlockType.Instance);
+            Register(SandCastleBlock.SandCastleBlockType.Instance);
         }
     }
 }

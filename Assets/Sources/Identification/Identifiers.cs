@@ -18,6 +18,7 @@
         public static readonly Identifier Tree = new Identifier(Identifier.BlockDasherProvider, "tree");
         public static readonly Identifier TallGrass = new Identifier(Identifier.BlockDasherProvider, "tall_grass");
         public static readonly Identifier Sign = new Identifier(Identifier.BlockDasherProvider, "sign");
+        
         public static readonly Identifier Armor = new Identifier(Identifier.BlockDasherProvider, "armor");
         public static readonly Identifier ArmorStand = new Identifier(Identifier.BlockDasherProvider, "armor_stand");
         public static readonly Identifier Cauldron = new Identifier(Identifier.BlockDasherProvider, "cauldron");
@@ -28,5 +29,9 @@
         public static readonly Identifier TableFruits = new Identifier(Identifier.BlockDasherProvider, "table_fruits");
         public static readonly Identifier Mirror = new Identifier(Identifier.BlockDasherProvider, "mirror");
         public static readonly Identifier Shelves = new Identifier(Identifier.BlockDasherProvider, "shelves");
+        
+        public static readonly Identifier DeadBush = new Identifier(Identifier.BlockDasherProvider, "dead_bush");
+        public static readonly Identifier Skull = new Identifier(Identifier.BlockDasherProvider, "skull");
+        public static readonly Identifier SandCastle = new Identifier(Identifier.BlockDasherProvider, "sand_castle");
     }
 }

@@ -23,7 +23,7 @@ namespace Sources.Level.Blocks {
             private TableFruitsBlockType() : base(
                 Identifiers.TableFruits,
                 "Fruits Table",
-                new Aabb(0, 0, 0, 1, 1, 1),
+                new Aabb(0.1f, 0, 0.1f, 0.8f, 0.8f, 0.8f),
                 1,
                 true,
                 Resources.Load<Mesh>("Models/Blocks/TableFruits/Model"),

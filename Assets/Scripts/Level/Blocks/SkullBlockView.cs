@@ -5,7 +5,7 @@ using Sources.Util;
 using UnityEngine;
 
 namespace Level.Blocks {
-    public class TreeBlockView : BlockView {
+    public class SkullBlockView : BlockView {
         private int _meshId;
 
         public override void Initialize() {
@@ -15,6 +15,7 @@ namespace Level.Blocks {
 
             gameObject.isStatic = true;
             transform.rotation = Quaternion.Euler(0, _meshId * 90.0f, 0);
+            transform.position += new Vector3(0, 0.24f, 0);
         }
 
         public override bool IsFaceOpaque(Direction direction) {
@@ -30,27 +31,23 @@ namespace Level.Blocks {
         }
 
         protected override Mesh LoadMesh() {
-            var type = Block.GetMetadataEnum<TreeBlock.TreeType>(MetadataSnapshots.MetadataTreeType.Key, 0);
-            var value = type == 0 ? _meshId % 4 : type - 1;
+            var type = Block.GetMetadataEnum<SkullBlock.SkullType>(MetadataSnapshots.MetadataSkullType.Key, 0);
+            var value = type == 0 ? _meshId % 2 : type - 1;
             
             return Resources.Load<Mesh>(value switch {
-                0 => "Models/Blocks/Tree1/Model",
-                1 => "Models/Blocks/Tree2/Model",
-                2 => "Models/Blocks/Tree3/Model",
-                3 => "Models/Blocks/Tree4/Model",
+                0 => "Models/Blocks/Skull1/Model",
+                1 => "Models/Blocks/Skull2/Model",
                 _ => throw new ArgumentOutOfRangeException(value +" - "+_meshId)
             });
         }
 
         protected override Material LoadMaterial() {
-            var type = Block.GetMetadataEnum<TreeBlock.TreeType>(MetadataSnapshots.MetadataTreeType.Key, 0);
-            var value = type == 0 ? _meshId % 4 : type - 1;
+            var type = Block.GetMetadataEnum<SkullBlock.SkullType>(MetadataSnapshots.MetadataSkullType.Key, 0);
+            var value = type == 0 ? _meshId % 2 : type - 1;
 
             return Resources.Load<Material>(value switch {
-                0 => "Models/Blocks/Tree1/DefaultMaterial",
-                1 => "Models/Blocks/Tree2/DefaultMaterial",
-                2 => "Models/Blocks/Tree3/DefaultMaterial",
-                3 => "Models/Blocks/Tree4/DefaultMaterial",
+                0 => "Models/Blocks/Skull1/DefaultMaterial",
+                1 => "Models/Blocks/Skull2/DefaultMaterial",
                 _ => throw new ArgumentOutOfRangeException(value +" - "+_meshId)
             });
         }
