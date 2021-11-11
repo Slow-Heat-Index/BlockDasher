@@ -10,12 +10,23 @@ namespace Sources.Level.Manager {
             Register(GrassBlock.GrassBlockType.Instance);
             Register(SandBlock.SandBlockType.Instance);
             Register(SnowBlock.SnowBlockType.Instance);
+            Register(BricksBlock.BricksBlockType.Instance);
             Register(FenceBlock.FenceBlockType.Instance);
             Register(FenceCornerBlock.FenceCornerBlockType.Instance);
             Register(FlowersBlock.FlowersBlockType.Instance);
             Register(TreeBlock.TreeBlockType.Instance);
             Register(TallGrassBlock.TallGrassBlockType.Instance);
             Register(SignBlock.SignBlockType.Instance);
+            Register(ArmorBlock.ArmorBlockType.Instance);
+            Register(ArmorStandBlock.ArmorStandBlockType.Instance);
+            Register(CauldronBlock.CauldronBlockType.Instance);
+            Register(ChairBlock.ChairBlockType.Instance);
+            Register(ClosetBlock.ClosetBlockType.Instance);
+            Register(ChairFancyBlock.ChairFancyBlockType.Instance);
+            Register(TableChestBlock.TableChestBlockType.Instance);
+            Register(TableFruitsBlock.TableFruitsBlockType.Instance);
+            Register(MirrorBlock.MirrorBlockType.Instance);
+            Register(ShelvesBlock.ShelvesBlockType.Instance);
         }
     }
 }

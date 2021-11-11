@@ -9,6 +9,7 @@
         public static readonly Identifier Grass = new Identifier(Identifier.BlockDasherProvider, "grass");
         public static readonly Identifier Sand = new Identifier(Identifier.BlockDasherProvider, "sand");
         public static readonly Identifier Snow = new Identifier(Identifier.BlockDasherProvider, "snow");
+        public static readonly Identifier Bricks = new Identifier(Identifier.BlockDasherProvider, "bricks");
         
         public static readonly Identifier Fence = new Identifier(Identifier.BlockDasherProvider, "fence");
         public static readonly Identifier FenceCorner = new Identifier(Identifier.BlockDasherProvider, "fence_corner");
@@ -17,5 +18,15 @@
         public static readonly Identifier Tree = new Identifier(Identifier.BlockDasherProvider, "tree");
         public static readonly Identifier TallGrass = new Identifier(Identifier.BlockDasherProvider, "tall_grass");
         public static readonly Identifier Sign = new Identifier(Identifier.BlockDasherProvider, "sign");
+        public static readonly Identifier Armor = new Identifier(Identifier.BlockDasherProvider, "armor");
+        public static readonly Identifier ArmorStand = new Identifier(Identifier.BlockDasherProvider, "armor_stand");
+        public static readonly Identifier Cauldron = new Identifier(Identifier.BlockDasherProvider, "cauldron");
+        public static readonly Identifier Chair = new Identifier(Identifier.BlockDasherProvider, "chair");
+        public static readonly Identifier Closet = new Identifier(Identifier.BlockDasherProvider, "closet");
+        public static readonly Identifier ChairFancy = new Identifier(Identifier.BlockDasherProvider, "chair_fancy");
+        public static readonly Identifier TableChest = new Identifier(Identifier.BlockDasherProvider, "table_chest");
+        public static readonly Identifier TableFruits = new Identifier(Identifier.BlockDasherProvider, "table_fruits");
+        public static readonly Identifier Mirror = new Identifier(Identifier.BlockDasherProvider, "mirror");
+        public static readonly Identifier Shelves = new Identifier(Identifier.BlockDasherProvider, "shelves");
     }
 }

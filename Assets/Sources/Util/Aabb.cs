@@ -201,7 +201,7 @@ namespace Sources.Util {
                         face = i switch {
                             0 => (positive ? Direction.West : Direction.East),
                             1 => (positive ? Direction.Down : Direction.Up),
-                            2 => (positive ? Direction.North : Direction.South),
+                            2 => (positive ? Direction.South : Direction.North),
                             _ => Direction.Up
                         };
                     }
