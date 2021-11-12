@@ -1,20 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Level.Entities;
 using Sources.Level.Blocks;
 using Sources.Level.Data;
 using Sources.Util;
 using UnityEngine;
 
 namespace Sources.Level {
-    
     /**
      * Represents a World/Level.
      *
      * A World contains all the data about a level and its blocks.
      */
     public class World {
-        
         /**
          * The start position of the world.
          * This is the block the Player will spawn.
@@ -29,6 +29,7 @@ namespace Sources.Level {
         public bool IsEditorWorld { get; }
 
         private readonly Dictionary<Vector3Int, Chunk> _chunks = new Dictionary<Vector3Int, Chunk>();
+        private readonly List<Entity> _entities = new List<Entity>();
 
         public World(bool editorWorld) {
             IsEditorWorld = editorWorld;
@@ -62,6 +63,20 @@ namespace Sources.Level {
             foreach (var chunk in _chunks.Values) {
                 chunk.ResetChunk();
             }
+            _entities.Clear();
+        }
+
+        public void AddEntity(Entity entity) {
+            entity.ValidateNotNull("Entity cannot be null!");
+            _entities.Add(entity);
+        }
+
+        public void RemoveEntity(Entity entity) {
+            _entities.Remove(entity);
+        }
+
+        public void ForEachEntity(Action<Entity> action) {
+            _entities.ForEach(action);
         }
 
         public void Write(BinaryWriter writer) {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using Level.Cameras.Behaviour;
 using Level.Generator;
 using Sources.Level;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace Level.Player.Data {
         public uint movementsLeft = 0;
         public uint movements = 0;
         public bool hasWon;
+        public bool executingDeathAnimation;
+        public bool shouldCameraFollow = true;
 
         [Header("Animation")] public float movementSpeed = 0.08f;
 
@@ -79,10 +82,29 @@ namespace Level.Player.Data {
             onWin?.Invoke();
         }
 
-        public void Lose() {
-            Teleport(BlockPosition.World.StartPosition.Position.Position);
-            movementsLeft = BlockPosition.World.InitialMoves;
-            _level.World.ResetLevel();
+        public void Lose(bool fall, LevelCameraBehaviour cameraBehaviour) {
+            executingDeathAnimation = true;
+            shouldCameraFollow = !fall;
+
+            var waypoints = _movementQueue.ToArray();
+
+            if (fall) {
+                for (var i = 0; i < 20; i++) {
+                    ref var v = ref waypoints[waypoints.Length - 1 - i];
+                    v.y -= 1.2f * i;
+                }
+            }
+
+            _movementQueue.Clear();
+            _movementTween = transform.DOPath(waypoints, movementSpeed * waypoints.Length)
+                .SetEase(Ease.Linear);
+            _movementTween.onComplete = () => {
+                shouldCameraFollow = true;
+                Teleport(BlockPosition.World.StartPosition.Position.Position);
+                movementsLeft = BlockPosition.World.InitialMoves;
+                _level.World.ResetLevel();
+                cameraBehaviour.TeleportCamera();
+            };
         }
 
         private void UpdateTransform() {

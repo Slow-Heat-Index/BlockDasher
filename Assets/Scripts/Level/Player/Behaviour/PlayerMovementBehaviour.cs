@@ -20,13 +20,16 @@ namespace Level.Player.Behaviour {
 
             if (!_data.CanPlayerMove || _data.hasWon) return;
 
-            direction = direction.Rotated(_levelCameraBehaviour.direction);
+            _data.BlockPosition.World.ForEachEntity(e => e.BeforeDash());
 
+            direction = direction.Rotated(_levelCameraBehaviour.direction);
             transform.LookAt(transform.position + direction.GetVector());
 
             if (!TryToClimb(direction)) {
                 if (ExecuteDash(direction) == 0) return;
             }
+
+            _data.BlockPosition.World.ForEachEntity(e => e.AfterDash());
 
             MoveRecursively(Direction.Down, 20);
 
@@ -38,19 +41,22 @@ namespace Level.Player.Behaviour {
                 var down = _data.BlockPosition.Moved(Direction.Down).Block;
                 if (down == null || down.CanMoveFrom(Direction.Up)) {
                     // OWO PLAYER IS DEAD
-                    _data.Lose();
+                    _data.Lose(true, _levelCameraBehaviour);
                 }
             }
 
             if (_data.movementsLeft > 0) _data.movementsLeft--;
             if (_data.movementsLeft == 0) {
                 //Death!
-                _data.Lose();
+                _data.Lose(false, _levelCameraBehaviour);
             }
 
             _data.movements++;
+            if (_data.shouldCameraFollow) {
+                _levelCameraBehaviour.UpdateCameraPosition();
+            }
 
-            _levelCameraBehaviour.UpdateCameraPosition();
+            _data.BlockPosition.World.ForEachEntity(e => e.AfterFall());
         }
 
         private bool TryToClimb(Direction direction) {

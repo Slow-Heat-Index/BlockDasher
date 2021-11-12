@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Level.Entities;
 using Level.Optimizers;
 using Sources;
 using Sources.Level;
@@ -8,7 +9,9 @@ using UnityEngine;
 namespace Level.Generator {
     public class LevelGenerator : MonoBehaviour {
         public GameObject player;
+        public GameObject triangle;
         public World World { get; private set; }
+
 
         public readonly Dictionary<Material, BlockRenderOptimizer> Optimizers =
             new Dictionary<Material, BlockRenderOptimizer>();
@@ -27,6 +30,10 @@ namespace Level.Generator {
 
             // Create player
             Instantiate(player, transform);
+            var g = Instantiate(triangle, transform);
+            var entity = g.GetComponent<Entity>();
+            entity.InitPosition(new Vector3Int(3, 2, 3), World);
+            World.AddEntity(entity);
         }
 
 
