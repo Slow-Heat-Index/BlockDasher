@@ -43,5 +43,7 @@ namespace Sources.Identification {
         public static readonly Identifier Coconut = new Identifier(Identifier.BlockDasherProvider, "coconut");
         public static readonly Identifier Rock = new Identifier(Identifier.BlockDasherProvider, "rock");
         public static readonly Identifier BeachFlowers = new Identifier(Identifier.BlockDasherProvider, "beach_flowers");
+        public static readonly Identifier Liana = new Identifier(Identifier.BlockDasherProvider, "liana");
+        public static readonly Identifier LilyPad = new Identifier(Identifier.BlockDasherProvider, "lily_pad");
     }
 }
