@@ -19,6 +19,7 @@ namespace Sources.Identification {
         public static readonly Identifier TallGrass = new Identifier(Identifier.BlockDasherProvider, "tall_grass");
         public static readonly Identifier Sign = new Identifier(Identifier.BlockDasherProvider, "sign");
         public static readonly Identifier Bush = new Identifier(Identifier.BlockDasherProvider, "bush");
+        public static readonly Identifier LabyrinthBush = new Identifier(Identifier.BlockDasherProvider, "labyrinth_bush");
       
         public static readonly Identifier Armor = new Identifier(Identifier.BlockDasherProvider, "armor");
         public static readonly Identifier ArmorStand = new Identifier(Identifier.BlockDasherProvider, "armor_stand");
