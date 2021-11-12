@@ -27,6 +27,7 @@ namespace Sources.Level.Manager {
             Register(ChairFancyBlock.ChairFancyBlockType.Instance);
             Register(TableChestBlock.TableChestBlockType.Instance);
             Register(TableFruitsBlock.TableFruitsBlockType.Instance);
+            Register(TableSwordsBlock.TableSwordsBlockType.Instance);
             Register(MirrorBlock.MirrorBlockType.Instance);
             Register(ShelvesBlock.ShelvesBlockType.Instance);
             Register(DeadBushBlock.DeadBushBlockType.Instance);
