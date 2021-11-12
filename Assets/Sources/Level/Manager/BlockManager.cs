@@ -38,6 +38,7 @@ namespace Sources.Level.Manager {
             Register(TallGrassDesertBlock.TallGrassDesertBlockType.Instance);
             Register(CactusBlock.CactusBlockType.Instance);
             Register(CoconutBlock.CoconutBlockType.Instance);
+            Register(RockBlock.RockBlockType.Instance);
         }
     }
 }

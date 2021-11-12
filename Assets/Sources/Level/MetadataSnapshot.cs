@@ -54,5 +54,12 @@ namespace Sources.Level {
             typeof(SkullBlock.SkullType),
             "Skull Type"
         );
+        
+        public static readonly MetadataSnapshot MetadataRockType = new MetadataSnapshot(
+            "metadata_rock_type",
+            "Random",
+            typeof(RockBlock.RockType),
+            "Rock Type"
+        );
     }
 }
