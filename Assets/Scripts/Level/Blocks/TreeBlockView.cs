@@ -38,6 +38,7 @@ namespace Level.Blocks {
                 1 => "Models/Blocks/Tree2/Model",
                 2 => "Models/Blocks/Tree3/Model",
                 3 => "Models/Blocks/Tree4/Model",
+                4 => "Models/Blocks/PalmTree/Model",
                 _ => throw new ArgumentOutOfRangeException(value +" - "+_meshId)
             });
         }
@@ -51,6 +52,7 @@ namespace Level.Blocks {
                 1 => "Models/Blocks/Tree2/DefaultMaterial",
                 2 => "Models/Blocks/Tree3/DefaultMaterial",
                 3 => "Models/Blocks/Tree4/DefaultMaterial",
+                4 => "Models/Blocks/PalmTree/DefaultMaterial",
                 _ => throw new ArgumentOutOfRangeException(value +" - "+_meshId)
             });
         }
