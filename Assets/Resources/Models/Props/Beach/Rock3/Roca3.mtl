@@ -1,8 +1,0 @@
-newmtl Element
-Kd 1 1 1
-map_Kd Roca3_.png
-illum 2
-
-newmtl Voxel
-illum 2
-
