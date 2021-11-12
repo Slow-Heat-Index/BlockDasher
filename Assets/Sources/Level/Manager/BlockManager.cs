@@ -30,6 +30,7 @@ namespace Sources.Level.Manager {
             Register(TableSwordsBlock.TableSwordsBlockType.Instance);
             Register(MirrorBlock.MirrorBlockType.Instance);
             Register(ShelvesBlock.ShelvesBlockType.Instance);
+            Register(BenchBlock.BenchBlockType.Instance);
             Register(DeadBushBlock.DeadBushBlockType.Instance);
             Register(SkullBlock.SkullBlockType.Instance);
             Register(SandCastleBlock.SandCastleBlockType.Instance);

@@ -32,6 +32,7 @@ namespace Sources.Identification {
         public static readonly Identifier TableSwords = new Identifier(Identifier.BlockDasherProvider, "table_swords");
         public static readonly Identifier Mirror = new Identifier(Identifier.BlockDasherProvider, "mirror");
         public static readonly Identifier Shelves = new Identifier(Identifier.BlockDasherProvider, "shelves");
+        public static readonly Identifier Bench = new Identifier(Identifier.BlockDasherProvider, "bench");
         
         public static readonly Identifier DeadBush = new Identifier(Identifier.BlockDasherProvider, "dead_bush");
         public static readonly Identifier Skull = new Identifier(Identifier.BlockDasherProvider, "skull");
