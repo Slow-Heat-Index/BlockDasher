@@ -40,5 +40,6 @@ namespace Sources.Identification {
         public static readonly Identifier SandCastle = new Identifier(Identifier.BlockDasherProvider, "sand_castle");
         public static readonly Identifier TallGrassDesert = new Identifier(Identifier.BlockDasherProvider, "tall_grass_desert");
         public static readonly Identifier Cactus = new Identifier(Identifier.BlockDasherProvider, "cactus");
+        public static readonly Identifier Coconut = new Identifier(Identifier.BlockDasherProvider, "coconut");
     }
 }
