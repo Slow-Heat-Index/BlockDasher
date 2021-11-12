@@ -61,5 +61,12 @@ namespace Sources.Level {
             typeof(RockBlock.RockType),
             "Rock Type"
         );
+        
+        public static readonly MetadataSnapshot MetadataBeachFlowersType = new MetadataSnapshot(
+            "metadata_beach_flowers_type",
+            "Flowers1",
+            typeof(BeachFlowersBlock.BeachFlowersType),
+            "Beach Flowers Type"
+        );
     }
 }
