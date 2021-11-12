@@ -1,5 +1,4 @@
 ﻿using System;
-using Sources.Level;
 using Sources.Util;
 using UnityEngine;
 
@@ -28,13 +27,19 @@ namespace Level.Blocks {
         }
 
         protected override Mesh LoadMesh() {
-            return Resources.Load<Mesh>("Models/Blocks/DeadBush/Model");
+            return Resources.Load<Mesh>((_meshId & 0x4) > 0
+                ? "Models/Blocks/DeadBush1/Model"
+                : "Models/Blocks/DeadBush2/Model"
+            );
         }
 
         protected override Material LoadMaterial() {
-            return Resources.Load<Material>("Models/Blocks/DeadBush/DefaultMaterial");
+            return Resources.Load<Material>((_meshId & 0x4) > 0
+                ? "Models/Blocks/DeadBush1/DefaultMaterial"
+                : "Models/Blocks/DeadBush2/DefaultMaterial"
+            );
         }
-        
+
         private int RotationHash(Vector3Int position) {
             return Math.Abs(position.x * 73 + position.y * 331 + position.z * 571) % 881;
         }
