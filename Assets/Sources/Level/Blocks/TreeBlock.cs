@@ -46,7 +46,8 @@ namespace Sources.Level.Blocks {
             Normal,
             Grass,
             BigTree,
-            SmallTree
+            SmallTree,
+            PalmTree
         }
     }
 }

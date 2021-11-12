@@ -17,6 +17,8 @@ namespace Sources.Level.Manager {
             Register(TreeBlock.TreeBlockType.Instance);
             Register(TallGrassBlock.TallGrassBlockType.Instance);
             Register(SignBlock.SignBlockType.Instance);
+            Register(BushBlock.BushBlockType.Instance);
+            Register(LabyrinthBushBlock.LabyrinthBushBlockType.Instance);
             Register(ArmorBlock.ArmorBlockType.Instance);
             Register(ArmorStandBlock.ArmorStandBlockType.Instance);
             Register(CauldronBlock.CauldronBlockType.Instance);
@@ -25,13 +27,21 @@ namespace Sources.Level.Manager {
             Register(ChairFancyBlock.ChairFancyBlockType.Instance);
             Register(TableChestBlock.TableChestBlockType.Instance);
             Register(TableFruitsBlock.TableFruitsBlockType.Instance);
+            Register(TableSwordsBlock.TableSwordsBlockType.Instance);
+            Register(TableCandlesBlock.TableCandlesBlockType.Instance);
             Register(MirrorBlock.MirrorBlockType.Instance);
             Register(ShelvesBlock.ShelvesBlockType.Instance);
+            Register(BenchBlock.BenchBlockType.Instance);
             Register(DeadBushBlock.DeadBushBlockType.Instance);
             Register(SkullBlock.SkullBlockType.Instance);
             Register(SandCastleBlock.SandCastleBlockType.Instance);
             Register(TallGrassDesertBlock.TallGrassDesertBlockType.Instance);
             Register(CactusBlock.CactusBlockType.Instance);
+            Register(CoconutBlock.CoconutBlockType.Instance);
+            Register(RockBlock.RockBlockType.Instance);
+            Register(BeachFlowersBlock.BeachFlowersBlockType.Instance);
+            Register(LianaBlock.LianaBlockType.Instance);
+            Register(LilyPadBlock.LilyPadBlockType.Instance);
         }
     }
 }
