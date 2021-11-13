@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Level.Generator;
 using Sources.Level;
+using Sources.Level.Blocks;
+using Sources.Util;
 using UnityEngine;
 
 namespace Level.Player.Data {
@@ -15,6 +17,8 @@ namespace Level.Player.Data {
         public uint movementsLeft = 0;
         public uint movements = 0;
         public bool hasWon;
+        public int movementsInQuicksand = 0;
+        public int maxMovementsInQuicksand = 3;
 
         [Header("Animation")] public float movementSpeed = 0.08f;
 
@@ -41,10 +45,15 @@ namespace Level.Player.Data {
         private void Update() {
             if (_movementQueue.Count <= 0) return;
             var waypoints = _movementQueue.ToArray();
+
+            for (var i = 0; i < waypoints.Length; i++) {
+                waypoints[i] += new Vector3(0, -movementsInQuicksand / (float)(maxMovementsInQuicksand + 1), 0);
+            }
+
             _movementQueue.Clear();
             _movementTween = transform.DOPath(waypoints, movementSpeed * waypoints.Length);
             _movementTween.onComplete = () => SetAnimation(AnimatorMove, AnimatorMove2);
-            
+
             var vertical = waypoints[0].y - transform.position.y != 0;
             if (!vertical) {
                 for (var i = 1; i < waypoints.Length; i++) {
@@ -74,6 +83,39 @@ namespace Level.Player.Data {
             UpdateTransform();
         }
 
+        public void FinishMoving() {
+            var current = BlockPosition.Block;
+            var down = BlockPosition.Moved(Direction.Down).Block;
+            if (current == null || current.CanMoveTo(Direction.Down)) {
+               
+                if (down == null || down.CanMoveFrom(Direction.Up)) {
+                    // OWO PLAYER IS DEAD
+                    Lose();
+                    return;
+                }
+            }
+            
+            if (down is QuicksandBlock) {
+                movementsInQuicksand++;
+                if (movementsInQuicksand > maxMovementsInQuicksand) {
+                    Lose();
+                    return;
+                }
+            }
+            else {
+                movementsInQuicksand = 0;
+            }
+            
+            if (movementsLeft > 0) movementsLeft--;
+            if (movementsLeft == 0) {
+                //Death!
+                Lose();
+                return;
+            }
+
+            movements++;
+        }
+
         public void Win() {
             hasWon = true;
             onWin?.Invoke();
@@ -82,6 +124,7 @@ namespace Level.Player.Data {
         public void Lose() {
             Teleport(BlockPosition.World.StartPosition.Position.Position);
             movementsLeft = BlockPosition.World.InitialMoves;
+            movementsInQuicksand = 0;
             _level.World.ResetLevel();
         }
 
