@@ -102,7 +102,7 @@ namespace Level.Player.Data {
                 shouldCameraFollow = true;
                 Teleport(BlockPosition.World.StartPosition.Position.Position);
                 movementsLeft = BlockPosition.World.InitialMoves;
-                _level.World.ResetLevel();
+                _level.World.ResetLevel(true);
                 cameraBehaviour.TeleportCamera();
             };
         }

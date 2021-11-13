@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Level.Entities;
+using Sources.Identification;
 using Sources.Level.Blocks;
+using Sources.Registration;
 using Sources.Util;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +16,8 @@ namespace Controller.GameEditor {
                 { typeof(bool), (m, k, v, n) => m.GenerateBooleanForm(k, v, n) },
                 { typeof(Direction), (m, k, v, n) => m.GenerateDirectionForm(k, v, n) },
                 { typeof(TreeBlock.TreeType), (m, k, v, n) => m.GenerateEnumForm<TreeBlock.TreeType>(k, v, n) },
-                { typeof(SkullBlock.SkullType), (m, k, v, n) => m.GenerateEnumForm<SkullBlock.SkullType>(k, v, n) }
+                { typeof(SkullBlock.SkullType), (m, k, v, n) => m.GenerateEnumForm<SkullBlock.SkullType>(k, v, n) },
+                { typeof(EntityType), (m, k, v, n) => m.GenerateEntityTypeForm(k, v, n) },
             };
 
         public GameObject booleanForm;
@@ -93,6 +97,24 @@ namespace Controller.GameEditor {
             drop.AddOptions(list);
             drop.value = list.IndexOf(value);
             drop.onValueChanged.AddListener(i => _editorData.Metadata[key] = list[i]);
+
+            _children.Add(form);
+        }
+
+        private void GenerateEntityTypeForm(string key, string value, string keyName) {
+            var form = Instantiate(enumForm, transform);
+
+            var drop = form.GetComponentInChildren<Dropdown>();
+
+            var text = form.GetComponentInChildren<Text>();
+            text.text = keyName;
+
+            var values = Registry.Get<EntityType>(Identifiers.ManagerEntity).ToList();
+            var identifiers = (from EntityType o in values select o.Identifier.ToString()).ToList();
+            var list = (from EntityType o in values select o.Name).ToList();
+            drop.AddOptions(list);
+            drop.value = identifiers.IndexOf(value);
+            drop.onValueChanged.AddListener(i => _editorData.Metadata[key] = identifiers[i]);
 
             _children.Add(form);
         }

@@ -7,6 +7,7 @@ using Sources.Level.Blocks;
 using Sources.Level.Data;
 using Sources.Util;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Sources.Level {
     /**
@@ -59,11 +60,18 @@ namespace Sources.Level {
             return chunk;
         }
 
-        public void ResetLevel() {
-            foreach (var chunk in _chunks.Values) {
-                chunk.ResetChunk();
-            }
+        public void ResetLevel(bool spawnEntities) {
+            _entities.ForEach(it => Object.Destroy(it.gameObject));
             _entities.Clear();
+            foreach (var chunk in _chunks.Values) {
+                chunk.ResetChunk(spawnEntities);
+            }
+        }
+
+        public void SpawnEntities() {
+            foreach (var chunk in _chunks.Values) {
+                chunk.SpawnEntities();
+            }
         }
 
         public void AddEntity(Entity entity) {

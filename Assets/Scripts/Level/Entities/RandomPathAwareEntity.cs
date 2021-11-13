@@ -1,11 +1,12 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Sources.Level;
 using Sources.Util;
+using UnityEngine;
+using Random = System.Random;
 
 namespace Level.Entities {
     public class RandomPathAwareEntity : Entity {
-        private readonly Random _random = new Random();
+        protected readonly Random Random = new Random();
 
         public override void BeforeDash() {
         }
@@ -14,17 +15,17 @@ namespace Level.Entities {
         }
 
         public override void AfterFall() {
-            var directions = new[] { 2, 3, 4, 5 }.OrderBy(x => _random.Next());
+            var directions = new[] { 2, 3, 4, 5 }.OrderBy(x => Random.Next());
 
             foreach (var dirIndex in directions) {
                 var direction = (Direction)dirIndex;
-                if (!CanDashTo(direction)) continue;
+                if (!CanDashTo(direction, out var _)) continue;
                 ExecuteDash(direction);
                 break;
             }
         }
 
-        private bool CanDashTo(Direction direction) {
+        protected bool CanDashTo(Direction direction, out Vector3Int finalPosition) {
             var blocksDashed = 0;
             var maximumMovements = Position.Moved(Direction.Down).Block?.MaximumSteps ?? 2;
             var position = Position;
@@ -47,13 +48,14 @@ namespace Level.Entities {
                 blocksDashed++;
             }
 
+            finalPosition = position.Position;
             down = position.Moved(Direction.Down).Block;
             return blocksDashed != 0 &&
                    (position.Block != null && !position.Block.CanMoveTo(Direction.Down) ||
                     down != null && !down.CanMoveFrom(Direction.Up));
         }
 
-        private void ExecuteDash(Direction direction) {
+        protected void ExecuteDash(Direction direction) {
             transform.LookAt(transform.position + direction.GetVector());
             var blocksDashed = 0;
             var maximumMovements = Position.Moved(Direction.Down).Block?.MaximumSteps ?? 2;

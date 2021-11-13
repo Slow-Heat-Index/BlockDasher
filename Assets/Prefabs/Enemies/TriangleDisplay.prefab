@@ -1,24 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!95 &4944219919596356748
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1323408081174222189}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5787530f107a78f4b983c0a59993e25d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5702877460625646849
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5702877460625646847}
-  - component: {fileID: 8947510146661529905}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: TriangleDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,19 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8947510146661529905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5702877460625646849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8beea99853634889bd501d0d0585b032, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 0.08
 --- !u!1001 &2205877004363393084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -169,13 +136,13 @@ PrefabInstance:
     - target: {fileID: -545469828237755995, guid: de3eb933b97788c43ba8f0b23476fb4b,
         type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -545469828237755995, guid: de3eb933b97788c43ba8f0b23476fb4b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ec65b487b86950d45bdf134a00f46576, type: 2}
+      objectReference: {fileID: 2100000, guid: 166981fa82ca1f04ca047ffef1f34baf, type: 2}
     - target: {fileID: -545469828237755995, guid: de3eb933b97788c43ba8f0b23476fb4b,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
@@ -198,12 +165,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5a0cbefb71b67a84687dbda176b3b300, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de3eb933b97788c43ba8f0b23476fb4b, type: 3}
---- !u!1 &1323408081174222189 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: de3eb933b97788c43ba8f0b23476fb4b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2205877004363393084}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1807737921230671831 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: de3eb933b97788c43ba8f0b23476fb4b,
