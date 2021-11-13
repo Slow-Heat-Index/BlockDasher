@@ -62,6 +62,10 @@ MonoBehaviour:
   movementsLeft: 0
   movements: 0
   hasWon: 0
+  movementsOnQuicksand: 0
+  movementsInWater: 0
+  maxMovementsOnQuicksand: 3
+  maxMovementsInWater: 5
   movementSpeed: 0.08
 --- !u!114 &5702877460625646844
 MonoBehaviour:

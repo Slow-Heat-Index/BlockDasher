@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace Level.Blocks {
-    public class WetSandBlockView : CubicBlockView {
+    public class WaterBlockView : CubicBlockView {
         public override void Initialize() {
             base.Initialize();
             gameObject.isStatic = true;
@@ -12,12 +12,7 @@ namespace Level.Blocks {
         }
 
         protected override Material LoadMaterial() {
-            var position = Block.Position;
-
-            var addition = position.Position.x + position.Position.z;
-            return Resources.Load<Material>((addition & 1) == 0
-                ? "Models/Blocks/WetSand/BlackMaterial"
-                : "Models/Blocks/WetSand/WhiteMaterial");
+            return Resources.Load<Material>("Models/Blocks/Water/DefaultMaterial");
         }
     }
 }

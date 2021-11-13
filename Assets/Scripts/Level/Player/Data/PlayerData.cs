@@ -17,8 +17,11 @@ namespace Level.Player.Data {
         public uint movementsLeft = 0;
         public uint movements = 0;
         public bool hasWon;
-        public int movementsInQuicksand = 0;
-        public int maxMovementsInQuicksand = 3;
+        public int movementsOnQuicksand = 0;
+        public int movementsInWater = 0;
+        
+        public int maxMovementsOnQuicksand = 3;
+        public int maxMovementsInWater = 5;
 
         [Header("Animation")] public float movementSpeed = 0.08f;
 
@@ -47,7 +50,7 @@ namespace Level.Player.Data {
             var waypoints = _movementQueue.ToArray();
 
             for (var i = 0; i < waypoints.Length; i++) {
-                waypoints[i] += new Vector3(0, -movementsInQuicksand / (float)(maxMovementsInQuicksand + 1), 0);
+                waypoints[i] += new Vector3(0, -movementsOnQuicksand / (float)(maxMovementsOnQuicksand + 1), 0);
             }
 
             _movementQueue.Clear();
@@ -96,14 +99,25 @@ namespace Level.Player.Data {
             }
             
             if (down is QuicksandBlock) {
-                movementsInQuicksand++;
-                if (movementsInQuicksand > maxMovementsInQuicksand) {
+                movementsOnQuicksand++;
+                if (movementsOnQuicksand > maxMovementsOnQuicksand) {
                     Lose();
                     return;
                 }
             }
             else {
-                movementsInQuicksand = 0;
+                movementsOnQuicksand = 0;
+            }
+
+            if (current is WaterBlock) {
+                movementsInWater++;
+                if (movementsInWater > maxMovementsInWater) {
+                    Lose();
+                    return;
+                }
+            }
+            else {
+                movementsInWater = 0;
             }
             
             if (movementsLeft > 0) movementsLeft--;
@@ -124,7 +138,8 @@ namespace Level.Player.Data {
         public void Lose() {
             Teleport(BlockPosition.World.StartPosition.Position.Position);
             movementsLeft = BlockPosition.World.InitialMoves;
-            movementsInQuicksand = 0;
+            movementsOnQuicksand = 0;
+            movementsInWater = 0;
             _level.World.ResetLevel();
         }
 

@@ -15,6 +15,7 @@ namespace Sources.Level.Manager {
             Register(BricksBlock.BricksBlockType.Instance);
             Register(BeachGrassBlock.BeachGrassBlockType.Instance);
             Register(BeachSandBlock.BeachSandBlockType.Instance);
+            Register(WaterBlock.WaterBlockType.Instance);
             Register(FenceBlock.FenceBlockType.Instance);
             Register(FenceCornerBlock.FenceCornerBlockType.Instance);
             Register(FlowersBlock.FlowersBlockType.Instance);
