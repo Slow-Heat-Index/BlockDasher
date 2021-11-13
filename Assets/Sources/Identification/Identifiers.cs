@@ -8,8 +8,13 @@ namespace Sources.Identification {
         
         public static readonly Identifier Grass = new Identifier(Identifier.BlockDasherProvider, "grass");
         public static readonly Identifier Sand = new Identifier(Identifier.BlockDasherProvider, "sand");
+        public static readonly Identifier WetSand = new Identifier(Identifier.BlockDasherProvider, "wet_sand");
+        public static readonly Identifier Quicksand = new Identifier(Identifier.BlockDasherProvider, "quicksand");
         public static readonly Identifier Snow = new Identifier(Identifier.BlockDasherProvider, "snow");
         public static readonly Identifier Bricks = new Identifier(Identifier.BlockDasherProvider, "bricks");
+        public static readonly Identifier BeachGrass = new Identifier(Identifier.BlockDasherProvider, "beach_grass");
+        public static readonly Identifier BeachSand = new Identifier(Identifier.BlockDasherProvider, "beach_sand");
+        public static readonly Identifier Water = new Identifier(Identifier.BlockDasherProvider, "water");
         
         public static readonly Identifier Fence = new Identifier(Identifier.BlockDasherProvider, "fence");
         public static readonly Identifier FenceCorner = new Identifier(Identifier.BlockDasherProvider, "fence_corner");

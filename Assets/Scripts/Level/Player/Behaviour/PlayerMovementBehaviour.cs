@@ -32,23 +32,9 @@ namespace Level.Player.Behaviour {
 
             _data.BlockPosition.Block?.OnPlayerStopsIn(_data);
             if (_data.hasWon) return;
+            
+            _data.FinishMoving();
 
-            var current = _data.BlockPosition.Block;
-            if (current == null || current.CanMoveTo(Direction.Down)) {
-                var down = _data.BlockPosition.Moved(Direction.Down).Block;
-                if (down == null || down.CanMoveFrom(Direction.Up)) {
-                    // OWO PLAYER IS DEAD
-                    _data.Lose();
-                }
-            }
-
-            if (_data.movementsLeft > 0) _data.movementsLeft--;
-            if (_data.movementsLeft == 0) {
-                //Death!
-                _data.Lose();
-            }
-
-            _data.movements++;
 
             _levelCameraBehaviour.UpdateCameraPosition();
         }
