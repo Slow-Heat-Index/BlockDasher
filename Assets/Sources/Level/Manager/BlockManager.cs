@@ -46,6 +46,7 @@ namespace Sources.Level.Manager {
             Register(CoconutBlock.CoconutBlockType.Instance);
             Register(RockBlock.RockBlockType.Instance);
             Register(BeachFlowersBlock.BeachFlowersBlockType.Instance);
+            Register(BeachBigFlowersBlock.BeachBigFlowersBlockType.Instance);
             Register(LianaBlock.LianaBlockType.Instance);
             Register(LilyPadBlock.LilyPadBlockType.Instance);
         }

@@ -66,6 +66,8 @@ namespace Level.Entities {
             caster.BypassBlocks.Add(Identifiers.Grass);
             caster.BypassBlocks.Add(Identifiers.TallGrassDesert);
             caster.BypassBlocks.Add(Identifiers.Liana);
+            caster.BypassBlocks.Add(Identifiers.Flowers);
+            caster.BypassBlocks.Add(Identifiers.BeachFlowers);
 
             caster.Run();
             return caster.Result == null

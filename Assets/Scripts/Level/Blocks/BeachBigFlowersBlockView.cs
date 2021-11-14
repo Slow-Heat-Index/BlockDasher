@@ -5,7 +5,7 @@ using Sources.Util;
 using UnityEngine;
 
 namespace Level.Blocks {
-    public class BeachFlowersBlockView : BlockView {
+    public class BeachBigFlowersBlockView : BlockView {
 
         public override void Initialize() {
             base.Initialize();
@@ -26,23 +26,23 @@ namespace Level.Blocks {
         }
 
         protected override Mesh LoadMesh() {
-            var type = Block.GetMetadataEnum<BeachFlowersBlock.BeachFlowersType>(MetadataSnapshots.MetadataBeachFlowersType.Key, 0);
+            var type = Block.GetMetadataEnum<BeachBigFlowersBlock.BeachBigFlowersType>(MetadataSnapshots.MetadataBeachBigFlowersType.Key, 0);
 
             return Resources.Load<Mesh>(type switch {
-                0 => "Models/Blocks/BeachFlowers1/Model",
-                1 => "Models/Blocks/BeachFlowers2/Model",
-                2 => "Models/Blocks/BeachFlowers3/Model",
+                0 => "Models/Blocks/BeachFlowersRed/Model",
+                1 => "Models/Blocks/BeachFlowersRock/Model",
+                2 => "Models/Blocks/BeachFlowersSun/Model",
                 _ => throw new ArgumentOutOfRangeException(type +" - "+type)
             });
         }
 
         protected override Material LoadMaterial() {
-            var type = Block.GetMetadataEnum<BeachFlowersBlock.BeachFlowersType>(MetadataSnapshots.MetadataBeachFlowersType.Key, 0);
+            var type = Block.GetMetadataEnum<BeachBigFlowersBlock.BeachBigFlowersType>(MetadataSnapshots.MetadataBeachBigFlowersType.Key, 0);
 
             return Resources.Load<Material>(type switch {
-                0 => "Models/Blocks/BeachFlowers1/DefaultMaterial",
-                1 => "Models/Blocks/BeachFlowers2/DefaultMaterial",
-                2 => "Models/Blocks/BeachFlowers3/DefaultMaterial",
+                0 => "Models/Blocks/BeachFlowersRed/DefaultMaterial",
+                1 => "Models/Blocks/BeachFlowersRock/DefaultMaterial",
+                2 => "Models/Blocks/BeachFlowersSun/DefaultMaterial",
                 _ => throw new ArgumentOutOfRangeException(type +" - "+type)
             });
         }

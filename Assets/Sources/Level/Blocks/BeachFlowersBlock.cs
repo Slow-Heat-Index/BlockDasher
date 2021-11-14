@@ -13,7 +13,7 @@ namespace Sources.Level.Blocks {
 
         public override BlockView GenerateBlockView() => GameObject.AddComponent<BeachFlowersBlockView>();
         public override bool CanMoveTo(Direction direction) => true;
-        public override bool CanMoveFrom(Direction direction) => false;
+        public override bool CanMoveFrom(Direction direction) => true;
         public override bool IsClimbableFrom(Direction direction) => false;
 
         public class BeachFlowersBlockType : BlockType {
@@ -22,7 +22,7 @@ namespace Sources.Level.Blocks {
             private BeachFlowersBlockType() : base(
                 Identifiers.BeachFlowers,
                 "Beach Flowers",
-                new Aabb(0.2f, 0, 0.2f, 0.6f, 1f, 0.6f),
+                new Aabb(0.2f, 0, 0.2f, 0.6f, 0.25f, 0.6f),
                 2,
                 true,
                 Resources.Load<Mesh>("Models/Blocks/BeachFlowers1/Model"),
@@ -40,10 +40,7 @@ namespace Sources.Level.Blocks {
         public enum BeachFlowersType {
             Flowers1,
             Flowers2,
-            Flowers3,
-            RedFlower,
-            RockFlower,
-            Sunflower
+            Flowers3
         }
     }
 }
