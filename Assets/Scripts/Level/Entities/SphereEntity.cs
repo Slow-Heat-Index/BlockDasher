@@ -11,7 +11,7 @@ namespace Level.Entities {
             dashData.Cancel();
             Dashing = false;
             dashData.Player.transform.LookAt(dashData.Player.transform.position + Direction.GetVector());
-            dashData.MovementBehaviour.ExecuteDash(dashData.With(Direction), 1);
+            dashData.MovementBehaviour.ExecuteDash(dashData.With(Direction), 2);
         }
 
         public class SphereEntityType : EntityType {
