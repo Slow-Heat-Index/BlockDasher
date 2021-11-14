@@ -23,7 +23,7 @@ namespace Sources.Level.Blocks {
                 Identifiers.Sand,
                 "Sand",
                 new Aabb(0, 0, 0, 1, 1, 1),
-                1,
+                2,
                 false,
                 Resources.Load<Mesh>("Models/BlockModel"),
                 Resources.Load<Texture>("Models/Blocks/Sand/White")

@@ -4,6 +4,8 @@ using DG.Tweening;
 using Level.Cameras.Behaviour;
 using Level.Generator;
 using Sources.Level;
+using Sources.Level.Blocks;
+using Sources.Util;
 using UnityEngine;
 
 namespace Level.Player.Data {
@@ -16,8 +18,15 @@ namespace Level.Player.Data {
         public uint movementsLeft = 0;
         public uint movements = 0;
         public bool hasWon;
+        
         public bool executingDeathAnimation;
         public bool shouldCameraFollow = true;
+        
+        public int movementsOnQuicksand = 0;
+        public int movementsInWater = 0;
+        
+        public int maxMovementsOnQuicksand = 3;
+        public int maxMovementsInWater = 5;
 
         [Header("Animation")] public float movementSpeed = 0.08f;
 
@@ -44,6 +53,11 @@ namespace Level.Player.Data {
         private void Update() {
             if (_movementQueue.Count <= 0) return;
             var waypoints = _movementQueue.ToArray();
+
+            for (var i = 0; i < waypoints.Length; i++) {
+                waypoints[i] += new Vector3(0, -movementsOnQuicksand / (float)(maxMovementsOnQuicksand + 1), 0);
+            }
+
             _movementQueue.Clear();
             _movementTween = transform.DOPath(waypoints, movementSpeed * waypoints.Length);
             _movementTween.onComplete = () => SetAnimation(AnimatorMove, AnimatorMove2);
@@ -77,6 +91,50 @@ namespace Level.Player.Data {
             UpdateTransform();
         }
 
+        public void FinishMoving(LevelCameraBehaviour behaviour) {
+            var current = BlockPosition.Block;
+            var down = BlockPosition.Moved(Direction.Down).Block;
+            if (current == null || current.CanMoveTo(Direction.Down)) {
+               
+                if (down == null || down.CanMoveFrom(Direction.Up)) {
+                    // OWO PLAYER IS DEAD
+                    Lose(true, behaviour);
+                    return;
+                }
+            }
+            
+            if (down is QuicksandBlock) {
+                movementsOnQuicksand++;
+                if (movementsOnQuicksand > maxMovementsOnQuicksand) {
+                    Lose(false, behaviour);
+                    return;
+                }
+            }
+            else {
+                movementsOnQuicksand = 0;
+            }
+
+            if (current is WaterBlock) {
+                movementsInWater++;
+                if (movementsInWater > maxMovementsInWater) {
+                    Lose(false, behaviour);
+                    return;
+                }
+            }
+            else {
+                movementsInWater = 0;
+            }
+            
+            if (movementsLeft > 0) movementsLeft--;
+            if (movementsLeft == 0) {
+                //Death!
+                Lose(false, behaviour);
+                return;
+            }
+
+            movements++;
+        }
+
         public void Win() {
             hasWon = true;
             onWin?.Invoke();
@@ -94,16 +152,18 @@ namespace Level.Player.Data {
                     v.y -= 1.2f * i;
                 }
             }
-
+            
             _movementQueue.Clear();
             _movementTween = transform.DOPath(waypoints, movementSpeed * waypoints.Length)
                 .SetEase(Ease.Linear);
             _movementTween.onComplete = () => {
-                shouldCameraFollow = true;
-                Teleport(BlockPosition.World.StartPosition.Position.Position);
-                movementsLeft = BlockPosition.World.InitialMoves;
-                _level.World.ResetLevel(true);
-                cameraBehaviour.TeleportCamera();
+                    shouldCameraFollow = true;
+                    Teleport(BlockPosition.World.StartPosition.Position.Position);
+                    movementsLeft = BlockPosition.World.InitialMoves;
+                    movementsOnQuicksand = 0;
+                    movementsInWater = 0;
+                    _level.World.ResetLevel(true);
+                    cameraBehaviour.TeleportCamera();
             };
         }
 

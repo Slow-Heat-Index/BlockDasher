@@ -23,6 +23,7 @@ namespace Level.Player.Behaviour {
             _data.BlockPosition.World.ForEachEntity(e => e.BeforeDash());
 
             direction = direction.Rotated(_levelCameraBehaviour.direction);
+
             transform.LookAt(transform.position + direction.GetVector());
 
             if (!TryToClimb(direction)) {
@@ -36,26 +37,7 @@ namespace Level.Player.Behaviour {
             _data.BlockPosition.Block?.OnPlayerStopsIn(_data);
             if (_data.hasWon) return;
 
-            var current = _data.BlockPosition.Block;
-            if (current == null || current.CanMoveTo(Direction.Down)) {
-                var down = _data.BlockPosition.Moved(Direction.Down).Block;
-                if (down == null || down.CanMoveFrom(Direction.Up)) {
-                    // OWO PLAYER IS DEAD
-                    _data.Lose(true, _levelCameraBehaviour);
-                }
-            }
-
-            if (_data.movementsLeft > 0) _data.movementsLeft--;
-            if (_data.movementsLeft == 0) {
-                //Death!
-                _data.Lose(false, _levelCameraBehaviour);
-            }
-
-            _data.movements++;
-            if (_data.shouldCameraFollow) {
-                _levelCameraBehaviour.UpdateCameraPosition();
-            }
-
+            _data.FinishMoving(_levelCameraBehaviour);
             _data.BlockPosition.World.ForEachEntity(e => e.AfterFall());
         }
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Level.Entities;
 using Sources.Identification;
 using Sources.Level.Blocks;
 using Sources.Registration;
@@ -17,6 +16,8 @@ namespace Controller.GameEditor {
                 { typeof(Direction), (m, k, v, n) => m.GenerateDirectionForm(k, v, n) },
                 { typeof(TreeBlock.TreeType), (m, k, v, n) => m.GenerateEnumForm<TreeBlock.TreeType>(k, v, n) },
                 { typeof(SkullBlock.SkullType), (m, k, v, n) => m.GenerateEnumForm<SkullBlock.SkullType>(k, v, n) },
+                { typeof(RockBlock.RockType), (m, k, v, n) => m.GenerateEnumForm<RockBlock.RockType>(k, v, n) },
+                { typeof(BeachFlowersBlock.BeachFlowersType), (m, k, v, n) => m.GenerateEnumForm<BeachFlowersBlock.BeachFlowersType>(k, v, n) },
                 { typeof(EntityType), (m, k, v, n) => m.GenerateEntityTypeForm(k, v, n) },
             };
 

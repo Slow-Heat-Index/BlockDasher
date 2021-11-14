@@ -26,8 +26,8 @@ namespace Sources.Level.Blocks {
                 new Aabb(0.2f, 0, 0.2f, 0.6f, 1, 0.6f),
                 1,
                 true,
-                Resources.Load<Mesh>("Models/Blocks/DeadBush/Model"),
-                Resources.Load<Texture>("Models/Blocks/DeadBush/Default")
+                Resources.Load<Mesh>("Models/Blocks/DeadBush1/Model"),
+                Resources.Load<Texture>("Models/Blocks/DeadBush1/Default")
             ) {
             }
 

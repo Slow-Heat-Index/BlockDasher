@@ -27,6 +27,14 @@ namespace Sources.Level {
             "Force top"
         );
 
+        public static readonly MetadataSnapshot MetadataInverse = new MetadataSnapshot(
+            "metadata_inverse",
+            "false",
+            typeof(bool),
+            "Inverse"
+        );
+
+
         public static readonly MetadataSnapshot MetadataFacing = new MetadataSnapshot(
             "metadata_facing",
             "North",
@@ -53,6 +61,20 @@ namespace Sources.Level {
             "block_dasher:triangle",
             typeof(EntityType),
             "Entity Type"
+        );
+        
+        public static readonly MetadataSnapshot MetadataRockType = new MetadataSnapshot(
+            "metadata_rock_type",
+            "Random",
+            typeof(RockBlock.RockType),
+            "Rock Type"
+        );
+        
+        public static readonly MetadataSnapshot MetadataBeachFlowersType = new MetadataSnapshot(
+            "metadata_beach_flowers_type",
+            "Flowers1",
+            typeof(BeachFlowersBlock.BeachFlowersType),
+            "Beach Flowers Type"
         );
     }
 }
