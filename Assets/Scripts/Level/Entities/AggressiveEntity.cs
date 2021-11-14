@@ -20,7 +20,7 @@ namespace Level.Entities {
             if (_playerData.BlockPosition.Position == Position.Position) return;
 
             if (!IsPlayerVisible()) {
-                base.BeforeDash(player);
+                //base.BeforeDash(player);
                 return;
             }
 
