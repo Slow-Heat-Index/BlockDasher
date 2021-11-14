@@ -6,6 +6,7 @@ namespace Sources.Identification {
             new Identifier(Identifier.BlockDasherProvider, "manager_entity");
 
         public static readonly Identifier Triangle = new Identifier(Identifier.BlockDasherProvider, "triangle");
+        public static readonly Identifier Sphere = new Identifier(Identifier.BlockDasherProvider, "sphere");
         
         public static readonly Identifier Start = new Identifier(Identifier.BlockDasherProvider, "start");
         public static readonly Identifier End = new Identifier(Identifier.BlockDasherProvider, "end");

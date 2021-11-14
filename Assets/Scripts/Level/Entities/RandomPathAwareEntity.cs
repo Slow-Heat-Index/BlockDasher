@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Level.Player.Behaviour;
 using Level.Player.Data;
 using Sources.Level;
 using Sources.Util;
@@ -10,7 +11,7 @@ namespace Level.Entities {
         protected readonly Random Random = new Random();
 
 
-        protected Direction Direction;
+        protected Direction Direction = Direction.North;
         protected bool DirectionFound;
         protected int BlocksDashed;
         protected int MaximumMovements;
@@ -36,17 +37,17 @@ namespace Level.Entities {
             }
         }
 
-        public override void AfterMove(PlayerData player, Vector3Int position) {
-            DashStep(player, position);
+        public override void AfterMove(DashData dashData) {
+            DashStep(dashData);
         }
 
-        public override void AfterDash(PlayerData player) {
+        public override void AfterDash(DashData dashData) {
             while (Dashing) {
-                DashStep(player, player.BlockPosition.Position);
+                DashStep(dashData);
             }
         }
 
-        protected virtual void OnPlayerCollision(PlayerData player, Vector3Int position) {
+        protected virtual void OnPlayerCollision(DashData dashData) {
         }
 
         protected bool CanDashTo(Direction direction, out Vector3Int finalPosition) {
@@ -79,7 +80,7 @@ namespace Level.Entities {
                     down != null && !down.CanMoveFrom(Direction.Up));
         }
 
-        protected void DashStep(PlayerData player, Vector3Int playerPosition) {
+        protected void DashStep(DashData dash) {
             if (!Dashing) return;
             if (!DirectionFound) {
                 Dashing = false;
@@ -99,17 +100,18 @@ namespace Level.Entities {
                 Dashing = false;
                 return;
             }
-            
-            if (!CollidedWithPlayer && playerPosition == Position.Position) {
+
+            if (!CollidedWithPlayer && dash.Player.BlockPosition.Position == Position.Position) {
                 CollidedWithPlayer = true;
-                OnPlayerCollision(player, playerPosition);
+                OnPlayerCollision(dash);
             }
 
+            if (!Dashing) return;
             Move(Direction.GetVector());
-            
-            if (!CollidedWithPlayer && playerPosition == Position.Position) {
+
+            if (!CollidedWithPlayer && dash.Player.BlockPosition.Position == Position.Position) {
                 CollidedWithPlayer = true;
-                OnPlayerCollision(player, playerPosition);
+                OnPlayerCollision(dash);
             }
 
             var down = Position.Moved(Direction.Down).Block;

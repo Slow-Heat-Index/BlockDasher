@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DG.Tweening;
+using Level.Player.Behaviour;
 using Level.Player.Data;
 using Sources.Level;
 using UnityEngine;
@@ -23,11 +24,11 @@ namespace Level.Entities {
         public virtual void BeforeDash(PlayerData player) {
         }
 
-        public virtual void AfterMove(PlayerData player, Vector3Int position) {
+        public virtual void AfterMove(DashData dashData) {
         }
 
 
-        public virtual void AfterDash(PlayerData player) {
+        public virtual void AfterDash(DashData dashData) {
         }
 
         public virtual void AfterFall(PlayerData player) {

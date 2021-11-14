@@ -1,15 +1,13 @@
-﻿using Level.Cameras.Behaviour;
-using Level.Generator;
-using Level.Player.Data;
+﻿using Level.Generator;
+using Level.Player.Behaviour;
 using Sources.Identification;
 using Sources.Level;
 using UnityEngine;
 
 namespace Level.Entities {
     public class TriangleEntity : AggressiveEntity {
-        protected override void OnPlayerCollision(PlayerData player, Vector3Int position) {
-            Debug.Log("LOSE!");
-            player.Lose(false);
+        protected override void OnPlayerCollision(DashData dashData) {
+            dashData.Player.Lose(false);
         }
 
         public class TriangleEntityType : EntityType {
@@ -24,6 +22,10 @@ namespace Level.Entities {
                 entity.InitPosition(position.Position, position.World);
                 position.World.AddEntity(entity);
                 return entity;
+            }
+
+            public override GameObject GetSpawnerPrefab() {
+                return FindObjectOfType<EditorData>().triangleDisplay;
             }
         }
     }

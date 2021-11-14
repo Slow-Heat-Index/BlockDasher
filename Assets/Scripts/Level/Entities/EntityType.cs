@@ -1,5 +1,6 @@
 ﻿using Sources.Identification;
 using Sources.Level;
+using UnityEngine;
 
 namespace Level.Entities {
     public abstract class EntityType : IIdentifiable {
@@ -29,5 +30,7 @@ namespace Level.Entities {
          * <returns>The spawned entity.</returns>
          */
         public abstract Entity SpawnEntity(BlockPosition position);
+
+        public abstract GameObject GetSpawnerPrefab();
     }
 }

@@ -1,4 +1,8 @@
-﻿using Sources.Util;
+﻿using Level.Entities;
+using Sources.Identification;
+using Sources.Level;
+using Sources.Registration;
+using Sources.Util;
 using UnityEngine;
 
 namespace Level.Blocks {
@@ -11,7 +15,12 @@ namespace Level.Blocks {
             gameObject.isStatic = true;
 
             if (!Block.Position.World.IsEditorWorld) return;
-            _child = Instantiate(FindObjectOfType<EditorData>().triangleDisplay, transform);
+
+            var manager = Registry.Get<EntityType>(Identifiers.ManagerEntity);
+            var id = Block.GetMetadata(MetadataSnapshots.MetadataEntityType.Key);
+            var type = manager.Get(id == null ? Identifiers.Triangle : new Identifier(id));
+
+            _child = Instantiate(type.GetSpawnerPrefab(), transform);
             _child.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
             _child.transform.localPosition = new Vector3(0, 0.3f, 0);
             _child.transform.Rotate(-45, 0, 0);

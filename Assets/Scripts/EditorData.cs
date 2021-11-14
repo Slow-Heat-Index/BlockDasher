@@ -17,6 +17,7 @@ public class EditorData : MonoBehaviour {
 
     public GameObject editorObjects;
     public GameObject triangleDisplay;
+    public GameObject sphereDisplay;
 
     public bool editorPlaying = false;
     public EditorToolType selectedEditorTool = EditorToolType.PlaceBreak;
