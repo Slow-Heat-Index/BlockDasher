@@ -16,6 +16,8 @@ public class EditorData : MonoBehaviour {
         };
 
     public GameObject editorObjects;
+    public GameObject triangleDisplay;
+    public GameObject sphereDisplay;
 
     public bool editorPlaying = false;
     public EditorToolType selectedEditorTool = EditorToolType.PlaceBreak;
@@ -80,7 +82,7 @@ public class EditorData : MonoBehaviour {
 
     public void StopPlayingEditorLevel() {
         editorPlaying = false;
-        World.ResetLevel();
+        World.ResetLevel(false);
         var async = SceneManager.UnloadSceneAsync("Level");
         async.completed += op => editorObjects.gameObject.SetActive(true);
     }

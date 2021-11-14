@@ -8,7 +8,11 @@ using UnityEngine;
 namespace Level.Generator {
     public class LevelGenerator : MonoBehaviour {
         public GameObject player;
+
+        public GameObject triangle;
+        public GameObject sphere;
         public World World { get; private set; }
+
 
         public readonly Dictionary<Material, BlockRenderOptimizer> Optimizers =
             new Dictionary<Material, BlockRenderOptimizer>();
@@ -27,6 +31,7 @@ namespace Level.Generator {
 
             // Create player
             Instantiate(player, transform);
+            World.SpawnEntities();
         }
 
 

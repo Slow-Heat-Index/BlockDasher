@@ -2565,7 +2565,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.2}
-  m_AnchoredPosition: {x: 0, y: 20.37001}
+  m_AnchoredPosition: {x: 0, y: 20.369995}
   m_SizeDelta: {x: 0, y: 40.740005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &993006462
@@ -3237,7 +3237,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1329310742}
   m_HandleRect: {fileID: 1329310741}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3689,6 +3689,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   editorObjects: {fileID: 769101321}
+  triangleDisplay: {fileID: 5702877460625646849, guid: 0067bc86121cbea4583950fa6887fe36,
+    type: 3}
+  sphereDisplay: {fileID: 5702877460625646849, guid: 3946e8d4c1759bc458436c7c6222f694,
+    type: 3}
   editorPlaying: 0
   selectedEditorTool: 0
 --- !u!4 &1554860709

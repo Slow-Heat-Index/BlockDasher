@@ -1514,6 +1514,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5702877460625646849, guid: 60fb64cac12238a419419c68e5518852, type: 3}
+  triangle: {fileID: 5702877460625646849, guid: a7767534704396d4faaeacba3983f7bf,
+    type: 3}
+  sphere: {fileID: 5702877460625646849, guid: cdcf951f108c7cf40ab3d759e3f09020, type: 3}
 --- !u!1 &973426371
 GameObject:
   m_ObjectHideFlags: 0

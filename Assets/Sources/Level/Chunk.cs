@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Sources.Identification;
+using Sources.Level.Blocks;
 using Sources.Level.Data;
 using Sources.Registration;
 using Sources.Util;
@@ -23,6 +24,8 @@ namespace Sources.Level {
         public readonly Vector3Int Position;
 
         private readonly Block[] _blocks = new Block[ChunkLength * ChunkLength * ChunkLength];
+
+        private readonly Dictionary<Vector3Int, SpawnerBlock> _spawners = new Dictionary<Vector3Int, SpawnerBlock>();
 
         private readonly Dictionary<Vector3Int, BlockData> _modifiedInitialStates =
             new Dictionary<Vector3Int, BlockData>();
@@ -100,6 +103,11 @@ namespace Sources.Level {
                         _blockCount++;
                     }
 
+                    _spawners.Remove(position);
+                    if (block is SpawnerBlock spawner) {
+                        _spawners[position] = spawner;
+                    }
+
                     Bl(position, block);
                     block.OnPlace();
                 }
@@ -123,6 +131,7 @@ namespace Sources.Level {
          */
         public void Clear() {
             _modifiedInitialStates.Clear();
+            _spawners.Clear();
             for (var y = 0; y < ChunkLength; y++) {
                 for (var x = 0; x < ChunkLength; x++) {
                     for (var z = 0; z < ChunkLength; z++) {
@@ -140,12 +149,26 @@ namespace Sources.Level {
         /**
          * Resets the Chunk to its initial state.
          */
-        public void ResetChunk() {
+        public void ResetChunk(bool spawnEntities) {
             foreach (var pair in _modifiedInitialStates) {
                 PlaceBlock(pair.Value, pair.Key, true);
             }
 
             _modifiedInitialStates.Clear();
+
+            if (!spawnEntities) return;
+            foreach (var spawner in _spawners.Values) {
+                spawner.Spawn();
+            }
+        }
+
+        /**
+         * Calls all spawners to spawn an entity.
+         */
+        public void SpawnEntities() {
+            foreach (var spawner in _spawners.Values) {
+                spawner.Spawn();
+            }
         }
 
         /**
@@ -212,6 +235,7 @@ namespace Sources.Level {
             block.OnBreak();
             block.Invalidate();
 
+            _spawners.Remove(position);
             Bl(position, null);
         }
 

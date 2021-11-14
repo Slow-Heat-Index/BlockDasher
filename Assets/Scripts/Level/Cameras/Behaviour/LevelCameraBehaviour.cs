@@ -19,11 +19,13 @@ namespace Level.Cameras.Behaviour {
         }
 
         public void RotateRight() {
+            if(!_player.shouldCameraFollow) return;
             direction = direction.Rotated(Direction.West);
             UpdateCameraPosition();
         }
 
         public void RotateLeft() {
+            if(!_player.shouldCameraFollow) return;
             direction = direction.Rotated(Direction.East);
             UpdateCameraPosition();
         }

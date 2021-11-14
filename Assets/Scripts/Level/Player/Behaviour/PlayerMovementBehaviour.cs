@@ -20,60 +20,76 @@ namespace Level.Player.Behaviour {
 
             if (!_data.CanPlayerMove || _data.hasWon) return;
 
+            _data.BlockPosition.World.ForEachEntity(e => e.BeforeDash(_data));
+
             direction = direction.Rotated(_levelCameraBehaviour.direction);
 
             transform.LookAt(transform.position + direction.GetVector());
 
-            if (!TryToClimb(direction)) {
-                if (ExecuteDash(direction) == 0) return;
+            var dashData = new DashData(_data, this, direction);
+
+            if (!TryToClimb(dashData)) {
+                if (ExecuteDash(dashData, _data.extraSteps) == 0) return;
             }
 
-            MoveRecursively(Direction.Down, 20);
+            _data.BlockPosition.World.ForEachEntity(e => e.AfterDash(dashData));
+
+            if (!_data.dead) {
+                MoveRecursively(Direction.Down, 20);
+            }
 
             _data.BlockPosition.Block?.OnPlayerStopsIn(_data);
+            _data.BlockPosition.World.ForEachEntity(e => e.AfterFall(_data));
             if (_data.hasWon) return;
-            
             _data.FinishMoving();
-
-
-            _levelCameraBehaviour.UpdateCameraPosition();
         }
 
-        private bool TryToClimb(Direction direction) {
+        private bool TryToClimb(DashData dash) {
             var current = _data.BlockPosition.Block;
-            if (current != null && (!current.CanMoveTo(direction) || !current.CanMoveTo(Direction.Up))) return false;
+            if (current != null && (!current.CanMoveTo(dash.Direction) || !current.CanMoveTo(Direction.Up)))
+                return false;
 
-            var opposite = direction.GetOpposite();
+            var opposite = dash.Direction.GetOpposite();
 
-            var next = _data.BlockPosition.Moved(direction).Block;
+            var next = _data.BlockPosition.Moved(dash.Direction).Block;
             if (next == null || next.CanMoveFrom(opposite) || !next.IsClimbableFrom(opposite)) return false;
 
             var up = _data.BlockPosition.Moved(Direction.Up).Block;
-            if (up != null && (!up.CanMoveFrom(Direction.Down) || !up.CanMoveTo(direction))) return false;
+            if (up != null && (!up.CanMoveFrom(Direction.Down) || !up.CanMoveTo(dash.Direction))) return false;
 
-            var nextUp = _data.BlockPosition.Moved(Direction.Up).Moved(direction).Block;
+            var nextUp = _data.BlockPosition.Moved(Direction.Up).Moved(dash.Direction).Block;
             if (nextUp != null && !nextUp.CanMoveFrom(opposite)) return false;
 
             _data.Move(Vector3Int.up);
             up?.OnPlayerStepsIn(_data);
-            _data.Move(direction.GetVector());
+            _data.BlockPosition.World.ForEachEntity(e => e.AfterMove(dash));
+
+            if (_data.dead || dash.Cancelled) {
+                dash.Cancel();
+                return true;
+            }
+
+            _data.Move(dash.Direction.GetVector());
             nextUp?.OnPlayerStepsIn(_data);
+            _data.BlockPosition.World.ForEachEntity(e => e.AfterMove(dash));
+            dash.Cancel();
             return true;
         }
 
-        private int ExecuteDash(Direction direction) {
+        public int ExecuteDash(DashData dash, int extraSteps) {
             var blocksDashed = 0;
             var maximumMovements = _data.BlockPosition.Moved(Direction.Down).Block?.MaximumSteps ?? 2;
-            while (blocksDashed < maximumMovements + _data.extraSteps) {
+            while (!dash.Cancelled) {
                 var fromBlock = _data.BlockPosition.Block;
-                var toBlock = _data.BlockPosition.Moved(direction).Block;
+                var toBlock = _data.BlockPosition.Moved(dash.Direction).Block;
 
-                if (fromBlock != null && !fromBlock.CanMoveTo(direction)
-                    || toBlock != null && !toBlock.CanMoveFrom(direction.GetOpposite())) {
+                if (fromBlock != null && !fromBlock.CanMoveTo(dash.Direction)
+                    || toBlock != null && !toBlock.CanMoveFrom(dash.Direction.GetOpposite())) {
                     break;
                 }
 
-                _data.Move(direction.GetVector());
+                _data.Move(dash.Direction.GetVector());
+                _data.BlockPosition.World.ForEachEntity(e => e.AfterMove(dash));
                 toBlock?.OnPlayerStepsIn(_data);
 
                 var down = _data.BlockPosition.Moved(Direction.Down).Block;
@@ -82,6 +98,10 @@ namespace Level.Player.Behaviour {
                 }
 
                 blocksDashed++;
+
+                if (blocksDashed >= maximumMovements + extraSteps || _data.dead) {
+                    dash.Cancel();
+                }
             }
 
             return blocksDashed;

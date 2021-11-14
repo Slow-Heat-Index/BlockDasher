@@ -1,4 +1,5 @@
 ﻿using System;
+using Level.Entities;
 using Sources.Level.Blocks;
 using Sources.Util;
 
@@ -53,6 +54,13 @@ namespace Sources.Level {
             "Random",
             typeof(SkullBlock.SkullType),
             "Skull Type"
+        );
+        
+        public static readonly MetadataSnapshot MetadataEntityType = new MetadataSnapshot(
+            "metadata_entity_type",
+            "block_dasher:triangle",
+            typeof(EntityType),
+            "Entity Type"
         );
         
         public static readonly MetadataSnapshot MetadataRockType = new MetadataSnapshot(

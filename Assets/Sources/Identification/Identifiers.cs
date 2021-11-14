@@ -1,10 +1,16 @@
 namespace Sources.Identification {
     public static class Identifiers {
         public static readonly Identifier ManagerBlock =
-            new Identifier(Identifier.BlockDasherProvider, "manager_block");
+            new Identifier(Identifier.BlockDasherProvider, "manager_block");       
+        public static readonly Identifier ManagerEntity =
+            new Identifier(Identifier.BlockDasherProvider, "manager_entity");
 
+        public static readonly Identifier Triangle = new Identifier(Identifier.BlockDasherProvider, "triangle");
+        public static readonly Identifier Sphere = new Identifier(Identifier.BlockDasherProvider, "sphere");
+        
         public static readonly Identifier Start = new Identifier(Identifier.BlockDasherProvider, "start");
         public static readonly Identifier End = new Identifier(Identifier.BlockDasherProvider, "end");
+        public static readonly Identifier Spawner = new Identifier(Identifier.BlockDasherProvider, "spawner");
         
         public static readonly Identifier Grass = new Identifier(Identifier.BlockDasherProvider, "grass");
         public static readonly Identifier Sand = new Identifier(Identifier.BlockDasherProvider, "sand");
