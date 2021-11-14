@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Level.Entities;
 using Sources.Identification;
 using Sources.Level.Blocks;
 using Sources.Registration;

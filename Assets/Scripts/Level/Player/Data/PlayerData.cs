@@ -91,14 +91,14 @@ namespace Level.Player.Data {
             UpdateTransform();
         }
 
-        public void FinishMoving(LevelCameraBehaviour behaviour) {
+        public void FinishMoving(LevelCameraBehaviour cameraBehaviour) {
             var current = BlockPosition.Block;
             var down = BlockPosition.Moved(Direction.Down).Block;
             if (current == null || current.CanMoveTo(Direction.Down)) {
                
                 if (down == null || down.CanMoveFrom(Direction.Up)) {
                     // OWO PLAYER IS DEAD
-                    Lose(true, behaviour);
+                    Lose(true, cameraBehaviour);
                     return;
                 }
             }
@@ -106,7 +106,7 @@ namespace Level.Player.Data {
             if (down is QuicksandBlock) {
                 movementsOnQuicksand++;
                 if (movementsOnQuicksand > maxMovementsOnQuicksand) {
-                    Lose(false, behaviour);
+                    Lose(false, cameraBehaviour);
                     return;
                 }
             }
@@ -117,7 +117,7 @@ namespace Level.Player.Data {
             if (current is WaterBlock) {
                 movementsInWater++;
                 if (movementsInWater > maxMovementsInWater) {
-                    Lose(false, behaviour);
+                    Lose(false, cameraBehaviour);
                     return;
                 }
             }
@@ -128,10 +128,14 @@ namespace Level.Player.Data {
             if (movementsLeft > 0) movementsLeft--;
             if (movementsLeft == 0) {
                 //Death!
-                Lose(false, behaviour);
+                Lose(false, cameraBehaviour);
                 return;
             }
 
+            if (shouldCameraFollow) {
+                cameraBehaviour.UpdateCameraPosition();
+            }
+            
             movements++;
         }
 

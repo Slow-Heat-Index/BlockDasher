@@ -1,5 +1,6 @@
 ﻿using System;
 using Level.Player.Data;
+using Sources.Identification;
 using Sources.Level.Raycast;
 using Sources.Util;
 
@@ -49,6 +50,8 @@ namespace Level.Entities {
             var dir =  _playerData.BlockPosition.Position - Position.Position;
             var caster = new BlockRaycaster(Position.World, Position.Position,
                 dir, 10);
+            caster.BypassBlocks.Add(Identifiers.Water);
+            
             caster.Run();
             return caster.Result == null
                    || (caster.Result.Position.Position - Position.Position).sqrMagnitude >= dir.sqrMagnitude;
