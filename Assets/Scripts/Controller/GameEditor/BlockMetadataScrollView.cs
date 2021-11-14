@@ -19,6 +19,7 @@ namespace Controller.GameEditor {
                 { typeof(SkullBlock.SkullType), (m, k, v, n) => m.GenerateEnumForm<SkullBlock.SkullType>(k, v, n) },
                 { typeof(RockBlock.RockType), (m, k, v, n) => m.GenerateEnumForm<RockBlock.RockType>(k, v, n) },
                 { typeof(BeachFlowersBlock.BeachFlowersType), (m, k, v, n) => m.GenerateEnumForm<BeachFlowersBlock.BeachFlowersType>(k, v, n) },
+                { typeof(BeachBigFlowersBlock.BeachBigFlowersType), (m, k, v, n) => m.GenerateEnumForm<BeachBigFlowersBlock.BeachBigFlowersType>(k, v, n) },
                 { typeof(EntityType), (m, k, v, n) => m.GenerateEntityTypeForm(k, v, n) },
             };
 

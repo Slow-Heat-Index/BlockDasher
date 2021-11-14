@@ -74,7 +74,14 @@ namespace Sources.Level {
             "metadata_beach_flowers_type",
             "Flowers1",
             typeof(BeachFlowersBlock.BeachFlowersType),
-            "Beach Flowers Type"
+            "Flowers Type"
+        ); 
+        
+        public static readonly MetadataSnapshot MetadataBeachBigFlowersType = new MetadataSnapshot(
+            "metadata_beach_big_flowers_type",
+            "RedFlower",
+            typeof(BeachBigFlowersBlock.BeachBigFlowersType),
+            "Flowers Type"
         );
     }
 }
