@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DG.Tweening;
+using Level.Player.Data;
 using Sources.Level;
 using UnityEngine;
 
@@ -19,13 +20,17 @@ namespace Level.Entities {
             _movementTween = transform.DOPath(waypoints, movementSpeed * waypoints.Length);
         }
 
-        public virtual void BeforeDash() {
+        public virtual void BeforeDash(PlayerData player) {
         }
 
-        public virtual void AfterDash() {
+        public virtual void AfterMove(PlayerData player, Vector3Int position) {
         }
 
-        public virtual void AfterFall() {
+
+        public virtual void AfterDash(PlayerData player) {
+        }
+
+        public virtual void AfterFall(PlayerData player) {
         }
 
         public void Move(Vector3Int offset) {

@@ -20,7 +20,7 @@ namespace Level.Player.Behaviour {
 
             if (!_data.CanPlayerMove || _data.hasWon) return;
 
-            _data.BlockPosition.World.ForEachEntity(e => e.BeforeDash());
+            _data.BlockPosition.World.ForEachEntity(e => e.BeforeDash(_data));
 
             direction = direction.Rotated(_levelCameraBehaviour.direction);
 
@@ -30,15 +30,16 @@ namespace Level.Player.Behaviour {
                 if (ExecuteDash(direction) == 0) return;
             }
 
-            _data.BlockPosition.World.ForEachEntity(e => e.AfterDash());
+            _data.BlockPosition.World.ForEachEntity(e => e.AfterDash(_data));
 
-            MoveRecursively(Direction.Down, 20);
+            if (!_data.dead) {
+                MoveRecursively(Direction.Down, 20);
+            }
 
             _data.BlockPosition.Block?.OnPlayerStopsIn(_data);
+            _data.BlockPosition.World.ForEachEntity(e => e.AfterFall(_data));
             if (_data.hasWon) return;
-
-            _data.FinishMoving(_levelCameraBehaviour);
-            _data.BlockPosition.World.ForEachEntity(e => e.AfterFall());
+            _data.FinishMoving();
         }
 
         private bool TryToClimb(Direction direction) {
@@ -58,15 +59,20 @@ namespace Level.Player.Behaviour {
 
             _data.Move(Vector3Int.up);
             up?.OnPlayerStepsIn(_data);
+            _data.BlockPosition.World.ForEachEntity(e => e.AfterMove(_data, _data.BlockPosition.Position));
+
+            if (_data.dead) return true;
+
             _data.Move(direction.GetVector());
             nextUp?.OnPlayerStepsIn(_data);
+            _data.BlockPosition.World.ForEachEntity(e => e.AfterMove(_data, _data.BlockPosition.Position));
             return true;
         }
 
         private int ExecuteDash(Direction direction) {
             var blocksDashed = 0;
             var maximumMovements = _data.BlockPosition.Moved(Direction.Down).Block?.MaximumSteps ?? 2;
-            while (blocksDashed < maximumMovements + _data.extraSteps) {
+            while (blocksDashed < maximumMovements + _data.extraSteps && !_data.dead) {
                 var fromBlock = _data.BlockPosition.Block;
                 var toBlock = _data.BlockPosition.Moved(direction).Block;
 
@@ -76,6 +82,7 @@ namespace Level.Player.Behaviour {
                 }
 
                 _data.Move(direction.GetVector());
+                _data.BlockPosition.World.ForEachEntity(e => e.AfterMove(_data, _data.BlockPosition.Position));
                 toBlock?.OnPlayerStepsIn(_data);
 
                 var down = _data.BlockPosition.Moved(Direction.Down).Block;

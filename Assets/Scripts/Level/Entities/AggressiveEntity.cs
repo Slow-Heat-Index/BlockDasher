@@ -15,14 +15,18 @@ namespace Level.Entities {
             _playerData = FindObjectOfType<PlayerData>();
         }
 
-        public override void AfterFall() {
+        public override void BeforeDash(PlayerData player) {
             // Don't nothing, just KILL.
-            if(_playerData.BlockPosition.Position == Position.Position) return;
-            
+            if (_playerData.BlockPosition.Position == Position.Position) return;
+
             if (!IsPlayerVisible()) {
-                base.AfterFall();
+                base.BeforeDash(player);
                 return;
             }
+
+            DirectionFound = false;
+            BlocksDashed = 0;
+            CollidedWithPlayer = false;
 
             var minDirection = Direction.Up;
             var minDistance = int.MaxValue;
@@ -36,10 +40,14 @@ namespace Level.Entities {
                 minDistance = distance;
                 minDirection = direction;
             }
+            
+            if(minDirection == Direction.Up) return;
 
-            if (minDirection != Direction.Up) {
-                ExecuteDash(minDirection);
-            }
+            DirectionFound = true;
+            Direction = minDirection;
+            MaximumMovements = Position.Moved(Direction.Down).Block?.MaximumSteps ?? 2;
+            Dashing = true;
+            transform.LookAt(transform.position + minDirection.GetVector());
         }
 
 
@@ -47,11 +55,18 @@ namespace Level.Entities {
             if (Position.Position.y != _playerData.BlockPosition.Position.y) return false;
             if ((Position.Position - _playerData.BlockPosition.Position).sqrMagnitude > 100) return false;
 
-            var dir =  _playerData.BlockPosition.Position - Position.Position;
+            var dir = _playerData.BlockPosition.Position - Position.Position;
             var caster = new BlockRaycaster(Position.World, Position.Position,
                 dir, 10);
-            caster.BypassBlocks.Add(Identifiers.Water);
             
+            caster.BypassBlocks.Add(Identifiers.Water);
+            caster.BypassBlocks.Add(Identifiers.End);
+            caster.BypassBlocks.Add(Identifiers.Start);
+            caster.BypassBlocks.Add(Identifiers.Spawner);
+            caster.BypassBlocks.Add(Identifiers.Grass);
+            caster.BypassBlocks.Add(Identifiers.TallGrassDesert);
+            caster.BypassBlocks.Add(Identifiers.Liana);
+
             caster.Run();
             return caster.Result == null
                    || (caster.Result.Position.Position - Position.Position).sqrMagnitude >= dir.sqrMagnitude;
