@@ -9,6 +9,10 @@ namespace Level.Blocks {
             gameObject.isStatic = true;
         }
 
+        public override bool IsFaceOpaque(Direction direction) {
+            return false;
+        }
+
         protected override Mesh LoadMesh() {
             return Resources.Load<Mesh>("Models/BlockModel");
         }
