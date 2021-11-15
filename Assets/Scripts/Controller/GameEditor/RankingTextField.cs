@@ -22,7 +22,6 @@ namespace Controller.GameEditor {
             _textField.text = _data.ToString();
         }
 
-
         public void OnInput() {
             if (int.TryParse(_textField.text, out var number)) {
                 if (number > 0) {
@@ -42,8 +41,6 @@ namespace Controller.GameEditor {
                     return _editorData.World.GoldMoves;
                 case RankingType.Silver:
                     return _editorData.World.SilverMoves;
-                case RankingType.Bronze:
-                    return _editorData.World.BronzeMoves;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -57,9 +54,6 @@ namespace Controller.GameEditor {
                 case RankingType.Silver:
                     _editorData.World.SilverMoves = number;
                     break;
-                case RankingType.Bronze:
-                    _editorData.World.BronzeMoves = number;
-                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -69,6 +63,5 @@ namespace Controller.GameEditor {
     public enum RankingType {
         Gold,
         Silver,
-        Bronze
     }
 }
