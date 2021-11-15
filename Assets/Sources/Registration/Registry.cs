@@ -7,7 +7,8 @@ namespace Sources.Registration {
         private static readonly Dictionary<Identifier, IManager> Managers =
             new Dictionary<Identifier, IManager> {
                 { Identifiers.ManagerBlock, new BlockManager() },
-                { Identifiers.ManagerEntity, new EntityManager() }
+                { Identifiers.ManagerEntity, new EntityManager() },
+                { Identifiers.ManagerSkybox, new SkyboxManager() }
             };
 
         public static bool Register<T>(Manager<T> manager) where T : IIdentifiable {

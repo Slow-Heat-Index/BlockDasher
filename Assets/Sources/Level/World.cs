@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Level.Entities;
+using Sources.Identification;
 using Sources.Level.Blocks;
 using Sources.Level.Data;
+using Sources.Level.Manager;
+using Sources.Level.Skyboxes;
+using Sources.Registration;
 using Sources.Util;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -24,7 +28,8 @@ namespace Sources.Level {
 
         public int GoldMoves { get; set; }
         public int SilverMoves { get; set; }
-        public int BronzeMoves { get; set; }
+
+        public SkyboxWrapper Skybox { get; set; } = SkyboxManager.Garden;
 
         public bool IsEditorWorld { get; }
 
@@ -87,11 +92,11 @@ namespace Sources.Level {
 
         public void Write(BinaryWriter writer) {
             // Version
-            writer.Write(1u);
-            
+            writer.Write(2u);
+
             writer.Write(GoldMoves);
             writer.Write(SilverMoves);
-            writer.Write(BronzeMoves);
+            writer.Write(Skybox.Identifier);
 
             var chunksToSave = _chunks.Where(pair => !pair.Value.IsEmpty())
                 .ToDictionary(i => i.Key, i => i.Value);
@@ -111,13 +116,22 @@ namespace Sources.Level {
                 reader.ReadUInt32();
                 GoldMoves = 10;
                 SilverMoves = 20;
-                BronzeMoves = 30;
             }
 
             if (version >= 1) {
                 GoldMoves = reader.ReadInt32();
                 SilverMoves = reader.ReadInt32();
-                BronzeMoves = reader.ReadInt32();
+                if (version == 1) {
+                    reader.ReadInt32();
+                }
+            }
+
+            if (version >= 2) {
+                Skybox = Registry.Get<SkyboxWrapper>(Identifiers.ManagerSkybox)
+                    .Get(reader.ReadIdentifier()) ?? SkyboxManager.Garden;
+            }
+            else {
+                Skybox = SkyboxManager.Garden;
             }
 
             foreach (var chunk in _chunks.Values) {
@@ -130,6 +144,8 @@ namespace Sources.Level {
                 var chunk = GetOrCreateChunk(position);
                 chunk.Read(reader);
             }
+            
+            RenderSettings.skybox = Skybox.Skybox;
         }
     }
 }
