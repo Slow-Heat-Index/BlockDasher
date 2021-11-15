@@ -111,6 +111,7 @@ namespace Sources.Level {
 
         public void Read(BinaryReader reader) {
             var version = reader.ReadUInt32();
+            Debug.Log("World version: " + version);
             if (version == 0) {
                 /*InitialMoves =*/
                 reader.ReadUInt32();
@@ -122,6 +123,7 @@ namespace Sources.Level {
                 GoldMoves = reader.ReadInt32();
                 SilverMoves = reader.ReadInt32();
                 if (version == 1) {
+                    /*BronzeMoves =*/
                     reader.ReadInt32();
                 }
             }
@@ -144,7 +146,7 @@ namespace Sources.Level {
                 var chunk = GetOrCreateChunk(position);
                 chunk.Read(reader);
             }
-            
+
             RenderSettings.skybox = Skybox.Skybox;
         }
     }

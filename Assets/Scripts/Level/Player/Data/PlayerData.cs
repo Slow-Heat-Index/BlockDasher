@@ -159,6 +159,7 @@ namespace Level.Player.Data {
             _movementTween.onComplete = () => {
                 shouldCameraFollow = true;
                 Teleport(BlockPosition.World.StartPosition.Position.Position);
+                movements = 0;
                 movementsOnQuicksand = 0;
                 movementsInWater = 0;
                 dead = false;
