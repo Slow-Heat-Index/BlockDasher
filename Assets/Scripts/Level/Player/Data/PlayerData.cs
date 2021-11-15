@@ -15,7 +15,6 @@ namespace Level.Player.Data {
         public event Action onWin;
 
         public int extraSteps = 0;
-        public uint movementsLeft = 0;
         public uint movements = 0;
         public bool hasWon;
         public bool dead;
@@ -49,7 +48,6 @@ namespace Level.Player.Data {
             _level = FindObjectOfType<LevelGenerator>();
             _animator = GetComponentInChildren<Animator>();
             _cameraBehaviour = FindObjectOfType<LevelCameraBehaviour>();
-            movementsLeft = _level.World.InitialMoves;
             BlockPosition = _level.World.StartPosition.Position;
             UpdateTransform();
         }
@@ -128,13 +126,6 @@ namespace Level.Player.Data {
                 movementsInWater = 0;
             }
 
-            if (movementsLeft > 0) movementsLeft--;
-            if (movementsLeft == 0) {
-                //Death!
-                Lose(false);
-                return;
-            }
-
             if (shouldCameraFollow) {
                 _cameraBehaviour.UpdateCameraPosition();
             }
@@ -168,7 +159,6 @@ namespace Level.Player.Data {
             _movementTween.onComplete = () => {
                 shouldCameraFollow = true;
                 Teleport(BlockPosition.World.StartPosition.Position.Position);
-                movementsLeft = BlockPosition.World.InitialMoves;
                 movementsOnQuicksand = 0;
                 movementsInWater = 0;
                 dead = false;
