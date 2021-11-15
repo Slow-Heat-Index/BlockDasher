@@ -22,10 +22,9 @@ namespace Sources.Level {
          */
         public StartBlock StartPosition { get; internal set; }
 
-        /**
-         * The amount of moves the player can perform in this world.
-         */
-        public uint InitialMoves { get; set; }
+        public int GoldMoves { get; set; }
+        public int SilverMoves { get; set; }
+        public int BronzeMoves { get; set; }
 
         public bool IsEditorWorld { get; }
 
@@ -34,7 +33,6 @@ namespace Sources.Level {
 
         public World(bool editorWorld) {
             IsEditorWorld = editorWorld;
-            InitialMoves = 20;
         }
 
         public Chunk GetChunk(Vector3Int chunkPosition) {
@@ -89,8 +87,11 @@ namespace Sources.Level {
 
         public void Write(BinaryWriter writer) {
             // Version
-            writer.Write(0u);
-            writer.Write(InitialMoves);
+            writer.Write(1u);
+            
+            writer.Write(GoldMoves);
+            writer.Write(SilverMoves);
+            writer.Write(BronzeMoves);
 
             var chunksToSave = _chunks.Where(pair => !pair.Value.IsEmpty())
                 .ToDictionary(i => i.Key, i => i.Value);
@@ -105,7 +106,19 @@ namespace Sources.Level {
 
         public void Read(BinaryReader reader) {
             var version = reader.ReadUInt32();
-            InitialMoves = reader.ReadUInt32();
+            if (version == 0) {
+                /*InitialMoves =*/
+                reader.ReadUInt32();
+                GoldMoves = 10;
+                SilverMoves = 20;
+                BronzeMoves = 30;
+            }
+
+            if (version >= 1) {
+                GoldMoves = reader.ReadInt32();
+                SilverMoves = reader.ReadInt32();
+                BronzeMoves = reader.ReadInt32();
+            }
 
             foreach (var chunk in _chunks.Values) {
                 chunk.Clear();
