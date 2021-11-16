@@ -25,6 +25,7 @@ namespace Sources.Level.Manager {
             Register(SignBlock.SignBlockType.Instance);
             Register(BushBlock.BushBlockType.Instance);
             Register(LabyrinthBushBlock.LabyrinthBushBlockType.Instance);
+            Register(LabyrinthCornerBushBlock.LabyrinthCornerBushBlockType.Instance);
             Register(ArmorBlock.ArmorBlockType.Instance);
             Register(ArmorStandBlock.ArmorStandBlockType.Instance);
             Register(CauldronBlock.CauldronBlockType.Instance);

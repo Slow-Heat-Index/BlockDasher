@@ -42,6 +42,8 @@ namespace Sources.Identification {
 
         public static readonly Identifier LabyrinthBush =
             new Identifier(Identifier.BlockDasherProvider, "labyrinth_bush");
+        public static readonly Identifier LabyrinthCornerBush =
+            new Identifier(Identifier.BlockDasherProvider, "labyrinth_corner_bush");
 
         public static readonly Identifier Armor = new Identifier(Identifier.BlockDasherProvider, "armor");
         public static readonly Identifier ArmorStand = new Identifier(Identifier.BlockDasherProvider, "armor_stand");
