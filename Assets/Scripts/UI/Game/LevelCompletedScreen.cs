@@ -12,6 +12,7 @@ public class LevelCompletedScreen : MonoBehaviour {
     private PlayerData _player;
     private ScreensTransitions _screensTransitions;
     private RectTransform _rectTransform;
+    [SerializeField] private Fader _background;
 
     [SerializeField] private TextMeshProUGUI _steps;
     [SerializeField] private TextMeshProUGUI _time;
@@ -24,7 +25,11 @@ public class LevelCompletedScreen : MonoBehaviour {
 
         _player.onWin += _screensTransitions.ScreenIn;
         _player.onWin += () => _steps.text = $"Steps: {_player.movements}";
-
+        _player.onWin += () => {
+            _background.gameObject.SetActive(true);
+            _background.FadeTo(0.4f);
+        };
+            
         _rectTransform.anchoredPosition = new Vector2(0, -_rectTransform.rect.height);
     }
     
