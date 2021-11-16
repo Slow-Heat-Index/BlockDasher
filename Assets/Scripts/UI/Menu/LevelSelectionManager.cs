@@ -1,8 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Sources;
+using Sources.Identification;
 using Sources.Level;
+using Sources.Registration;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,8 +19,8 @@ public class LevelSelectionManager : MonoBehaviour {
     [SerializeField] private Button _backButton;
     [SerializeField] private GameObject _levelData;
     [SerializeField] private GameObject _levelLocked;
-    
-    
+
+
     private void Awake() {
         _rectTransform = GetComponent<RectTransform>();
         _rectTransform.anchoredPosition = new Vector2(0, -_rectTransform.rect.height);
@@ -36,13 +35,13 @@ public class LevelSelectionManager : MonoBehaviour {
         _hubMovement = _hubWorld.GetComponentInChildren<HubWorld>().hubMovement;
         _hubMovement.OnLevelReached.AddListener(ShowUI);
     }
-    
+
     public void Next() {
         _hubMovement.GoNext();
-        
+
         _playButton.interactable = !_hubWorld.lockedLevels[_hubMovement.GetCurrentLevel()];
 
-        if (_hubMovement.GetCurrentLevel() == _hubMovement.GetNumLevels()-1) {
+        if (_hubMovement.GetCurrentLevel() == _hubMovement.GetNumLevels() - 1) {
             _nextButton.interactable = false;
         }
 
@@ -69,7 +68,7 @@ public class LevelSelectionManager : MonoBehaviour {
         _backButton.gameObject.SetActive(false);
         _levelLocked.SetActive(false);
     }
-    
+
     public void ShowUI() {
         _nextButton.gameObject.SetActive(true);
         _previousButton.gameObject.SetActive(true);
@@ -80,9 +79,8 @@ public class LevelSelectionManager : MonoBehaviour {
     }
 
     public void Play() {
-        LevelData.SetLevelToLoad(_hubWorld.levels[_hubMovement.GetCurrentLevel()]);
+        var manager = Registry.Get<LevelSnapshot>(Identifiers.ManagerLevel);
+        var level = manager.Get(new Identifier(_hubWorld.levels[_hubMovement.GetCurrentLevel()]));
+        LevelData.SetLevelToLoad(level.LevelPath);
     }
-    
-    
-    
 }

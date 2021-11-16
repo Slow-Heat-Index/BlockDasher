@@ -5915,11 +5915,11 @@ MonoBehaviour:
   hubMovement: {fileID: 955708719}
   isLocked: 0
   levels:
-  - Levels/IntroductoryLevel
-  - Levels/lvl2
-  - Levels/lvl3
-  - Levels/newlvl4
-  - Levels/lvl4
+  - block_dasher:level_1_1
+  - block_dasher:level_1_2
+  - block_dasher:level_1_3
+  - block_dasher:level_1_4
+  - block_dasher:level_1_5
   lockedLevels: 0000000001
 --- !u!4 &2023492804 stripped
 Transform:

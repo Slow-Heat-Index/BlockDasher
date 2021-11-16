@@ -8,7 +8,8 @@ namespace Sources.Registration {
             new Dictionary<Identifier, IManager> {
                 { Identifiers.ManagerBlock, new BlockManager() },
                 { Identifiers.ManagerEntity, new EntityManager() },
-                { Identifiers.ManagerSkybox, new SkyboxManager() }
+                { Identifiers.ManagerSkybox, new SkyboxManager() },
+                { Identifiers.ManagerLevel, new LevelManager() }
             };
 
         public static bool Register<T>(Manager<T> manager) where T : IIdentifiable {
