@@ -81,6 +81,7 @@ namespace Level.Player.Data {
         public void Move(Vector3Int offset) {
             BlockPosition = BlockPosition.Moved(offset);
             _movementQueue.Enqueue(BlockPosition.Position + new Vector3(0.5f, 0, 0.5f));
+            CheckCurrentBlockOnMove();
         }
 
         public void Teleport(Vector3Int position) {
@@ -91,6 +92,7 @@ namespace Level.Player.Data {
             }
 
             UpdateTransform();
+            CheckCurrentBlockOnMove();
         }
 
         public void FinishMoving() {
@@ -139,7 +141,7 @@ namespace Level.Player.Data {
         }
 
         public void Lose(bool fall) {
-            if(dead) return;
+            if (dead) return;
             executingDeathAnimation = true;
             shouldCameraFollow = !fall;
             dead = true;
@@ -174,6 +176,17 @@ namespace Level.Player.Data {
 
         private void UpdateTransform() {
             transform.position = BlockPosition.Position + new Vector3(0.5f, 0, 0.5f);
+        }
+
+        private void CheckCurrentBlockOnMove() {
+            var current = BlockPosition.Block;
+            var down = BlockPosition.Moved(Direction.Down).Block;
+            if (!(current is WaterBlock)) {
+                movementsInWater = 0;
+            }  
+            if (!(down is QuicksandBlock)) {
+                movementsOnQuicksand = 0;
+            }
         }
 
 
