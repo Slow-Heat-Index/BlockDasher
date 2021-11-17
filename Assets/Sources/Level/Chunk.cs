@@ -157,16 +157,15 @@ namespace Sources.Level {
             _modifiedInitialStates.Clear();
 
             if (!spawnEntities) return;
-            foreach (var spawner in _spawners.Values) {
-                spawner.Spawn();
-            }
+            SpawnEntities();
         }
 
         /**
          * Calls all spawners to spawn an entity.
          */
         public void SpawnEntities() {
-            foreach (var spawner in _spawners.Values) {
+            var spawnersCopy = _spawners.Values.ToList();
+            foreach (var spawner in spawnersCopy) {
                 spawner.Spawn();
             }
         }
