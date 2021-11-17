@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5702877460625646847}
-  - component: {fileID: 7554307589851277899}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: SharkDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,24 +27,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
-  - {fileID: 5915860364613579080}
+  - {fileID: 9141397722701679165}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7554307589851277899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5702877460625646849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a074c0d745d44d5a03f583f56df0c5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 0.08
---- !u!1001 &6166521719443396259
+--- !u!1001 &8743313950756548054
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -114,9 +100,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eaeba3e500a02f749a9b9588faa646ad, type: 3}
---- !u!4 &5915860364613579080 stripped
+--- !u!4 &9141397722701679165 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: eaeba3e500a02f749a9b9588faa646ad,
     type: 3}
-  m_PrefabInstance: {fileID: 6166521719443396259}
+  m_PrefabInstance: {fileID: 8743313950756548054}
   m_PrefabAsset: {fileID: 0}

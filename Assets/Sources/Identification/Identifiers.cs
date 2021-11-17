@@ -11,6 +11,7 @@ namespace Sources.Identification {
 
         public static readonly Identifier Triangle = new Identifier(Identifier.BlockDasherProvider, "triangle");
         public static readonly Identifier Sphere = new Identifier(Identifier.BlockDasherProvider, "sphere");
+        public static readonly Identifier Shark = new Identifier(Identifier.BlockDasherProvider, "shark");
 
         public static readonly Identifier SkyboxGarden = new Identifier(Identifier.BlockDasherProvider, "garden");
         public static readonly Identifier SkyboxDesert = new Identifier(Identifier.BlockDasherProvider, "desert");

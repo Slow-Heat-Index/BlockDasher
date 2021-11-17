@@ -46,6 +46,7 @@ namespace Level.Entities {
             DirectionFound = true;
             Direction = minDirection;
             MaximumMovements = Position.Moved(Direction.Down).Block?.MaximumSteps ?? 2;
+            MaximumMovements += ExtraSteps;
             Dashing = true;
             transform.LookAt(transform.position + minDirection.GetVector());
         }

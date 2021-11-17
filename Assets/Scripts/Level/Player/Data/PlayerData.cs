@@ -13,6 +13,7 @@ namespace Level.Player.Data {
         private static readonly int AnimatorMove = Animator.StringToHash("Move");
         private static readonly int AnimatorMove2 = Animator.StringToHash("Move2");
         public event Action onWin;
+        public event Action onReset;
 
         public int extraSteps = 0;
         public uint movements = 0;
@@ -81,6 +82,7 @@ namespace Level.Player.Data {
         public void Move(Vector3Int offset) {
             BlockPosition = BlockPosition.Moved(offset);
             _movementQueue.Enqueue(BlockPosition.Position + new Vector3(0.5f, 0, 0.5f));
+            CheckCurrentBlockOnMove();
         }
 
         public void Teleport(Vector3Int position) {
@@ -91,6 +93,7 @@ namespace Level.Player.Data {
             }
 
             UpdateTransform();
+            CheckCurrentBlockOnMove();
         }
 
         public void FinishMoving() {
@@ -139,7 +142,7 @@ namespace Level.Player.Data {
         }
 
         public void Lose(bool fall) {
-            if(dead) return;
+            if (dead) return;
             executingDeathAnimation = true;
             shouldCameraFollow = !fall;
             dead = true;
@@ -169,11 +172,25 @@ namespace Level.Player.Data {
             movementsOnQuicksand = 0;
             movementsInWater = 0;
             dead = false;
+            hasWon = false;
             _cameraBehaviour.TeleportCamera();
+            onReset?.Invoke();
         }
 
         private void UpdateTransform() {
             transform.position = BlockPosition.Position + new Vector3(0.5f, 0, 0.5f);
+        }
+
+        private void CheckCurrentBlockOnMove() {
+            var current = BlockPosition.Block;
+            var down = BlockPosition.Moved(Direction.Down).Block;
+            if (!(current is WaterBlock)) {
+                movementsInWater = 0;
+            }
+
+            if (!(down is QuicksandBlock)) {
+                movementsOnQuicksand = 0;
+            }
         }
 
 

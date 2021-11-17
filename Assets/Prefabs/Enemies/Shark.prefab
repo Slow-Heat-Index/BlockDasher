@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5702877460625646847}
-  - component: {fileID: 7554307589851277899}
+  - component: {fileID: 5060714538973817821}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: Shark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7554307589851277899
+--- !u!114 &5060714538973817821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5702877460625646849}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a074c0d745d44d5a03f583f56df0c5a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6400848ab2434473a7cddd1eb843c42c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0.08
