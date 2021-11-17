@@ -158,14 +158,18 @@ namespace Level.Player.Data {
                 .SetEase(Ease.Linear);
             _movementTween.onComplete = () => {
                 shouldCameraFollow = true;
-                Teleport(BlockPosition.World.StartPosition.Position.Position);
-                movements = 0;
-                movementsOnQuicksand = 0;
-                movementsInWater = 0;
-                dead = false;
                 _level.World.ResetLevel(true);
-                _cameraBehaviour.TeleportCamera();
+                Reset();
             };
+        }
+
+        public void Reset() {
+            Teleport(BlockPosition.World.StartPosition.Position.Position);
+            movements = 0;
+            movementsOnQuicksand = 0;
+            movementsInWater = 0;
+            dead = false;
+            _cameraBehaviour.TeleportCamera();
         }
 
         private void UpdateTransform() {

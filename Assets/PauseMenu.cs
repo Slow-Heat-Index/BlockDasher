@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Level.Generator;
 using Level.Player.Controller;
+using Level.Player.Data;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
@@ -9,15 +11,16 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(ScreensTransitions))]
 public class PauseMenu : MonoBehaviour {
 
-    [SerializeField] private GameObject _gameplayUIGO;
-    [SerializeField] private Button _pauseButton;
-    [SerializeField] private Button _continueButton;
-    [SerializeField] private Button _replayButton;
-    [SerializeField] private Fader _background;
+    [SerializeField] private GameObject gameplayUigo;
+    [SerializeField] private Button pauseButton;
+    [SerializeField] private Button continueButton;
+    [SerializeField] private Button replayButton;
+    [SerializeField] private Fader background;
     private ScreensTransitions _screensTransitions;
     private RectTransform _rectTransform;
-
     private PlayerMovementController _playerController;
+    private LevelGenerator _levelGenerator;
+    private PlayerData _player;
 
     private void Awake() {
         _screensTransitions = GetComponent<ScreensTransitions>();
@@ -26,31 +29,32 @@ public class PauseMenu : MonoBehaviour {
     }
     
     private void OnEnable() {
-        _pauseButton.onClick.AddListener(_screensTransitions.ScreenIn);
-        _pauseButton.onClick.AddListener(PauseGame);
-        
-        _continueButton.onClick.AddListener(ContinueGame);
-        
+        pauseButton.onClick.AddListener(_screensTransitions.ScreenIn);
+        pauseButton.onClick.AddListener(PauseGame);
+        continueButton.onClick.AddListener(ContinueGame);
+        replayButton.onClick.AddListener(RestartLevel);
     }
 
     private void OnDisable() {
-        _pauseButton.onClick.RemoveListener(_screensTransitions.ScreenIn);
-        _pauseButton.onClick.RemoveListener(PauseGame);
-        
-        _continueButton.onClick.RemoveListener(ContinueGame);
+        pauseButton.onClick.RemoveListener(_screensTransitions.ScreenIn);
+        pauseButton.onClick.RemoveListener(PauseGame);
+        continueButton.onClick.RemoveListener(ContinueGame);
+        replayButton.onClick.RemoveListener(RestartLevel);
     }
 
     private void Start() {
         _playerController = FindObjectOfType<PlayerMovementController>();
+        _levelGenerator = FindObjectOfType<LevelGenerator>();
+        _player = FindObjectOfType<PlayerData>();
     }
 
     
 
     void PauseGame() {
-        _gameplayUIGO.SetActive(false);
+        gameplayUigo.SetActive(false);
         _playerController.enabled = false;
-        _background.gameObject.SetActive(true);
-        _background.FadeTo(0.4f);
+        background.gameObject.SetActive(true);
+        background.FadeTo(0.4f);
         StartCoroutine(PauseCoroutine());
     }
     
@@ -61,17 +65,28 @@ public class PauseMenu : MonoBehaviour {
     }
 
     void ContinueGame() {
-        _gameplayUIGO.SetActive(true);
+        gameplayUigo.SetActive(true);
         _playerController.enabled = true;
-        _background.FadeIn();
+        background.FadeIn();
         Time.timeScale = 1;
         _screensTransitions.ScreenUp();
         StartCoroutine(ContinueCoroutine());
     }
     
+    void RestartLevel() {
+        gameplayUigo.SetActive(true);
+        _playerController.enabled = true;
+        background.FadeIn();
+        Time.timeScale = 1;
+        _screensTransitions.ScreenUp();
+        _levelGenerator.World.ResetLevel(true);
+        _player.Reset();
+        StartCoroutine(ContinueCoroutine());
+    }
+    
     IEnumerator ContinueCoroutine() {
-        yield return new WaitForSeconds(_background.GetTweenTime());
-        _background.gameObject.SetActive(false);
+        yield return new WaitForSeconds(background.GetTweenTime());
+        background.gameObject.SetActive(false);
     }
 
 }
