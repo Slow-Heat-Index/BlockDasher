@@ -7,6 +7,7 @@ namespace Sources.Level.Manager {
         public EntityManager() : base(Identifiers.ManagerEntity) {
             Register(TriangleEntity.TriangleEntityType.Instance);
             Register(SphereEntity.SphereEntityType.Instance);
+            Register(SharkEntity.SharkEntityType.Instance);
         }
     }
 }

@@ -11,6 +11,7 @@ public class GameplayUI : MonoBehaviour {
         _player = FindObjectOfType<PlayerData>();
 
         _player.onWin += () => gameObject.SetActive(false);
+        _player.onReset += () => gameObject.SetActive(true);
     }
     
 }

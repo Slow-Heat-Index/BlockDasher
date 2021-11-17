@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 using Level.Player.Behaviour;
 using Level.Player.Data;
+using Sources.Identification;
 using Sources.Level;
 using Sources.Util;
 using UnityEngine;
@@ -11,6 +13,8 @@ namespace Level.Entities {
         protected readonly Random Random = new Random();
 
 
+        protected readonly Collection<Identifier> avoidBlocks = new Collection<Identifier>();
+        protected int ExtraSteps;
         protected Direction Direction = Direction.North;
         protected bool DirectionFound;
         protected int BlocksDashed;
@@ -31,6 +35,7 @@ namespace Level.Entities {
                 DirectionFound = true;
                 Direction = direction;
                 MaximumMovements = Position.Moved(Direction.Down).Block?.MaximumSteps ?? 2;
+                MaximumMovements += ExtraSteps;
                 Dashing = true;
                 transform.LookAt(transform.position + direction.GetVector());
                 break;
@@ -38,6 +43,10 @@ namespace Level.Entities {
         }
 
         public override void AfterMove(DashData dashData) {
+            if (!CollidedWithPlayer && dashData.Player.BlockPosition.Position == Position.Position) {
+                CollidedWithPlayer = true;
+                OnPlayerCollision(dashData);
+            }
             DashStep(dashData);
         }
 
@@ -62,6 +71,12 @@ namespace Level.Entities {
                 if (fromBlock != null && !fromBlock.CanMoveTo(direction)
                     || toBlock != null && !toBlock.CanMoveFrom(direction.GetOpposite())) {
                     break;
+                }
+
+                if (toBlock != null && avoidBlocks.Contains(toBlock.Identifier)
+                    || toBlock == null && avoidBlocks.Contains(null)) {
+                    finalPosition = position.Moved(direction).Position;
+                    return false;
                 }
 
                 position = position.Moved(direction.GetVector());
@@ -100,12 +115,7 @@ namespace Level.Entities {
                 Dashing = false;
                 return;
             }
-
-            if (!CollidedWithPlayer && dash.Player.BlockPosition.Position == Position.Position) {
-                CollidedWithPlayer = true;
-                OnPlayerCollision(dash);
-            }
-
+            
             if (!Dashing) return;
             Move(Direction.GetVector());
 
@@ -116,7 +126,7 @@ namespace Level.Entities {
 
             var down = Position.Moved(Direction.Down).Block;
             if (down is { BehavesLikeAir: false }) {
-                MaximumMovements = down.MaximumSteps;
+                MaximumMovements = down.MaximumSteps + ExtraSteps;
             }
 
             BlocksDashed++;

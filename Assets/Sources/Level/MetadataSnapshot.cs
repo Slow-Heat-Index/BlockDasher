@@ -25,6 +25,13 @@ namespace Sources.Level {
             "false",
             typeof(bool),
             "Force top"
+        );  
+        
+        public static readonly MetadataSnapshot MetadataWaterlogged = new MetadataSnapshot(
+            "metadata_waterlogged",
+            "false",
+            typeof(bool),
+            "Waterlogged"
         );
 
         public static readonly MetadataSnapshot MetadataInverse = new MetadataSnapshot(
