@@ -18,7 +18,7 @@ namespace Level.Player.Behaviour {
             (direction != Direction.Up && direction != Direction.Down)
                 .ValidateTrue("Direction cannot be up or down!");
 
-            if (!_data.CanPlayerMove || _data.hasWon) return;
+            if (!_data.CanPlayerMove || _data.hasWon || _data.dead) return;
 
             _data.BlockPosition.World.ForEachEntity(e => e.BeforeDash(_data));
 
@@ -60,6 +60,7 @@ namespace Level.Player.Behaviour {
             var nextUp = _data.BlockPosition.Moved(Direction.Up).Moved(dash.Direction).Block;
             if (nextUp != null && !nextUp.CanMoveFrom(opposite)) return false;
 
+            _data.nextMoveJump = true;
             _data.Move(Vector3Int.up);
             up?.OnPlayerStepsIn(_data);
             _data.BlockPosition.World.ForEachEntity(e => e.AfterMove(dash));

@@ -11,7 +11,7 @@ namespace Level.Entities {
 
         private PlayerData _playerData;
 
-        private void Start() {
+        protected override void Start() {
             _playerData = FindObjectOfType<PlayerData>();
         }
 

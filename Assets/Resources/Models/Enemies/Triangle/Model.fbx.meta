@@ -1,56 +1,8 @@
 fileFormatVersion: 2
-guid: 4cc5d7481239aa84da4589931036bd52
+guid: e6991e099450997448ad043f15edf63d
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable:
-  - first:
-      74: 4419341551624498096
-    second: Armature|ArmatureAction.003
-  - first:
-      74: 6039553363283238825
-    second: Armature|Box001.001Action
-  - first:
-      74: -3109488013089267473
-    second: Armature|Box002Action
-  - first:
-      74: 1015690156436814971
-    second: Armature|Box003Action
-  - first:
-      74: 2920023865792766560
-    second: Armature|PlaneAction
-  - first:
-      74: -1883150853644995191
-    second: Armature|SphereAction.002
-  - first:
-      74: -7239586242490447314
-    second: Sphere|Box001.001Action
-  - first:
-      74: -6950026285220101203
-    second: Sphere|Box002Action
-  - first:
-      74: 6554570041285540119
-    second: Sphere|Box003Action
-  - first:
-      74: -6708320309911119319
-    second: Sphere|PlaneAction
-  - first:
-      74: -4404092902359945233
-    second: Sphere|SphereAction.002
-  - first:
-      74: -6556729197507824060
-    second: Plane|Box001.001Action
-  - first:
-      74: 1587090914426364142
-    second: Plane|Box002Action
-  - first:
-      74: -7490812453200509550
-    second: Plane|Box003Action
-  - first:
-      74: -5187248419258813496
-    second: Plane|PlaneAction
-  - first:
-      74: 764429456071858473
-    second: Plane|SphereAction.002
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
