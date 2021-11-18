@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+using Data;
 using Sources;
 using Sources.Identification;
 using Sources.Level;
@@ -39,7 +41,7 @@ public class LevelSelectionManager : MonoBehaviour {
     public void Next() {
         _hubMovement.GoNext();
 
-        _playButton.interactable = !_hubWorld.lockedLevels[_hubMovement.GetCurrentLevel()];
+        _playButton.interactable = IsUnlocked(_hubMovement.GetCurrentLevel());
 
         if (_hubMovement.GetCurrentLevel() == _hubMovement.GetNumLevels() - 1) {
             _nextButton.interactable = false;
@@ -51,7 +53,7 @@ public class LevelSelectionManager : MonoBehaviour {
     public void Previous() {
         _hubMovement.GoPrevious();
 
-        _playButton.interactable = !_hubWorld.lockedLevels[_hubMovement.GetCurrentLevel()];
+        _playButton.interactable = IsUnlocked(_hubMovement.GetCurrentLevel());
 
         if (_hubMovement.GetCurrentLevel() == 0) {
             _previousButton.interactable = false;
@@ -82,5 +84,13 @@ public class LevelSelectionManager : MonoBehaviour {
         var manager = Registry.Get<LevelSnapshot>(Identifiers.ManagerLevel);
         var level = manager.Get(new Identifier(_hubWorld.levels[_hubMovement.GetCurrentLevel()]));
         LevelData.SetLevelToLoad(level.LevelPath);
+    }
+
+    public bool IsUnlocked(int i)
+    {
+        if (i == 0) return true;
+        var manager = Registry.Get<LevelSnapshot>(Identifiers.ManagerLevel);
+        var level = manager.Get(new Identifier(_hubWorld.levels[i - 1]));
+        return PersistentDataContainer.PersistentData.IsCompleted(level.LevelPath);
     }
 }

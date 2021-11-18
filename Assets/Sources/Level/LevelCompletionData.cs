@@ -1,9 +1,19 @@
-﻿using Sources.Identification;
+﻿using System;
+using Sources.Identification;
 
 namespace Sources.Level {
+    [Serializable]
     public struct LevelCompletionData {
-        public Identifier Level;
-        public int Steps;
-        public int Stars;
+        public string level;
+        public int steps;
+        public int stars;
+
+        public LevelCompletionData(string lvl, int step, int star)
+        {
+            level = lvl;
+            steps = step;
+            stars = star;
+        }
     }
+    
 }
