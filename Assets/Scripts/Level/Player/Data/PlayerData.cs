@@ -27,7 +27,7 @@ namespace Level.Player.Data {
         public int movementsInWater = 0;
 
         public int maxMovementsOnQuicksand = 3;
-        public int maxMovementsInWater = 5;
+        public int maxMovementsInWater = 4;
 
         [Header("Animation")] public float movementSpeed = 0.08f;
 

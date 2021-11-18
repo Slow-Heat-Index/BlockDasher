@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sources.Util;
+using UnityEngine;
 
 namespace Level.Blocks {
     public class WaterBlockView : CubicBlockView {
@@ -13,6 +14,10 @@ namespace Level.Blocks {
 
         protected override Material LoadMaterial() {
             return Resources.Load<Material>("Models/Blocks/Water/DefaultMaterial");
+        }
+
+        public override bool IsFaceOpaque(Direction direction) {
+            return false;
         }
     }
 }
