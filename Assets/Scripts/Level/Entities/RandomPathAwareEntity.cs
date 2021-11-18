@@ -43,10 +43,6 @@ namespace Level.Entities {
         }
 
         public override void AfterMove(DashData dashData) {
-            if (!CollidedWithPlayer && dashData.Player.BlockPosition.Position == Position.Position) {
-                CollidedWithPlayer = true;
-                OnPlayerCollision(dashData);
-            }
             DashStep(dashData);
         }
 
@@ -54,6 +50,17 @@ namespace Level.Entities {
             while (Dashing) {
                 DashStep(dashData);
             }
+
+            if (CollidedWithPlayer || dashData.Player.BlockPosition.Position != Position.Position) return;
+            CollidedWithPlayer = true;
+            OnPlayerCollision(dashData);
+        }
+
+        public override void AfterFall(DashData dashData) {
+            base.AfterFall(dashData);
+            if (CollidedWithPlayer || dashData.Player.BlockPosition.Position != Position.Position) return;
+            CollidedWithPlayer = true;
+            OnPlayerCollision(dashData);
         }
 
         protected virtual void OnPlayerCollision(DashData dashData) {
@@ -116,7 +123,7 @@ namespace Level.Entities {
                 Dashing = false;
                 return;
             }
-            
+
             if (!Dashing) return;
             Move(Direction.GetVector());
 

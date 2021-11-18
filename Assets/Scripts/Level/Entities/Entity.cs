@@ -34,7 +34,7 @@ namespace Level.Entities {
         public virtual void AfterDash(DashData dashData) {
         }
 
-        public virtual void AfterFall(PlayerData player) {
+        public virtual void AfterFall(DashData dashData) {
         }
 
         public void Move(Vector3Int offset) {

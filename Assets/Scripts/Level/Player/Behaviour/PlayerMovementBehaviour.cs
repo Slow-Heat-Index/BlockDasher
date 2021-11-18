@@ -39,7 +39,7 @@ namespace Level.Player.Behaviour {
             }
 
             _data.BlockPosition.Block?.OnPlayerStopsIn(_data);
-            _data.BlockPosition.World.ForEachEntity(e => e.AfterFall(_data));
+            _data.BlockPosition.World.ForEachEntity(e => e.AfterFall(dashData));
             if (_data.hasWon) return;
             _data.FinishMoving();
         }
