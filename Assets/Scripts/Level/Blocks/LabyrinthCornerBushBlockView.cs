@@ -4,7 +4,7 @@ using Sources.Util;
 using UnityEngine;
 
 namespace Level.Blocks {
-    public class LabyrinthBushBlockView : BlockView {
+    public class LabyrinthCornerBushBlockView : BlockView {
         public override void Initialize() {
             base.Initialize();
 
@@ -26,11 +26,11 @@ namespace Level.Blocks {
         }
 
         protected override Mesh LoadMesh() {
-            return Resources.Load<Mesh>("Models/Blocks/LabyrinthBush/Model");
+            return Resources.Load<Mesh>("Models/Blocks/LabyrinthCornerBush/Model");
         }
 
         protected override Material LoadMaterial() {
-            return Resources.Load<Material>("Models/Blocks/LabyrinthBush/DefaultMaterial");
+            return Resources.Load<Material>("Models/Blocks/LabyrinthCornerBush/DefaultMaterial");
         }
     }
 }
