@@ -1,7 +1,9 @@
 using System.Collections;
+using Data;
 using Level.Generator;
 using Level.Player.Controller;
 using Level.Player.Data;
+using Sources;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,6 +38,11 @@ namespace UI.Game {
                 _background.FadeTo(0.4f);
             };
             _player.onWin += () => _playerController.enabled = false;
+            _player.onWin += () => {
+                PersistentDataContainer.PersistentData.AddLevelCompleted(LevelData.LevelToLoad.Path,
+                    (int)_player.movements, 1);
+                DataAccess.Save(PersistentDataContainer.PersistentData);
+            };
 
             _rectTransform.anchoredPosition = new Vector2(0, -_rectTransform.rect.height);
         }
@@ -56,7 +63,7 @@ namespace UI.Game {
             _player.Reset();
             StartCoroutine(ContinueCoroutine());
         }
-        
+
         IEnumerator ContinueCoroutine() {
             yield return new WaitForSeconds(_background.GetTweenTime());
             _background.gameObject.SetActive(false);
