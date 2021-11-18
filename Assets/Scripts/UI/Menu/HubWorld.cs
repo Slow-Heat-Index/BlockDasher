@@ -10,6 +10,7 @@ public class HubWorld : MonoBehaviour {
     public bool isLocked;
     public string[] levels;
     public bool[] lockedLevels;
+    public int starsNeeded;
 
     private void Awake() {
         hubWorldAnim = GetComponent<HubWorldAnim>();

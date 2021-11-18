@@ -40,7 +40,7 @@ namespace UI.Game {
             _player.onWin += () => _playerController.enabled = false;
             _player.onWin += () => {
                 PersistentDataContainer.PersistentData.AddLevelCompleted(LevelData.LevelToLoad.Path,
-                    (int)_player.movements, 1);
+                    (int)_player.movements, _levelGenerator.World.GoldMoves,_levelGenerator.World.SilverMoves);
                 DataAccess.Save(PersistentDataContainer.PersistentData);
             };
 

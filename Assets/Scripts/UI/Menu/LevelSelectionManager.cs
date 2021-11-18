@@ -77,7 +77,7 @@ public class LevelSelectionManager : MonoBehaviour {
         _playButton.gameObject.SetActive(true);
         _levelData.SetActive(true);
         _backButton.gameObject.SetActive(true);
-        _levelLocked.SetActive(_hubWorld.lockedLevels[_hubMovement.GetCurrentLevel()]);
+        _levelLocked.SetActive(!IsUnlocked(_hubMovement.GetCurrentLevel()));
     }
 
     public void Play() {

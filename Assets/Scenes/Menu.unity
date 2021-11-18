@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1224877414}
-  m_IndirectSpecularColor: {r: 0.34436274, g: 0.6467314, b: 0.7353566, a: 0.5}
+  m_IndirectSpecularColor: {r: 0.11306948, g: 0.7213132, b: 0.7353566, a: 0.5}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4206,6 +4206,7 @@ MonoBehaviour:
   isLocked: 1
   levels: []
   lockedLevels: 0101010101
+  starsNeeded: 58
 --- !u!1 &1559767087
 GameObject:
   m_ObjectHideFlags: 0
@@ -4622,8 +4623,13 @@ MonoBehaviour:
   hubMovement: {fileID: 2044850678}
   isLocked: 1
   levels:
-  - Levels/garden
+  - block_dasher:level_2_1
+  - block_dasher:level_2_2
+  - block_dasher:level_2_3
+  - block_dasher:level_2_4
+  - block_dasher:level_2_5
   lockedLevels: 0101010101
+  starsNeeded: 10
 --- !u!1 &1722824712
 GameObject:
   m_ObjectHideFlags: 0
@@ -5073,6 +5079,7 @@ MonoBehaviour:
   isLocked: 1
   levels: []
   lockedLevels: 0101010101
+  starsNeeded: 42
 --- !u!1 &1975216490
 GameObject:
   m_ObjectHideFlags: 0
@@ -5286,6 +5293,7 @@ MonoBehaviour:
   isLocked: 1
   levels: []
   lockedLevels: 0101010101
+  starsNeeded: 26
 --- !u!1 &1992267119
 GameObject:
   m_ObjectHideFlags: 0
@@ -5614,6 +5622,7 @@ MonoBehaviour:
   - block_dasher:level_1_4
   - block_dasher:level_1_5
   lockedLevels: 0000000001
+  starsNeeded: 0
 --- !u!4 &2023492804 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7903982380208566737, guid: d77d27cfe1cf99d468e65a5294f07e92,
