@@ -22,9 +22,18 @@ public class Fader : MonoBehaviour {
 
     public void FadeIn() {
         _image.DOFade(0, tweenTime);
+        gameObject.SetActive(false);
     }
 
     public void FadeOut() {
         _image.DOFade(1, tweenTime);
+    }
+
+    public void FadeTo(float opacity) {
+        _image.DOFade(opacity, tweenTime);
+    }
+
+    public float GetTweenTime() {
+        return tweenTime;
     }
 }

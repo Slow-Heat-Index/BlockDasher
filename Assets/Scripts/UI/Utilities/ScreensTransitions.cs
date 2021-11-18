@@ -23,4 +23,8 @@ public class ScreensTransitions : MonoBehaviour {
     public void ScreenUp() {
         _rectTransform.DOAnchorPosY(_rectTransform.rect.height, tweenTime);
     }
+
+    public float GetTweenTime() {
+        return tweenTime;
+    }
 }

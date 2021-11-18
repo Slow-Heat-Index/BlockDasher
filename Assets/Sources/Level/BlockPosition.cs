@@ -43,6 +43,8 @@ namespace Sources.Level {
          * <param name="position">The position.</param>
          */
         public BlockPosition(World world, Vector3Int position) {
+            world.ValidateNotNull("World cannot be null!");
+            world.ValidateNotNull("Position cannot be null!");
             World = world;
             Position = position;
         }

@@ -14,7 +14,10 @@ namespace Level.Entities {
 
         public BlockPosition Position { get; private set; }
 
-        public virtual void Update() {
+        protected virtual void Start() {
+        }
+
+        protected virtual void Update() {
             if (_movementQueue.Count <= 0) return;
             var waypoints = _movementQueue.ToArray();
             _movementQueue.Clear();
