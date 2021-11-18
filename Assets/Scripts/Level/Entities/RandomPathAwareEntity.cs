@@ -77,7 +77,6 @@ namespace Level.Entities {
                 if (toBlock != null && avoidBlocks.Contains(toBlock.Identifier)
                     || toBlock == null && avoidBlocks.Contains(null)) {
                     finalPosition = position.Position;
-                    print("NO");
                     return false;
                 }
 
