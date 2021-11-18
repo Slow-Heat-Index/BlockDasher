@@ -32,9 +32,5 @@ namespace Level.Blocks {
         protected override Material LoadMaterial() {
             return Resources.Load<Material>("Models/Blocks/LabyrinthBush/DefaultMaterial");
         }
-
-        private int RotationHash(Vector3Int position) {
-            return Math.Abs(position.x * 73 + position.y * 331 + position.z * 571) % 881;
-        }
     }
 }

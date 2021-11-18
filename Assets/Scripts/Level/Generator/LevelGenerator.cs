@@ -11,6 +11,7 @@ namespace Level.Generator {
 
         public GameObject triangle;
         public GameObject sphere;
+        public GameObject shark;
         public World World { get; private set; }
 
 

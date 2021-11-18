@@ -23,6 +23,12 @@ namespace Sources.Level.Blocks {
             var id = GetMetadata(MetadataSnapshots.MetadataEntityType.Key);
             var type = manager.Get(id == null ? Identifiers.Triangle : new Identifier(id));
             type?.SpawnEntity(Position);
+            if (GetMetadataBoolean(MetadataSnapshots.MetadataWaterlogged.Key)) {
+                Position.World.PlaceBlock(new BlockData(Identifiers.Water), Position.Position);
+            }
+            else {
+                Position.World.PlaceBlock(new BlockData(null), Position.Position);
+            }
         }
 
         public class SpawnerBlockType : BlockType {
@@ -38,6 +44,7 @@ namespace Sources.Level.Blocks {
                 Resources.Load<Texture>("Models/Blocks/Spawner/Item")
             ) {
                 DefaultMetadata[MetadataSnapshots.MetadataEntityType.Key] = MetadataSnapshots.MetadataEntityType;
+                DefaultMetadata[MetadataSnapshots.MetadataWaterlogged.Key] = MetadataSnapshots.MetadataWaterlogged;
             }
 
             protected override Block CreateBlockImpl(BlockPosition position, BlockData data) {

@@ -25,6 +25,7 @@ public class ButtonSceneLoader : MonoBehaviour {
     }
 
     void LoadScene() {
+        Time.timeScale = 1;
         SceneManager.LoadScene(_sceneToLoadId);
     }
 }
