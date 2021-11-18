@@ -43,10 +43,20 @@ namespace Level.Entities {
         }
 
         public override void AfterMove(DashData dashData) {
+            if (!CollidedWithPlayer && dashData.Player.BlockPosition.Position == Position.Position) {
+                CollidedWithPlayer = true;
+                OnPlayerCollision(dashData);
+            }
+            
             DashStep(dashData);
         }
 
         public override void AfterDash(DashData dashData) {
+            if (!CollidedWithPlayer && dashData.Player.BlockPosition.Position == Position.Position) {
+                CollidedWithPlayer = true;
+                OnPlayerCollision(dashData);
+            }
+            
             while (Dashing) {
                 DashStep(dashData);
             }
