@@ -11,8 +11,6 @@ namespace Level.Entities {
             dashData.Cancel();
             Dashing = false;
             
-            print("AAAAAAAAAAAAAAA");
-            
             dashData.Player.transform.LookAt(dashData.Player.transform.position + Direction.GetVector());
             dashData.MovementBehaviour.ExecuteDash(dashData.With(Direction), 2);
         }
