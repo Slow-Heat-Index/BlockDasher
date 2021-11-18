@@ -1,8 +1,7 @@
 using System.Collections;
-using Level.Generator;
-using System.Collections.Generic;
 using Data;
-using DG.Tweening;
+using Level.Generator;
+using Level.Player.Controller;
 using Level.Player.Data;
 using Sources;
 using TMPro;
