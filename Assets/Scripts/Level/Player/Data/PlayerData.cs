@@ -33,7 +33,7 @@ namespace Level.Player.Data {
         public int movementsInWater = 0;
 
         public int maxMovementsOnQuicksand = 3;
-        public int maxMovementsInWater = 5;
+        public int maxMovementsInWater = 4;
 
         public bool nextMoveJump;
 
