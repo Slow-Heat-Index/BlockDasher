@@ -62,6 +62,7 @@ namespace Level.Entities {
         protected bool CanDashTo(Direction direction, out Vector3Int finalPosition) {
             var blocksDashed = 0;
             var maximumMovements = Position.Moved(Direction.Down).Block?.MaximumSteps ?? 2;
+            maximumMovements += ExtraSteps;
             var position = Position;
             Block down;
             while (blocksDashed < maximumMovements) {
@@ -75,14 +76,14 @@ namespace Level.Entities {
 
                 if (toBlock != null && avoidBlocks.Contains(toBlock.Identifier)
                     || toBlock == null && avoidBlocks.Contains(null)) {
-                    finalPosition = position.Moved(direction).Position;
+                    finalPosition = position.Position;
                     return false;
                 }
 
-                position = position.Moved(direction.GetVector());
+                position = position.Moved(direction);
                 down = position.Moved(Direction.Down).Block;
                 if (down is { BehavesLikeAir: false }) {
-                    maximumMovements = down.MaximumSteps;
+                    maximumMovements = down.MaximumSteps + ExtraSteps;
                 }
 
                 blocksDashed++;
