@@ -1,6 +1,5 @@
 ﻿using Level.Generator;
 using Level.Player.Behaviour;
-using Level.Player.Data;
 using Sources.Identification;
 using Sources.Level;
 using UnityEngine;

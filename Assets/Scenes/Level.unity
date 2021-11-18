@@ -3137,7 +3137,7 @@ MonoBehaviour:
   pauseButton: {fileID: 669764378}
   continueButton: {fileID: 57970869}
   replayButton: {fileID: 144621872}
-  background: {fileID: 1574833568
+  background: {fileID: 1574833568}
 --- !u!114 &1303022836
 MonoBehaviour:
   m_ObjectHideFlags: 0
