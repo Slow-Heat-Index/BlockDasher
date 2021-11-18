@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Level.Cameras.Behaviour;
@@ -12,6 +13,11 @@ namespace Level.Player.Data {
     public class PlayerData : MonoBehaviour {
         private static readonly int AnimatorMove = Animator.StringToHash("Move");
         private static readonly int AnimatorMove2 = Animator.StringToHash("Move2");
+        private static readonly int AnimatorJump = Animator.StringToHash("Jump");
+        private static readonly int AnimatorBump = Animator.StringToHash("Bump");
+        private static readonly int AnimatorFall = Animator.StringToHash("Fall");
+        private static readonly int AnimatorDeath = Animator.StringToHash("Death");
+        private static readonly int AnimatorIdle = Animator.StringToHash("Idle");
         public event Action onWin;
         public event Action onReset;
 
@@ -28,6 +34,8 @@ namespace Level.Player.Data {
 
         public int maxMovementsOnQuicksand = 3;
         public int maxMovementsInWater = 5;
+
+        public bool nextMoveJump;
 
         [Header("Animation")] public float movementSpeed = 0.08f;
 
@@ -62,20 +70,36 @@ namespace Level.Player.Data {
             }
 
             _movementQueue.Clear();
-            _movementTween = transform.DOPath(waypoints, movementSpeed * waypoints.Length);
-            _movementTween.onComplete = () => SetAnimation(AnimatorMove, AnimatorMove2);
 
-            var vertical = waypoints[0].y - transform.position.y != 0;
-            if (!vertical) {
-                for (var i = 1; i < waypoints.Length; i++) {
-                    if (waypoints[i - 1].y - waypoints[i].y == 0) continue;
-                    vertical = true;
-                    break;
-                }
+            if (nextMoveJump) {
+                nextMoveJump = false;
+                _movementTween = transform.DOPath(waypoints, 0.3f);
+                _animator.Play(AnimatorJump, 0);
             }
+            else {
+                var vertical = waypoints[0].y - transform.position.y != 0;
+                if (!vertical) {
+                    for (var i = 1; i < waypoints.Length; i++) {
+                        if (waypoints[i - 1].y - waypoints[i].y == 0) continue;
+                        vertical = true;
+                        break;
+                    }
+                }
 
-            if (waypoints.Length > 1 && !vertical) {
-                SetAnimation(AnimatorMove2, AnimatorMove);
+                _movementTween = transform.DOPath(waypoints, movementSpeed * waypoints.Length);
+                if (!vertical) {
+                    if (waypoints.Length > 1) {
+                        SetAnimation(AnimatorMove2, AnimatorMove);
+                        _movementTween.onComplete = () => SetAnimation(AnimatorMove, AnimatorMove2);
+                    }
+                    else if (waypoints.Length > 0) {
+                        _animator.Play(AnimatorBump, 0);
+                    }
+                }
+                else {
+                    _animator.Play(AnimatorFall, 0);
+                    _movementTween.onComplete = () => _animator.Play(AnimatorIdle, 0);
+                }
             }
         }
 
@@ -150,19 +174,21 @@ namespace Level.Player.Data {
             var waypoints = _movementQueue.ToArray();
 
             if (fall) {
+                _animator.Play(AnimatorFall, 0);
                 for (var i = 0; i < 20; i++) {
                     ref var v = ref waypoints[waypoints.Length - 1 - i];
                     v.y -= 1.2f * i;
                 }
+            }
+            else {
+                _animator.Play(AnimatorDeath, 0);
             }
 
             _movementQueue.Clear();
             _movementTween = transform.DOPath(waypoints, movementSpeed * waypoints.Length)
                 .SetEase(Ease.Linear);
             _movementTween.onComplete = () => {
-                shouldCameraFollow = true;
-                _level.World.ResetLevel(true);
-                Reset();
+                StartCoroutine(DeathAnimationCompleted(2, fall));
             };
         }
 
@@ -202,6 +228,17 @@ namespace Level.Player.Data {
             else {
                 _animator.Play(to, 0);
             }
+        }
+
+        private IEnumerator DeathAnimationCompleted(float seconds, bool fall) {
+            if (!fall) {
+                yield return new WaitForSeconds(seconds);
+            }
+            
+            _animator.Play(AnimatorIdle, 0);
+            shouldCameraFollow = true;
+            _level.World.ResetLevel(true);
+            Reset();
         }
     }
 }
