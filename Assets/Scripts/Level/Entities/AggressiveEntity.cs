@@ -16,17 +16,11 @@ namespace Level.Entities {
         }
 
         public override void BeforeDash(PlayerData player) {
-            // Don't nothing, just KILL.
-            if (_playerData.BlockPosition.Position == Position.Position) return;
-
-            if (!IsPlayerVisible()) {
-                //base.BeforeDash(player);
-                return;
-            }
-
             DirectionFound = false;
             BlocksDashed = 0;
             CollidedWithPlayer = false;
+            
+            if (_playerData.BlockPosition.Position == Position.Position || !IsPlayerVisible()) return;
 
             var minDirection = Direction.Up;
             var minDistance = int.MaxValue;
