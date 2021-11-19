@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource), typeof(Button), typeof(RectTransform))]
-public class ButtonFeedBack : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+public class ButtonFeedBack : MonoBehaviour{
     private AudioSource _audioSource;
     private Button _button;
     private EventTrigger _eventTrigger;
@@ -31,14 +31,5 @@ public class ButtonFeedBack : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     
     private void OnDisable() {
         _button.onClick.AddListener(_audioSource.Play);
-    }
-    
-
-    public void OnPointerEnter(PointerEventData eventData) {
-        _rectTransform.DOScale(_size * 1.2f, 0.3f);
-    }
-
-    public void OnPointerExit(PointerEventData eventData) {
-        _rectTransform.DOScale(_size, 0.3f);
     }
 }

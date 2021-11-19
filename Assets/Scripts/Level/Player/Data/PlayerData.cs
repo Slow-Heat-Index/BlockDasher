@@ -19,6 +19,7 @@ namespace Level.Player.Data {
         private static readonly int AnimatorDeath = Animator.StringToHash("Death");
         private static readonly int AnimatorIdle = Animator.StringToHash("Idle");
         public event Action onWin;
+        public event Action onLose;
         public event Action onReset;
 
         public int extraSteps = 0;
@@ -201,6 +202,10 @@ namespace Level.Player.Data {
             hasWon = false;
             _cameraBehaviour.TeleportCamera();
             onReset?.Invoke();
+            
+            _animator.Play(AnimatorIdle, 0);
+            shouldCameraFollow = true;
+            _level.World.ResetLevel(true);
         }
 
         private void UpdateTransform() {
@@ -235,10 +240,9 @@ namespace Level.Player.Data {
                 yield return new WaitForSeconds(seconds);
             }
             
-            _animator.Play(AnimatorIdle, 0);
-            shouldCameraFollow = true;
-            _level.World.ResetLevel(true);
-            Reset();
+            onLose.Invoke();
+            /*
+            Reset();*/
         }
     }
 }

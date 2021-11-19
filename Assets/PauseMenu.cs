@@ -25,7 +25,7 @@ public class PauseMenu : MonoBehaviour {
     private void Awake() {
         _screensTransitions = GetComponent<ScreensTransitions>();
         _rectTransform = GetComponent<RectTransform>();
-        _rectTransform.anchoredPosition = new Vector2(0, -_rectTransform.rect.height);
+        _rectTransform.anchoredPosition = new Vector2(0, _rectTransform.rect.height);
     }
     
     private void OnEnable() {
@@ -73,7 +73,7 @@ public class PauseMenu : MonoBehaviour {
         StartCoroutine(ContinueCoroutine());
     }
     
-    void RestartLevel() {
+    public void RestartLevel() {
         gameplayUigo.SetActive(true);
         _playerController.enabled = true;
         background.FadeIn();
