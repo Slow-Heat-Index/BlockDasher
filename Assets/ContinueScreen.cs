@@ -2,53 +2,43 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Level.Cameras.Controller;
+using Level.Generator;
+using Level.Player.Controller;
 using Level.Player.Data;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ContinueScreen : MonoBehaviour {
-    event Action onCountDownOver;
+    public event Action onCountDownOver;
+    public GameObject winGO;
+    public Button watchAd;
     
     [SerializeField] private Text secondsLeft;
     [SerializeField] private Image progress;
     [SerializeField] GameObject gameplayUiGO;
-    [SerializeField] private GameObject gameOverGO;
-    [SerializeField] private Button watchAd;
     private FullScreenAd _ad;
-    private Fader _fader;
-    private PlayerData _playerData;
-    private ScreensTransitions _screensTransitions;
+    
 
-    private void Awake() {
-        _screensTransitions = GetComponent<ScreensTransitions>();
-        _fader = FindObjectOfType<Fader>();
-        _ad = FindObjectOfType<FullScreenAd>();
+     private void Start() {
+         _ad = FindObjectOfType<FullScreenAd>();
         
-        gameOverGO.GetComponent<RectTransform>().localPosition = Vector3.zero;
-        gameOverGO.SetActive(false);
-    }
+         gameObject.GetComponent<RectTransform>().localPosition = Vector3.zero;
+         gameObject.SetActive(false);
+     }
 
 
-    private void Start() {
-        _playerData = FindObjectOfType<PlayerData>();
-        _playerData.onLose += StartCountDown;
-        _playerData.onLose += _screensTransitions.ScreenIn;
-        onCountDownOver +=_screensTransitions.ScreenUp;
-        onCountDownOver += () => gameOverGO.SetActive(true);
-        watchAd.onClick.AddListener(WatchAd);
-    }
-
-    void StartCountDown() {
+     public void StartCountDown() {
+        
         gameplayUiGO.SetActive(false);
-        _fader.FadeTo(0.4f);
         StartCoroutine(CountDown());
     }
 
-    void WatchAd() {
+    public void WatchAd() {
         StopCoroutine(CountDown());
-        _screensTransitions.ScreenUp();
-        gameOverGO.SetActive(true);
+        gameObject.SetActive(false);
+        winGO.SetActive(true);
         _ad.PlayAd();
     }
 
@@ -62,6 +52,7 @@ public class ContinueScreen : MonoBehaviour {
             yield return new WaitForSeconds(1);
         }
         
+        gameObject.SetActive(false);
         onCountDownOver.Invoke();
     }
 }

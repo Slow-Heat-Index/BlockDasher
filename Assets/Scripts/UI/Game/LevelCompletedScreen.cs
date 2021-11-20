@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Data;
 using Level.Cameras.Controller;
@@ -12,6 +13,7 @@ using UnityEngine.UI;
 namespace UI.Game {
     [RequireComponent(typeof(RectTransform))]
     public class LevelCompletedScreen : MonoBehaviour {
+        [SerializeField] private ContinueScreen doubleCoins;
         private PlayerMovementController _playerController;
         private LevelCameraController _levelCameraController;
         private PlayerData _player;
@@ -25,6 +27,9 @@ namespace UI.Game {
 
         [SerializeField] private Button replayButton;
 
+        private void Awake() {
+            doubleCoins = FindObjectOfType<ContinueScreen>();
+        }
 
         private void Start() {
             _playerController = FindObjectOfType<PlayerMovementController>();
@@ -32,8 +37,8 @@ namespace UI.Game {
             _player = FindObjectOfType<PlayerData>();
             _levelGenerator = FindObjectOfType<LevelGenerator>();
             _rectTransform = GetComponent<RectTransform>();
-
-            _player.onWin += (() => gameObject.SetActive(true));
+            InitDoubleCoins();
+            
             _player.onWin += () => _steps.text = $"Steps: {_player.movements}";
             _player.onWin += () => {
                 _background.gameObject.SetActive(true);
@@ -46,6 +51,7 @@ namespace UI.Game {
                     (int)_player.movements, 1);
                 DataAccess.Save(PersistentDataContainer.PersistentData);
             };
+            
 
             _rectTransform.localPosition = Vector3.zero;
             gameObject.SetActive(false);
@@ -67,6 +73,14 @@ namespace UI.Game {
             _player.Reset();
             _background.gameObject.SetActive(false);
             gameObject.SetActive(false);
+        }
+
+        void InitDoubleCoins() {
+            _player.onWin += () => doubleCoins.gameObject.SetActive(true);
+            _player.onWin += doubleCoins.StartCountDown;
+            doubleCoins.onCountDownOver += (() => doubleCoins.winGO.SetActive(false));
+            doubleCoins.onCountDownOver += () => gameObject.SetActive(true);
+            doubleCoins.watchAd.onClick.AddListener(doubleCoins.WatchAd);
         }
     }
 }

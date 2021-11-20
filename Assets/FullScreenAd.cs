@@ -11,6 +11,7 @@ public class FullScreenAd : MonoBehaviour {
     [SerializeField] private Text secondsLeft;
     [SerializeField] private GameObject adGO;
     [SerializeField] private Button skipButton;
+    [SerializeField] private GameObject toActivate;
     private IEnumerator adWait;
     private Tween progressTween;
     
@@ -47,6 +48,7 @@ public class FullScreenAd : MonoBehaviour {
         }
         
         adGO.SetActive(false);
+        toActivate.SetActive(true);
     }
 
     IEnumerator SkipAd() {
@@ -60,5 +62,6 @@ public class FullScreenAd : MonoBehaviour {
         progressTween.Pause();
         progress.fillAmount = 1;
         adGO.SetActive(false);
+        toActivate.SetActive(true);
     }
 }
