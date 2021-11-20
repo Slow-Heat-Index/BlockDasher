@@ -8,7 +8,8 @@ using Level.Player.Data;
 using Sources;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
 
 namespace UI.Game {
     [RequireComponent(typeof(RectTransform))]

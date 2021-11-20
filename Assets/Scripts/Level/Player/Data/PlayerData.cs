@@ -49,6 +49,8 @@ namespace Level.Player.Data {
 
         private LevelCameraBehaviour _cameraBehaviour;
 
+        private MovesCounter _movesCounter;
+
         public bool CanPlayerMove =>
             _movementQueue.Count == 0 &&
             (_movementTween == null || !_movementTween.IsActive() || _movementTween.IsComplete());
@@ -61,6 +63,7 @@ namespace Level.Player.Data {
             _animator = GetComponentInChildren<Animator>();
             _cameraBehaviour = FindObjectOfType<LevelCameraBehaviour>();
             _playerSoundManager = GetComponent<PlayerSoundManager>();
+            _movesCounter = FindObjectOfType<MovesCounter>();
 
             BlockPosition = _level.World.StartPosition.Position;
 
@@ -170,6 +173,7 @@ namespace Level.Player.Data {
             }
 
             movements++;
+            _movesCounter.AddMovement(movements);
         }
 
         public void Win() {

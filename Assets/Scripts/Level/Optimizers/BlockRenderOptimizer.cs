@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Level.Optimizers {
     public class BlockRenderOptimizer : MonoBehaviour {
@@ -27,6 +28,7 @@ namespace Level.Optimizers {
             }
 
             _filter.mesh = new Mesh();
+            _filter.mesh.indexFormat = IndexFormat.UInt32;
             _filter.mesh.CombineMeshes(combine);
             _renderer.material = material;
             if (material != null) {

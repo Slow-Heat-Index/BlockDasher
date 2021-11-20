@@ -12,6 +12,8 @@ namespace Level.Generator {
         public GameObject triangle;
         public GameObject sphere;
         public GameObject shark;
+
+        public MusicManager Music;
         public World World { get; private set; }
 
 
@@ -33,6 +35,7 @@ namespace Level.Generator {
             // Create player
             Instantiate(player, transform);
             World.SpawnEntities();
+            Music.Play(World.Skybox.MusicId);
         }
 
 

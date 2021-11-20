@@ -8,10 +8,13 @@ namespace Sources.Level.Skyboxes {
         public String Name { get; }
         public Material Skybox { get; }
 
-        public SkyboxWrapper(Identifier identifier, string name, Material skybox) {
+        public int MusicId { get; }
+
+        public SkyboxWrapper(Identifier identifier, string name, Material skybox, int musicId) {
             Identifier = identifier;
             Name = name;
             Skybox = skybox;
+            MusicId = musicId;
         }
     }
 }
