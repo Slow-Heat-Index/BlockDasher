@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class HubWorld : MonoBehaviour {
@@ -10,7 +11,7 @@ public class HubWorld : MonoBehaviour {
     public HubMovement hubMovement;
     public bool isLocked;
     public string[] levels;
-    public bool[] lockedLevels;
+    public Vector3[] levelRotation;
     public int starsNeeded;
 
     private void Awake() {
@@ -19,6 +20,11 @@ public class HubWorld : MonoBehaviour {
 
     private void OnEnable() {
         hubWorldAnim.OnLevelUp.AddListener(hubMovement.InitEverything);
+    }
+
+    public void Rotate(int i)
+    {
+        transform.DORotate(levelRotation[i], 0.8f);
     }
     
     

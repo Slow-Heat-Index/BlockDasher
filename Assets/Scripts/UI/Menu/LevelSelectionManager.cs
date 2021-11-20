@@ -41,7 +41,8 @@ public class LevelSelectionManager : MonoBehaviour {
 
     public void Next() {
         _hubMovement.GoNext();
-
+        _hubWorld.Rotate(_hubMovement.GetCurrentLevel());
+        
         _playButton.interactable = IsUnlocked(_hubMovement.GetCurrentLevel());
 
         if (_hubMovement.GetCurrentLevel() == _hubMovement.GetNumLevels() - 1) {
@@ -53,6 +54,7 @@ public class LevelSelectionManager : MonoBehaviour {
 
     public void Previous() {
         _hubMovement.GoPrevious();
+        _hubWorld.Rotate(_hubMovement.GetCurrentLevel());
 
         _playButton.interactable = IsUnlocked(_hubMovement.GetCurrentLevel());
 

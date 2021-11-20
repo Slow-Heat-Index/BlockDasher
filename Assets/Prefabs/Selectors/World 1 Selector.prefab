@@ -220,6 +220,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d3e01eb357a6c4d8372c81d149b536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnLevelReached:
+    m_PersistentCalls:
+      m_Calls: []
   path: []
   duration: 0.4
   checkPointsIndex: 00000000060000000c0000001100000015000000
@@ -630,7 +633,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7903982381112024369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.905, y: -3.2162, z: -3.5697}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.54615, y: 0.54615, z: 0.54615}
   m_Children:
   - {fileID: 7654482623909300060}
