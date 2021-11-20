@@ -16,7 +16,7 @@ public class HubWorldAnim : MonoBehaviour {
 
     public void PopUp() {
         transform.position = initialPos.position;
-        transform.DOMove(Vector3.zero, _tweenTime);
+        transform.DOMoveY(0, _tweenTime);
         transform.DORotate(new Vector3(0, 180, 0), _tweenTime, RotateMode.Fast)
             .SetEase(Ease.Linear)
             .OnComplete(() => OnLevelUp.Invoke());

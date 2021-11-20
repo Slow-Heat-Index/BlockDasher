@@ -55,10 +55,12 @@ public class HubMovement : MonoBehaviour {
         {
             if (i != checkPointsIndex[index - 1])
             {
-                sequence.Append(transform.DOLookAt(path[i].transform.position, duration));
-                sequence.Join(transform.DOScaleZ((float) transform.localScale.z * 1.15f,duration*0.5f).SetLoops(2,LoopType.Yoyo));
+                var rotation = Vector3.SignedAngle(path[i -1].transform.forward,path[i].transform.position - path[i - 1].transform.position, Vector3.up);
+                sequence.Append(transform.DOLocalRotate(new Vector3(0f,rotation,0f), duration));
+                
+                sequence.Join(transform.DOScaleZ((float) transform.localScale.z * 1.3f,duration*0.5f).SetLoops(2,LoopType.Yoyo));
             }
-            sequence.Append(transform.DOMove(path[i].transform.position, duration).SetEase(Ease.InOutCirc));
+            sequence.Append(transform.DOLocalMove(path[i].transform.localPosition, duration).SetEase(Ease.InOutCirc));
         }
         sequence.AppendInterval(0.2f);
         sequence.PrependInterval(0.2f);
