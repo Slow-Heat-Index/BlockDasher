@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Data;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -51,8 +52,8 @@ public class WorldSelection : MonoBehaviour {
         worlds[previous].hubWorldAnim.PopDown();
         worldName.sprite = worlds[currentWorld].imageName;
 
-        selectWorldb.interactable = !worlds[currentWorld].isLocked;
-        worldLocked.SetActive(worlds[currentWorld].isLocked);
+        selectWorldb.interactable = !(worlds[currentWorld].starsNeeded > PersistentDataContainer.PersistentData.totalStars);
+        worldLocked.SetActive(worlds[currentWorld].starsNeeded > PersistentDataContainer.PersistentData.totalStars);
         
         if (currentWorld == worlds.Length - 1) {
             nextWorldb.interactable = false;
@@ -64,8 +65,8 @@ public class WorldSelection : MonoBehaviour {
         var previous = currentWorld;
         currentWorld--;
         
-        selectWorldb.interactable = !worlds[currentWorld].isLocked;
-        worldLocked.SetActive(worlds[currentWorld].isLocked);
+        selectWorldb.interactable = !(worlds[currentWorld].starsNeeded > PersistentDataContainer.PersistentData.totalStars);
+        worldLocked.SetActive(worlds[currentWorld].starsNeeded > PersistentDataContainer.PersistentData.totalStars);
         
         worlds[currentWorld].hubWorldAnim.PopUp();
         worlds[previous].hubWorldAnim.PopDown();
