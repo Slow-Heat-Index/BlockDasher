@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ReplayFromDeath : MonoBehaviour {
-    [SerializeField] private ScreensTransitions _screensTransitions;
+    [SerializeField] private GameObject gameOverGO;
     private Button _button;
     private PauseMenu _pauseMenu;
 
@@ -16,12 +16,17 @@ public class ReplayFromDeath : MonoBehaviour {
     }
 
     private void OnEnable() {
-        _button.onClick.AddListener(_pauseMenu.RestartLevel);
-        _button.onClick.AddListener(_screensTransitions.ScreenUp);
+        _button.onClick.AddListener(Replay);
     }
 
     private void OnDisable() {
-        _button.onClick.RemoveListener(_pauseMenu.RestartLevel);
-        _button.onClick.RemoveListener(_screensTransitions.ScreenUp);
+        _button.onClick.RemoveListener(Replay);
+    }
+
+    void Replay() {
+        _pauseMenu.gameObject.SetActive(true);
+        _pauseMenu.RestartLevel();
+        _pauseMenu.gameObject.SetActive(false);
+        gameOverGO.SetActive(false);
     }
 }

@@ -13,7 +13,7 @@ public class ContinueScreen : MonoBehaviour {
     [SerializeField] private Text secondsLeft;
     [SerializeField] private Image progress;
     [SerializeField] GameObject gameplayUiGO;
-    [SerializeField] private ScreensTransitions gameOverGO;
+    [SerializeField] private GameObject gameOverGO;
     [SerializeField] private Button watchAd;
     private FullScreenAd _ad;
     private Fader _fader;
@@ -24,6 +24,9 @@ public class ContinueScreen : MonoBehaviour {
         _screensTransitions = GetComponent<ScreensTransitions>();
         _fader = FindObjectOfType<Fader>();
         _ad = FindObjectOfType<FullScreenAd>();
+        
+        gameOverGO.GetComponent<RectTransform>().localPosition = Vector3.zero;
+        gameOverGO.SetActive(false);
     }
 
 
@@ -32,7 +35,7 @@ public class ContinueScreen : MonoBehaviour {
         _playerData.onLose += StartCountDown;
         _playerData.onLose += _screensTransitions.ScreenIn;
         onCountDownOver +=_screensTransitions.ScreenUp;
-        onCountDownOver += gameOverGO.ScreenIn;
+        onCountDownOver += () => gameOverGO.SetActive(true);
         watchAd.onClick.AddListener(WatchAd);
     }
 
@@ -45,7 +48,7 @@ public class ContinueScreen : MonoBehaviour {
     void WatchAd() {
         StopCoroutine(CountDown());
         _screensTransitions.ScreenUp();
-        gameOverGO.ScreenIn();
+        gameOverGO.SetActive(true);
         _ad.PlayAd();
     }
 

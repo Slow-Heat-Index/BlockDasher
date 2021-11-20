@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class HubWorld : MonoBehaviour {
     public String worldName;
+    public Sprite imageName;
     public HubWorldAnim hubWorldAnim;
     public HubMovement hubMovement;
     public bool isLocked;
