@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1224877414}
-  m_IndirectSpecularColor: {r: 0.11306948, g: 0.7213132, b: 0.7353566, a: 0.5}
+  m_IndirectSpecularColor: {r: 0.34436274, g: 0.6467314, b: 0.7353566, a: 0.5}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -183,8 +183,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 420
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7c595129224e85740b81346aa15b7e67, type: 2}
+  m_sharedMaterial: {fileID: 7504502950247034146, guid: 7c595129224e85740b81346aa15b7e67,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -319,8 +320,9 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7c595129224e85740b81346aa15b7e67, type: 2}
+  m_sharedMaterial: {fileID: 7504502950247034146, guid: 7c595129224e85740b81346aa15b7e67,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -344,7 +346,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.75
+  m_fontSize: 35.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1975,7 +1977,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1515eef22bea6d42b3812164630313e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _button: {fileID: 0}
 --- !u!4 &598125771 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7903982380208566737, guid: d77d27cfe1cf99d468e65a5294f07e92,
@@ -2385,8 +2386,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 15
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7c595129224e85740b81346aa15b7e67, type: 2}
+  m_sharedMaterial: {fileID: 7504502950247034146, guid: 7c595129224e85740b81346aa15b7e67,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2410,7 +2412,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.75
+  m_fontSize: 35.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2623,7 +2625,6 @@ MonoBehaviour:
   tweenTime: 0.4
   amplitude: 1
   period: 0.19
-  target: {x: 0, y: 0}
 --- !u!114 &712144513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2759,7 +2760,6 @@ MonoBehaviour:
   tweenTime: 0.4
   amplitude: 1
   period: 0.3
-  target: {x: 0, y: 0}
 --- !u!114 &734252240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2773,8 +2773,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTime: 0.2
-  _previousSize: {x: 0, y: 0}
-  _rectTransform: {fileID: 0}
 --- !u!1 &783168466
 GameObject:
   m_ObjectHideFlags: 0
@@ -5124,7 +5122,6 @@ MonoBehaviour:
   tweenTime: 0.4
   amplitude: 1
   period: 0.19
-  target: {x: 0, y: 0}
 --- !u!1 &1075588686
 GameObject:
   m_ObjectHideFlags: 0
@@ -5183,7 +5180,6 @@ MonoBehaviour:
   tweenTime: 0.4
   amplitude: 1
   period: 0.19
-  target: {x: 0, y: 0}
 --- !u!114 &1075588689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5399,7 +5395,6 @@ MonoBehaviour:
   tweenTime: 0.4
   amplitude: 1
   period: 0.3
-  target: {x: 0, y: 0}
 --- !u!114 &1123672668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5413,8 +5408,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTime: 0.2
-  _previousSize: {x: 0, y: 0}
-  _rectTransform: {fileID: 0}
 --- !u!1 &1143830843
 GameObject:
   m_ObjectHideFlags: 0
@@ -6398,8 +6391,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Dashes:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7c595129224e85740b81346aa15b7e67, type: 2}
+  m_sharedMaterial: {fileID: 7504502950247034146, guid: 7c595129224e85740b81346aa15b7e67,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6423,7 +6417,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.75
+  m_fontSize: 34.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7120,7 +7114,6 @@ MonoBehaviour:
   tweenTime: 0.4
   amplitude: 0
   period: 0
-  target: {x: 0, y: 0}
 --- !u!114 &1276265509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7134,8 +7127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTime: 0.2
-  _previousSize: {x: 0, y: 0}
-  _rectTransform: {fileID: 0}
 --- !u!1001 &1300148128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7565,7 +7556,6 @@ MonoBehaviour:
   tweenTime: 0.4
   amplitude: 0
   period: 0
-  target: {x: 0, y: 0}
 --- !u!1 &1386676721
 GameObject:
   m_ObjectHideFlags: 0
@@ -8279,12 +8269,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldName: Volcano
+  imageName: {fileID: -9222161006320053470, guid: a81aeca0d8ec70e4a818c05743683e37,
+    type: 3}
   hubWorldAnim: {fileID: 0}
   hubMovement: {fileID: 598125772}
   isLocked: 1
   levels: []
   lockedLevels: 0101010101
-  starsNeeded: 0
 --- !u!1 &1527864330
 GameObject:
   m_ObjectHideFlags: 0
@@ -8928,8 +8919,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Stars:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7c595129224e85740b81346aa15b7e67, type: 2}
+  m_sharedMaterial: {fileID: 7504502950247034146, guid: 7c595129224e85740b81346aa15b7e67,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8953,7 +8945,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.75
+  m_fontSize: 35.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9054,6 +9046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTime: 1
+  targetOpacity: 0
 --- !u!114 &1656989819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9161,13 +9154,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldName: Desert
+  imageName: {fileID: 674749358366269318, guid: a81aeca0d8ec70e4a818c05743683e37,
+    type: 3}
   hubWorldAnim: {fileID: 0}
   hubMovement: {fileID: 2044850678}
   isLocked: 1
   levels:
   - Levels/garden
   lockedLevels: 0101010101
-  starsNeeded: 0
 --- !u!1 &1728660762
 GameObject:
   m_ObjectHideFlags: 0
@@ -10111,7 +10105,7 @@ MonoBehaviour:
   - {fileID: 1943650457}
   - {fileID: 1500504540}
   currentWorld: 0
-  worldName: {fileID: 0}
+  worldName: {fileID: 936416337}
   nextWorldb: {fileID: 804511978}
   previousWorldb: {fileID: 1259744186}
   selectWorldb: {fileID: 867111415}
@@ -10688,7 +10682,6 @@ MonoBehaviour:
   tweenTime: 0.4
   amplitude: 1
   period: 0.3
-  target: {x: 0, y: 0}
 --- !u!114 &1859624908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10702,8 +10695,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTime: 0.2
-  _previousSize: {x: 0, y: 0}
-  _rectTransform: {fileID: 0}
 --- !u!1 &1872918963
 GameObject:
   m_ObjectHideFlags: 0
@@ -11403,12 +11394,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldName: Glacier
+  imageName: {fileID: 8638217669947796106, guid: a81aeca0d8ec70e4a818c05743683e37,
+    type: 3}
   hubWorldAnim: {fileID: 0}
   hubMovement: {fileID: 2023492805}
   isLocked: 1
   levels: []
   lockedLevels: 0101010101
-  starsNeeded: 0
 --- !u!1 &1952343809
 GameObject:
   m_ObjectHideFlags: 0
@@ -12030,7 +12022,6 @@ MonoBehaviour:
   tweenTime: 0.4
   amplitude: 1
   period: 0.3
-  target: {x: 0, y: 0}
 --- !u!114 &1975216496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12044,8 +12035,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTime: 0
-  _previousSize: {x: 0, y: 0}
-  _rectTransform: {fileID: 0}
 --- !u!114 &1975216497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12059,8 +12048,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTime: 0.2
-  _previousSize: {x: 0, y: 0}
-  _rectTransform: {fileID: 0}
 --- !u!1 &1984460942
 GameObject:
   m_ObjectHideFlags: 0
@@ -12124,12 +12111,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldName: Beach
+  imageName: {fileID: -6126607026168627098, guid: a81aeca0d8ec70e4a818c05743683e37,
+    type: 3}
   hubWorldAnim: {fileID: 0}
   hubMovement: {fileID: 311171116}
   isLocked: 1
   levels: []
   lockedLevels: 0101010101
-  starsNeeded: 0
 --- !u!1 &1990909998
 GameObject:
   m_ObjectHideFlags: 0
@@ -12637,7 +12625,6 @@ MonoBehaviour:
   tweenTime: 0.4
   amplitude: 1
   period: 0.3
-  target: {x: 0, y: 0}
 --- !u!114 &1992267128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12651,8 +12638,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenTime: 0.2
-  _previousSize: {x: 0, y: 0}
-  _rectTransform: {fileID: 0}
 --- !u!1001 &2004719692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12824,6 +12809,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldName: Gardens
+  imageName: {fileID: 8017312208958318769, guid: a81aeca0d8ec70e4a818c05743683e37,
+    type: 3}
   hubWorldAnim: {fileID: 0}
   hubMovement: {fileID: 955708719}
   isLocked: 0
@@ -12834,7 +12821,6 @@ MonoBehaviour:
   - block_dasher:level_1_4
   - block_dasher:level_1_5
   lockedLevels: 0000000001
-  starsNeeded: 0
 --- !u!4 &2023492804 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7903982380208566737, guid: d77d27cfe1cf99d468e65a5294f07e92,
@@ -13339,8 +13325,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 420
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7c595129224e85740b81346aa15b7e67, type: 2}
+  m_sharedMaterial: {fileID: 7504502950247034146, guid: 7c595129224e85740b81346aa15b7e67,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
