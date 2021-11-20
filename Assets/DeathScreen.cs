@@ -10,7 +10,7 @@ public class DeathScreen : MonoBehaviour {
     private PlayerData _playerData;
     private LevelCameraController _levelCameraController;
     private AudioSource _audioSource;
-    private bool started;
+    private bool started = false;
 
 
     void Start() {
@@ -21,18 +21,25 @@ public class DeathScreen : MonoBehaviour {
         _audioSource = GetComponent<AudioSource>();
         
         GetComponent<RectTransform>().localPosition = Vector3.zero;
-        _levelCameraController.enabled = false;
+        
+        if (started) {
+            gameplayUI.SetActive(false);
+            _levelCameraController.enabled = false;
+            
+        }
+        else {
+            started = true;
+            
+        }
+
+        
         gameObject.SetActive(false);
     }
 
     private void OnEnable() {
         if (started) {
-            gameplayUI.SetActive(false);
-        }
-        else {
-            started = true;
+            _audioSource.Play();
         }
         
-        _audioSource.Play();
     }
 }
