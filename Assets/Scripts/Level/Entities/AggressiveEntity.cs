@@ -3,24 +3,43 @@ using Level.Player.Data;
 using Sources.Identification;
 using Sources.Level.Raycast;
 using Sources.Util;
+using UnityEngine;
 
 namespace Level.Entities {
+    [RequireComponent(typeof(EnemySoundManager))]
     public class AggressiveEntity : RandomPathAwareEntity {
         private static readonly Direction[] CheckDirections =
             { Direction.North, Direction.East, Direction.South, Direction.West };
 
         private PlayerData _playerData;
+        private bool previousSeen;
+        private bool soundPlayed;
+
+        protected EnemySoundManager _enemySoundManager;
 
         protected override void Start() {
             _playerData = FindObjectOfType<PlayerData>();
+            _enemySoundManager = GetComponent<EnemySoundManager>();
         }
 
         public override void BeforeDash(PlayerData player) {
             DirectionFound = false;
             BlocksDashed = 0;
             CollidedWithPlayer = false;
-            
-            if (_playerData.BlockPosition.Position == Position.Position || !IsPlayerVisible()) return;
+
+            if (_playerData.BlockPosition.Position == Position.Position || !IsPlayerVisible()) {
+                previousSeen = false;
+                return;
+            }
+
+            if (!previousSeen) {
+                previousSeen = true;
+                if (!soundPlayed) {
+                    _enemySoundManager.Play(0);
+                    soundPlayed = true;
+                }
+                
+            }
 
             var minDirection = Direction.Up;
             var minDistance = int.MaxValue;
@@ -38,6 +57,10 @@ namespace Level.Entities {
             if(minDirection == Direction.Up) return;
 
             DirectionFound = true;
+            if (previousSeen == false) {
+                _enemySoundManager.Play(0);
+                previousSeen = true;
+            }
             Direction = minDirection;
             MaximumMovements = Position.Moved(Direction.Down).Block?.MaximumSteps ?? 2;
             MaximumMovements += ExtraSteps;

@@ -45,6 +45,7 @@ namespace Level.Player.Data {
         private LevelGenerator _level;
         private readonly Queue<Vector3> _movementQueue = new Queue<Vector3>();
         private Tween _movementTween;
+        private PlayerSoundManager _playerSoundManager;
 
         private LevelCameraBehaviour _cameraBehaviour;
 
@@ -59,6 +60,7 @@ namespace Level.Player.Data {
             _level = FindObjectOfType<LevelGenerator>();
             _animator = GetComponentInChildren<Animator>();
             _cameraBehaviour = FindObjectOfType<LevelCameraBehaviour>();
+            _playerSoundManager = GetComponent<PlayerSoundManager>();
 
             BlockPosition = _level.World.StartPosition.Position;
 
@@ -98,6 +100,7 @@ namespace Level.Player.Data {
                     }
                     else if (waypoints.Length > 0) {
                         _animator.Play(AnimatorBump, 0);
+                        _playerSoundManager.PlayRandomPitch(3);
                     }
                 }
                 else {
@@ -141,9 +144,11 @@ namespace Level.Player.Data {
                     Lose(false);
                     return;
                 }
+                _playerSoundManager.PlayRandomPitch(2);
             }
             else {
                 movementsOnQuicksand = 0;
+                _playerSoundManager.PlayRandomPitch(0);
             }
 
             if (current is WaterBlock) {
@@ -152,9 +157,12 @@ namespace Level.Player.Data {
                     Lose(false);
                     return;
                 }
+                _playerSoundManager.PlayRandomPitch(4);
             }
             else {
                 movementsInWater = 0;
+                _playerSoundManager.PlayRandomPitch(0);
+                
             }
 
             if (shouldCameraFollow) {
@@ -179,6 +187,7 @@ namespace Level.Player.Data {
 
             if (fall) {
                 _animator.Play(AnimatorFall, 0);
+                _playerSoundManager.Play(1);
                 for (var i = 0; i < 20; i++) {
                     ref var v = ref waypoints[waypoints.Length - 1 - i];
                     v.y -= 1.2f * i;
@@ -186,6 +195,7 @@ namespace Level.Player.Data {
             }
             else {
                 _animator.Play(AnimatorDeath, 0);
+                _playerSoundManager.Play(5);
             }
 
             _movementQueue.Clear();

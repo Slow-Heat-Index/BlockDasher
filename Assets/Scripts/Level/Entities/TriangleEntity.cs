@@ -21,11 +21,14 @@ namespace Level.Entities {
             base.BeforeDash(player);
             if (Dashing) {
                 _animator.Play(AnimatorMove, 0);
+                
+                _enemySoundManager.Play(1);
             }
         }
 
         protected override void OnPlayerCollision(DashData dashData) {
             dashData.Player.Lose(false);
+            _enemySoundManager.Play(2);
         }
 
         public class TriangleEntityType : EntityType {
