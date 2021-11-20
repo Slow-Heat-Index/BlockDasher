@@ -21,6 +21,7 @@ namespace UI.Game {
         private PopUpAnim _popUpAnim;
         private RectTransform _rectTransform;
         [SerializeField] private Fader _background;
+        private AudioSource _audioSource;
 
         [SerializeField] private TextMeshProUGUI _steps;
         [SerializeField] private TextMeshProUGUI _time;
@@ -29,6 +30,7 @@ namespace UI.Game {
 
         private void Awake() {
             doubleCoins = FindObjectOfType<ContinueScreen>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void Start() {
@@ -59,6 +61,7 @@ namespace UI.Game {
 
         private void OnEnable() {
             replayButton.onClick.AddListener(RestartLevel);
+            _audioSource.Play();
         }
 
         private void OnDisable() {
