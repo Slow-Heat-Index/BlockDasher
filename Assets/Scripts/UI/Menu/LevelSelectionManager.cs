@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using Data;
+using DG.Tweening;
 using Sources;
 using Sources.Identification;
 using Sources.Level;
@@ -63,12 +64,12 @@ public class LevelSelectionManager : MonoBehaviour {
     }
 
     public void HideUI() {
-        _nextButton.gameObject.SetActive(false);
-        _previousButton.gameObject.SetActive(false);
-        _playButton.gameObject.SetActive(false);
-        _levelData.SetActive(false);
-        _backButton.gameObject.SetActive(false);
-        _levelLocked.SetActive(false);
+        _nextButton.gameObject.GetComponent<DisappearSmoothly>().Play();
+        _previousButton.gameObject.GetComponent<DisappearSmoothly>().Play();
+        _playButton.gameObject.GetComponent<DisappearSmoothly>().Play();
+        _levelData.GetComponent<DisappearSmoothly>().Play();
+        _backButton.GetComponent<DisappearSmoothly>().Play();
+        _levelLocked.GetComponent<DisappearSmoothly>().Play();
     }
 
     public void ShowUI() {
