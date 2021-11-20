@@ -26,6 +26,7 @@ namespace Level.Player.Data {
         public uint movements = 0;
         public bool hasWon;
         public bool dead;
+        
 
         public bool executingDeathAnimation;
         public bool shouldCameraFollow = true;
@@ -58,7 +59,9 @@ namespace Level.Player.Data {
             _level = FindObjectOfType<LevelGenerator>();
             _animator = GetComponentInChildren<Animator>();
             _cameraBehaviour = FindObjectOfType<LevelCameraBehaviour>();
+
             BlockPosition = _level.World.StartPosition.Position;
+
             UpdateTransform();
         }
 

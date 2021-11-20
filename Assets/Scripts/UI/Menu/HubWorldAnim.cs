@@ -9,10 +9,13 @@ public class HubWorldAnim : MonoBehaviour {
     public UnityEvent OnLevelUp;
     [SerializeField] private float _tweenTime;
     [SerializeField] private Transform initialPos;
-    
-   
+
+    private void Awake() {
+        transform.position += Vector3.back * 10;
+    }
 
     public void PopUp() {
+        transform.position = initialPos.position;
         transform.DOMove(Vector3.zero, _tweenTime);
         transform.DORotate(new Vector3(0, 180, 0), _tweenTime, RotateMode.Fast)
             .SetEase(Ease.Linear)
@@ -23,7 +26,8 @@ public class HubWorldAnim : MonoBehaviour {
     public void PopDown() {
         transform.DOMove(initialPos.position, _tweenTime);
         transform.DORotate(Vector3.zero, _tweenTime, RotateMode.Fast)
-            .SetEase(Ease.Linear);
+            .SetEase(Ease.Linear).OnComplete(() => transform.position += Vector3.back*10);
     }
+
 
 }

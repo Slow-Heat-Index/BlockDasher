@@ -11,7 +11,6 @@ public class PopUpAnim : MonoBehaviour {
     private Vector2 target;
 
     private void Awake() {
-        print("lol");
         target = transform.localScale;
         
     }
