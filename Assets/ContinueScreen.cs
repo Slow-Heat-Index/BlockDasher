@@ -38,7 +38,6 @@ public class ContinueScreen : MonoBehaviour {
     public void WatchAd() {
         StopCoroutine(CountDown());
         gameObject.SetActive(false);
-        winGO.SetActive(true);
         _ad.PlayAd();
     }
 
