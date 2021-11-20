@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class Fader : MonoBehaviour {
     private Image _image;
     [SerializeField] private float tweenTime;
+    [SerializeField] private float targetOpacity;
 
     private void Awake() {
         _image = GetComponent<Image>();
@@ -21,16 +22,20 @@ public class Fader : MonoBehaviour {
     }
 
     public void FadeIn() {
-        _image.DOFade(0, tweenTime);
+        _image.DOFade(0, tweenTime).SetUpdate(true);
         gameObject.SetActive(false);
     }
 
     public void FadeOut() {
-        _image.DOFade(1, tweenTime);
+        _image.DOFade(1, tweenTime).SetUpdate(true);
     }
 
     public void FadeTo(float opacity) {
-        _image.DOFade(opacity, tweenTime);
+        _image.DOFade(opacity, tweenTime).SetUpdate(true);
+    }
+
+    public void FadeToInspector() {
+        FadeTo(targetOpacity);
     }
 
     public float GetTweenTime() {

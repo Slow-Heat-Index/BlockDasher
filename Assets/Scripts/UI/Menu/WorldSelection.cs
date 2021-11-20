@@ -13,7 +13,7 @@ public class WorldSelection : MonoBehaviour {
     private int previousGameWorld;
     private RectTransform _rectTransform;
     private TitleScreen _titleScreen;
-    [SerializeField] private TextMeshProUGUI worldName;
+    [SerializeField] private Image worldName;
 
     [SerializeField] private Button nextWorldb;
     [SerializeField] private Button previousWorldb;
@@ -25,7 +25,7 @@ public class WorldSelection : MonoBehaviour {
     private void Awake() {
         _titleScreen = FindObjectOfType<TitleScreen>();
         currentWorld = previousGameWorld;
-        worldName.text = worlds[currentWorld].worldName;
+        worldName.sprite = worlds[currentWorld].imageName;
         _rectTransform = GetComponent<RectTransform>();
         _screensTransitions = GetComponent<ScreensTransitions>();
         worldLocked.SetActive(false);
@@ -49,7 +49,7 @@ public class WorldSelection : MonoBehaviour {
         
         worlds[currentWorld].hubWorldAnim.PopUp();
         worlds[previous].hubWorldAnim.PopDown();
-        worldName.text = worlds[currentWorld].worldName;
+        worldName.sprite = worlds[currentWorld].imageName;
 
         selectWorldb.interactable = !worlds[currentWorld].isLocked;
         worldLocked.SetActive(worlds[currentWorld].isLocked);
@@ -69,7 +69,7 @@ public class WorldSelection : MonoBehaviour {
         
         worlds[currentWorld].hubWorldAnim.PopUp();
         worlds[previous].hubWorldAnim.PopDown();
-        worldName.text = worlds[currentWorld].worldName;
+        worldName.sprite = worlds[currentWorld].imageName;
         
         if (currentWorld == 0) {
             previousWorldb.interactable = false;
