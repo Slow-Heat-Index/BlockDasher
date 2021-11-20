@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Sources.Level;
 
 namespace Data
@@ -23,11 +24,13 @@ namespace Data
             {
                 stars += level.stars;
             }
+
             totalStars = stars;
         }
 
-        public void AddLevelCompleted(string path, int steps, int stars)
+        public void AddLevelCompleted(string path, int steps, int goldStars, int silverStars)
         {
+            var stars = LevelStars(goldStars, silverStars, steps);
             if (IsCompleted(path))
             {
                 var levelData = completedLevels.Find(x => x.level.Equals(path));
@@ -38,14 +41,21 @@ namespace Data
             }
             else
             {
-                completedLevels.Add(new LevelCompletionData(path,steps,stars));
+                completedLevels.Add(new LevelCompletionData(path, steps, stars));
             }
+
             UpdateStars();
         }
 
         public bool IsCompleted(string path)
         {
             return completedLevels.Exists(x => x.level.Equals(path));
+        }
+
+        public int LevelStars(int gold, int silver, int steps)
+        {
+            if (steps <= gold) return 3;
+            return steps <= silver ? 2 : 1;
         }
     }
 }
