@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using Level.Player.Behaviour;
-using Level.Player.Data;
 using Sources.Identification;
 using Sources.Level;
 using Sources.Util;
@@ -23,7 +22,57 @@ namespace Level.Entities {
 
         protected bool CollidedWithPlayer = false;
 
-        public override void BeforeDash(PlayerData player) {
+        protected override void Start() {
+            base.Start();
+            CalculateNextDash(false);
+            transform.LookAt(transform.position + Direction.GetVector());
+        }
+
+        public override void AfterMove(DashData dashData) {
+            if (!CollidedWithPlayer && dashData.Player.BlockPosition.Position == Position.Position) {
+                CollidedWithPlayer = true;
+                OnPlayerCollision(dashData);
+            }
+
+            DashStep(dashData);
+        }
+
+        public override void AfterDash(DashData dashData) {
+            if (!CollidedWithPlayer && dashData.Player.BlockPosition.Position == Position.Position) {
+                CollidedWithPlayer = true;
+                OnPlayerCollision(dashData);
+            }
+
+            while (Dashing) {
+                DashStep(dashData);
+            }
+
+            if (CollidedWithPlayer || dashData.Player.BlockPosition.Position != Position.Position) return;
+            CollidedWithPlayer = true;
+            OnPlayerCollision(dashData);
+        }
+
+        public override void AfterFall(DashData dashData) {
+            base.AfterFall(dashData);
+
+            if (!CollidedWithPlayer && dashData.Player.BlockPosition.Position == Position.Position) {
+                CollidedWithPlayer = true;
+                OnPlayerCollision(dashData);
+            }
+
+            CalculateNextDash(BlocksDashed > 0);
+        }
+
+        protected virtual void OnPlayerCollision(DashData dashData) {
+        }
+
+        public override void OnTweenComplete() {
+            if (DirectionFound) {
+                transform.LookAt(transform.position + Direction.GetVector());
+            }
+        }
+
+        protected virtual void CalculateNextDash(bool dashing) {
             DirectionFound = false;
             BlocksDashed = 0;
             CollidedWithPlayer = false;
@@ -37,43 +86,13 @@ namespace Level.Entities {
                 MaximumMovements = Position.Moved(Direction.Down).Block?.MaximumSteps ?? 2;
                 MaximumMovements += ExtraSteps;
                 Dashing = true;
-                transform.LookAt(transform.position + direction.GetVector());
+
+                if (!dashing) {
+                    transform.LookAt(transform.position + Direction.GetVector());
+                }
+                
                 break;
             }
-        }
-
-        public override void AfterMove(DashData dashData) {
-            if (!CollidedWithPlayer && dashData.Player.BlockPosition.Position == Position.Position) {
-                CollidedWithPlayer = true;
-                OnPlayerCollision(dashData);
-            }
-            
-            DashStep(dashData);
-        }
-
-        public override void AfterDash(DashData dashData) {
-            if (!CollidedWithPlayer && dashData.Player.BlockPosition.Position == Position.Position) {
-                CollidedWithPlayer = true;
-                OnPlayerCollision(dashData);
-            }
-            
-            while (Dashing) {
-                DashStep(dashData);
-            }
-
-            if (CollidedWithPlayer || dashData.Player.BlockPosition.Position != Position.Position) return;
-            CollidedWithPlayer = true;
-            OnPlayerCollision(dashData);
-        }
-
-        public override void AfterFall(DashData dashData) {
-            base.AfterFall(dashData);
-            if (CollidedWithPlayer || dashData.Player.BlockPosition.Position != Position.Position) return;
-            CollidedWithPlayer = true;
-            OnPlayerCollision(dashData);
-        }
-
-        protected virtual void OnPlayerCollision(DashData dashData) {
         }
 
         protected bool CanDashTo(Direction direction, out Vector3Int finalPosition) {
