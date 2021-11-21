@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Sources.Level;
+using UnityEngine;
 
 namespace Data
 {
@@ -34,6 +35,7 @@ namespace Data
             if(coins-value < 0) return;
 
             coins += value;
+            Debug.Log(coins);
         }
 
         public void AddLevelCompleted(string path, int steps, int goldStars, int silverStars)
