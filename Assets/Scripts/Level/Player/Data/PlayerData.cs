@@ -63,7 +63,7 @@ namespace Level.Player.Data {
             _animator = GetComponentInChildren<Animator>();
             _cameraBehaviour = FindObjectOfType<LevelCameraBehaviour>();
             _playerSoundManager = GetComponent<PlayerSoundManager>();
-            _movesCounter = FindObjectOfType<MovesCounter>();
+           _movesCounter = FindObjectOfType<MovesCounter>();
 
             BlockPosition = _level.World.StartPosition.Position;
 

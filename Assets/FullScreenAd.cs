@@ -48,7 +48,10 @@ public class FullScreenAd : MonoBehaviour {
         }
         
         adGO.SetActive(false);
-        toActivate.SetActive(true);
+        if (toActivate != null) {
+            toActivate.SetActive(true); 
+        }
+        
     }
 
     IEnumerator SkipAd() {
@@ -62,6 +65,9 @@ public class FullScreenAd : MonoBehaviour {
         progressTween.Pause();
         progress.fillAmount = 1;
         adGO.SetActive(false);
-        toActivate.SetActive(true);
+        
+        if (toActivate != null) {
+            toActivate.SetActive(true); 
+        }
     }
 }

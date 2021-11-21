@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Sources.Level;
 
 namespace Data
@@ -10,6 +11,7 @@ namespace Data
     {
         public List<LevelCompletionData> completedLevels;
         public int totalStars;
+        public int coins = 5000;
 
         public PlayerPersistentData()
         {
@@ -26,6 +28,12 @@ namespace Data
             }
 
             totalStars = stars;
+        }
+
+        public void ModifyCoins(int value) {
+            if(coins-value < 0) return;
+
+            coins += value;
         }
 
         public void AddLevelCompleted(string path, int steps, int goldStars, int silverStars)

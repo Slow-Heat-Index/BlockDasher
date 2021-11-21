@@ -10,36 +10,40 @@ public class DeathScreen : MonoBehaviour {
     private PlayerData _playerData;
     private LevelCameraController _levelCameraController;
     private AudioSource _audioSource;
-    private bool started = false;
+    private bool hasStarted = false;
 
+    private void Awake() {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     void Start() {
         _playerData = FindObjectOfType<PlayerData>();
         _playerData.onLose += () => gameObject.SetActive(true);
 
         _levelCameraController = FindObjectOfType<LevelCameraController>();
-        _audioSource = GetComponent<AudioSource>();
         
         GetComponent<RectTransform>().localPosition = Vector3.zero;
         
-        if (started) {
-            gameplayUI.SetActive(false);
-            _levelCameraController.enabled = false;
-            
-        }
-        else {
-            started = true;
-            
-        }
+        
+
+        hasStarted = true;
+
 
         
         gameObject.SetActive(false);
     }
 
     private void OnEnable() {
-        if (started) {
+        if (hasStarted) {
             _audioSource.Play();
+            DeactivateUI();
         }
         
+    }
+
+    void DeactivateUI() {
+        if (gameplayUI != null) {
+            gameplayUI.SetActive(false);
+        }
     }
 }
