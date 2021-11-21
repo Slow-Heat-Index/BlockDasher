@@ -1,4 +1,5 @@
 ﻿using Level.Generator;
+using Level.Player;
 using Level.Player.Behaviour;
 using Sources.Identification;
 using Sources.Level;
@@ -6,14 +7,13 @@ using UnityEngine;
 
 namespace Level.Entities {
     public class SharkEntity : AggressiveEntity {
-
         public SharkEntity() {
             ExtraSteps = 1;
             avoidBlocks.Add(null);
         }
 
         protected override void OnPlayerCollision(DashData dashData) {
-            dashData.Player.Lose(false);
+            dashData.Player.Lose(PlayerDeathCause.PUNCH);
         }
 
         public class SharkEntityType : EntityType {

@@ -17,6 +17,7 @@ namespace Level.Player.Data {
         private static readonly int AnimatorBump = Animator.StringToHash("Bump");
         private static readonly int AnimatorFall = Animator.StringToHash("Fall");
         private static readonly int AnimatorDeath = Animator.StringToHash("Death");
+        private static readonly int AnimatorDrown = Animator.StringToHash("Drown");
         private static readonly int AnimatorIdle = Animator.StringToHash("Idle");
         public event Action onWin;
         public event Action onLose;
@@ -26,7 +27,7 @@ namespace Level.Player.Data {
         public uint movements = 0;
         public bool hasWon;
         public bool dead;
-        
+
 
         public bool executingDeathAnimation;
         public bool shouldCameraFollow = true;
@@ -63,7 +64,7 @@ namespace Level.Player.Data {
             _animator = GetComponentInChildren<Animator>();
             _cameraBehaviour = FindObjectOfType<LevelCameraBehaviour>();
             _playerSoundManager = GetComponent<PlayerSoundManager>();
-           _movesCounter = FindObjectOfType<MovesCounter>();
+            _movesCounter = FindObjectOfType<MovesCounter>();
 
             BlockPosition = _level.World.StartPosition.Position;
 
@@ -136,7 +137,7 @@ namespace Level.Player.Data {
             if (current == null || current.CanMoveTo(Direction.Down)) {
                 if (down == null || down.CanMoveFrom(Direction.Up)) {
                     // OWO PLAYER IS DEAD
-                    Lose(true);
+                    Lose(PlayerDeathCause.FALL);
                     return;
                 }
             }
@@ -144,9 +145,10 @@ namespace Level.Player.Data {
             if (down is QuicksandBlock) {
                 movementsOnQuicksand++;
                 if (movementsOnQuicksand > maxMovementsOnQuicksand) {
-                    Lose(false);
+                    Lose(PlayerDeathCause.DROWN);
                     return;
                 }
+
                 _playerSoundManager.PlayRandomPitch(2);
             }
             else {
@@ -157,15 +159,15 @@ namespace Level.Player.Data {
             if (current is WaterBlock) {
                 movementsInWater++;
                 if (movementsInWater > maxMovementsInWater) {
-                    Lose(false);
+                    Lose(PlayerDeathCause.DROWN);
                     return;
                 }
+
                 _playerSoundManager.PlayRandomPitch(4);
             }
             else {
                 movementsInWater = 0;
                 _playerSoundManager.PlayRandomPitch(0);
-                
             }
 
             if (shouldCameraFollow) {
@@ -181,33 +183,44 @@ namespace Level.Player.Data {
             onWin?.Invoke();
         }
 
-        public void Lose(bool fall) {
+        public void Lose(PlayerDeathCause cause) {
             if (dead) return;
             executingDeathAnimation = true;
-            shouldCameraFollow = !fall;
+            shouldCameraFollow = cause != PlayerDeathCause.FALL;
             dead = true;
 
             var waypoints = _movementQueue.ToArray();
 
-            if (fall) {
-                _animator.Play(AnimatorFall, 0);
-                _playerSoundManager.Play(1);
-                for (var i = 0; i < 20; i++) {
-                    ref var v = ref waypoints[waypoints.Length - 1 - i];
-                    v.y -= 1.2f * i;
-                }
+            for (var i = 0; i < waypoints.Length; i++) {
+                waypoints[i] += new Vector3(0, -(movementsOnQuicksand - 1) / (float)(maxMovementsOnQuicksand + 1), 0);
             }
-            else {
-                _animator.Play(AnimatorDeath, 0);
-                _playerSoundManager.Play(5);
+
+            switch (cause) {
+                case PlayerDeathCause.FALL: {
+                    _animator.Play(AnimatorFall, 0);
+                    _playerSoundManager.Play(1);
+                    for (var i = 0; i < 20; i++) {
+                        ref var v = ref waypoints[waypoints.Length - 1 - i];
+                        v.y -= 1.2f * i;
+                    }
+
+                    break;
+                }
+                case PlayerDeathCause.DROWN:
+                    _animator.Play(AnimatorDrown, 0);
+                    break;
+                default:
+                    // PUNCH
+                    _animator.Play(AnimatorDeath, 0);
+                    _playerSoundManager.Play(5);
+                    break;
             }
 
             _movementQueue.Clear();
+
             _movementTween = transform.DOPath(waypoints, movementSpeed * waypoints.Length)
                 .SetEase(Ease.Linear);
-            _movementTween.onComplete = () => {
-                StartCoroutine(DeathAnimationCompleted(2, fall));
-            };
+            _movementTween.onComplete = () => { StartCoroutine(DeathAnimationCompleted(cause)); };
         }
 
         public void Reset() {
@@ -219,7 +232,7 @@ namespace Level.Player.Data {
             hasWon = false;
             _cameraBehaviour.TeleportCamera();
             onReset?.Invoke();
-            
+
             _animator.Play(AnimatorIdle, 0);
             shouldCameraFollow = true;
             _level.World.ResetLevel(true);
@@ -252,11 +265,16 @@ namespace Level.Player.Data {
             }
         }
 
-        private IEnumerator DeathAnimationCompleted(float seconds, bool fall) {
-            if (!fall) {
-                yield return new WaitForSeconds(seconds);
+        private IEnumerator DeathAnimationCompleted(PlayerDeathCause cause) {
+            switch (cause) {
+                case PlayerDeathCause.PUNCH:
+                    yield return new WaitForSeconds(2);
+                    break;
+                case PlayerDeathCause.DROWN:
+                    yield return new WaitForSeconds(1);
+                    break;
             }
-            
+
             onLose.Invoke();
             /*
             Reset();*/
