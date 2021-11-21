@@ -71,7 +71,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 3081703627630037270, guid: 1af845e48e7d363419575b5143555f82,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -167,7 +168,11 @@ MonoBehaviour:
   Identifier:
     provider: 
     key: 
+  background: {fileID: 4699488921709637415}
   image: {fileID: 4413747314787213576}
+  selected: 0
+  color: {r: 0.97647065, g: 0.6862745, b: 0.3803922, a: 1}
+  selectedColor: {r: 0.5281066, g: 0.9764706, b: 0.3803922, a: 1}
 --- !u!82 &6635109280068495780
 AudioSource:
   m_ObjectHideFlags: 0
