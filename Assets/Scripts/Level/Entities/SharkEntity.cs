@@ -13,6 +13,7 @@ namespace Level.Entities {
         }
 
         protected override void OnPlayerCollision(DashData dashData) {
+            _enemySoundManager.Play(2);
             dashData.Player.Lose(PlayerDeathCause.PUNCH);
         }
 

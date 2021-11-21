@@ -28,7 +28,7 @@ namespace Level.Entities {
         protected override void OnPlayerCollision(DashData dashData) {
             dashData.Cancel();
             Dashing = false;
-            
+            _enemySoundManager.Play(2);
             dashData.Player.transform.LookAt(dashData.Player.transform.position + Direction.GetVector());
             dashData.MovementBehaviour.ExecuteDash(dashData.With(Direction), 2);
         }

@@ -175,8 +175,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - {fileID: 8300000, guid: 57534d48532e77a4d878ff5a1e671afb, type: 3}
+  - {fileID: 8300000, guid: 6e5a8513d64601644844c2fc80516849, type: 3}
   - {fileID: 8300000, guid: fb9cbd1d75cf998459bab96653738b9b, type: 3}
+  - {fileID: 8300000, guid: 09a09d345bdddfd49ac674ff2fbd7c46, type: 3}
 --- !u!1001 &2595864108071089025
 PrefabInstance:
   m_ObjectHideFlags: 0
