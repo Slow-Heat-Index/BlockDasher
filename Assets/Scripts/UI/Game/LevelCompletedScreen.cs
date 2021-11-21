@@ -6,6 +6,7 @@ using Level.Player.Data;
 using Sources;
 using Sources.Level.Manager;
 using TMPro;
+using UI.Menu;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -87,6 +88,8 @@ namespace UI.Game {
                 Time.timeScale = 1;
                 RenderSettings.skybox = SkyboxManager.Garden.Skybox;
                 MenuGO.Instance.gameObject.SetActive(true);
+                MenuGO.Instance.GetComponentInChildren<LevelSelectionManager>()
+                    .RefreshUIWithLevelData();
             };
         }
 
