@@ -6,6 +6,7 @@ using Sources.Level;
 using Sources.Registration;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -17,6 +18,8 @@ namespace UI.Menu {
         private WorldSelection _worldSelection;
         private HubWorld _hubWorld;
 
+        [SerializeField] private LoadingSceneAnim loadingSceneAnim;
+        [SerializeField] private EventSystem eventSystem;
         [SerializeField] private GameObject worlds;
         [SerializeField] private Button nextButton;
         [SerializeField] private Button previousButton;
@@ -83,8 +86,16 @@ namespace UI.Menu {
             var level = manager.Get(new Identifier(_hubWorld.levels[_hubMovement.GetCurrentLevel()]));
             LevelData.SetLevelToLoad(level);
 
-            MenuGO.Instance.gameObject.SetActive(false);
-            SceneManager.LoadScene("Level", LoadSceneMode.Additive);
+            loadingSceneAnim.gameObject.SetActive(true);
+            eventSystem.gameObject.SetActive(false);
+            var coroutine = StartCoroutine(loadingSceneAnim.LoadingAnim());
+            var async = SceneManager.LoadSceneAsync("Level", LoadSceneMode.Additive);
+
+            async.completed += o => {
+                loadingSceneAnim.gameObject.SetActive(false);
+                MenuGO.Instance.gameObject.SetActive(false);
+                StopCoroutine(coroutine);
+            };
         }
 
         public bool IsUnlocked(int i) {
@@ -99,7 +110,7 @@ namespace UI.Menu {
             var unlocked = IsUnlocked(_hubMovement.GetCurrentLevel());
 
             _hubWorld.Rotate(_hubMovement.GetCurrentLevel());
-            
+
             playButton.interactable = unlocked;
 
             previousButton.interactable = current > 0;

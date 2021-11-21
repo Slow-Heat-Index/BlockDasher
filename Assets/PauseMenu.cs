@@ -87,8 +87,7 @@ public class PauseMenu : MonoBehaviour {
             Time.timeScale = 1;
             RenderSettings.skybox = SkyboxManager.Garden.Skybox;
             MenuGO.Instance.gameObject.SetActive(true);
-            MenuGO.Instance.GetComponentInChildren<LevelSelectionManager>()
-                .RefreshUIWithLevelData();
+            MenuGO.Instance.PrepareMenu();
         };
     }
 }
