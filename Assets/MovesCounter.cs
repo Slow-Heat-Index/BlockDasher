@@ -12,6 +12,10 @@ public class MovesCounter : MonoBehaviour {
         DashText = GetComponent<TextMeshProUGUI>();
     }
 
+    private void OnEnable() {
+        DashText.text = "0";
+    }
+
     public void AddMovement(uint move) {
         DashText.text = move.ToString();
     }

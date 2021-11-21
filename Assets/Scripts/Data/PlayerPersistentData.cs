@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Sources.Level;
+using UnityEngine;
 
 namespace Data
 {
@@ -10,6 +12,8 @@ namespace Data
     {
         public List<LevelCompletionData> completedLevels;
         public int totalStars;
+        public int coins = 5000;
+        private bool adsRemoved = false;
 
         public PlayerPersistentData()
         {
@@ -26,6 +30,21 @@ namespace Data
             }
 
             totalStars = stars;
+        }
+
+        public void ModifyCoins(int value) {
+            if(coins-value < 0) return;
+
+            coins += value;
+            Debug.Log(coins);
+        }
+
+        public bool GetAds() {
+            return adsRemoved;
+        }
+
+        public void SetAds(bool b) {
+            adsRemoved = b;
         }
 
         public void AddLevelCompleted(string path, int steps, int goldStars, int silverStars)

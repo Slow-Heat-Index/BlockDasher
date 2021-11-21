@@ -20,7 +20,7 @@ public class PopUpAnim : MonoBehaviour {
     }
 
 
-    void PopUp() {
+    public void PopUp() {
         transform.localScale = Vector3.zero;
         transform.DOScale(target, tweenTime).SetEase(Ease.OutElastic, amplitude, period).SetUpdate(true);
     }
