@@ -8,6 +8,7 @@ using Level.Player.Data;
 using Sources;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
 
@@ -28,6 +29,7 @@ namespace UI.Game {
         [SerializeField] private TextMeshProUGUI _time;
 
         [SerializeField] private Button replayButton;
+        [SerializeField] private Button mainMenuButton;
 
         private void Awake() {
             doubleCoins = FindObjectOfType<ContinueScreen>();
@@ -62,11 +64,13 @@ namespace UI.Game {
 
         private void OnEnable() {
             replayButton.onClick.AddListener(RestartLevel);
+            mainMenuButton.onClick.AddListener(GoToMainMenu);
             _audioSource.Play();
         }
 
         private void OnDisable() {
             replayButton.onClick.RemoveListener(RestartLevel);
+            mainMenuButton.onClick.RemoveListener(GoToMainMenu);
         }
 
         private void RestartLevel() {
@@ -77,6 +81,14 @@ namespace UI.Game {
             _player.Reset();
             _background.gameObject.SetActive(false);
             gameObject.SetActive(false);
+        }
+        
+        private void GoToMainMenu() {
+            var async = SceneManager.UnloadSceneAsync("Level");
+            async.completed += op => {
+                Time.timeScale = 1;
+                MenuGO.Instance.gameObject.SetActive(true);
+            };
         }
 
         void InitDoubleCoins() {

@@ -33,16 +33,14 @@ public class StarsDisplay : MonoBehaviour {
             _audioSource.Play();
             yield return new WaitForSeconds(animTime);
             _audioSource.pitch += 0.2f;
-            
         }
     }
 
     private void OnEnable() {
         if (!hasStarted) return;
-        print(_levelGenerator);
-        print(_playerData);
-        print(PersistentDataContainer.PersistentData);
-        StartCoroutine(StarsAnimation(PersistentDataContainer.PersistentData.LevelStars(_levelGenerator.World.SilverMoves, _levelGenerator.World.SilverMoves, (int)_playerData.movements)));
+        StartCoroutine(StarsAnimation(
+            PersistentDataContainer.PersistentData.LevelStars(_levelGenerator.World.SilverMoves,
+                _levelGenerator.World.SilverMoves, (int)_playerData.movements)));
     }
 
     private void Start() {

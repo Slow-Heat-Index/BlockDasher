@@ -4768,7 +4768,6 @@ GameObject:
   - component: {fileID: 1577630818}
   - component: {fileID: 1577630817}
   - component: {fileID: 1577630816}
-  - component: {fileID: 1577630819}
   m_Layer: 5
   m_Name: Menu Button
   m_TagString: Untagged
@@ -4891,19 +4890,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577630814}
   m_CullTransparentMesh: 1
---- !u!114 &1577630819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1577630814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29a4270d9bb087d4cad2b1eab55b02ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sceneToLoadId: 1
 --- !u!1 &1624656628
 GameObject:
   m_ObjectHideFlags: 0
@@ -4975,6 +4961,7 @@ MonoBehaviour:
   _steps: {fileID: 590640437}
   _time: {fileID: 0}
   replayButton: {fileID: 2016430314}
+  mainMenuButton: {fileID: 1577630816}
 --- !u!82 &1624656632
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5267,7 +5254,6 @@ GameObject:
   - component: {fileID: 1672238336}
   - component: {fileID: 1672238335}
   - component: {fileID: 1672238334}
-  - component: {fileID: 1672238333}
   m_Layer: 5
   m_Name: Menu Button
   m_TagString: Untagged
@@ -5294,19 +5280,6 @@ RectTransform:
   m_AnchoredPosition: {x: 13.000046, y: -581}
   m_SizeDelta: {x: 510.413, y: 139.13922}
   m_Pivot: {x: 0.5, y: 1}
---- !u!114 &1672238333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1672238331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29a4270d9bb087d4cad2b1eab55b02ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sceneToLoadId: 1
 --- !u!114 &1672238334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5355,6 +5328,18 @@ MonoBehaviour:
       - m_Target: {fileID: 711037975}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1303022835}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: GoToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

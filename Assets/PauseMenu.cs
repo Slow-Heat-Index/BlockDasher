@@ -1,16 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Level.Cameras.Controller;
 using Level.Generator;
 using Level.Player.Controller;
 using Level.Player.Data;
+using UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour {
-
     [SerializeField] private GameObject gameplayUigo;
     [SerializeField] private Button pauseButton;
     [SerializeField] private Button continueButton;
@@ -29,7 +26,7 @@ public class PauseMenu : MonoBehaviour {
 
         _rectTransform.localPosition = Vector3.zero;
     }
-    
+
     private void OnEnable() {
         pauseButton.onClick.AddListener(PauseGame);
         continueButton.onClick.AddListener(ContinueGame);
@@ -47,11 +44,10 @@ public class PauseMenu : MonoBehaviour {
         _levelGenerator = FindObjectOfType<LevelGenerator>();
         _player = FindObjectOfType<PlayerData>();
         _levelCameraController = FindObjectOfType<LevelCameraController>();
-        
+
         gameObject.SetActive(false);
     }
 
-    
 
     public void PauseGame() {
         gameplayUigo.SetActive(false);
@@ -71,7 +67,7 @@ public class PauseMenu : MonoBehaviour {
         Time.timeScale = 1;
         gameObject.SetActive(false);
     }
-    
+
     public void RestartLevel() {
         gameplayUigo.SetActive(true);
         _playerController.enabled = true;
@@ -83,5 +79,11 @@ public class PauseMenu : MonoBehaviour {
         gameObject.SetActive(false);
     }
 
-
+    public void GoToMainMenu() {
+        var async = SceneManager.UnloadSceneAsync("Level");
+        async.completed += op => {
+            Time.timeScale = 1;
+            MenuGO.Instance.gameObject.SetActive(true);
+        };
+    }
 }
