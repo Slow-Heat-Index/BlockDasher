@@ -86,7 +86,7 @@ namespace UI.Menu {
         public void Play() {
             var manager = Registry.Get<LevelSnapshot>(Identifiers.ManagerLevel);
             var level = manager.Get(new Identifier(_hubWorld.levels[_hubMovement.GetCurrentLevel()]));
-            LevelData.SetLevelToLoad(level.LevelPath);
+            LevelData.SetLevelToLoad(level);
 
             MenuGO.Instance.gameObject.SetActive(false);
             SceneManager.LoadScene("Level", LoadSceneMode.Additive);
@@ -96,7 +96,7 @@ namespace UI.Menu {
             if (i == 0) return true;
             var manager = Registry.Get<LevelSnapshot>(Identifiers.ManagerLevel);
             var level = manager.Get(new Identifier(_hubWorld.levels[i - 1]));
-            return PersistentDataContainer.PersistentData.IsCompleted(level.LevelPath);
+            return PersistentDataContainer.PersistentData.IsCompleted(level.Identifier);
         }
     }
 }

@@ -13,7 +13,10 @@ namespace Sources.Identification {
             new Identifier(Identifier.BlockDasherProvider, "manager_skybox");
         
         public static readonly Identifier ManagerLevel =
-            new Identifier(Identifier.BlockDasherProvider, "manager_level");
+            new Identifier(Identifier.BlockDasherProvider, "manager_level");   
+        
+        public static readonly Identifier ManagerSkin =
+            new Identifier(Identifier.BlockDasherProvider, "manager_skin");
 
         // ENEMIES
         
@@ -100,5 +103,16 @@ namespace Sources.Identification {
         public static readonly Identifier Level33 = new Identifier(Identifier.BlockDasherProvider, "level_3_3");
         public static readonly Identifier Level34 = new Identifier(Identifier.BlockDasherProvider, "level_3_4");
         public static readonly Identifier Level35 = new Identifier(Identifier.BlockDasherProvider, "level_3_5");
+
+        // SKINS
+        
+        public static readonly Identifier SkinDefault = new Identifier(Identifier.BlockDasherProvider, "skin_default");
+        public static readonly Identifier SkinBlue = new Identifier(Identifier.BlockDasherProvider, "skin_blue");
+        public static readonly Identifier SkinGray = new Identifier(Identifier.BlockDasherProvider, "skin_gray");
+        public static readonly Identifier SkinGreen = new Identifier(Identifier.BlockDasherProvider, "skin_green");
+        public static readonly Identifier SkinPink = new Identifier(Identifier.BlockDasherProvider, "skin_pink");
+        public static readonly Identifier SkinPurple = new Identifier(Identifier.BlockDasherProvider, "skin_purple");
+        public static readonly Identifier SkinRed = new Identifier(Identifier.BlockDasherProvider, "skin_red");
+        
     }
 }

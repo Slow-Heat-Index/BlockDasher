@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sources.Identification;
 using Sources.Level.Manager;
+using Sources.Skins;
 
 namespace Sources.Registration {
     public static class Registry {
@@ -9,7 +10,8 @@ namespace Sources.Registration {
                 { Identifiers.ManagerBlock, new BlockManager() },
                 { Identifiers.ManagerEntity, new EntityManager() },
                 { Identifiers.ManagerSkybox, new SkyboxManager() },
-                { Identifiers.ManagerLevel, new LevelManager() }
+                { Identifiers.ManagerLevel, new LevelManager() },
+                { Identifiers.ManagerSkin, new SkinManager() }
             };
 
         public static bool Register<T>(Manager<T> manager) where T : IIdentifiable {

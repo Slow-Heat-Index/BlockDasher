@@ -1,8 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Data;
 using Level.Optimizers;
 using Sources;
+using Sources.Identification;
 using Sources.Level;
+using Sources.Registration;
+using Sources.Skins;
 using UnityEngine;
 
 namespace Level.Generator {
@@ -35,7 +39,22 @@ namespace Level.Generator {
             }
 
             // Create player
-            Instantiate(player, transform);
+            var skinManager = Registry.Get<Skin>(Identifiers.ManagerSkin);
+
+            print(PersistentDataContainer.PersistentData.skin);
+            
+            var skin = skinManager.Get(PersistentDataContainer.PersistentData.skin)
+                       ?? skinManager.Get(Identifiers.SkinDefault);
+
+            var prefab = Resources.Load<GameObject>(skin.PrefabPath);
+            if (prefab == null) {
+                skin = skinManager.Get(Identifiers.SkinDefault);
+                prefab = Resources.Load<GameObject>(skin.PrefabPath);
+            }
+
+            Instantiate(prefab, transform);
+
+
             Music.Play(World.Skybox.MusicId);
         }
 

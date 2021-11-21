@@ -1,11 +1,12 @@
 ﻿using Sources.Level;
+using Sources.Level.Manager;
 
 namespace Sources {
     public static class LevelData {
-        public static LevelToLoad LevelToLoad = new LevelToLoad("Levels/level_1_1", true);
+        public static LevelToLoad LevelToLoad = new LevelToLoad(LevelManager.Level11, true);
 
-        public static void SetLevelToLoad(string path) {
-            LevelToLoad = new LevelToLoad(path, true);
+        public static void SetLevelToLoad(LevelSnapshot level) {
+            LevelToLoad = new LevelToLoad(level, true);
         }
     }
 }
