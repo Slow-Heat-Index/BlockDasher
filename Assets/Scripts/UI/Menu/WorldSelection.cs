@@ -21,6 +21,11 @@ public class WorldSelection : MonoBehaviour {
     [SerializeField] private Button selectWorldb;
     [SerializeField] private GameObject worldLocked;
     [SerializeField] private GameObject touchToPlay;
+
+    [Header("Stars Needed")] [SerializeField]
+    private GameObject frameUI;
+    [SerializeField] private  TextMeshProUGUI textUI; 
+    
     private ScreensTransitions _screensTransitions;
 
     
@@ -30,14 +35,8 @@ public class WorldSelection : MonoBehaviour {
         worldName.sprite = worlds[currentWorld].imageName;
         _rectTransform = GetComponent<RectTransform>();
         _screensTransitions = GetComponent<ScreensTransitions>();
-        worldLocked.SetActive(false);
+        RefreshUI();
 
-        if (currentWorld == 0)
-            previousWorldb.interactable = false;
-        
-        if(currentWorld == worlds.Length-1)
-            nextWorldb.interactable = false;
-        
         _rectTransform.anchoredPosition = new Vector2(0, -_rectTransform.rect.height);
     }
 
@@ -53,36 +52,36 @@ public class WorldSelection : MonoBehaviour {
         worlds[previous].hubWorldAnim.PopDown();
         worldName.sprite = worlds[currentWorld].imageName;
 
-        selectWorldb.interactable = !(worlds[currentWorld].starsNeeded > PersistentDataContainer.PersistentData.totalStars);
-        worldLocked.SetActive(worlds[currentWorld].starsNeeded > PersistentDataContainer.PersistentData.totalStars);
-        touchToPlay.SetActive(worlds[currentWorld].starsNeeded <= PersistentDataContainer.PersistentData.totalStars);
-        
-        if (currentWorld == worlds.Length - 1) {
-            nextWorldb.interactable = false;
-        }
-        previousWorldb.interactable = true;
+        RefreshUI();
     }
 
     public void ShowPrevious() {
         var previous = currentWorld;
         currentWorld--;
         
-        selectWorldb.interactable = !(worlds[currentWorld].starsNeeded > PersistentDataContainer.PersistentData.totalStars);
-        worldLocked.SetActive(worlds[currentWorld].starsNeeded > PersistentDataContainer.PersistentData.totalStars);
-        touchToPlay.SetActive(worlds[currentWorld].starsNeeded <= PersistentDataContainer.PersistentData.totalStars);
+        RefreshUI();
         
         worlds[currentWorld].hubWorldAnim.PopUp();
         worlds[previous].hubWorldAnim.PopDown();
         worldName.sprite = worlds[currentWorld].imageName;
-        
-        if (currentWorld == 0) {
-            previousWorldb.interactable = false;
-        }
-        nextWorldb.interactable = true;
     }
 
     public int GetCurrentWorld() {
         return currentWorld;
+    }
+
+    private void RefreshUI()
+    {
+        bool locked = worlds[currentWorld].starsNeeded > PersistentDataContainer.PersistentData?.totalStars;
+        selectWorldb.interactable = !locked;
+        worldLocked.SetActive(locked);
+        touchToPlay.SetActive(!locked);
+        frameUI.SetActive(locked);
+        textUI.SetText(worlds[currentWorld].isLocked
+            ? "Coming soon"
+            : $"Stars to Unlock:\n{PersistentDataContainer.PersistentData?.totalStars}/{worlds[currentWorld].starsNeeded}");
+        nextWorldb.interactable = currentWorld < worlds.Length - 1;
+        previousWorldb.interactable = currentWorld > 0;
     }
 
 
