@@ -26,15 +26,16 @@ namespace Level.Generator {
             if (editorData == null || !editorData.editorPlaying) {
                 World = new World(false);
                 LevelData.LevelToLoad.Load(World);
+                World.SpawnEntities();
                 Optimize();
             }
             else {
                 World = editorData.World;
+                World.SpawnEntities();
             }
 
             // Create player
             Instantiate(player, transform);
-            World.SpawnEntities();
             Music.Play(World.Skybox.MusicId);
         }
 

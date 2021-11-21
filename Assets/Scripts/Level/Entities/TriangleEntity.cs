@@ -1,4 +1,5 @@
 ﻿using Level.Generator;
+using Level.Player;
 using Level.Player.Behaviour;
 using Level.Player.Data;
 using Sources.Identification;
@@ -27,7 +28,7 @@ namespace Level.Entities {
         }
 
         protected override void OnPlayerCollision(DashData dashData) {
-            dashData.Player.Lose(false);
+            dashData.Player.Lose(PlayerDeathCause.PUNCH);
             _enemySoundManager.Play(2);
         }
 
