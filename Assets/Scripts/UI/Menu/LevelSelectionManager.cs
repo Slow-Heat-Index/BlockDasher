@@ -6,6 +6,7 @@ using Sources.Level;
 using Sources.Registration;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -16,8 +17,9 @@ namespace UI.Menu {
         private HubMovement _hubMovement;
         private WorldSelection _worldSelection;
         private HubWorld _hubWorld;
-        
-        [SerializeField] private LoadingSceneAnim _loadingSceneAnim;
+
+        [SerializeField] private LoadingSceneAnim loadingSceneAnim;
+        [SerializeField] private EventSystem eventSystem;
         [SerializeField] private GameObject worlds;
         [SerializeField] private Button nextButton;
         [SerializeField] private Button previousButton;
@@ -84,14 +86,15 @@ namespace UI.Menu {
             var level = manager.Get(new Identifier(_hubWorld.levels[_hubMovement.GetCurrentLevel()]));
             LevelData.SetLevelToLoad(level);
 
-            _loadingSceneAnim.gameObject.SetActive(true);
-            var coroutine = StartCoroutine(_loadingSceneAnim.LoadingAnim());
-            var async =SceneManager.LoadSceneAsync("Level", LoadSceneMode.Additive);
+            loadingSceneAnim.gameObject.SetActive(true);
+            eventSystem.gameObject.SetActive(false);
+            var coroutine = StartCoroutine(loadingSceneAnim.LoadingAnim());
+            var async = SceneManager.LoadSceneAsync("Level", LoadSceneMode.Additive);
 
-            async.completed += (o) => {
+            async.completed += o => {
+                loadingSceneAnim.gameObject.SetActive(false);
                 MenuGO.Instance.gameObject.SetActive(false);
                 StopCoroutine(coroutine);
-                _loadingSceneAnim.gameObject.SetActive(false);
             };
         }
 
@@ -107,7 +110,7 @@ namespace UI.Menu {
             var unlocked = IsUnlocked(_hubMovement.GetCurrentLevel());
 
             _hubWorld.Rotate(_hubMovement.GetCurrentLevel());
-            
+
             playButton.interactable = unlocked;
 
             previousButton.interactable = current > 0;

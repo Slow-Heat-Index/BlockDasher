@@ -14285,7 +14285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWorld: 0
-  _loadingSceneAnim: {fileID: 2135209510}
+  loadingSceneAnim: {fileID: 2135209510}
   worlds: {fileID: 1439220513}
   nextButton: {fileID: 1975216492}
   previousButton: {fileID: 1123672664}
