@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1224877414}
-  m_IndirectSpecularColor: {r: 0.11306948, g: 0.7213132, b: 0.7353566, a: 0.5}
+  m_IndirectSpecularColor: {r: 0.34436274, g: 0.6467314, b: 0.7353566, a: 0.5}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3141,7 +3141,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 20, y: 10}
+  m_AnchoredPosition: {x: 10, y: 10}
   m_SizeDelta: {x: 266.6743, y: 131.0451}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &734252237
@@ -14149,13 +14149,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWorld: 0
-  _worlds: {fileID: 1439220513}
-  _nextButton: {fileID: 1975216492}
-  _previousButton: {fileID: 1123672664}
-  _playButton: {fileID: 1992267121}
-  _backButton: {fileID: 1859624902}
-  _levelData: {fileID: 734252235}
-  _levelLocked: {fileID: 1276265504}
+  worlds: {fileID: 1439220513}
+  nextButton: {fileID: 1975216492}
+  previousButton: {fileID: 1123672664}
+  playButton: {fileID: 1992267121}
+  backButton: {fileID: 1859624902}
+  levelData: {fileID: 734252235}
+  levelLocked: {fileID: 1276265504}
+  levelName: {fileID: 38636834}
+  levelHighScore: {fileID: 666922128}
+  levelStars: {fileID: 1439056298}
+  stars:
+  - {fileID: -599849779004990984, guid: 969dd5ddc18cf7343af2263f4f6a74d3, type: 3}
+  - {fileID: -696136496135255267, guid: 969dd5ddc18cf7343af2263f4f6a74d3, type: 3}
+  - {fileID: 6062364882632931282, guid: 969dd5ddc18cf7343af2263f4f6a74d3, type: 3}
+  - {fileID: -614904081040731450, guid: 969dd5ddc18cf7343af2263f4f6a74d3, type: 3}
 --- !u!82 &2029974190
 AudioSource:
   m_ObjectHideFlags: 0
