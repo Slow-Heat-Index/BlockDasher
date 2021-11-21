@@ -1,8 +1,10 @@
+using System.Linq;
 using Data;
 using Sources;
 using Sources.Identification;
 using Sources.Level;
 using Sources.Registration;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,74 +15,67 @@ namespace UI.Menu {
         public int currentWorld;
         private HubMovement _hubMovement;
         private WorldSelection _worldSelection;
-        [SerializeField] private GameObject _worlds;
         private HubWorld _hubWorld;
 
-        [SerializeField] private Button _nextButton;
-        [SerializeField] private Button _previousButton;
-        [SerializeField] private Button _playButton;
-        [SerializeField] private Button _backButton;
-        [SerializeField] private GameObject _levelData;
-        [SerializeField] private GameObject _levelLocked;
+        [SerializeField] private GameObject worlds;
+        [SerializeField] private Button nextButton;
+        [SerializeField] private Button previousButton;
+        [SerializeField] private Button playButton;
+        [SerializeField] private Button backButton;
+        [SerializeField] private GameObject levelData;
+        [SerializeField] private GameObject levelLocked;
+
+        [Header("Level info")] [SerializeField]
+        private TextMeshProUGUI levelName;
+
+        [SerializeField] private TextMeshProUGUI levelHighScore;
+        [SerializeField] private Image levelStars;
+
+        [Header("Resources")] [SerializeField] private Sprite[] stars;
 
 
         private void Awake() {
             _rectTransform = GetComponent<RectTransform>();
             _rectTransform.anchoredPosition = new Vector2(0, -_rectTransform.rect.height);
             _worldSelection = FindObjectOfType<WorldSelection>();
-            _previousButton.interactable = false;
-            _levelLocked.SetActive(false);
+            previousButton.interactable = false;
+            levelLocked.SetActive(false);
         }
 
         public void SetLevelSelector() {
             currentWorld = _worldSelection.GetCurrentWorld();
-            _hubWorld = _worlds.transform.GetChild(currentWorld).GetComponent<HubWorld>();
+            _hubWorld = worlds.transform.GetChild(currentWorld).GetComponent<HubWorld>();
             _hubMovement = _hubWorld.GetComponentInChildren<HubWorld>().hubMovement;
             _hubMovement.OnLevelReached.AddListener(ShowUI);
+            RefreshUIWithLevelData();
         }
 
         public void Next() {
             _hubMovement.GoNext();
-            _hubWorld.Rotate(_hubMovement.GetCurrentLevel());
-
-            _playButton.interactable = IsUnlocked(_hubMovement.GetCurrentLevel());
-
-            if (_hubMovement.GetCurrentLevel() == _hubMovement.GetNumLevels() - 1) {
-                _nextButton.interactable = false;
-            }
-
-            _previousButton.interactable = true;
+            RefreshUIWithLevelData();
         }
 
         public void Previous() {
             _hubMovement.GoPrevious();
-            _hubWorld.Rotate(_hubMovement.GetCurrentLevel());
-
-            _playButton.interactable = IsUnlocked(_hubMovement.GetCurrentLevel());
-
-            if (_hubMovement.GetCurrentLevel() == 0) {
-                _previousButton.interactable = false;
-            }
-
-            _nextButton.interactable = true;
+            RefreshUIWithLevelData();
         }
 
         public void HideUI() {
-            _nextButton.gameObject.GetComponent<DisappearSmoothly>().Play();
-            _previousButton.gameObject.GetComponent<DisappearSmoothly>().Play();
-            _playButton.gameObject.GetComponent<DisappearSmoothly>().Play();
-            _levelData.GetComponent<DisappearSmoothly>().Play();
-            _backButton.GetComponent<DisappearSmoothly>().Play();
-            _levelLocked.GetComponent<DisappearSmoothly>().Play();
+            nextButton.gameObject.GetComponent<DisappearSmoothly>().Play();
+            previousButton.gameObject.GetComponent<DisappearSmoothly>().Play();
+            playButton.gameObject.GetComponent<DisappearSmoothly>().Play();
+            levelData.GetComponent<DisappearSmoothly>().Play();
+            backButton.GetComponent<DisappearSmoothly>().Play();
+            levelLocked.GetComponent<DisappearSmoothly>().Play();
         }
 
         public void ShowUI() {
-            _nextButton.gameObject.SetActive(true);
-            _previousButton.gameObject.SetActive(true);
-            _playButton.gameObject.SetActive(true);
-            _levelData.SetActive(true);
-            _backButton.gameObject.SetActive(true);
-            _levelLocked.SetActive(!IsUnlocked(_hubMovement.GetCurrentLevel()));
+            nextButton.gameObject.SetActive(true);
+            previousButton.gameObject.SetActive(true);
+            playButton.gameObject.SetActive(true);
+            levelData.SetActive(true);
+            backButton.gameObject.SetActive(true);
+            levelLocked.SetActive(!IsUnlocked(_hubMovement.GetCurrentLevel()));
         }
 
         public void Play() {
@@ -97,6 +92,41 @@ namespace UI.Menu {
             var manager = Registry.Get<LevelSnapshot>(Identifiers.ManagerLevel);
             var level = manager.Get(new Identifier(_hubWorld.levels[i - 1]));
             return PersistentDataContainer.PersistentData.IsCompleted(level.Identifier);
+        }
+
+        private void RefreshUIWithLevelData() {
+            var current = _hubMovement.GetCurrentLevel();
+            var unlocked = IsUnlocked(_hubMovement.GetCurrentLevel());
+
+            _hubWorld.Rotate(_hubMovement.GetCurrentLevel());
+            
+            playButton.interactable = unlocked;
+
+            previousButton.interactable = current > 0;
+            nextButton.interactable = current < _hubMovement.GetNumLevels() - 1;
+
+            levelLocked.SetActive(!unlocked);
+
+            RefreshLevelInfo();
+        }
+
+        public void RefreshLevelInfo() {
+            var manager = Registry.Get<LevelSnapshot>(Identifiers.ManagerLevel);
+            var level = manager.Get(new Identifier(_hubWorld.levels[_hubMovement.GetCurrentLevel()]));
+
+            levelName.text = $"Level {_hubMovement.GetCurrentLevel() + 1}";
+
+            var completedLevels = PersistentDataContainer.PersistentData.completedLevels;
+            if (completedLevels.Any(it => it.level == level.Identifier)) {
+                var data = PersistentDataContainer.PersistentData.completedLevels
+                    .Find(it => it.level == level.Identifier);
+                levelHighScore.text = data.steps.ToString();
+                levelStars.sprite = stars[data.stars];
+            }
+            else {
+                levelHighScore.text = "-";
+                levelStars.sprite = stars[0];
+            }
         }
     }
 }

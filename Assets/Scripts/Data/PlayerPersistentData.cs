@@ -12,7 +12,7 @@ namespace Data {
         public int version = 1;
         public List<LevelCompletionData> completedLevels;
         public int totalStars;
-        public int coins = 5000;
+        public int coins = 0;
         public Identifier skin = Identifiers.SkinDefault;
         private bool adsRemoved = false;
 
