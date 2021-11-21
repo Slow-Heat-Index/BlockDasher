@@ -94,7 +94,7 @@ namespace UI.Menu {
             return PersistentDataContainer.PersistentData.IsCompleted(level.Identifier);
         }
 
-        private void RefreshUIWithLevelData() {
+        public void RefreshUIWithLevelData() {
             var current = _hubMovement.GetCurrentLevel();
             var unlocked = IsUnlocked(_hubMovement.GetCurrentLevel());
 
@@ -110,7 +110,7 @@ namespace UI.Menu {
             RefreshLevelInfo();
         }
 
-        public void RefreshLevelInfo() {
+        private void RefreshLevelInfo() {
             var manager = Registry.Get<LevelSnapshot>(Identifiers.ManagerLevel);
             var level = manager.Get(new Identifier(_hubWorld.levels[_hubMovement.GetCurrentLevel()]));
 
