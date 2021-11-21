@@ -16,7 +16,8 @@ namespace UI.Menu {
         private HubMovement _hubMovement;
         private WorldSelection _worldSelection;
         private HubWorld _hubWorld;
-
+        
+        [SerializeField] private LoadingSceneAnim _loadingSceneAnim;
         [SerializeField] private GameObject worlds;
         [SerializeField] private Button nextButton;
         [SerializeField] private Button previousButton;
@@ -83,8 +84,15 @@ namespace UI.Menu {
             var level = manager.Get(new Identifier(_hubWorld.levels[_hubMovement.GetCurrentLevel()]));
             LevelData.SetLevelToLoad(level);
 
-            MenuGO.Instance.gameObject.SetActive(false);
-            SceneManager.LoadScene("Level", LoadSceneMode.Additive);
+            _loadingSceneAnim.gameObject.SetActive(true);
+            var coroutine = StartCoroutine(_loadingSceneAnim.LoadingAnim());
+            var async =SceneManager.LoadSceneAsync("Level", LoadSceneMode.Additive);
+
+            async.completed += (o) => {
+                MenuGO.Instance.gameObject.SetActive(false);
+                StopCoroutine(coroutine);
+                _loadingSceneAnim.gameObject.SetActive(false);
+            };
         }
 
         public bool IsUnlocked(int i) {
