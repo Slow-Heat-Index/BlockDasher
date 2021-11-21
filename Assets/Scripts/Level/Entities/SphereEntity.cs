@@ -40,7 +40,8 @@ namespace Level.Entities {
             }
 
             public override Entity SpawnEntity(BlockPosition position) {
-                var o = Instantiate(FindObjectOfType<LevelGenerator>().sphere);
+                var level = FindObjectOfType<LevelGenerator>();
+                var o = Instantiate(level.sphere, level.transform);
                 var entity = o.GetComponent<Entity>();
                 entity.InitPosition(position.Position, position.World);
                 position.World.AddEntity(entity);
