@@ -21,6 +21,6 @@ public class IntroManager : MonoBehaviour {
     IEnumerator OnVideoFinish() {
         fade.DOFade(1, 1);
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
 }
