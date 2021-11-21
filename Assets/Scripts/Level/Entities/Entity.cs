@@ -10,7 +10,7 @@ namespace Level.Entities {
         [Header("Animation")] public float movementSpeed = 0.08f;
 
         private readonly Queue<Vector3> _movementQueue = new Queue<Vector3>();
-        private Tween _movementTween;
+        protected Tween _movementTween;
 
         public BlockPosition Position { get; private set; }
 
@@ -22,6 +22,7 @@ namespace Level.Entities {
             var waypoints = _movementQueue.ToArray();
             _movementQueue.Clear();
             _movementTween = transform.DOPath(waypoints, movementSpeed * waypoints.Length);
+            _movementTween.onComplete = OnTweenComplete;
         }
 
         public virtual void BeforeDash(PlayerData player) {
@@ -35,6 +36,9 @@ namespace Level.Entities {
         }
 
         public virtual void AfterFall(DashData dashData) {
+        }
+
+        public virtual void OnTweenComplete() {
         }
 
         public void Move(Vector3Int offset) {
