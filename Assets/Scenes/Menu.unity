@@ -1150,6 +1150,7 @@ RectTransform:
   m_Children:
   - {fileID: 1216018912}
   - {fileID: 1176979267}
+  - {fileID: 1609204750}
   m_Father: {fileID: 707329151}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2918,6 +2919,195 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619136050}
   m_CullTransparentMesh: 1
+--- !u!1001 &638837918
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 293747499}
+    m_Modifications:
+    - target: {fileID: 4948367804796690316, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: skip
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000061035156
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367804796690354, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_Name
+      value: FullScreenAd
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367805443366306, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367806134326469, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0575303
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367806134326469, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0575303
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367806134326469, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0575303
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367806134326469, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367806267262654, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.27615
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367806267262654, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.27615
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367806267262654, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.27615
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367806321287126, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.22980279
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367806321287126, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.22980279
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367806321287126, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.22980279
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367806321287126, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948367806321287126, guid: e7fd1a804a420a3429ef946549aec6d2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -31
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e7fd1a804a420a3429ef946549aec6d2, type: 3}
 --- !u!1 &647655755
 GameObject:
   m_ObjectHideFlags: 0
@@ -8876,7 +9066,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1316842085}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1316842087}
+        m_TargetAssemblyTypeName: CoinsButton, Assembly-CSharp
+        m_MethodName: Pressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1316842085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9771,7 +9973,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1440985218}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1440985220}
+        m_TargetAssemblyTypeName: CoinsButton, Assembly-CSharp
+        m_MethodName: Pressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1440985218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10615,7 +10829,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1539566395}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1539566397}
+        m_TargetAssemblyTypeName: CoinsButton, Assembly-CSharp
+        m_MethodName: Pressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1539566395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10864,6 +11090,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _offset: -5
   _tweenTime: 0.5
+--- !u!224 &1609204750 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 638837918}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1609204751 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4948367804796690316, guid: e7fd1a804a420a3429ef946549aec6d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 638837918}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fec106b0d5379094ea84f74044b3d55e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1621904591
 GameObject:
   m_ObjectHideFlags: 0
@@ -11454,6 +11698,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1726919332}
         m_TargetAssemblyTypeName: FullScreenAd, Assembly-CSharp
         m_MethodName: PlayAd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1661101526}
+        m_TargetAssemblyTypeName: CoinsButton, Assembly-CSharp
+        m_MethodName: Pressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13454,6 +13710,7 @@ GameObject:
   - component: {fileID: 1872918967}
   - component: {fileID: 1872918966}
   - component: {fileID: 1872918965}
+  - component: {fileID: 1872918968}
   m_Layer: 5
   m_Name: Close
   m_TagString: Untagged
@@ -13561,6 +13818,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1872918968}
+        m_TargetAssemblyTypeName: UI.PersistentDataSave, Assembly-CSharp
+        m_MethodName: Save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1872918966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13600,6 +13869,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872918963}
   m_CullTransparentMesh: 1
+--- !u!114 &1872918968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872918963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bfb0a1440ec470aa9a21748a39f0d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1885593852
 GameObject:
   m_ObjectHideFlags: 0
@@ -13760,7 +14041,7 @@ PrefabInstance:
     - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
         type: 3}
@@ -13815,17 +14096,17 @@ PrefabInstance:
     - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4948367804796690317, guid: e7fd1a804a420a3429ef946549aec6d2,
         type: 3}
@@ -14651,9 +14932,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1726919332}
+      - m_Target: {fileID: 1609204751}
         m_TargetAssemblyTypeName: FullScreenAd, Assembly-CSharp
         m_MethodName: PlayAd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1973172385}
+        m_TargetAssemblyTypeName: CoinsButton, Assembly-CSharp
+        m_MethodName: Pressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15597,8 +15890,8 @@ RectTransform:
   - {fileID: 901109372}
   - {fileID: 1965131468}
   - {fileID: 1776515089}
-  - {fileID: 1726919331}
   - {fileID: 2093751938}
+  - {fileID: 1726919331}
   m_Father: {fileID: 707329151}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16483,7 +16776,7 @@ RectTransform:
   - {fileID: 2133681648}
   - {fileID: 1977266416}
   m_Father: {fileID: 2029974187}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

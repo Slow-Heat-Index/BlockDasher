@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Sources.Identification;
 using Sources.Level;
-using UnityEngine;
 
 namespace Data {
     [Serializable]
@@ -19,7 +18,10 @@ namespace Data {
 
         public PlayerPersistentData() {
             completedLevels = new List<LevelCompletionData>();
+
             availableSkins = new List<Identifier>();
+            availableSkins.Add(Identifiers.SkinDefault);
+            
             totalStars = 0;
         }
 
@@ -30,7 +32,9 @@ namespace Data {
 
             if (version < 2) {
                 availableSkins = new List<Identifier>();
-                availableSkins.Add(Identifiers.SkinDefault);
+                if (!availableSkins.Contains(Identifiers.SkinDefault)) {
+                    availableSkins.Add(Identifiers.SkinDefault);
+                }
             }
 
             version = CurrentVersion;
