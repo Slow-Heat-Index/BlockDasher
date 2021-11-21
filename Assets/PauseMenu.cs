@@ -2,6 +2,7 @@ using Level.Cameras.Controller;
 using Level.Generator;
 using Level.Player.Controller;
 using Level.Player.Data;
+using Sources.Level.Manager;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -83,6 +84,7 @@ public class PauseMenu : MonoBehaviour {
         var async = SceneManager.UnloadSceneAsync("Level");
         async.completed += op => {
             Time.timeScale = 1;
+            RenderSettings.skybox = SkyboxManager.Garden.Skybox;
             MenuGO.Instance.gameObject.SetActive(true);
         };
     }

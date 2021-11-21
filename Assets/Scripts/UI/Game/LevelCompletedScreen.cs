@@ -4,6 +4,7 @@ using Level.Generator;
 using Level.Player.Controller;
 using Level.Player.Data;
 using Sources;
+using Sources.Level.Manager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -84,6 +85,7 @@ namespace UI.Game {
             var async = SceneManager.UnloadSceneAsync("Level");
             async.completed += op => {
                 Time.timeScale = 1;
+                RenderSettings.skybox = SkyboxManager.Garden.Skybox;
                 MenuGO.Instance.gameObject.SetActive(true);
             };
         }
