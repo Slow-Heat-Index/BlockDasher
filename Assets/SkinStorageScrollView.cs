@@ -1,31 +1,32 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Controller.GameEditor;
+using System.Linq;
+using Data;
 using Sources.Identification;
-using Sources.Level;
-using Sources.Registration;
-using Sources.Skins;
 using UnityEngine;
 
-public class SkinStorageScrollView : MonoBehaviour
-{
+public class SkinStorageScrollView : MonoBehaviour {
     public GameObject prefab;
 
+    private readonly List<Identifier> _presentIdentifiers = new List<Identifier>();
 
     private void Start() {
-        var list = Registry.Get<Skin>(Identifiers.ManagerSkin).ToList();
-        list.Sort((o1, o2) =>
-            string.Compare(o1.Name, o2.Name, StringComparison.Ordinal));
-
+        var list = PersistentDataContainer.PersistentData.availableSkins;
+        _presentIdentifiers.AddRange(list);
         list.ForEach(AddElement);
     }
 
-    private void AddElement(Skin skin) {
+    public void Refresh() {
+        var list = PersistentDataContainer.PersistentData.availableSkins
+            .Where(it => !_presentIdentifiers.Contains(it)).ToList();
+        _presentIdentifiers.AddRange(list);
+        list.ForEach(AddElement );
+    }
+
+    private void AddElement(Identifier identifier) {
         var instance = Instantiate(prefab, transform);
         var display = instance.GetComponent<SkinTypeDisplay>();
         if (display != null) {
-            display.Identifier = skin.Identifier;
+            display.Identifier = identifier;
         }
     }
 }

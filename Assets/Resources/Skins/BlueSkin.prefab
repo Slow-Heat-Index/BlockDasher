@@ -823,7 +823,6 @@ MonoBehaviour:
   renderers:
   - {fileID: 6403745742347379938}
   - {fileID: 8067714749444485997}
-  - {fileID: 5683878378029231664}
   renderObjects:
   - {fileID: 6433158270801715676, guid: 587cbc6897a2286439eaf2c38071eb3e, type: 2}
 --- !u!1 &6747342908413186728

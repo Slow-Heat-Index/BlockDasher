@@ -7,10 +7,11 @@ using UnityEngine;
 namespace Data {
     [Serializable]
     public class PlayerPersistentData {
-        public static readonly int CurrentVersion = 1;
+        public static readonly int CurrentVersion = 2;
 
-        public int version = 1;
+        public int version = CurrentVersion;
         public List<LevelCompletionData> completedLevels;
+        public List<Identifier> availableSkins;
         public int totalStars;
         public int coins = 0;
         public Identifier skin = Identifiers.SkinDefault;
@@ -18,12 +19,18 @@ namespace Data {
 
         public PlayerPersistentData() {
             completedLevels = new List<LevelCompletionData>();
+            availableSkins = new List<Identifier>();
             totalStars = 0;
         }
 
         public void CheckVersion() {
             if (version < 1) {
                 skin = Identifiers.SkinDefault;
+            }
+
+            if (version < 2) {
+                availableSkins = new List<Identifier>();
+                availableSkins.Add(Identifiers.SkinDefault);
             }
 
             version = CurrentVersion;

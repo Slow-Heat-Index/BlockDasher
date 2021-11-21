@@ -1155,7 +1155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -450.00006}
+  m_AnchoredPosition: {x: 0, y: -450}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &293747500
@@ -1925,7 +1925,7 @@ RectTransform:
   m_Children:
   - {fileID: 1563664713}
   m_Father: {fileID: 1176979267}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2083,7 +2083,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 537786769}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 537786771}
+        m_TargetAssemblyTypeName: SkinCoinsButton, Assembly-CSharp
+        m_MethodName: Pressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &537786769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2132,11 +2144,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 537786764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 515d87de9b652124f8f51045b6279ac0, type: 3}
+  m_Script: {fileID: 11500000, guid: c7be546509e1450290337ac25a764b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: -2500
-  onlyOnce: 1
+  price: 2500
+  skin:
+    provider: block_dasher
+    key: skin_purple
 --- !u!1 &587333481
 GameObject:
   m_ObjectHideFlags: 0
@@ -3738,7 +3752,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1355589999}
   m_HandleRect: {fileID: 1355589998}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5947,6 +5961,7 @@ GameObject:
   - component: {fileID: 1011012371}
   - component: {fileID: 1011012370}
   - component: {fileID: 1011012369}
+  - component: {fileID: 1011012372}
   m_Layer: 5
   m_Name: Close
   m_TagString: Untagged
@@ -6054,6 +6069,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1011012372}
+        m_TargetAssemblyTypeName: UI.PersistentDataSave, Assembly-CSharp
+        m_MethodName: Save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1011012370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6093,6 +6120,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1011012367}
   m_CullTransparentMesh: 1
+--- !u!114 &1011012372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011012367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bfb0a1440ec470aa9a21748a39f0d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1031217575
 GameObject:
   m_ObjectHideFlags: 0
@@ -6344,7 +6383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1069777865
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7099,6 +7138,7 @@ RectTransform:
   m_LocalScale: {x: 7.1012187, y: 7.1012187, z: 7.1012187}
   m_Children:
   - {fileID: 1835640679}
+  - {fileID: 1511372404}
   - {fileID: 1990909999}
   - {fileID: 537786765}
   - {fileID: 1754605272}
@@ -7162,7 +7202,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1178253633}
+  - component: {fileID: 1178253635}
   - component: {fileID: 1178253634}
+  - component: {fileID: 1178253636}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -7184,10 +7226,10 @@ RectTransform:
   m_Father: {fileID: 1627736038}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000015258789, y: -0.0000010562941}
-  m_SizeDelta: {x: 0, y: 46.709}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 23.358904}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1178253634
 MonoBehaviour:
@@ -7198,7 +7240,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1178253632}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -7206,15 +7248,40 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 1
+  m_CellSize: {x: 20, y: 20}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 2
+  m_ConstraintCount: 2
+--- !u!114 &1178253635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178253632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9989b69bacd488646b95f5525e9c21a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 400368996299322703, guid: 1c5eb83488404b549a5b3d4b4875eb8c, type: 3}
+--- !u!114 &1178253636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178253632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 1
 --- !u!1 &1180642992
 GameObject:
   m_ObjectHideFlags: 0
@@ -7432,7 +7499,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: 0.00012207031}
+  m_AnchoredPosition: {x: 0.00012207031, y: 0}
   m_SizeDelta: {x: 699.9998, y: 393.74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1216018913
@@ -9284,9 +9351,8 @@ RectTransform:
   m_LocalScale: {x: 0.9492, y: 0.9492, z: 0.9492}
   m_Children:
   - {fileID: 217767420}
-  - {fileID: 1511372404}
   m_Father: {fileID: 1176979267}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9444,7 +9510,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1440735336}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1440735338}
+        m_TargetAssemblyTypeName: SkinCoinsButton, Assembly-CSharp
+        m_MethodName: Pressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1440735336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9493,11 +9571,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1440735331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 515d87de9b652124f8f51045b6279ac0, type: 3}
+  m_Script: {fileID: 11500000, guid: c7be546509e1450290337ac25a764b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: -1000
-  onlyOnce: 1
+  price: 1000
+  skin:
+    provider: block_dasher
+    key: skin_green
 --- !u!1 &1440985213
 GameObject:
   m_ObjectHideFlags: 0
@@ -10035,15 +10115,15 @@ RectTransform:
   m_GameObject: {fileID: 1511372403}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.94920003, y: 0.94920003, z: 0.94920003}
   m_Children:
   - {fileID: 678638904}
-  m_Father: {fileID: 1440735332}
+  m_Father: {fileID: 1176979267}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25.5, y: -0.2107048}
+  m_AnchoredPosition: {x: 12.904599, y: -14.59998}
   m_SizeDelta: {x: 18, y: 19.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1511372405
@@ -10055,11 +10135,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1511372403}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 515d87de9b652124f8f51045b6279ac0, type: 3}
+  m_Script: {fileID: 11500000, guid: c7be546509e1450290337ac25a764b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: -500
-  onlyOnce: 1
+  price: 500
+  skin:
+    provider: block_dasher
+    key: skin_gray
 --- !u!114 &1511372406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10211,7 +10293,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1511372409}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1511372405}
+        m_TargetAssemblyTypeName: SkinCoinsButton, Assembly-CSharp
+        m_MethodName: Pressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1511372409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11665,7 +11759,6 @@ GameObject:
   - component: {fileID: 1709478729}
   - component: {fileID: 1709478728}
   - component: {fileID: 1709478727}
-  - component: {fileID: 1709478726}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -11694,19 +11787,6 @@ RectTransform:
   m_AnchoredPosition: {x: 53.00853, y: -0.34281}
   m_SizeDelta: {x: 82.15325, y: 48.717}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1709478726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1709478724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9989b69bacd488646b95f5525e9c21a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 400368996299322703, guid: 1c5eb83488404b549a5b3d4b4875eb8c, type: 3}
 --- !u!114 &1709478727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11828,7 +11908,7 @@ RectTransform:
   m_Children:
   - {fileID: 649772058}
   m_Father: {fileID: 1176979267}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11986,7 +12066,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1728660767}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1728660769}
+        m_TargetAssemblyTypeName: SkinCoinsButton, Assembly-CSharp
+        m_MethodName: Pressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1728660767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12035,11 +12127,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1728660762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 515d87de9b652124f8f51045b6279ac0, type: 3}
+  m_Script: {fileID: 11500000, guid: c7be546509e1450290337ac25a764b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: -500
-  onlyOnce: 1
+  price: 500
+  skin:
+    provider: block_dasher
+    key: skin_red
 --- !u!1 &1754605271
 GameObject:
   m_ObjectHideFlags: 0
@@ -12075,7 +12169,7 @@ RectTransform:
   m_Children:
   - {fileID: 909331578}
   m_Father: {fileID: 1176979267}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12233,7 +12327,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1754605276}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1754605278}
+        m_TargetAssemblyTypeName: SkinCoinsButton, Assembly-CSharp
+        m_MethodName: Pressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1754605276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12282,11 +12388,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1754605271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 515d87de9b652124f8f51045b6279ac0, type: 3}
+  m_Script: {fileID: 11500000, guid: c7be546509e1450290337ac25a764b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: -500
-  onlyOnce: 1
+  price: 500
+  skin:
+    provider: block_dasher
+    key: skin_pink
 --- !u!1 &1776515088
 GameObject:
   m_ObjectHideFlags: 0
@@ -12646,6 +12754,7 @@ GameObject:
   - component: {fileID: 1835640680}
   - component: {fileID: 1835640684}
   - component: {fileID: 1835640683}
+  - component: {fileID: 1835640685}
   m_Layer: 5
   m_Name: Close
   m_TagString: Untagged
@@ -12720,6 +12829,18 @@ MonoBehaviour:
       - m_Target: {fileID: 293747500}
         m_TargetAssemblyTypeName: ScreensTransitions, Assembly-CSharp
         m_MethodName: ScreenDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1835640685}
+        m_TargetAssemblyTypeName: UI.PersistentDataSave, Assembly-CSharp
+        m_MethodName: Save
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12876,6 +12997,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1835640685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835640678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bfb0a1440ec470aa9a21748a39f0d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1859624900
 GameObject:
   m_ObjectHideFlags: 0
@@ -13976,7 +14109,7 @@ RectTransform:
   - {fileID: 14112297}
   - {fileID: 1032203602}
   m_Father: {fileID: 1176979267}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -14143,7 +14276,7 @@ RectTransform:
   m_Children:
   - {fileID: 1386676724}
   m_Father: {fileID: 1176979267}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14922,7 +15055,7 @@ RectTransform:
   m_Children:
   - {fileID: 647655756}
   m_Father: {fileID: 1176979267}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15080,7 +15213,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1990910003}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1990910005}
+        m_TargetAssemblyTypeName: SkinCoinsButton, Assembly-CSharp
+        m_MethodName: Pressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1990910003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15129,11 +15274,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1990909998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 515d87de9b652124f8f51045b6279ac0, type: 3}
+  m_Script: {fileID: 11500000, guid: c7be546509e1450290337ac25a764b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: -5000
-  onlyOnce: 1
+  price: 5000
+  skin:
+    provider: block_dasher
+    key: skin_blue
 --- !u!1 &1992267119
 GameObject:
   m_ObjectHideFlags: 0
@@ -15613,6 +15760,7 @@ GameObject:
   - component: {fileID: 2059443906}
   - component: {fileID: 2059443905}
   - component: {fileID: 2059443904}
+  - component: {fileID: 2059443909}
   m_Layer: 5
   m_Name: Close
   m_TagString: Untagged
@@ -15804,6 +15952,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2059443909}
+        m_TargetAssemblyTypeName: UI.PersistentDataSave, Assembly-CSharp
+        m_MethodName: Save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2059443907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15843,6 +16003,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059443902}
   m_CullTransparentMesh: 1
+--- !u!114 &2059443909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059443902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bfb0a1440ec470aa9a21748a39f0d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2083990640
 GameObject:
   m_ObjectHideFlags: 0

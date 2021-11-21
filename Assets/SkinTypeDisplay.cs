@@ -8,13 +8,11 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class SkinTypeDisplay : MonoBehaviour {
     public Identifier Identifier;
-    private Image image;
+    public Image image;
 
-    // Start is called before the first frame update
     void Start() {
-        image = GetComponent<Image>();
-
-        image.sprite = Resources.Load<Sprite>("SkinPictures/" + Identifier.ToString().Replace(":", "-"));
+        image.sprite = Resources.Load<Sprite>("SkinPictures/" 
+                                              + Identifier.ToString().Replace(":", "-"));
     }
 
     public void SetSkin() {
