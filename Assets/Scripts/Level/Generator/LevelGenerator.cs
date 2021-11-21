@@ -40,9 +40,6 @@ namespace Level.Generator {
 
             // Create player
             var skinManager = Registry.Get<Skin>(Identifiers.ManagerSkin);
-
-            print(PersistentDataContainer.PersistentData.skin);
-            
             var skin = skinManager.Get(PersistentDataContainer.PersistentData.skin)
                        ?? skinManager.Get(Identifiers.SkinDefault);
 
