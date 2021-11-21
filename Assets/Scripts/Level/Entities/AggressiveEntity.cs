@@ -20,9 +20,11 @@ namespace Level.Entities {
         protected override void Start() {
             _playerData = FindObjectOfType<PlayerData>();
             _enemySoundManager = GetComponent<EnemySoundManager>();
+            base.Start();
         }
+        
 
-        public override void BeforeDash(PlayerData player) {
+        protected override void CalculateNextDash(bool dashing) {
             DirectionFound = false;
             BlocksDashed = 0;
             CollidedWithPlayer = false;
@@ -51,7 +53,7 @@ namespace Level.Entities {
                 var distance = Math.Abs(position.x - playerPos.x) + Math.Abs(position.z - playerPos.z);
                 if (distance >= minDistance) continue;
                 minDistance = distance;
-                minDirection = direction;
+                minDirection = direction; 
             }
             
             if(minDirection == Direction.Up) return;
@@ -65,7 +67,10 @@ namespace Level.Entities {
             MaximumMovements = Position.Moved(Direction.Down).Block?.MaximumSteps ?? 2;
             MaximumMovements += ExtraSteps;
             Dashing = true;
-            transform.LookAt(transform.position + minDirection.GetVector());
+
+            if (!dashing) {
+                transform.LookAt(transform.position + Direction.GetVector());
+            }
         }
 
 

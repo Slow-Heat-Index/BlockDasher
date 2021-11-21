@@ -19,11 +19,9 @@ namespace Level.Player.Behaviour {
                 .ValidateTrue("Direction cannot be up or down!");
 
             if (!_data.CanPlayerMove || _data.hasWon || _data.dead) return;
-
-            _data.BlockPosition.World.ForEachEntity(e => e.BeforeDash(_data));
+            
 
             direction = direction.Rotated(_levelCameraBehaviour.direction);
-
             transform.LookAt(transform.position + direction.GetVector());
 
             var dashData = new DashData(_data, this, direction);
@@ -60,6 +58,8 @@ namespace Level.Player.Behaviour {
             var nextUp = _data.BlockPosition.Moved(Direction.Up).Moved(dash.Direction).Block;
             if (nextUp != null && !nextUp.CanMoveFrom(opposite)) return false;
 
+            _data.BlockPosition.World.ForEachEntity(e => e.BeforeDash(_data));
+            
             _data.nextMoveJump = true;
             _data.Move(Vector3Int.up);
             up?.OnPlayerStepsIn(_data);
@@ -87,6 +87,10 @@ namespace Level.Player.Behaviour {
                 if (fromBlock != null && !fromBlock.CanMoveTo(dash.Direction)
                     || toBlock != null && !toBlock.CanMoveFrom(dash.Direction.GetOpposite())) {
                     break;
+                }
+
+                if (blocksDashed == 0) {
+                    _data.BlockPosition.World.ForEachEntity(e => e.BeforeDash(_data));
                 }
 
                 _data.Move(dash.Direction.GetVector());
