@@ -40,8 +40,14 @@ namespace Level.Generator {
 
             // Create player
             var skinManager = Registry.Get<Skin>(Identifiers.ManagerSkin);
-            var skin = skinManager.Get(PersistentDataContainer.PersistentData.skin)
+            Skin skin;
+            if (PersistentDataContainer.PersistentData == null) {
+                skin = skinManager.Get(Identifiers.SkinDefault);
+            }
+            else {
+                skin = skinManager.Get(PersistentDataContainer.PersistentData.skin)
                        ?? skinManager.Get(Identifiers.SkinDefault);
+            }
 
             var prefab = Resources.Load<GameObject>(skin.PrefabPath);
             if (prefab == null) {
