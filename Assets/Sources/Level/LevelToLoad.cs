@@ -3,23 +3,23 @@ using UnityEngine;
 
 namespace Sources.Level {
     public struct LevelToLoad {
-        public string Path;
+        public LevelSnapshot Level;
         public bool LoadFromResources;
 
-        public LevelToLoad(string path, bool loadFromResources) {
-            Path = path;
+        public LevelToLoad(LevelSnapshot level, bool loadFromResources) {
+            Level = level;
             LoadFromResources = loadFromResources;
         }
 
         public void Load(World world) {
             BinaryReader reader;
             if (LoadFromResources) {
-                var asset = Resources.Load<TextAsset>(Path);
+                var asset = Resources.Load<TextAsset>(Level.LevelPath);
                 var stream = new MemoryStream(asset.bytes);
                 reader = new BinaryReader(stream);
             }
             else {
-                reader = new BinaryReader(File.OpenRead(Path));
+                reader = new BinaryReader(File.OpenRead(Level.LevelPath));
             }
 
             using (reader) {

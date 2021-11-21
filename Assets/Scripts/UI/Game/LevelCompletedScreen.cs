@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using Data;
 using Level.Cameras.Controller;
 using Level.Generator;
@@ -9,8 +7,7 @@ using Sources;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
-using Button = UnityEngine.UI.Button;
+using UnityEngine.UI;
 
 namespace UI.Game {
     [RequireComponent(typeof(RectTransform))]
@@ -43,7 +40,7 @@ namespace UI.Game {
             _levelGenerator = FindObjectOfType<LevelGenerator>();
             _rectTransform = GetComponent<RectTransform>();
             InitDoubleCoins();
-            
+
             _player.onWin += () => _steps.text = $"Steps: {_player.movements}";
             _player.onWin += () => {
                 _background.gameObject.SetActive(true);
@@ -52,11 +49,11 @@ namespace UI.Game {
             _player.onWin += () => _playerController.enabled = false;
             _player.onWin += () => _levelCameraController.enabled = false;
             _player.onWin += () => {
-                PersistentDataContainer.PersistentData.AddLevelCompleted(LevelData.LevelToLoad.Path,
-                    (int)_player.movements, _levelGenerator.World.GoldMoves,_levelGenerator.World.SilverMoves);
+                PersistentDataContainer.PersistentData.AddLevelCompleted(LevelData.LevelToLoad.Level.Identifier,
+                    (int)_player.movements, _levelGenerator.World.GoldMoves, _levelGenerator.World.SilverMoves);
                 DataAccess.Save(PersistentDataContainer.PersistentData);
             };
-            
+
 
             _rectTransform.localPosition = Vector3.zero;
             gameObject.SetActive(false);
@@ -82,7 +79,7 @@ namespace UI.Game {
             _background.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }
-        
+
         private void GoToMainMenu() {
             var async = SceneManager.UnloadSceneAsync("Level");
             async.completed += op => {

@@ -1,33 +1,39 @@
 ﻿using System;
 using Sources.Util;
+using UnityEngine;
 
 namespace Sources.Identification {
+    [Serializable]
     public class Identifier {
         public const string BlockDasherProvider = "block_dasher";
-        
-        public readonly string Provider;
-        public readonly string Key;
+
+        [SerializeField] private string provider;
+        [SerializeField] private string key;
+
+        public string Provider => provider;
+
+        public string Key => key;
 
         public Identifier(string provider, string key) {
             provider.ValidateNotNull("Provider cannot be null!");
             key.ValidateNotNull("Key cannot be null!");
-            Provider = provider;
-            Key = key;
+            this.provider = provider;
+            this.key = key;
         }
 
         public Identifier(string id) {
             var split = id.IndexOf(':');
             if (split == -1) throw new ArgumentException("Id format must be {provider}:{key}!");
-            Provider = id.Substring(0, split);
-            Key = id.Substring(split + 1);
+            provider = id.Substring(0, split);
+            key = id.Substring(split + 1);
         }
 
         public override string ToString() {
-            return Provider + ":" + Key;
+            return provider + ":" + key;
         }
 
         protected bool Equals(Identifier other) {
-            return Provider == other.Provider && Key == other.Key;
+            return provider == other.provider && key == other.key;
         }
 
         public override bool Equals(object obj) {

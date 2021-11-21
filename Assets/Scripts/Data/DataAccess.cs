@@ -4,80 +4,67 @@ using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-namespace Data
-{
-    public class DataAccess
-    {
+namespace Data {
+    public class DataAccess {
         [DllImport("__Internal")]
         private static extern void SyncFiles();
 
         [DllImport("__Internal")]
         private static extern void WindowAlert(string message);
 
-        public static void Save(PlayerPersistentData persistentData)
-        {
+        public static void Save(PlayerPersistentData persistentData) {
             string dataPath = string.Format("{0}/GameDetails.dat", Application.persistentDataPath);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             FileStream fileStream;
 
-            try
-            {
-                if (File.Exists(dataPath))
-                {
+            try {
+                if (File.Exists(dataPath)) {
                     File.WriteAllText(dataPath, string.Empty);
                     fileStream = File.Open(dataPath, FileMode.Open);
                 }
-                else
-                {
+                else {
                     fileStream = File.Create(dataPath);
                 }
 
                 binaryFormatter.Serialize(fileStream, persistentData);
                 fileStream.Close();
 
-                if (Application.platform == RuntimePlatform.WebGLPlayer)
-                {
+                if (Application.platform == RuntimePlatform.WebGLPlayer) {
                     SyncFiles();
                 }
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 PlatformSafeMessage("Failed to Save: " + e.Message);
             }
         }
 
-        public static PlayerPersistentData Load()
-        {
+        public static PlayerPersistentData Load() {
             PlayerPersistentData persistentData = null;
             string dataPath = string.Format("{0}/GameDetails.dat", Application.persistentDataPath);
 
-            try
-            {
-                if (File.Exists(dataPath))
-                {
+            try {
+                if (File.Exists(dataPath)) {
                     BinaryFormatter binaryFormatter = new BinaryFormatter();
                     FileStream fileStream = File.Open(dataPath, FileMode.Open);
 
-                    persistentData = (PlayerPersistentData) binaryFormatter.Deserialize(fileStream);
+                    persistentData = (PlayerPersistentData)binaryFormatter.Deserialize(fileStream);
+                    persistentData.CheckVersion();
                     fileStream.Close();
+                    Debug.Log("Loaded file " + dataPath);
                 }
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 PlatformSafeMessage("Failed to Load: " + e.Message);
             }
 
             return persistentData;
         }
 
-        private static void PlatformSafeMessage(string message)
-        {
-            if (Application.platform == RuntimePlatform.WebGLPlayer)
-            {
+        private static void PlatformSafeMessage(string message) {
+            if (Application.platform == RuntimePlatform.WebGLPlayer) {
                 WindowAlert(message);
             }
-            else
-            {
+            else {
                 Debug.Log(message);
             }
         }
