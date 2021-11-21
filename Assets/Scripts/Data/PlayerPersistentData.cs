@@ -39,10 +39,7 @@ namespace Data {
         }
 
         public void ModifyCoins(int value) {
-            if (coins - value < 0) return;
-
-            coins += value;
-            Debug.Log(coins);
+            coins = Math.Max(0, coins + value);
         }
 
         public bool GetAds() {
