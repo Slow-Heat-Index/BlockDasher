@@ -45,7 +45,11 @@ namespace Level.Generator {
             blocks.ForEach(it => it.RefreshViewIfRequired());
             var materials = blocks.Select(it => it.Material).Distinct().ToList();
             foreach (var material in materials) {
-                var opGameObject = new GameObject();
+                var opGameObject = new GameObject {
+                    transform = {
+                        parent = transform
+                    }
+                };
                 var optimizer = opGameObject.AddComponent<BlockRenderOptimizer>();
                 optimizer.material = material;
                 optimizer.Init(blocks);

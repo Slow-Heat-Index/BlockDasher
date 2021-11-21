@@ -6,6 +6,7 @@ using Sources.Identification;
 using Sources.Level.Data;
 using Sources.Util;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
 namespace Sources.Level {
@@ -76,6 +77,12 @@ namespace Sources.Level {
             Metadata = data.GetMetadataCopy();
 
             GameObject = new GameObject(position.ToString()) { transform = { position = position.Position } };
+
+            var levelScene = SceneManager.GetSceneByName("Level");
+            if (levelScene.IsValid()) {
+                SceneManager.MoveGameObjectToScene(GameObject, levelScene);
+            }
+
             View = GenerateBlockView();
             View.Block = this;
             View.Initialize();
