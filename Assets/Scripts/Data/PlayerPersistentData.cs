@@ -13,6 +13,7 @@ namespace Data
         public List<LevelCompletionData> completedLevels;
         public int totalStars;
         public int coins = 5000;
+        private bool adsRemoved = false;
 
         public PlayerPersistentData()
         {
@@ -36,6 +37,14 @@ namespace Data
 
             coins += value;
             Debug.Log(coins);
+        }
+
+        public bool GetAds() {
+            return adsRemoved;
+        }
+
+        public void SetAds(bool b) {
+            adsRemoved = b;
         }
 
         public void AddLevelCompleted(string path, int steps, int goldStars, int silverStars)
