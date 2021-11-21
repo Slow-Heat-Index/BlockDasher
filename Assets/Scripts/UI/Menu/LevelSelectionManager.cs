@@ -37,6 +37,9 @@ public class LevelSelectionManager : MonoBehaviour {
         _hubWorld = _worlds.transform.GetChild(currentWorld).GetComponent<HubWorld>();
         _hubMovement = _hubWorld.GetComponentInChildren<HubWorld>().hubMovement;
         _hubMovement.OnLevelReached.AddListener(ShowUI);
+        _playButton.interactable = IsUnlocked(_hubMovement.GetCurrentLevel());
+        _nextButton.interactable = _hubMovement.GetCurrentLevel() != _hubMovement.GetNumLevels() - 1;
+        _previousButton.interactable = _hubMovement.GetCurrentLevel() != 0;
     }
 
     public void Next() {
