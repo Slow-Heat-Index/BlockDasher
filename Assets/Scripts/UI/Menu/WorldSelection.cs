@@ -20,6 +20,7 @@ public class WorldSelection : MonoBehaviour {
     [SerializeField] private Button previousWorldb;
     [SerializeField] private Button selectWorldb;
     [SerializeField] private GameObject worldLocked;
+    [SerializeField] private GameObject touchToPlay;
     private ScreensTransitions _screensTransitions;
 
     
@@ -54,6 +55,7 @@ public class WorldSelection : MonoBehaviour {
 
         selectWorldb.interactable = !(worlds[currentWorld].starsNeeded > PersistentDataContainer.PersistentData.totalStars);
         worldLocked.SetActive(worlds[currentWorld].starsNeeded > PersistentDataContainer.PersistentData.totalStars);
+        touchToPlay.SetActive(worlds[currentWorld].starsNeeded <= PersistentDataContainer.PersistentData.totalStars);
         
         if (currentWorld == worlds.Length - 1) {
             nextWorldb.interactable = false;
@@ -67,6 +69,7 @@ public class WorldSelection : MonoBehaviour {
         
         selectWorldb.interactable = !(worlds[currentWorld].starsNeeded > PersistentDataContainer.PersistentData.totalStars);
         worldLocked.SetActive(worlds[currentWorld].starsNeeded > PersistentDataContainer.PersistentData.totalStars);
+        touchToPlay.SetActive(worlds[currentWorld].starsNeeded <= PersistentDataContainer.PersistentData.totalStars);
         
         worlds[currentWorld].hubWorldAnim.PopUp();
         worlds[previous].hubWorldAnim.PopDown();
