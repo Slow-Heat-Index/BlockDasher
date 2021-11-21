@@ -26,7 +26,9 @@ public class StarsDisplay : MonoBehaviour {
 
     IEnumerator StarsAnimation(int n) {
         _audioSource.pitch = 1.5f;
-        for (int i = 0; i <= n; i++) {
+        _image.sprite = starsImages[0];
+        
+        for (int i = 1; i <= n; i++) {
             _image.sprite = starsImages[i];
             _popUpAnim.enabled = false;
             _popUpAnim.enabled = true;
@@ -39,7 +41,7 @@ public class StarsDisplay : MonoBehaviour {
     private void OnEnable() {
         if (!hasStarted) return;
         StartCoroutine(StarsAnimation(
-            PersistentDataContainer.PersistentData.LevelStars(_levelGenerator.World.SilverMoves,
+            PersistentDataContainer.PersistentData.LevelStars(_levelGenerator.World.GoldMoves,
                 _levelGenerator.World.SilverMoves, (int)_playerData.movements)));
     }
 

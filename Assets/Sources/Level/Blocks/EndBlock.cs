@@ -18,6 +18,7 @@ namespace Sources.Level.Blocks {
         public override bool IsClimbableFrom(Direction direction) => false;
 
         public override void OnPlayerStopsIn(PlayerData player) {
+            player.movements++;
             player.Win();
         }
 
