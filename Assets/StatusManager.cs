@@ -5,14 +5,27 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class StatusManager : MonoBehaviour {
-    private Image _image;
-    [SerializeField] private Sprite[] sprites;
+    [SerializeField] private Image _imageWater;
+    [SerializeField] private Image _imageSand;
+    [SerializeField] private Sprite[] spritesSand;
+    [SerializeField] private Sprite[] spritesWater;
 
-    private void Awake() {
-        _image = GetComponent<Image>();
+
+    public void SetSand(int i) {
+        _imageSand.color = Color.white;
+        _imageSand.sprite = spritesSand[i];
+    }
+    
+    public void SetWater(int i) {
+        _imageWater.color = Color.white;
+        _imageWater.sprite = spritesWater[i];
     }
 
-    public void SetSprite(int i) {
-        _image.sprite = sprites[i];
+    public void ResetWater() {
+        _imageWater.color = new Color(0, 0, 0, 0);
+    }
+
+    public void ResetSand() {
+        _imageSand.color = new Color(0, 0, 0, 0);
     }
 }

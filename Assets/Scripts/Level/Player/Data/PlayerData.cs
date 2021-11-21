@@ -52,6 +52,8 @@ namespace Level.Player.Data {
 
         private MovesCounter _movesCounter;
 
+        private StatusManager _statusManager;
+
         public bool CanPlayerMove =>
             _movementQueue.Count == 0 &&
             (_movementTween == null || !_movementTween.IsActive() || _movementTween.IsComplete());
@@ -65,6 +67,7 @@ namespace Level.Player.Data {
             _cameraBehaviour = FindObjectOfType<LevelCameraBehaviour>();
             _playerSoundManager = GetComponent<PlayerSoundManager>();
             _movesCounter = FindObjectOfType<MovesCounter>();
+            _statusManager = FindObjectOfType<StatusManager>();
 
             BlockPosition = _level.World.StartPosition.Position;
 
@@ -146,13 +149,16 @@ namespace Level.Player.Data {
                 movementsOnQuicksand++;
                 if (movementsOnQuicksand > maxMovementsOnQuicksand) {
                     Lose(PlayerDeathCause.DROWN);
+                    _statusManager.ResetSand();
                     return;
                 }
-
+                _statusManager.SetSand(movementsOnQuicksand-1);
+                
                 _playerSoundManager.PlayRandomPitch(2);
             }
             else {
                 movementsOnQuicksand = 0;
+                _statusManager.ResetSand();
                 _playerSoundManager.PlayRandomPitch(0);
             }
 
@@ -160,13 +166,18 @@ namespace Level.Player.Data {
                 movementsInWater++;
                 if (movementsInWater > maxMovementsInWater) {
                     Lose(PlayerDeathCause.DROWN);
+                    
+                    _statusManager.ResetWater();
                     return;
                 }
+                _statusManager.SetWater(movementsInWater-1);
 
                 _playerSoundManager.PlayRandomPitch(4);
             }
+            
             else {
                 movementsInWater = 0;
+                _statusManager.ResetWater();
                 _playerSoundManager.PlayRandomPitch(0);
             }
 
