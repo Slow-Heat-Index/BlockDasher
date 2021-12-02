@@ -293,7 +293,7 @@ namespace Level.Player.Data {
                     break;
             }
 
-            onLose.Invoke();
+            onLose?.Invoke();
             /*
             Reset();*/
         }
