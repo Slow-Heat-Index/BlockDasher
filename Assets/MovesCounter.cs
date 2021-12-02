@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Level.Player.Data;
 using TMPro;
 using UnityEngine;
 
@@ -10,10 +8,7 @@ public class MovesCounter : MonoBehaviour {
 
     private void Awake() {
         DashText = GetComponent<TextMeshProUGUI>();
-    }
-
-    private void OnEnable() {
-        DashText.text = "0";
+        DashText.text = FindObjectOfType<PlayerData>().movements.ToString();
     }
 
     public void AddMovement(uint move) {
