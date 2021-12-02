@@ -1,10 +1,10 @@
+using System;
 using Level.Cameras.Controller;
 using Level.Generator;
 using Level.Player.Controller;
 using Level.Player.Data;
 using Sources.Level.Manager;
 using UI;
-using UI.Menu;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -48,10 +48,19 @@ public class PauseMenu : MonoBehaviour {
         _levelCameraController = FindObjectOfType<LevelCameraController>();
 
         gameObject.SetActive(false);
+
+        _player.onPreLose += DisableButton;
+        _player.onReset += EnableButton;
+    }
+
+    private void OnDestroy() {
+        _player.onPreLose -= DisableButton;
+        _player.onReset -= EnableButton;
     }
 
 
     public void PauseGame() {
+        if (_player.dead) return;
         gameplayUigo.SetActive(false);
         _playerController.enabled = false;
         _levelCameraController.enabled = false;
@@ -89,5 +98,13 @@ public class PauseMenu : MonoBehaviour {
             MenuGO.Instance.gameObject.SetActive(true);
             MenuGO.Instance.PrepareMenu();
         };
+    }
+
+    private void EnableButton() {
+        pauseButton.gameObject.SetActive(true);
+    }
+
+    private void DisableButton() {
+        pauseButton.gameObject.SetActive(false);
     }
 }

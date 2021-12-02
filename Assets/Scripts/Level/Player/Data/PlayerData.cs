@@ -20,6 +20,7 @@ namespace Level.Player.Data {
         private static readonly int AnimatorDrown = Animator.StringToHash("Drown");
         private static readonly int AnimatorIdle = Animator.StringToHash("Idle");
         public event Action onWin;
+        public event Action onPreLose;
         public event Action onLose;
         public event Action onReset;
 
@@ -152,8 +153,9 @@ namespace Level.Player.Data {
                     _statusManager.ResetSand();
                     return;
                 }
-                _statusManager.SetSand(movementsOnQuicksand-1);
-                
+
+                _statusManager.SetSand(movementsOnQuicksand - 1);
+
                 _playerSoundManager.PlayRandomPitch(2);
             }
             else {
@@ -166,15 +168,16 @@ namespace Level.Player.Data {
                 movementsInWater++;
                 if (movementsInWater > maxMovementsInWater) {
                     Lose(PlayerDeathCause.DROWN);
-                    
+
                     _statusManager.ResetWater();
                     return;
                 }
-                _statusManager.SetWater(movementsInWater-1);
+
+                _statusManager.SetWater(movementsInWater - 1);
 
                 _playerSoundManager.PlayRandomPitch(4);
             }
-            
+
             else {
                 movementsInWater = 0;
                 _statusManager.ResetWater();
@@ -228,10 +231,11 @@ namespace Level.Player.Data {
             }
 
             _movementQueue.Clear();
-
             _movementTween = transform.DOPath(waypoints, movementSpeed * waypoints.Length)
                 .SetEase(Ease.Linear);
             _movementTween.onComplete = () => { StartCoroutine(DeathAnimationCompleted(cause)); };
+
+            onPreLose?.Invoke();
         }
 
         public void Reset() {
