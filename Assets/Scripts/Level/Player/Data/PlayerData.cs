@@ -251,6 +251,9 @@ namespace Level.Player.Data {
             _animator.Play(AnimatorIdle, 0);
             shouldCameraFollow = true;
             _level.World.ResetLevel(true);
+            
+            _statusManager.ResetWater();
+            _statusManager.ResetSand();
         }
 
         private void UpdateTransform() {
