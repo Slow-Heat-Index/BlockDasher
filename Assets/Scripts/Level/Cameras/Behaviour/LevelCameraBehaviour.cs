@@ -5,10 +5,14 @@ using UnityEngine;
 
 namespace Level.Cameras.Behaviour {
     public class LevelCameraBehaviour : MonoBehaviour {
+
+        public const float MovementDelay = 0.2f;
+        
         public Direction direction = Direction.North;
         [SerializeField] private float distance = 5;
         [SerializeField] private float animationDuration = 0.5f;
         private Tween _moveTween, _rotateTween;
+        private float _lastMovement;
 
 
         private PlayerData _player;
@@ -19,15 +23,17 @@ namespace Level.Cameras.Behaviour {
         }
 
         public void RotateRight() {
-            if(!_player.shouldCameraFollow) return;
+            if (!_player.shouldCameraFollow || _lastMovement + MovementDelay > Time.time) return;
             direction = direction.Rotated(Direction.West);
             UpdateCameraPosition();
+            _lastMovement = Time.time;
         }
 
         public void RotateLeft() {
-            if(!_player.shouldCameraFollow) return;
+            if (!_player.shouldCameraFollow || _lastMovement + MovementDelay > Time.time) return;
             direction = direction.Rotated(Direction.East);
             UpdateCameraPosition();
+            _lastMovement = Time.time;
         }
 
         public void UpdateCameraPosition() {
