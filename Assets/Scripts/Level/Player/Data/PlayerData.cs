@@ -24,6 +24,8 @@ namespace Level.Player.Data {
         public event Action onLose;
         public event Action onReset;
 
+        public event Action onMove;
+
         public int extraSteps = 0;
         public uint movements = 0;
         public bool hasWon;
@@ -136,6 +138,8 @@ namespace Level.Player.Data {
         }
 
         public void FinishMoving() {
+            onMove.Invoke();
+            
             var current = BlockPosition.Block;
             var down = BlockPosition.Moved(Direction.Down).Block;
             if (current == null || current.CanMoveTo(Direction.Down)) {

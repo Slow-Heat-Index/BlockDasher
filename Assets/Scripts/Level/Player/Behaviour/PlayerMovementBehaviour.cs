@@ -1,4 +1,5 @@
-﻿using Level.Cameras.Behaviour;
+﻿using System;
+using Level.Cameras.Behaviour;
 using Level.Player.Data;
 using Sources.Util;
 using UnityEngine;
@@ -8,6 +9,8 @@ namespace Level.Player.Behaviour {
     public class PlayerMovementBehaviour : MonoBehaviour {
         private PlayerData _data;
         private LevelCameraBehaviour _levelCameraBehaviour;
+        
+        public event Action onMove;
 
         private void Awake() {
             _data = GetComponent<PlayerData>();
