@@ -5,9 +5,12 @@ namespace Sources.Level {
         public Identifier Identifier { get; }
         public string LevelPath { get; }
         
-        public LevelSnapshot(Identifier identifier, string levelPath) {
+        public bool Tutorial { get; }
+        
+        public LevelSnapshot(Identifier identifier, string levelPath, bool tutorial = false) {
             Identifier = identifier;
             LevelPath = levelPath;
+            Tutorial = tutorial;
         }
     }
 }

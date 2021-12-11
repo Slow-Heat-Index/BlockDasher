@@ -5,10 +5,12 @@ namespace Sources.Level {
     public struct LevelToLoad {
         public LevelSnapshot Level;
         public bool LoadFromResources;
+        public bool LoadTutorial;
 
-        public LevelToLoad(LevelSnapshot level, bool loadFromResources) {
+        public LevelToLoad(LevelSnapshot level, bool loadFromResources, bool loadTutorial) {
             Level = level;
             LoadFromResources = loadFromResources;
+            LoadTutorial = loadTutorial;
         }
 
         public void Load(World world) {

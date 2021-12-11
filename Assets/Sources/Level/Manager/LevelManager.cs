@@ -4,7 +4,7 @@ using Sources.Registration;
 namespace Sources.Level.Manager {
     public class LevelManager : Manager<LevelSnapshot> {
         public static readonly LevelSnapshot Level11 =
-            new LevelSnapshot(Identifiers.Level11, "Levels/level_1_1");
+            new LevelSnapshot(Identifiers.Level11, "Levels/level_1_1", true);
 
         public LevelManager() : base(Identifiers.ManagerLevel) {
             Register(Level11);
