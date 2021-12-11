@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Data;
 using Level.Player.Data;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,7 +38,7 @@ public class ReplayFromDeath : MonoBehaviour {
 
     void ReplayAd() {
         deaths++;
-        if (deaths >= 3) {
+        if (deaths >= 3 && !PersistentDataContainer.PersistentData.adsRemoved) {
             deaths = 0;
             ad.PlayAd();
         }
