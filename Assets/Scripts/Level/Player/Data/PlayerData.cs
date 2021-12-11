@@ -258,6 +258,8 @@ namespace Level.Player.Data {
             
             _statusManager.ResetWater();
             _statusManager.ResetSand();
+            
+            _movesCounter.AddMovement(movements);
         }
 
         private void UpdateTransform() {

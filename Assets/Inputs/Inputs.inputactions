@@ -327,6 +327,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "R Key",
+                    "type": "Button",
+                    "id": "a7cd8dcd-c4ba-45a2-a43f-b5a74ded3dd6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -437,6 +445,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Keyboard Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "861e1e91-321f-4ed5-8b03-84dc1fe81ec5",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "R Key",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

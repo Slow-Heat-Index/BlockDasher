@@ -2253,6 +2253,7 @@ GameObject:
   - component: {fileID: 587924691}
   - component: {fileID: 587924692}
   - component: {fileID: 587924693}
+  - component: {fileID: 587924694}
   m_Layer: 5
   m_Name: Stars Needed
   m_TagString: Untagged
@@ -2319,6 +2320,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &587924694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587924690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f9bc292fcb9a914a8dffdaef672e64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTime: 0.4
+  amplitude: 0
+  period: 0
 --- !u!1 &589730798
 GameObject:
   m_ObjectHideFlags: 0

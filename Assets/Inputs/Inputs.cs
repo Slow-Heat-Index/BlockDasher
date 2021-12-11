@@ -340,6 +340,14 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""R Key"",
+                    ""type"": ""Button"",
+                    ""id"": ""a7cd8dcd-c4ba-45a2-a43f-b5a74ded3dd6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -450,6 +458,17 @@ public class @Inputs : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Keyboard Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""861e1e91-321f-4ed5-8b03-84dc1fe81ec5"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""R Key"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -603,6 +622,7 @@ public class @Inputs : IInputActionCollection, IDisposable
         m_Player_KeyboardDown = m_Player.FindAction("Keyboard Down", throwIfNotFound: true);
         m_Player_KeyboardLeft = m_Player.FindAction("Keyboard Left", throwIfNotFound: true);
         m_Player_KeyboardRight = m_Player.FindAction("Keyboard Right", throwIfNotFound: true);
+        m_Player_RKey = m_Player.FindAction("R Key", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_RotateLeft = m_Camera.FindAction("Rotate Left", throwIfNotFound: true);
@@ -771,6 +791,7 @@ public class @Inputs : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_KeyboardDown;
     private readonly InputAction m_Player_KeyboardLeft;
     private readonly InputAction m_Player_KeyboardRight;
+    private readonly InputAction m_Player_RKey;
     public struct PlayerActions
     {
         private @Inputs m_Wrapper;
@@ -781,6 +802,7 @@ public class @Inputs : IInputActionCollection, IDisposable
         public InputAction @KeyboardDown => m_Wrapper.m_Player_KeyboardDown;
         public InputAction @KeyboardLeft => m_Wrapper.m_Player_KeyboardLeft;
         public InputAction @KeyboardRight => m_Wrapper.m_Player_KeyboardRight;
+        public InputAction @RKey => m_Wrapper.m_Player_RKey;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -808,6 +830,9 @@ public class @Inputs : IInputActionCollection, IDisposable
                 @KeyboardRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyboardRight;
                 @KeyboardRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyboardRight;
                 @KeyboardRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyboardRight;
+                @RKey.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRKey;
+                @RKey.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRKey;
+                @RKey.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRKey;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -830,6 +855,9 @@ public class @Inputs : IInputActionCollection, IDisposable
                 @KeyboardRight.started += instance.OnKeyboardRight;
                 @KeyboardRight.performed += instance.OnKeyboardRight;
                 @KeyboardRight.canceled += instance.OnKeyboardRight;
+                @RKey.started += instance.OnRKey;
+                @RKey.performed += instance.OnRKey;
+                @RKey.canceled += instance.OnRKey;
             }
         }
     }
@@ -937,6 +965,7 @@ public class @Inputs : IInputActionCollection, IDisposable
         void OnKeyboardDown(InputAction.CallbackContext context);
         void OnKeyboardLeft(InputAction.CallbackContext context);
         void OnKeyboardRight(InputAction.CallbackContext context);
+        void OnRKey(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {

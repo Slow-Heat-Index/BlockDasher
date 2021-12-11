@@ -10,6 +10,7 @@ namespace Level.Player.Controller {
     [RequireComponent(typeof(PlayerMovementBehaviour))]
     public class PlayerMovementController : ControllerAwareMonoBehaviour<Inputs> {
         private PlayerMovementBehaviour _behaviour;
+        private PauseMenu _pause;
 
         private Vector2 _touchscreenStart;
 
@@ -18,11 +19,13 @@ namespace Level.Player.Controller {
         protected override void Awake() {
             base.Awake();
             _behaviour = GetComponent<PlayerMovementBehaviour>();
+            _pause = FindObjectOfType<PauseMenu>();
 
             Input.Player.KeyboardUp.performed += OnKeyboardInput;
             Input.Player.KeyboardDown.performed += OnKeyboardInput;
             Input.Player.KeyboardLeft.performed += OnKeyboardInput;
             Input.Player.KeyboardRight.performed += OnKeyboardInput;
+            Input.Player.RKey.performed += OnRestartInput;
 
             Input.Player.TouchscreenPress.performed += OnTouchscreenPress;
             Input.Player.TouchscreenPress.canceled += OnTouchscreenEndsPress;
@@ -64,6 +67,10 @@ namespace Level.Player.Controller {
             });
 
             _behaviour.Dash(direction);
+        }
+
+        protected void OnRestartInput(InputAction.CallbackContext context) {
+            _pause.RestartLevel();
         }
     }
 }
