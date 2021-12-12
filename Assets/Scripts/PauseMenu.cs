@@ -52,6 +52,8 @@ public class PauseMenu : MonoBehaviour {
 
 
     public void PauseGame() {
+        if(_player.dead) return;
+        
         gameplayUigo.SetActive(false);
         _playerController.enabled = false;
         _levelCameraController.enabled = false;
