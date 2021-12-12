@@ -1,6 +1,7 @@
 ﻿using System;
 using Controller;
 using Level.Player.Behaviour;
+using Level.Player.Data;
 using Sources.Util;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,6 +12,7 @@ namespace Level.Player.Controller {
     public class PlayerMovementController : ControllerAwareMonoBehaviour<Inputs> {
         private PlayerMovementBehaviour _behaviour;
         private PauseMenu _pause;
+        private PlayerData _playerData;
 
         private Vector2 _touchscreenStart;
 
@@ -20,6 +22,7 @@ namespace Level.Player.Controller {
             base.Awake();
             _behaviour = GetComponent<PlayerMovementBehaviour>();
             _pause = FindObjectOfType<PauseMenu>();
+            _playerData = GetComponent<PlayerData>();
 
             Input.Player.KeyboardUp.performed += OnKeyboardInput;
             Input.Player.KeyboardDown.performed += OnKeyboardInput;
@@ -70,6 +73,7 @@ namespace Level.Player.Controller {
         }
 
         protected void OnRestartInput(InputAction.CallbackContext context) {
+            if (_playerData.dead) return;
             _pause.RestartLevel();
         }
     }
