@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class FullScreenAd : MonoBehaviour {
@@ -14,6 +15,8 @@ public class FullScreenAd : MonoBehaviour {
     [SerializeField] private GameObject toActivate;
     private IEnumerator adWait;
     private Tween progressTween;
+
+    public UnityEvent onAdFinished;
     
 
     private void OnEnable() {
@@ -65,6 +68,7 @@ public class FullScreenAd : MonoBehaviour {
         progressTween.Pause();
         progress.fillAmount = 1;
         adGO.SetActive(false);
+        onAdFinished.Invoke();
         
         if (toActivate != null) {
             toActivate.SetActive(true); 
