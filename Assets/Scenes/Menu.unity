@@ -2165,6 +2165,8 @@ MonoBehaviour:
   skin:
     provider: block_dasher
     key: skin_purple
+  boughtSprite: {fileID: -1290670952318355865, guid: 6571bf30d94b05a46b58fe33f6d9aecd,
+    type: 3}
 --- !u!1 &587333481
 GameObject:
   m_ObjectHideFlags: 0
@@ -9809,6 +9811,8 @@ MonoBehaviour:
   skin:
     provider: block_dasher
     key: skin_green
+  boughtSprite: {fileID: -5678706756257402029, guid: 6571bf30d94b05a46b58fe33f6d9aecd,
+    type: 3}
 --- !u!1 &1440985213
 GameObject:
   m_ObjectHideFlags: 0
@@ -10385,6 +10389,8 @@ MonoBehaviour:
   skin:
     provider: block_dasher
     key: skin_gray
+  boughtSprite: {fileID: -5678706756257402029, guid: 6571bf30d94b05a46b58fe33f6d9aecd,
+    type: 3}
 --- !u!114 &1511372406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12419,6 +12425,8 @@ MonoBehaviour:
   skin:
     provider: block_dasher
     key: skin_red
+  boughtSprite: {fileID: -5678706756257402029, guid: 6571bf30d94b05a46b58fe33f6d9aecd,
+    type: 3}
 --- !u!1 &1754605271
 GameObject:
   m_ObjectHideFlags: 0
@@ -12680,6 +12688,8 @@ MonoBehaviour:
   skin:
     provider: block_dasher
     key: skin_pink
+  boughtSprite: {fileID: -5678706756257402029, guid: 6571bf30d94b05a46b58fe33f6d9aecd,
+    type: 3}
 --- !u!1 &1776515088
 GameObject:
   m_ObjectHideFlags: 0
@@ -15603,6 +15613,8 @@ MonoBehaviour:
   skin:
     provider: block_dasher
     key: skin_blue
+  boughtSprite: {fileID: -1290670952318355865, guid: 6571bf30d94b05a46b58fe33f6d9aecd,
+    type: 3}
 --- !u!1 &1992267119
 GameObject:
   m_ObjectHideFlags: 0

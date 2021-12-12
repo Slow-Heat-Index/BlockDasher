@@ -6,7 +6,7 @@ namespace Data
     {
         public static PlayerPersistentData PersistentData = null;
 
-        void Start()
+        void Awake()
         {
             if (PersistentData != null) {
                 Destroy(gameObject);
