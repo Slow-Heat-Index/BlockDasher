@@ -138,7 +138,10 @@ namespace Level.Player.Data {
         }
 
         public void FinishMoving() {
-            onMove.Invoke();
+            if (onMove != null) {
+                onMove.Invoke();
+            }
+            
             
             var current = BlockPosition.Block;
             var down = BlockPosition.Moved(Direction.Down).Block;

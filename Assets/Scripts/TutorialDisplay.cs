@@ -17,6 +17,7 @@ public class TutorialDisplay : MonoBehaviour {
     }
 
     private void Start() {
+        print(LevelData.LevelToLoad.LoadTutorial);
         if (!LevelData.LevelToLoad.LoadTutorial) return;
         
         if (Application.isMobilePlatform) {
