@@ -48,6 +48,7 @@ namespace Sources.Level.Raycast {
         }
 
         public float MaximumDistanceSquared => _maximumDistanceSquared;
+        public float CurrentDistanceSquared => (_current - _origin).sqrMagnitude;
 
         public Block Result => _result;
 
