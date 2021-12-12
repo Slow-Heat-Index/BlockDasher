@@ -33,7 +33,7 @@ public class ReplayFromDeath : MonoBehaviour {
     void Replay() {
         deaths++;
 
-        if (deaths >= 3 && PersistentDataContainer.PersistentData.adsRemoved) {
+        if (deaths >= 3 && !PersistentDataContainer.PersistentData.adsRemoved) {
             ReplayAd();
             return;
         }
