@@ -3381,7 +3381,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: -4305694337450882838, guid: d33b5580858c9b14fa36d2c2700d0b76,
+    m_PressedSprite: {fileID: -6351731881600203286, guid: b91cacdb1b74ba84fbb9dcd8452b43cc,
       type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -3392,7 +3392,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 144621873}
+  m_TargetGraphic: {fileID: 926943747}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -3440,7 +3440,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8110604192274495242, guid: 2e2277b67c81c624980967ad8f1f305e,
+  m_Sprite: {fileID: -6535032282132944936, guid: b91cacdb1b74ba84fbb9dcd8452b43cc,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 1
